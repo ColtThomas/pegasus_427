@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="E:\EE427\lab2workspace\lab2_0\Debug\lab2_0.elf" key="lab2_hw_platform-microblaze_0-initElf"/>
+	<item value="E:\EE427\lab2workspace\lab2_hw_platform\system_bd.bmm" key="lab2_hw_platform-bmmFile"/>
+	<item value="E:\EE427\lab2workspace\lab2_hw_platform\system.bit" key="lab2_hw_platform-bitFile"/>
+</section>

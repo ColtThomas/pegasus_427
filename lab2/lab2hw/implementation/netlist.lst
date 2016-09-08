@@ -1,0 +1,18 @@
+E:\EE427\lab2\implementation\system.ngc 1473347312
+E:/EE427/lab2/implementation/push_buttons_5bits_wrapper.ngc 1473347196
+E:/EE427/lab2/implementation/dip_switches_8bits_wrapper.ngc 1473347232
+E:/EE427/lab2/implementation/rs232_uart_1_wrapper.ngc 1473347178
+E:/EE427/lab2/implementation/proc_sys_reset_0_wrapper.ngc 1473346932
+E:/EE427/lab2/implementation/clock_generator_0_wrapper.ngc 1473347276
+E:/EE427/lab2/implementation/microblaze_0_ilmb_wrapper.ngc 1473347250
+E:/EE427/lab2/implementation/microblaze_0_dlmb_wrapper.ngc 1473347256
+E:/EE427/lab2/implementation/axi4lite_0_wrapper.ngc 1473347282
+E:/EE427/lab2/implementation/microblaze_0_wrapper.ngc 1473347270
+E:/EE427/lab2/implementation/microblaze_0_intc_wrapper.ngc 1473346950
+E:/EE427/lab2/implementation/microblaze_0_i_bram_ctrl_wrapper.ngc 1473346970
+E:/EE427/lab2/implementation/microblaze_0_d_bram_ctrl_wrapper.ngc 1473346988
+E:/EE427/lab2/implementation/debug_module_wrapper.ngc 1473347128
+E:/EE427/lab2/implementation/leds_8bits_wrapper.ngc 1473347214
+E:/EE427/lab2/implementation/fit_timer_0_wrapper.ngc 1473347244
+E:/EE427/lab2/implementation/microblaze_0_bram_block_wrapper.ngc 1473347002
+OK
