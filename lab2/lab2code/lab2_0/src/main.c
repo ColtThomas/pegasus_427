@@ -4,6 +4,9 @@
 #include "mb_interface.h"   // provides the microblaze interrupt enables, etc.
 #include "xintc_l.h"        // Provides handy macros for the interrupt controller.
 
+
+#define PB_DEBOUNCE_TIME 1000
+
 XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 
@@ -19,7 +22,10 @@ void pb_interrupt_handler() {
   u32 currentButtonState = XGpio_DiscreteRead(&gpPB, 1);  // Get the current state of the buttons.
   // You need to do something here.
 
-  // Button implementation
+  // Button implementation (Colt)
+  print("#");
+  XIntc_MasterDisable(XPAR_MICROBLAZE_0_INTC_BASEADDR); // So what does this do?
+  int isr_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR); // This gets the status of the registers. We want the ISR (status)
 
 
   XGpio_InterruptClear(&gpPB, 0xFFFFFFFF);            // Ack the PB interrupt.
