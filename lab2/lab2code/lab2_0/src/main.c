@@ -7,6 +7,16 @@
 
 #define PB_DEBOUNCE_TIME 1000
 
+// Button handler state machine declaration
+enum buttonHandler_st_t {
+	init_st,
+	no_touch_st,
+	wait_st,
+	hold_st,
+	final_st,
+} buttonState = init_st;
+
+
 XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 
@@ -24,6 +34,37 @@ void pb_interrupt_handler() {
 
   // Button implementation (Colt)
   print("#");
+
+  // Trying to implement the debounce state machine
+//  switch(buttonState) {
+//	  case init_st:
+//		  break;
+//	  case no_touch_st:
+//		  break;
+//	  case wait_st:
+//		  break;
+//	  case hold_st:
+//		  break;
+//	  case final_st:
+//		  break;
+//	  default:
+//		  break;
+//  }
+//
+//  switch(buttonState) {
+//  	  case init_st:
+//  		  break;
+//  	  case no_touch_st:
+//  		  break;
+//  	  case wait_st:
+//  		  break;
+//  	  case hold_st:
+//  		  break;
+//  	  case final_st:
+//  		  break;
+//  	  default:
+//  		  break;
+//    }
   XIntc_MasterDisable(XPAR_MICROBLAZE_0_INTC_BASEADDR); // So what does this do?
   int isr_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR); // This gets the status of the registers. We want the ISR (status)
 
