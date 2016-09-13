@@ -5,9 +5,9 @@
 #include "xintc_l.h"        // Provides handy macros for the interrupt controller.
 
 
-#define PB_DEBOUNCE_TIME 10
-
-// Button handler state machine declaration
+#define PB_DEBOUNCE_TIME 50
+#define TIMER_SEC 100
+// This is an example of an enumerated type I like to use for state machines. Here for reference...
 enum buttonHandler_st_t {
 	init_st,
 	no_touch_st,
@@ -16,13 +16,31 @@ enum buttonHandler_st_t {
 	final_st,
 } buttonState = init_st;
 
+// Don't know if we are allowed to add any libraries so I manually define bool for kicks and giggles:
+typedef int bool;
+#define TRUE 1
+#define FALSE 0
+
+
+int timerCount = 0;
+u32 buttonStateReg; // Read the button values with this variable
+
 
 XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 
+
+
+
 // This is invoked in response to a timer interrupt.
 // It does 2 things: 1) debounce switches, and 2) advances the time.
 void timer_interrupt_handler() {
+	if(timerCount>=TIMER_SEC) {
+		print(".");
+		timerCount=0;
+	} else {
+		timerCount++;
+	}
 }
 
 // This is invoked each time there is a change in the button state (result of a push or a bounce).
@@ -30,44 +48,24 @@ void pb_interrupt_handler() {
   // Clear the GPIO interrupt.
   XGpio_InterruptGlobalDisable(&gpPB);                // Turn off all PB interrupts for now.
   u32 currentButtonState = XGpio_DiscreteRead(&gpPB, 1);  // Get the current state of the buttons.
-  // You need to do something here.
+  // You need to do something here
 
   // Button implementation (Colt)
-  print("#");
+  /*
+   *  buttonStateReg will store the button states in the lower 5 bits.
+   *  If you just print the value you will get:
+   *  1 - center button
+   *  2 - right button
+   *  4 - down button
+   *  8 - left button
+   *  16 - up button
+   *
+   */
+  xil_printf("%d",currentButtonState); // shows which button is being pressed
 
-  // Trying to implement the debounce state machine
-//  switch(buttonState) {
-//	  case init_st:
-//		  break;
-//	  case no_touch_st:
-//		  break;
-//	  case wait_st:
-//		  break;
-//	  case hold_st:
-//		  break;
-//	  case final_st:
-//		  break;
-//	  default:
-//		  break;
-//  }
-//
-//  switch(buttonState) {
-//  	  case init_st:
-//  		  break;
-//  	  case no_touch_st:
-//  		  break;
-//  	  case wait_st:
-//  		  break;
-//  	  case hold_st:
-//  		  break;
-//  	  case final_st:
-//  		  break;
-//  	  default:
-//  		  break;
-//    }
-  XIntc_MasterDisable(XPAR_MICROBLAZE_0_INTC_BASEADDR); // So what does this do?
-  int isr_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR); // This gets the status of the registers. We want the ISR (status)
-
+  // The lab requires us to not directly poll the buttons. We will do this by storing the value of the states into
+  // buttonStateReg. Maybe we should have a flag variable that indicates a change in the buttons...
+  buttonStateReg = currentButtonState; // Save the button state and then do something with it
 
   XGpio_InterruptClear(&gpPB, 0xFFFFFFFF);            // Ack the PB interrupt.
   XGpio_InterruptGlobalEnable(&gpPB);                 // Re-enable PB interrupts.
