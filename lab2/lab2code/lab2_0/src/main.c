@@ -5,7 +5,7 @@
 #include "xintc_l.h"        // Provides handy macros for the interrupt controller.
 
 
-#define PB_DEBOUNCE_TIME 1000
+#define PB_DEBOUNCE_TIME 10
 
 // Button handler state machine declaration
 enum buttonHandler_st_t {
