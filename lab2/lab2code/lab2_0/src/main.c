@@ -6,6 +6,8 @@
 
 
 #define PB_DEBOUNCE_TIME 5 //timer ticks at 10ms, so 5 = 50ms
+#define PRE_AUTO_TIMER_MAX 100 // hold button for 1s
+#define AUTO_TIMER_MAX 50 // increment 2x per s
 #define TIMER_SEC 100
 #define NUMBER_OF_BUTTONS 5
 // This is an example of an enumerated type I like to use for state machines. Here for reference...
@@ -14,6 +16,7 @@ enum buttonHandler_st_t {
 	no_touch_st,
 	wait_st,
 	hold_st,
+	auto_rate_st,
 	final_st,
 } buttonState[NUMBER_OF_BUTTONS] = {init_st, init_st, init_st, init_st, init_st};
 
@@ -46,6 +49,7 @@ XGpio gpPB;   // This is a handle for the push-button GPIO block.
 int hour = 0;
 int minute = 0;
 int second = 0;
+bool scrollDisable = FALSE;
 
 void increment_clock() {
 	if(!buttonStateReg) { // only increment time when not setting clock
@@ -65,6 +69,9 @@ void increment_clock() {
 }
 
 void print_clock() {
+	if(scrollDisable) {
+		xil_printf("\b\b\b\b\b\b\b\b");
+	}
 	xil_printf("\r%02d:%02d:%02d",hour,minute,second);
 }
 
@@ -119,6 +126,8 @@ void timer_interrupt_handler() {
 	bool time_set = FALSE;
 
 	int debounce_timer[NUMBER_OF_BUTTONS];
+	int pre_auto_timer[NUMBER_OF_BUTTONS];
+	int auto_timer[NUMBER_OF_BUTTONS];
 
 	if(timerCount>=TIMER_SEC) {
 		increment_clock();
@@ -141,6 +150,12 @@ void timer_interrupt_handler() {
 		debounce_timer[i]++;
 		break;
 	case hold_st:
+		if(i == BTN_UP || i == BTN_DOWN) {
+			pre_auto_timer[i]++;
+		}
+		break;
+	case auto_rate_st:
+		auto_timer[i]++;
 		break;
 	case final_st:
 		//debounce_timer[i]++;
@@ -153,12 +168,15 @@ void timer_interrupt_handler() {
 	case init_st:
 		debounce_timer[i] = 0;
 		buttonState[i] = no_touch_st;
+		pre_auto_timer[i] = 0;
+		auto_timer[i] = 0; // starting at max so that it will change time, then wait 0.5s
 		break;
 	case no_touch_st:
 		if(buttonStateReg & BTN_MASKS[i]) // some button is pushed
 			buttonState[i] = wait_st;
 		break;
 	case wait_st:
+
 		if(debounce_timer[i] >= PB_DEBOUNCE_TIME) {// timer expired
 			buttonState[i] = hold_st;
 			debounce_timer[i] = 0;
@@ -175,10 +193,33 @@ void timer_interrupt_handler() {
 		}
 		break;
 	case hold_st:
+
+		if(pre_auto_timer[i] >= PRE_AUTO_TIMER_MAX && (i == BTN_UP || i == BTN_DOWN)) { // only up and down should trigger hold actions.
+			pre_auto_timer[i] = 0;
+			buttonState[i] = auto_rate_st;
+		}
 		if(!(buttonStateReg & BTN_MASKS[i])) // the button is no longer pushed
 			buttonState[i] = final_st;
 		break;
+	case auto_rate_st:
+		print("auto rate\n");
+
+		if(auto_timer[i] >= AUTO_TIMER_MAX) {
+
+			auto_timer[i] = 0;
+			if(!time_set) {
+				reset_time();
+				//xil_printf("change btn %d\n\r",i);
+				time_set = TRUE;
+			}
+		}
+		if(!(buttonStateReg & BTN_MASKS[i])) {
+			buttonState[i] = final_st;
+		}
 	case final_st:
+		debounce_timer[i] = 0;
+		pre_auto_timer[i] = 0;
+		auto_timer[i] = 0; // starting at max so that it will change time, then wait 0.5s
 		buttonState[i] = no_touch_st;
 		break;
 	}
@@ -238,7 +279,7 @@ int main (void) {
     init_platform();
     // Initialize the GPIO peripherals.
     int success;
-    print("dude, this does something\n\r");
+    //print("dude, this does something\n\r");
     success = XGpio_Initialize(&gpPB, XPAR_PUSH_BUTTONS_5BITS_DEVICE_ID);
     // Set the push button peripheral to be inputs.
     XGpio_SetDataDirection(&gpPB, 1, 0x0000001F);
