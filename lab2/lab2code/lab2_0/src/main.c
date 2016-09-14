@@ -5,8 +5,9 @@
 #include "xintc_l.h"        // Provides handy macros for the interrupt controller.
 
 
-#define PB_DEBOUNCE_TIME 50
+#define PB_DEBOUNCE_TIME 5 //timer ticks at 10ms, so 5 = 50ms
 #define TIMER_SEC 100
+#define NUMBER_OF_BUTTONS 5
 // This is an example of an enumerated type I like to use for state machines. Here for reference...
 enum buttonHandler_st_t {
 	init_st,
@@ -14,7 +15,10 @@ enum buttonHandler_st_t {
 	wait_st,
 	hold_st,
 	final_st,
-} buttonState = init_st;
+} buttonState[NUMBER_OF_BUTTONS] = {init_st, init_st, init_st, init_st, init_st};
+
+
+const int MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 
 // Don't know if we are allowed to add any libraries so I manually define bool for kicks and giggles:
 typedef int bool;
@@ -35,12 +39,67 @@ XGpio gpPB;   // This is a handle for the push-button GPIO block.
 // This is invoked in response to a timer interrupt.
 // It does 2 things: 1) debounce switches, and 2) advances the time.
 void timer_interrupt_handler() {
+	int i;
+	int debounce_timer[NUMBER_OF_BUTTONS];
+
 	if(timerCount>=TIMER_SEC) {
 		print(".");
 		timerCount=0;
 	} else {
 		timerCount++;
 	}
+
+	for(i = 0; i < NUMBER_OF_BUTTONS; i++) {
+		//print("*");
+	// switch for state actions
+	switch(buttonState[i]) {
+	case init_st:
+		break;
+	case no_touch_st:
+		break;
+	case wait_st:
+		debounce_timer[i]++;
+		break;
+	case hold_st:
+		break;
+	case final_st:
+		//debounce_timer[i]++;
+		break;
+	}
+
+	//switch for state transitions,
+	// including mealy actions.
+	switch(buttonState[i]) {
+	case init_st:
+		debounce_timer[i] = 0;
+		buttonState[i] = no_touch_st;
+		break;
+	case no_touch_st:
+		if(buttonStateReg & MASKS[i]) // some button is pushed
+			buttonState[i] = wait_st;
+		break;
+	case wait_st:
+		if(debounce_timer[i] >= PB_DEBOUNCE_TIME) {// timer expired
+			buttonState[i] = hold_st;
+			debounce_timer[i] = 0;
+			xil_printf("%d",buttonStateReg);
+		// mealy action to increment/decrement values
+		}
+		else if(!(buttonStateReg & MASKS[i])) {
+			debounce_timer[i] = 0;
+			buttonState[i] = no_touch_st;
+		}
+		break;
+	case hold_st:
+		if(!(buttonStateReg & MASKS[i])) // the button is no longer pushed
+			buttonState[i] = final_st;
+		break;
+	case final_st:
+		buttonState[i] = no_touch_st;
+		break;
+	}
+	}
+
 }
 
 // This is invoked each time there is a change in the button state (result of a push or a bounce).
@@ -61,7 +120,7 @@ void pb_interrupt_handler() {
    *  16 - up button
    *
    */
-  xil_printf("%d",currentButtonState); // shows which button is being pressed
+   // shows which button is being pressed
 
   // The lab requires us to not directly poll the buttons. We will do this by storing the value of the states into
   // buttonStateReg. Maybe we should have a flag variable that indicates a change in the buttons...
