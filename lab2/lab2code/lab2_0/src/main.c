@@ -18,12 +18,22 @@ enum buttonHandler_st_t {
 } buttonState[NUMBER_OF_BUTTONS] = {init_st, init_st, init_st, init_st, init_st};
 
 
-const int MASKS[] = {0x01,0x02,0x04,0x08,0x10};
+const int BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
+#define BTN_HR 3
+#define BTN_MIN 0
+#define BTN_SEC 1
+#define BTN_DOWN 2
+#define BTN_UP 4
+
+#define MINSEC_MAX 59
+#define HR_MAX 23
+
 
 // Don't know if we are allowed to add any libraries so I manually define bool for kicks and giggles:
 typedef int bool;
 #define TRUE 1
 #define FALSE 0
+
 
 
 int timerCount = 0;
@@ -33,17 +43,87 @@ u32 buttonStateReg; // Read the button values with this variable
 XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 
+int hour = 0;
+int minute = 0;
+int second = 0;
 
+void increment_clock() {
+	if(!buttonStateReg) { // only increment time when not setting clock
+		second++;
+		if(second > MINSEC_MAX) {
+			second = 0;
+			minute++;
+			if(minute > MINSEC_MAX) {
+				minute = 0;
+				hour++;
+				if(hour > HR_MAX) {
+					hour = 0;
+				}
+			}
+		}
+	}
+}
+
+void print_clock() {
+	xil_printf("\r%02d:%02d:%02d",hour,minute,second);
+}
+
+void reset_time() {
+	bool time_changed = FALSE;
+	if(buttonStateReg & BTN_MASKS[BTN_HR]) { // SET HOUR
+		if(buttonStateReg & BTN_MASKS[BTN_UP]) { // INCREMENT HOUR
+			hour++;
+			time_changed = TRUE;
+			if(hour > HR_MAX) hour = 0; // wrap-around at 23 for military time
+		}
+		if(buttonStateReg & BTN_MASKS[BTN_DOWN]) { // DECREMENT HOUR
+			hour--;
+			time_changed = TRUE;
+			if(hour < 0) hour = HR_MAX; // wrap-around to 23 for military time
+		}
+	}
+
+	if(buttonStateReg & BTN_MASKS[BTN_MIN]) { // SET MINUTE
+			if(buttonStateReg & BTN_MASKS[BTN_UP]) { // INCREMENT MINUTE
+				minute++;
+				time_changed = TRUE;
+				if(minute > MINSEC_MAX) minute = 0; // wrap-around
+			}
+			if(buttonStateReg & BTN_MASKS[BTN_DOWN]) { // DECREMENT MINUTE
+				minute--;
+				time_changed = TRUE;
+				if(minute < 0) minute = MINSEC_MAX; // wrap-around
+			}
+		}
+
+	if(buttonStateReg & BTN_MASKS[BTN_SEC]) { // SET SECOND
+			if(buttonStateReg & BTN_MASKS[BTN_UP]) { // INCREMENT SECOND
+				second++;
+				time_changed = TRUE;
+				if(second > MINSEC_MAX) second = 0; // wrap-around
+			}
+			if(buttonStateReg & BTN_MASKS[BTN_DOWN]) { // DECREMENT SECOND
+				second--;
+				time_changed = TRUE;
+				if(second < 0) second = MINSEC_MAX; // wrap-around to 23 for military time
+			}
+		}
+	if(time_changed) print_clock();
+}
 
 
 // This is invoked in response to a timer interrupt.
 // It does 2 things: 1) debounce switches, and 2) advances the time.
 void timer_interrupt_handler() {
 	int i;
+	bool time_set = FALSE;
+
 	int debounce_timer[NUMBER_OF_BUTTONS];
 
 	if(timerCount>=TIMER_SEC) {
-		print(".");
+		increment_clock();
+		print_clock();
+
 		timerCount=0;
 	} else {
 		timerCount++;
@@ -75,23 +155,27 @@ void timer_interrupt_handler() {
 		buttonState[i] = no_touch_st;
 		break;
 	case no_touch_st:
-		if(buttonStateReg & MASKS[i]) // some button is pushed
+		if(buttonStateReg & BTN_MASKS[i]) // some button is pushed
 			buttonState[i] = wait_st;
 		break;
 	case wait_st:
 		if(debounce_timer[i] >= PB_DEBOUNCE_TIME) {// timer expired
 			buttonState[i] = hold_st;
 			debounce_timer[i] = 0;
-			xil_printf("%d",buttonStateReg);
+			//xil_printf("%d",buttonStateReg);
+			if(!time_set) {
+				reset_time();
+				time_set = TRUE; // makes sure that reset_time is called only once per interrupt cycle
+			}
 		// mealy action to increment/decrement values
 		}
-		else if(!(buttonStateReg & MASKS[i])) {
+		else if(!(buttonStateReg & BTN_MASKS[i])) {
 			debounce_timer[i] = 0;
 			buttonState[i] = no_touch_st;
 		}
 		break;
 	case hold_st:
-		if(!(buttonStateReg & MASKS[i])) // the button is no longer pushed
+		if(!(buttonStateReg & BTN_MASKS[i])) // the button is no longer pushed
 			buttonState[i] = final_st;
 		break;
 	case final_st:

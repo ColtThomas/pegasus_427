@@ -15,7 +15,7 @@ Finished building target: lab2_0.elf
 Invoking: MicroBlaze Print Size
 mb-size lab2_0.elf  |tee "lab2_0.elf.size"
    text	   data	    bss	    dec	    hex	filename
-   7942	    392	   2138	  10472	   28e8	lab2_0.elf
+   9278	    392	   2170	  11840	   2e40	lab2_0.elf
 Finished building: lab2_0.elf.size
 ' '
 Invoking: Xilinx ELF Check
