@@ -9,16 +9,8 @@
 #define HALF_TIMER_SEC 50 // increment 2x per s
 #define TIMER_SEC 100
 #define NUMBER_OF_BUTTONS 5
-// This is an example of an enumerated type I like to use for state machines. Here for reference...
-enum buttonHandler_st_t {
-	init_st,
-	no_touch_st,
-	wait_st,
-	hold_st,
-	auto_rate_st,
-} buttonState[NUMBER_OF_BUTTONS] = {init_st, init_st, init_st, init_st, init_st};
 
-
+// Masks used to identify the push buttons
 const int BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 #define BTN_HR 3
 #define BTN_MIN 0
@@ -26,20 +18,16 @@ const int BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 #define BTN_DOWN 2
 #define BTN_UP 4
 
+// Constants for the clock display
 #define MINSEC_MAX 59
 #define HR_MAX 23
-
 
 // Don't know if we are allowed to add any libraries so I manually define bool for kicks and giggles:
 typedef int bool;
 #define TRUE 1
 #define FALSE 0
 
-
-
-int timerCount = 0;
 u32 buttonStateReg; // Read the button values with this variable
-
 
 XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
@@ -48,10 +36,12 @@ int hour = 0;
 int minute = 0;
 int second = 0;
 
-int secondCount = 0;
-int halfSecondCount = 0;
-int debounceCount = 0;
-bool scrollDisable = FALSE;
+// Counters for the various timers
+int secondCount = 0; // General second counter
+int halfSecondCount = 0; // Used in auto increment
+int debounceCount = 0; 
+int timerCount = 0; 
+bool scrollDisable = FALSE; // debug variable for part 1
 
 // Flags for the buttons
 bool secondFlag = FALSE;
@@ -59,10 +49,8 @@ bool halfSecondFlag = FALSE;
 bool debounceFlag = FALSE;
 bool dirButtonHeld = FALSE;
 bool autoIncrementFlag = FALSE;
-//bool button_pressed() {
-//	return buttonDebounced;
-//}
 
+// Function used to increment clock by 1 second
 void increment_clock() {
 	if(!buttonStateReg) { // only increment time when not setting clock
 		second++;
@@ -80,9 +68,10 @@ void increment_clock() {
 	}
 }
 
+// Display function for the clock
 void print_clock() {
 	if(scrollDisable) {
-		xil_printf("\b\b\b\b\b\b\b\b");
+		xil_printf("\b\b\b\b\b\b\b\b"); // Backspaces to avoid scrolling
 	}
 	xil_printf("\r%02d:%02d:%02d",hour,minute,second);
 }
@@ -104,30 +93,30 @@ void reset_time() {
 	}
 
 	if(buttonStateReg & BTN_MASKS[BTN_MIN]) { // SET MINUTE
-			if(buttonStateReg & BTN_MASKS[BTN_UP]) { // INCREMENT MINUTE
-				minute++;
-				time_changed = TRUE;
-				if(minute > MINSEC_MAX) minute = 0; // wrap-around
-			}
-			if(buttonStateReg & BTN_MASKS[BTN_DOWN]) { // DECREMENT MINUTE
-				minute--;
-				time_changed = TRUE;
-				if(minute < 0) minute = MINSEC_MAX; // wrap-around
-			}
+		if(buttonStateReg & BTN_MASKS[BTN_UP]) { // INCREMENT MINUTE
+			minute++;
+			time_changed = TRUE;
+			if(minute > MINSEC_MAX) minute = 0; // wrap-around
 		}
+		if(buttonStateReg & BTN_MASKS[BTN_DOWN]) { // DECREMENT MINUTE
+			minute--;
+			time_changed = TRUE;
+			if(minute < 0) minute = MINSEC_MAX; // wrap-around
+		}
+	}
 
 	if(buttonStateReg & BTN_MASKS[BTN_SEC]) { // SET SECOND
-			if(buttonStateReg & BTN_MASKS[BTN_UP]) { // INCREMENT SECOND
-				second++;
-				time_changed = TRUE;
-				if(second > MINSEC_MAX) second = 0; // wrap-around
-			}
-			if(buttonStateReg & BTN_MASKS[BTN_DOWN]) { // DECREMENT SECOND
-				second--;
-				time_changed = TRUE;
-				if(second < 0) second = MINSEC_MAX; // wrap-around to 23 for military time
-			}
+		if(buttonStateReg & BTN_MASKS[BTN_UP]) { // INCREMENT SECOND
+			second++;
+			time_changed = TRUE;
+			if(second > MINSEC_MAX) second = 0; // wrap-around
 		}
+		if(buttonStateReg & BTN_MASKS[BTN_DOWN]) { // DECREMENT SECOND
+			second--;
+			time_changed = TRUE;
+			if(second < 0) second = MINSEC_MAX; // wrap-around to 23 for military time
+		}
+	}
 	if(time_changed) print_clock();
 }
 
@@ -145,6 +134,7 @@ bool inc_button_pressed() {
 bool time_button_pressed() {
 	return (buttonStateReg & BTN_MASKS[BTN_HR]) || (buttonStateReg & BTN_MASKS[BTN_MIN]) || (buttonStateReg & BTN_MASKS[BTN_SEC]);
 }
+
 // This is invoked in response to a timer interrupt.
 // It does 2 things: 1) debounce switches, and 2) advances the time.
 void timer_interrupt_handler() {
@@ -158,42 +148,42 @@ void timer_interrupt_handler() {
 	halfSecondCount++;
 
 	// Second counter
-	if(secondCount >= TIMER_SEC && !button_pressed()) {
+	if(secondCount >= TIMER_SEC && !button_pressed()) {	// Only increment when no buttons are pushed
 		secondCount = 0;
 		dirButtonHeld = FALSE;
 		secondFlag = TRUE;
 		print_clock();
 		increment_clock();
 
-	} else if (secondCount >= TIMER_SEC && dirButtonHeld) {
+	} else if (secondCount >= TIMER_SEC && dirButtonHeld) { 
+		// We wait a second as a directional button is held before auto incrementing
 		secondCount = 0;
-		secondFlag = TRUE;
-		autoIncrementFlag = TRUE;
-		halfSecondCount = 0;
+		secondFlag = TRUE; // Mark the first increment
+		autoIncrementFlag = TRUE; // Let the rest of the software prepare to autoincrement
+		halfSecondCount = 0; // Reset the counter to iterate every half second
 		print_clock();
 		reset_time();
 	}
 
-	// The half second counter
-		if(halfSecondCount >= HALF_TIMER_SEC) {
-			halfSecondCount = 0;
-			halfSecondFlag = TRUE;
-		}
+	// The half second counter goes off after the second long hold
+	if(halfSecondCount >= HALF_TIMER_SEC) {
+		halfSecondCount = 0;
+		halfSecondFlag = TRUE;
+	}
 
-	// Auto increment counter
+	// Auto increment counter clock update
 	if(halfSecondCount >= HALF_TIMER_SEC && autoIncrementFlag) {
 		print_clock();
 		reset_time();
 		halfSecondCount = 0;
 	}
 
-
-
 	// Button debounce logic
 	if(debounceCount >= PB_DEBOUNCE_TIME && !debounceFlag) {
+		// reset the counters so we don't get awkward timing hiccups
 		debounceCount = 0;
 		secondCount = 0;
-		debounceFlag = TRUE;
+		debounceFlag = TRUE; // Button ready to read
 		reset_time();
 	}
 
@@ -206,20 +196,19 @@ void timer_interrupt_handler() {
 	}
 
 
-	// Check to see if the button was held for s second
+	// Check to see if the button was held for a second
 	if(!dirButtonHeld && debounceFlag && inc_button_pressed() && time_button_pressed()) {
 		reset_time();
 		print_clock();
-		dirButtonHeld = TRUE;
+		dirButtonHeld = TRUE; // This is key to knowing whether to increment or not
 		secondCount = 0;
 	}
 
+	// We don't want to increment when only a time button is pressed.
 	if(!inc_button_pressed()) {
 		dirButtonHeld = FALSE;
 		autoIncrementFlag = FALSE;
 	}
-
-
 
 }
 
@@ -228,9 +217,8 @@ void pb_interrupt_handler() {
   // Clear the GPIO interrupt.
   XGpio_InterruptGlobalDisable(&gpPB);                // Turn off all PB interrupts for now.
   u32 currentButtonState = XGpio_DiscreteRead(&gpPB, 1);  // Get the current state of the buttons.
-  // You need to do something here
 
-  // Button implementation (Colt)
+  // Button implementation
   /*
    *  buttonStateReg will store the button states in the lower 5 bits.
    *  If you just print the value you will get:
@@ -290,7 +278,7 @@ int main (void) {
     XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
     microblaze_enable_interrupts();
 
-    while(1);  // Program never ends.
+    while(1);  // Program never ends. But at least the lab does.
 
     cleanup_platform();
 
