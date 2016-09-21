@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="E:\ecen427\pegasus_427\lab3\lab3code\lab3\Debug\lab3.elf" key="lab2_hw_platform-microblaze_0-initElf"/>
+	<item value="E:\ecen427\pegasus_427\lab3\lab3code\lab2_hw_platform\system_bd.bmm" key="lab2_hw_platform-bmmFile"/>
+	<item value="E:\ecen427\pegasus_427\lab3\lab3code\lab2_hw_platform\system.bit" key="lab2_hw_platform-bitFile"/>
+</section>
