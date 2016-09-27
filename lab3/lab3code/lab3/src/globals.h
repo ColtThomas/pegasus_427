@@ -8,6 +8,8 @@
 #ifndef GLOBALS_H_
 #define GLOBALS_H_
 
+#include<stdbool.h>
+
 #define GLOBALS_NUMBER_OF_ALIEN_BULLETS 4
 #define GLOBALS_NUMBER_OF_BUNKERS 4
 #define GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER 9
@@ -31,6 +33,10 @@ point_t globals_getAlienBulletPosition(unsigned char bullet);
 
 void globals_setBunkerErosionState(unsigned char state, unsigned char bunker, unsigned char block);
 unsigned char globals_getBunkerErosionState(unsigned char bunker, unsigned char block);
+
+void globals_killAlien(unsigned char alien);
+
+bool globals_isDeadAlien(unsigned char alien);
 
 #endif /* GLOBALS_H_ */
 

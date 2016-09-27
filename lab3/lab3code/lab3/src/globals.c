@@ -20,8 +20,8 @@ void globals_init() {
 	tankPosition = INITIAL_TANK_POS;
 	tankBulletPosition.x = -1;
 	tankBulletPosition.y = -1;
-	alienBlockPosition.x = -1;
-	alienBlockPosition.y = -1;
+	alienBlockPosition.x = 10;
+	alienBlockPosition.y = 10;
 	int i,j;
 	for(i = 0; i < GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
 		alienBulletPositions[i].x = -1;
@@ -85,4 +85,12 @@ unsigned char globals_getBunkerErosionState(unsigned char bunker, unsigned char 
 		return bunkerErosionStates[bunker][block];
 	}
 	else return -1; // very large, thus improper, number, to indicate error.
+}
+
+void globals_killAlien(unsigned char alien) {
+	aliens_dead[alien] = true;
+}
+
+bool globals_isDeadAlien(unsigned char alien) {
+	return aliens_dead[alien];
 }

@@ -9,6 +9,7 @@
 #include "screen.h"
 #include <stdio.h>
 #include "tank.h"
+#include "aliens.h"
 
 #define FRAME_BUFFER_0_ADDR 0xC0000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
@@ -109,9 +110,9 @@ void screen_clear() {
 
 void screen_draw_pixel(int x, int y, int color) {
 	framePointer[y*SCREEN_PIXELS_ACROSS + x] = color;
-	//temporary delay
-	//unsigned int i;
-//	for(i = 0; i < 100000; i++);
+//	temporary delay
+//	unsigned int i;
+//	for(i = 0; i < 1000000; i++);
 }
 
 void screen_draw_double_pixel(int x, int y, int color) {
@@ -125,6 +126,7 @@ void screen_run_test() {
 	//int sillyTimer = MAX_SILLY_TIMER;  // Just a cheap delay between frames.
 char input;
 tank_draw_initial();
+aliens_draw_initial();
 	     while (1) {
 	    	// while (sillyTimer) sillyTimer--;    // Decrement the timer.
 	    	// sillyTimer = MAX_SILLY_TIMER;       // Reset the timer.
@@ -136,6 +138,9 @@ tank_draw_initial();
 	    		 break;
 	    	 case '6':
 	    		 tank_move_right();
+	    		 break;
+	    	 case '8':
+	    		// aliens_update_position();
 	    		 break;
 	    	 }
 	         if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {
