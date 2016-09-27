@@ -30,12 +30,12 @@ void screen_init();
 void screen_clear();
 
 // draws a 2x2 pixel. X and Y should be values from a 320x240 grid, not a 640x480.
-void screen_draw_double_pixel(int buffer, int x, int y, int color);
+void screen_draw_double_pixel(int x, int y, int color);
 
 //draws a single pixel on a 640x480 grid
-void screen_draw_pixel(int buffer, int x, int y, int color);
+void screen_draw_pixel(int x, int y, int color);
 
-void screen_run_loop(); // to be deprecated, probably.
+void screen_run_test(); // to be deprecated, probably.
 // I'm thinking that instead of a busy loop, this should be triggered by a FIT interrupt. but this works for now.
 
 #endif /* SCREEN_H_ */

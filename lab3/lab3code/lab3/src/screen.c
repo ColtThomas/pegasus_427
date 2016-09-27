@@ -8,13 +8,14 @@
 
 #include "screen.h"
 #include <stdio.h>
+#include "tank.h"
 
 #define FRAME_BUFFER_0_ADDR 0xC0000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
 
 
-unsigned int * framePointer0;
-unsigned int * framePointer1;
+unsigned int * framePointer;
+//unsigned int * framePointer1;
 int frameIndex = 0;
 XAxiVdma videoDMAController;
 
@@ -68,7 +69,7 @@ void screen_init() {
     // is where you will write your video data. The vdma IP/driver then streams it to the HDMI
     // IP.
      myFrameBuffer.FrameStoreStartAddr[0] = FRAME_BUFFER_0_ADDR;
-     myFrameBuffer.FrameStoreStartAddr[1] = FRAME_BUFFER_0_ADDR + 4*640*480;
+   //  myFrameBuffer.FrameStoreStartAddr[1] = FRAME_BUFFER_0_ADDR + 4*640*480;
 
      if(XST_FAILURE == XAxiVdma_DmaSetBufferAddr(&videoDMAController, XAXIVDMA_READ,
     		               myFrameBuffer.FrameStoreStartAddr)) {
@@ -79,8 +80,8 @@ void screen_init() {
      // Now, let's get ready to start displaying some stuff on the screen.
      // The variables framePointer and framePointer1 are just pointers to the base address
      // of frame 0 and frame 1.
-     framePointer0 = (unsigned int *) FRAME_BUFFER_0_ADDR;
-     framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
+     framePointer = (unsigned int *) FRAME_BUFFER_0_ADDR;
+    // framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
 
      // This tells the HDMI controller the resolution of your display (there must be a better way to do this).
           XIo_Out32(XPAR_AXI_HDMI_0_BASEADDR, 640*480);
@@ -101,37 +102,45 @@ void screen_clear() {
 	int row, col;
 	for(row = 0; row < SCREEN_PIXELS_DOWN; row++) {
 		for(col = 0; col < SCREEN_PIXELS_ACROSS; col++) {
-			framePointer0[row*SCREEN_PIXELS_ACROSS + col] = SCREEN_BLACK;
-			framePointer1[row*SCREEN_PIXELS_ACROSS + col] = SCREEN_BLACK;
+			framePointer[row*SCREEN_PIXELS_ACROSS + col] = SCREEN_BLACK;
 		}
 	}
 }
 
-void screen_draw_pixel(int buffer, int x, int y, int color) {
-	if(!buffer) {
-		framePointer0[y*SCREEN_PIXELS_ACROSS + x] = color;
-	}
-	else {
-		framePointer1[y*SCREEN_PIXELS_ACROSS + x] = color;
-	}
+void screen_draw_pixel(int x, int y, int color) {
+	framePointer[y*SCREEN_PIXELS_ACROSS + x] = color;
+	//temporary delay
+	//unsigned int i;
+//	for(i = 0; i < 100000; i++);
 }
 
-void screen_draw_double_pixel(int buffer, int x, int y, int color) {
-	screen_draw_pixel(buffer, x*2, y*2, color);
-	screen_draw_pixel(buffer, x*2+1, y*2+1, color);
-	screen_draw_pixel(buffer, x*2+1, y*2, color);
-	screen_draw_pixel(buffer, x*2, y*2+1, color);
+void screen_draw_double_pixel(int x, int y, int color) {
+	screen_draw_pixel(x*2, y*2, color);
+	screen_draw_pixel(x*2+1, y*2+1, color);
+	screen_draw_pixel(x*2+1, y*2, color);
+	screen_draw_pixel(x*2, y*2+1, color);
 }
 
-void screen_run_loop() {
-	int sillyTimer = MAX_SILLY_TIMER;  // Just a cheap delay between frames.
+void screen_run_test() {
+	//int sillyTimer = MAX_SILLY_TIMER;  // Just a cheap delay between frames.
+char input;
+tank_draw_initial();
 	     while (1) {
-	    	 while (sillyTimer) sillyTimer--;    // Decrement the timer.
-	    	 sillyTimer = MAX_SILLY_TIMER;       // Reset the timer.
-	         frameIndex = (frameIndex + 1) % 2;  // Alternate between frame 0 and frame 1.
+	    	// while (sillyTimer) sillyTimer--;    // Decrement the timer.
+	    	// sillyTimer = MAX_SILLY_TIMER;       // Reset the timer.
+	        // frameIndex = (frameIndex + 1) % 2;  // Alternate between frame 0 and frame 1.
+	    	 input = getchar();
+	    	 switch(input) {
+	    	 case '4':
+	    		 tank_move_left();
+	    		 break;
+	    	 case '6':
+	    		 tank_move_right();
+	    		 break;
+	    	 }
 	         if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {
 	        	 xil_printf("vdma parking failed\n\r");
-	         }
+	        }
 	     }
 }
 

@@ -6,8 +6,9 @@
  */
 #include "globals.h"
 #include<stdbool.h>
+#define INITIAL_TANK_POS 152
 
-static unsigned short tankPosition = 160;
+static unsigned short tankPosition;
 static point_t tankBulletPosition;
 static point_t alienBlockPosition;
 static point_t alienBulletPositions[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
@@ -16,6 +17,7 @@ static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
 
 //initializes globals arrays and structs
 void globals_init() {
+	tankPosition = INITIAL_TANK_POS;
 	tankBulletPosition.x = -1;
 	tankBulletPosition.y = -1;
 	alienBlockPosition.x = -1;
@@ -37,6 +39,7 @@ void globals_init() {
 
 void globals_setTankPosition(unsigned short val) {
 	tankPosition = val;
+//	xil_printf("tank position is %d",tankPosition);
 }
 unsigned short globals_getTankPosition() {
 	return tankPosition;
