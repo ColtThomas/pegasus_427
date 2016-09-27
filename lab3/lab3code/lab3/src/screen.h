@@ -14,6 +14,10 @@
 #ifndef SCREEN_H_
 #define SCREEN_H_
 
+// these define the screen width and height when using double pixels
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 240
+
 #define SCREEN_PIXELS_ACROSS 640
 #define SCREEN_PIXELS_DOWN 480
 
