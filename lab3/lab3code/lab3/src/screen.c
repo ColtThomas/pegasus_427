@@ -116,6 +116,13 @@ void screen_draw_pixel(int buffer, int x, int y, int color) {
 	}
 }
 
+void screen_draw_double_pixel(int buffer, int x, int y, int color) {
+	screen_draw_pixel(buffer, x*2, y*2, color);
+	screen_draw_pixel(buffer, x*2+1, y*2+1, color);
+	screen_draw_pixel(buffer, x*2+1, y*2, color);
+	screen_draw_pixel(buffer, x*2, y*2+1, color);
+}
+
 void screen_run_loop() {
 	int sillyTimer = MAX_SILLY_TIMER;  // Just a cheap delay between frames.
 	     while (1) {
