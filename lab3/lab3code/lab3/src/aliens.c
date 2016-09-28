@@ -25,7 +25,7 @@
 #define ALIEN_BLOCK_WIDTH ALIENS_PER_ROW*ALIEN_SPACING
 #define ALIEN_MOVEMENT 4
 
-static bool alien_legs_in[GLOBALS_NUMBER_OF_ALIENS];
+static bool aliens_legs_in;
 
 static const int alien_explosion_12x10[] =
 {
@@ -117,13 +117,13 @@ void aliens_draw_initial() {
 	int i;
 	int x, y;
 	point_t position;
+	aliens_legs_in = 1; // 1 for in
 	for(i = 0; i < GLOBALS_NUMBER_OF_ALIENS; i++) {
 		if(!globals_isDeadAlien(i)) { // alien is alive
 			position.x = globals_getAlienBlockPosition().x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
 			position.y = globals_getAlienBlockPosition().y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
 			for(x = 0; x < ALIEN_WIDTH; x++) {
 				for(y = 0; y < ALIEN_HEIGHT; y++) {
-					alien_legs_in[i] = 1; // 1 for in
 					if(i < TOP_ROW) {
 						if(alien_top_in_12x8[y] & (1 << x)) {
 							screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_WHITE);
@@ -131,7 +131,7 @@ void aliens_draw_initial() {
 					}
 					else if (i < MIDDLE_ROW) {
 						if(alien_middle_in_12x8[y] & (1 << x)) {
-							screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_WHITE);
+							screen_draw_double_pixel(x+position.x+1,y+position.y,SCREEN_WHITE); // this actually draws a mirror image, so the +1 corrects for that to avoid later movement problems.
 						}
 					}
 					else  {//if (i < BOTTOM_ROW) {
@@ -152,62 +152,65 @@ void aliens_update_position() {
 	point_t position;
 	if ((blockposition.x <= BUFFER_WIDTH && moving_left) || (blockposition.x >= SCREEN_WIDTH-ALIEN_BLOCK_WIDTH-BUFFER_WIDTH && !moving_left)) { // on side, needs to move down;
 		//move down
-	}
-	else if(moving_left) {
-		//move left
-	}
-	else {
+		xil_printf("moving down\r\n");
 		int x, y, i;
 		for(i = 0; i < GLOBALS_NUMBER_OF_ALIENS; i++) {
+			//xil_printf("moving alien %d\r\n",i);
 			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move
 
 				position.x = blockposition.x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
 				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
-				xil_printf("\r\nposition x = %d y = %d ",position.x,position.y);
-				for(y = 0; y < ALIEN_HEIGHT; y++) {
-					for(x = 0; x < ALIEN_WIDTH+ALIEN_MOVEMENT; x++) {
+				for(y = 0; y < ALIEN_HEIGHT+ALIEN_MOVEMENT; y++) {
+					for(x = 0; x < ALIEN_WIDTH; x++) {
+						//		xil_printf("x = %d y = %d\r\n",x,y);
 						if(i < TOP_ROW) {
-							if(alien_legs_in[i]) { // switch from legs in to legs out
-								int old_alien_line = alien_top_in_12x8[y] << ALIEN_MOVEMENT;
-								int new_alien_line = alien_top_out_12x8[y];
-								xil_printf("redraw alien %d\r\n",i);
-								xil_printf("x = %d %x ?= %x\r\n",x,(new_alien_line & (1<<x)), (old_alien_line & (1<<x)) );
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line;
+								int new_alien_line;
+								if(y < ALIEN_MOVEMENT) {
+									old_alien_line = alien_top_in_12x8[y];
+									new_alien_line = 0;
+								}
+								else if(y < ALIEN_HEIGHT) {
+									old_alien_line = alien_top_in_12x8[y];
+									new_alien_line = alien_top_out_12x8[y-ALIEN_MOVEMENT];
+								}
+								else { // y > ALIEN_HEIGHT
+									old_alien_line = 0;
+									new_alien_line = alien_top_out_12x8[y-ALIEN_MOVEMENT];
+								}
+								//								xil_printf("y = %d x = %d and %x ?= %x\r\n",y,x,new_alien_line & (1<<x),old_alien_line & (1<<x));
+
 								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
 									if((new_alien_line) &(1<<x)) {
-										xil_printf("\r\nprint %d, %d ", position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
-										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
-										xil_printf("after draw x = %d\r\n",x);
-										//	xil_printf("\r\nColumn %d",y);
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
 
 									}
 									else {
-										xil_printf("\r\nblank %d, %d ", position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
-										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
-										xil_printf("after blank x = %d\r\n",x);
-
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
 									}
-									unsigned int i;
-									for(i = 0; i < 100000; i++);
+									//									int i;
+									//									for(i = 0; i < 100000; i++); // delay loop
 								}
-
-								/*if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
-									if((new_alien_line) &(1<<x)) {
-										xil_printf("\r\nprint %d, %d ", position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
-										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
-										xil_printf("\r\nColumn %d",y);
-
-									}
-									else {
-										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
-
-									}
-									unsigned int i;
-																			for(i = 0; i < 100000; i++);
-								}*/
 							}
 							else { // switch from legs out to legs in
-								if((alien_top_in_12x8[y] & (1<<x)) != ((alien_top_out_12x8[y]<<ALIEN_MOVEMENT) & (1<<(x)))) { //some changes has occured to this pixel
-									if(((alien_top_in_12x8)[y]) &(1<<x)) {
+								int old_alien_line;
+								int new_alien_line;
+								if(y < ALIEN_MOVEMENT) {
+									old_alien_line = alien_top_out_12x8[y];
+									new_alien_line = 0;
+								}
+								else if(y < ALIEN_HEIGHT) {
+									old_alien_line = alien_top_out_12x8[y];
+									new_alien_line = alien_top_in_12x8[y-ALIEN_MOVEMENT];
+								}
+								else { // y > ALIEN_HEIGHT
+									old_alien_line = 0;
+									new_alien_line = alien_top_in_12x8[y-ALIEN_MOVEMENT];
+								}
+								//								xil_printf("y = %d x = %d and %x ?= %x\r\n",y,x,new_alien_line & (1<<x),old_alien_line & (1<<x));
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
 										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
 									}
 									else {
@@ -216,13 +219,337 @@ void aliens_update_position() {
 								}
 							}
 						}
-						alien_legs_in[i] = !alien_legs_in[i];
+						else if(i < MIDDLE_ROW) {
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line;
+								int new_alien_line;
+								if(y < ALIEN_MOVEMENT) {
+									old_alien_line = alien_middle_in_12x8[y];
+									new_alien_line = 0;
+								}
+								else if(y < ALIEN_HEIGHT) {
+									old_alien_line = alien_middle_in_12x8[y];
+									new_alien_line = alien_middle_out_12x8[y-ALIEN_MOVEMENT];
+								}
+								else { // y > ALIEN_HEIGHT
+									old_alien_line = 0;
+									new_alien_line = alien_middle_out_12x8[y-ALIEN_MOVEMENT];
+								}
+								//								xil_printf("y = %d x = %d and %x ?= %x\r\n",y,x,new_alien_line & (1<<x),old_alien_line & (1<<x));
+
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+									//									int i;
+									//									for(i = 0; i < 100000; i++); // delay loop
+								}
+							}
+							else { // switch from legs out to legs in
+								int old_alien_line;
+								int new_alien_line;
+								if(y < ALIEN_MOVEMENT) {
+									old_alien_line = alien_middle_out_12x8[y];
+									new_alien_line = 0;
+								}
+								else if(y < ALIEN_HEIGHT) {
+									old_alien_line = alien_middle_out_12x8[y];
+									new_alien_line = alien_middle_in_12x8[y-ALIEN_MOVEMENT];
+								}
+								else { // y > ALIEN_HEIGHT
+									old_alien_line = 0;
+									new_alien_line = alien_middle_in_12x8[y-ALIEN_MOVEMENT];
+								}
+								//								xil_printf("y = %d x = %d and %x ?= %x\r\n",y,x,new_alien_line & (1<<x),old_alien_line & (1<<x));
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+						}
+						else {
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line;
+								int new_alien_line;
+								if(y < ALIEN_MOVEMENT) {
+									old_alien_line = alien_bottom_in_12x8[y];
+									new_alien_line = 0;
+								}
+								else if(y < ALIEN_HEIGHT) {
+									old_alien_line = alien_bottom_in_12x8[y];
+									new_alien_line = alien_bottom_out_12x8[y-ALIEN_MOVEMENT];
+								}
+								else { // y > ALIEN_HEIGHT
+									old_alien_line = 0;
+									new_alien_line = alien_bottom_out_12x8[y-ALIEN_MOVEMENT];
+								}
+								//								xil_printf("y = %d x = %d and %x ?= %x\r\n",y,x,new_alien_line & (1<<x),old_alien_line & (1<<x));
+
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+									//									int i;
+									//									for(i = 0; i < 100000; i++); // delay loop
+								}
+							}
+							else { // switch from legs out to legs in
+								int old_alien_line;
+								int new_alien_line;
+								if(y < ALIEN_MOVEMENT) {
+									old_alien_line = alien_bottom_out_12x8[y];
+									new_alien_line = 0;
+								}
+								else if(y < ALIEN_HEIGHT) {
+									old_alien_line = alien_bottom_out_12x8[y];
+									new_alien_line = alien_bottom_in_12x8[y-ALIEN_MOVEMENT];
+								}
+								else { // y > ALIEN_HEIGHT
+									old_alien_line = 0;
+									new_alien_line = alien_bottom_in_12x8[y-ALIEN_MOVEMENT];
+								}
+								//								xil_printf("y = %d x = %d and %x ?= %x\r\n",y,x,new_alien_line & (1<<x),old_alien_line & (1<<x));
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+						}
 					}
 				}
 			}
+
 		}
+
+		blockposition.y += ALIEN_MOVEMENT;
+		globals_setAlienBlockPosition(blockposition);
+		moving_left = !moving_left;
+	}
+	else if(moving_left) {
+		xil_printf("moving left\r\n");
+		int x, y, i;
+		for(i = 0; i < GLOBALS_NUMBER_OF_ALIENS; i++) {
+			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move
+
+				position.x = blockposition.x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
+				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
+				for(y = 0; y < ALIEN_HEIGHT; y++) {
+					for(x = 0; x < ALIEN_WIDTH+ALIEN_MOVEMENT; x++) {
+						if(i < TOP_ROW) {
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line = alien_top_in_12x8[y];
+								int new_alien_line = alien_top_out_12x8[y] << ALIEN_MOVEMENT;
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x-ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+
+									}
+									else {
+										screen_draw_double_pixel(position.x-ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+									//									int i;
+									//									for(i = 0; i < 100000; i++); // delay loop
+								}
+							}
+							else { // switch from legs out to legs in
+								int old_alien_line = alien_top_out_12x8[y];
+								int new_alien_line = alien_top_in_12x8[y] << ALIEN_MOVEMENT;
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x-ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x-ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+						}
+						else if(i < MIDDLE_ROW) {
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line = alien_middle_in_12x8[y] ;
+								int new_alien_line = alien_middle_out_12x8[y] << ALIEN_MOVEMENT;
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+										//										xil_printf("print x,y = %d,%d modified to %d,%d\r\n",x,y,position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+										//										xil_printf("blank x,y = %d,%d modified to %d,%d\r\n",x,y,position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
+									}
+								}
+							}
+							else { // switch from legs out to legs in
+								int old_alien_line = alien_middle_out_12x8[y] ;
+								int new_alien_line = alien_middle_in_12x8[y] << ALIEN_MOVEMENT;
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+						}
+						else {
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line = alien_bottom_in_12x8[y] ;
+								int new_alien_line = alien_bottom_out_12x8[y] << ALIEN_MOVEMENT;
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+							else { // switch from legs out to legs in
+								int old_alien_line = alien_bottom_out_12x8[y] ;
+								int new_alien_line = alien_bottom_in_12x8[y] << ALIEN_MOVEMENT;
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+		blockposition.x -= ALIEN_MOVEMENT;
+		globals_setAlienBlockPosition(blockposition);
+		if(blockposition.x <= BUFFER_WIDTH && moving_left) xil_printf("about to move down\r\n");
+		//move left
+	}
+	else {
+		xil_printf("moving right\r\n");
+		int x, y, i;
+		for(i = 0; i < GLOBALS_NUMBER_OF_ALIENS; i++) {
+			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move
+
+				position.x = blockposition.x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
+				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
+				for(y = 0; y < ALIEN_HEIGHT; y++) {
+					for(x = 0; x < ALIEN_WIDTH+ALIEN_MOVEMENT; x++) {
+						if(i < TOP_ROW) {
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line = alien_top_in_12x8[y] << ALIEN_MOVEMENT;
+								int new_alien_line = alien_top_out_12x8[y];
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										//screen_draw_double_pixel(position.x+ALIEN_WIDTH-x,y+position.y,SCREEN_WHITE);
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+
+									}
+									else {
+										//screen_draw_double_pixel(position.x+ALIEN_WIDTH-x,y+position.y,SCREEN_BLACK);
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+									//									int i;
+									//									for(i = 0; i < 100000; i++); // delay loop
+								}
+							}
+							else { // switch from legs out to legs in
+								int old_alien_line = alien_top_out_12x8[y] << ALIEN_MOVEMENT;
+								int new_alien_line = alien_top_in_12x8[y];
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+						}
+						else if(i < MIDDLE_ROW) {
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line = alien_middle_in_12x8[y] << ALIEN_MOVEMENT;
+								int new_alien_line = alien_middle_out_12x8[y];
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+										//										xil_printf("print x,y = %d,%d modified to %d,%d\r\n",x,y,position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+										//										xil_printf("blank x,y = %d,%d modified to %d,%d\r\n",x,y,position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
+									}
+								}
+							}
+							else { // switch from legs out to legs in
+								int old_alien_line = alien_middle_out_12x8[y] << ALIEN_MOVEMENT;
+								int new_alien_line = alien_middle_in_12x8[y];
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+						}
+						else {
+							if(aliens_legs_in) { // switch from legs in to legs out
+								int old_alien_line = alien_bottom_in_12x8[y] << ALIEN_MOVEMENT;
+								int new_alien_line = alien_bottom_out_12x8[y];
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+							else { // switch from legs out to legs in
+								int old_alien_line = alien_bottom_out_12x8[y] << ALIEN_MOVEMENT;
+								int new_alien_line = alien_bottom_in_12x8[y];
+								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+									}
+									else {
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+
 		blockposition.x += ALIEN_MOVEMENT;
 		globals_setAlienBlockPosition(blockposition);
+		if(blockposition.x >= SCREEN_WIDTH-ALIEN_BLOCK_WIDTH-BUFFER_WIDTH) xil_printf("about to move down\r\n");
 		//move right
 	}
+	aliens_legs_in = !aliens_legs_in;
 }
