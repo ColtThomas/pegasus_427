@@ -23,7 +23,7 @@
 #define BUFFER_WIDTH 10
 #define ALIEN_BLOCK_HEIGHT 5*ALIEN_SPACING
 #define ALIEN_BLOCK_WIDTH ALIENS_PER_ROW*ALIEN_SPACING
-#define ALIEN_MOVEMENT 3
+#define ALIEN_MOVEMENT 4
 
 static bool alien_legs_in[GLOBALS_NUMBER_OF_ALIENS];
 
@@ -145,7 +145,7 @@ void aliens_draw_initial() {
 	}
 }
 
-/*void aliens_update_position() {
+void aliens_update_position() {
 	//static bool moved_down = true;
 	static bool moving_left = false; // start moving right
 	point_t blockposition = globals_getAlienBlockPosition();
@@ -160,6 +160,7 @@ void aliens_draw_initial() {
 		int x, y, i;
 		for(i = 0; i < GLOBALS_NUMBER_OF_ALIENS; i++) {
 			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move
+
 				position.x = blockposition.x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
 				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
 				xil_printf("\r\nposition x = %d y = %d ",position.x,position.y);
@@ -169,10 +170,31 @@ void aliens_draw_initial() {
 							if(alien_legs_in[i]) { // switch from legs in to legs out
 								int old_alien_line = alien_top_in_12x8[y] << ALIEN_MOVEMENT;
 								int new_alien_line = alien_top_out_12x8[y];
+								xil_printf("redraw alien %d\r\n",i);
+								xil_printf("x = %d %x ?= %x\r\n",x,(new_alien_line & (1<<x)), (old_alien_line & (1<<x)) );
 								if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
 									if((new_alien_line) &(1<<x)) {
-										xil_printf("print %d, %d ", position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
+										xil_printf("\r\nprint %d, %d ", position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
 										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+										xil_printf("after draw x = %d\r\n",x);
+										//	xil_printf("\r\nColumn %d",y);
+
+									}
+									else {
+										xil_printf("\r\nblank %d, %d ", position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_BLACK);
+										xil_printf("after blank x = %d\r\n",x);
+
+									}
+									unsigned int i;
+									for(i = 0; i < 100000; i++);
+								}
+
+								/*if((new_alien_line & (1<<x)) != (old_alien_line & (1<<x))) { //some changes has occured to this pixel
+									if((new_alien_line) &(1<<x)) {
+										xil_printf("\r\nprint %d, %d ", position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y);
+										screen_draw_double_pixel(position.x+ALIEN_MOVEMENT+ALIEN_WIDTH-1-x,y+position.y,SCREEN_WHITE);
+										xil_printf("\r\nColumn %d",y);
 
 									}
 									else {
@@ -180,8 +202,8 @@ void aliens_draw_initial() {
 
 									}
 									unsigned int i;
-																			for(i = 0; i < 1000000; i++);
-								}
+																			for(i = 0; i < 100000; i++);
+								}*/
 							}
 							else { // switch from legs out to legs in
 								if((alien_top_in_12x8[y] & (1<<x)) != ((alien_top_out_12x8[y]<<ALIEN_MOVEMENT) & (1<<(x)))) { //some changes has occured to this pixel
@@ -203,4 +225,4 @@ void aliens_draw_initial() {
 		globals_setAlienBlockPosition(blockposition);
 		//move right
 	}
-} */
+}

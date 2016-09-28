@@ -18,6 +18,7 @@ _HEAP_SIZE = DEFINED(_HEAP_SIZE) ? _HEAP_SIZE : 0x400;
 MEMORY
 {
    microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl : ORIGIN = 0x00000050, LENGTH = 0x00007FB0
+   MCB_DDR2_S0_AXI_BASEADDR : ORIGIN = 0xC0000000, LENGTH = 0x08000000
 }
 
 /* Specify the default entry point to the program */
@@ -48,15 +49,15 @@ SECTIONS
    *(.text)
    *(.text.*)
    *(.gnu.linkonce.t.*)
-} > microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+} > MCB_DDR2_S0_AXI_BASEADDR
 
 .init : {
    KEEP (*(.init))
-} > microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+} > MCB_DDR2_S0_AXI_BASEADDR
 
 .fini : {
    KEEP (*(.fini))
-} > microblaze_0_i_bram_ctrl_microblaze_0_d_bram_ctrl
+} > MCB_DDR2_S0_AXI_BASEADDR
 
 .ctors : {
    __CTOR_LIST__ = .;

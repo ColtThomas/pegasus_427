@@ -10,8 +10,9 @@
 #include <stdio.h>
 #include "tank.h"
 #include "aliens.h"
+#include "bunkers.h"
 
-#define FRAME_BUFFER_0_ADDR 0xC0000000  // Starting location in DDR where we will store the images that we display.
+#define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
 
 
@@ -127,6 +128,7 @@ void screen_run_test() {
 char input;
 tank_draw_initial();
 aliens_draw_initial();
+bunkers_draw_initial();
 	     while (1) {
 	    	// while (sillyTimer) sillyTimer--;    // Decrement the timer.
 	    	// sillyTimer = MAX_SILLY_TIMER;       // Reset the timer.
@@ -140,7 +142,8 @@ aliens_draw_initial();
 	    		 tank_move_right();
 	    		 break;
 	    	 case '8':
-	    		// aliens_update_position();
+	    		 xil_printf("update aliens\r\n");
+	    		 aliens_update_position();
 	    		 break;
 	    	 }
 	         if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {

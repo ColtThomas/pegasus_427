@@ -14,7 +14,6 @@
 #define GLOBALS_NUMBER_OF_BUNKERS 4
 #define GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER 9
 #define GLOBALS_NUMBER_OF_ALIENS 55
-
 typedef struct {unsigned short x; unsigned short y;} point_t;
 
 void globals_init();
