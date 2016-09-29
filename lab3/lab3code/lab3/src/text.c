@@ -482,7 +482,7 @@ void text_draw_score(){
 	currentPoint.y = TEXT_LIVES_INIT_Y;
 	int i;
 	for(i=0;i<TEXT_LIFE_TXT_LEN;i++){
-			xil_printf("\r\nCoordinates: %d %d",currentPoint.x,currentPoint.y);
+//			xil_printf("\r\nCoordinates: %d %d",currentPoint.x,currentPoint.y);
 			text_write(livesMessage[i], currentPoint);
 			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 		}
@@ -494,7 +494,7 @@ void text_draw_score(){
 	currentPoint.x = TEXT_SCORE_INIT_X;
 	currentPoint.y = TEXT_SCORE_INIT_Y;
 	for(i=0;i<TEXT_SCORE_TXT_LEN;i++){
-		xil_printf("\r\nCoordinates: %d %d",currentPoint.x,currentPoint.y);
+//		xil_printf("\r\nCoordinates: %d %d",currentPoint.x,currentPoint.y);
 		text_write(scoreMessage[i], currentPoint);
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}

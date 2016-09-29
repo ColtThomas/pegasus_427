@@ -8,17 +8,14 @@
 #include "bullets.h"
 #include "screen.h"
 #include "globals.h"
-#include<stdint.h>
-#include<stdio.h>
-#include<stdbool.h>
-#include<stdlib.h>
+
 
 #define BULLET_HEIGHT 5
 #define BULLET_WIDTH 3
 #define BULLET_SPEED 4
 #define BULLET_START_X globals_getTankPosition() + 6
 #define BULLET_START_Y 220 - 2*BULLET_HEIGHT
-
+#define BULLET_VARIATIONS 3
 // Not good practice... but for the sake of passoff
 #define ALIEN_WIDTH 12
 #define ALIEN_HEIGHT 8
@@ -68,15 +65,31 @@ static const int alien_bullet_down_3x5[] =
 		packword3(1,1,1),
 		packword3(0,1,0)
 };
+
+static const int alien_bullet_zig_3x5[] =
+{
+		packword3(1,0,0),
+		packword3(0,1,0),
+		packword3(0,0,1),
+		packword3(0,1,0),
+		packword3(1,0,0)
+};
 static point_t tankBulletPos;
 static point_t alienBulletPos;
 
 static bool tankFired = false;
 static bool alien_bullet_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static u8 alien_bullet_count = 0;
+unsigned int alien_bullet_type[BULLET_VARIATIONS] = {
+		0,0,0
+};
 
 u16 bullets_randMod11() {
 	return rand() % 11;	// Random number generated to add random sequence square
+}
+
+unsigned int bullets_randMod3() {
+	return rand() % 3;	// Random number generated to add random sequence square
 }
 
 void bullets_fire_tank() {
@@ -134,6 +147,7 @@ void bullets_fire_aliens(){
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS;i++){
 		if(!globals_getAlienBulletStatus(i) & !launch) {
 			launch=true;
+			alien_bullet_type[i]=bullets_randMod3();
 			xil_printf("\r\nSpawn %d",i);
 
 			// Reset global position on bullet
@@ -145,7 +159,7 @@ void bullets_fire_aliens(){
 
 			// draw the tank bullet
 			globals_setAlienBulletStatus(i,true);
-			bullets_draw_alien_bullet(i);
+			bullets_draw_alien_bullet(i,alien_bullet_type[i]);
 		}
 	}
 
@@ -155,7 +169,7 @@ void bullets_fire_aliens(){
 //	}
 }
 
-void bullets_draw_alien_bullet(unsigned char bullet) {
+void bullets_draw_alien_bullet(unsigned char bullet,unsigned int type) {
 	point_t alienBulletPos;
 	int xOffset,yOffset;
 	int x, y, i;
@@ -165,18 +179,33 @@ void bullets_draw_alien_bullet(unsigned char bullet) {
 //	xil_printf("\r\n Drawing bullet %d",i);
 	for(y = 0; y < BULLET_HEIGHT; y++) {
 		for(x = 0; x < BULLET_WIDTH; x++) {
-			if( (alien_bullet_down_3x5[y]) & (1 << x) ) {
-				xOffset = x + alienBulletPos.x;
-				yOffset = y + alienBulletPos.y;
-				screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+			if(type==0){
+				if( (alien_bullet_down_3x5[y]) & (1 << x) ) {
+					xOffset = x + alienBulletPos.x;
+					yOffset = y + alienBulletPos.y;
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+				}
+			} else if (type==1) {
+				if( (alien_bullet_up_3x5[y]) & (1 << x) ) {
+									xOffset = x + alienBulletPos.x;
+									yOffset = y + alienBulletPos.y;
+									screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+								}
+			} else {
+				if( (alien_bullet_zig_3x5[y]) & (1 << x) ) {
+									xOffset = x + alienBulletPos.x;
+									yOffset = y + alienBulletPos.y;
+									screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+								}
 			}
+
 
 		}
 	}
 
 }
 
-void bullets_erase_alien_bullet(unsigned char bullet) {
+void bullets_erase_alien_bullet(unsigned char bullet,unsigned int type) {
 //	xil_printf("\r\n Erasing bullet %d",bullet);
 
 	point_t alienBulletPos = globals_getAlienBulletPosition(bullet);
@@ -185,10 +214,24 @@ void bullets_erase_alien_bullet(unsigned char bullet) {
 	int x, y;
 	for(y = 0; y < BULLET_HEIGHT; y++) {
 		for(x = 0; x < BULLET_WIDTH; x++) {
-			if( (alien_bullet_down_3x5[y]) & (1 << x) ) {
-				xOffset = x + alienBulletPos.x;
-				yOffset = y + alienBulletPos.y;
-				screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+			if(type==0){
+				if( (alien_bullet_down_3x5[y]) & (1 << x) ) {
+					xOffset = x + alienBulletPos.x;
+					yOffset = y + alienBulletPos.y;
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+				}
+			} else if (type==1) {
+				if( (alien_bullet_up_3x5[y]) & (1 << x) ) {
+					xOffset = x + alienBulletPos.x;
+					yOffset = y + alienBulletPos.y;
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+				}
+			} else {
+				if( (alien_bullet_zig_3x5[y]) & (1 << x) ) {
+					xOffset = x + alienBulletPos.x;
+					yOffset = y + alienBulletPos.y;
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+				}
 			}
 
 		}
@@ -219,7 +262,7 @@ void bullets_update_position() {
 	unsigned char i;
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
 		if(globals_getAlienBulletStatus(i)) {
-			bullets_erase_alien_bullet(i);
+			bullets_erase_alien_bullet(i,alien_bullet_type[i]);
 			alienBulletPos = globals_getAlienBulletPosition(i);
 			alienBulletPos.y += BULLET_SPEED;
 			globals_setAlienBulletPosition(alienBulletPos,i);
@@ -233,7 +276,7 @@ void bullets_update_position() {
 				globals_setAlienBulletStatus(i,false);
 				xil_printf("\r\nGoner %d",i);
 			} else {
-				bullets_draw_alien_bullet(i);
+				bullets_draw_alien_bullet(i,alien_bullet_type[i]);
 			}
 		}
 	}
