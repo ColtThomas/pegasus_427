@@ -125,7 +125,7 @@ void screen_draw_double_pixel(int x, int y, int color) {
 
 void screen_run_test() {
 	//int sillyTimer = MAX_SILLY_TIMER;  // Just a cheap delay between frames.
-char input;
+char input,input1,input2;
 unsigned char input_number;
 tank_draw_initial();
 tank_draw_lives_initial();
@@ -156,6 +156,14 @@ bunkers_draw_initial();
 //	    		 xil_printf("update aliens\r\n");
 	    		 aliens_update_position();
 	    		 break;
+	    	 case '5':
+	    		 input1 = getchar();
+	    		 input1 -= '0';
+	    		 input2 = getchar();
+	    		 input2 -= '0';
+	    	 	 bunker_damage(input1,input2);
+	    	 	 bunkers_update();
+	    	 	 break;
 	    	 }
 	         if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {
 	        	 xil_printf("vdma parking failed\n\r");
