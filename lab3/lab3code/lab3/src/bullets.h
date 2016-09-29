@@ -13,7 +13,7 @@ void bullets_fire_aliens();
 void bullets_update_position();
 void bullets_erase_tank_bullet();
 void bullets_draw_tank_bullet();
-void bullets_draw_alien_bullets();
+void bullets_draw_alien_bullet(unsigned char bullet);
 void bullets_erase_alien_bullet(unsigned char bullet);
 #endif /* BULLETS_H_ */
 
