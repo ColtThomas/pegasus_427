@@ -107,20 +107,11 @@ static const int bunkerDamage3_6x6[] = {
 };
 
 
-u16 bunker1Status[] = {
-		0,0,0,0,0,0,0,0,0
-};
-
-u16 bunker2Status[] = {
-		0,0,0,0,0,0,0,0,0
-};
-
-u16 bunker3Status[] = {
-		0,0,0,0,0,0,0,0,0
-};
-
-u16 bunker4Status[] = {
-		0,0,0,0,0,0,0,0,0
+u32 bunkerStatus[4][9] = { // global values to change
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1}
 };
 
 void bunkers_draw_initial() {
@@ -144,62 +135,124 @@ void bunkers_draw_initial() {
 
 // Might want to consider splitting this to update a specific bunker to save render time
 void bunkers_update() {
-	int i;
+	int i,j;
 		int x, y;
-		int xOffset,yOffset,xQuad,yQuad,quadIndex = 0;
+		int xOffset,yOffset,xQuad,yQuad,quadIndex,quadDamage = 0; // lml..O,O..lml
 
 		for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
-			for(x = 0; x < BUNKER_WIDTH; x++) {
-				for(y = 0; y < BUNKER_HEIGHT; y++) {
+			xil_printf("\r\nBunker %d",i);
+			for(y = 0; y < BUNKER_HEIGHT; y++) {
+				for(x = 0; x < BUNKER_WIDTH; x++) {
 					// Figure out how to distinguish a quadrant
 					xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 					yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
 
 					// Used to determine if coordinate is in a quadrant
 					//BUNKER_QUAD_WIDTH BUNKER_QUAD_HEIGHT
-					xQuad = x + BUNKER_SPACING - i*BUNKER_SPACING - i* BUNKER_WIDTH;
-					yQuad = y +SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+					xQuad = x;// + i*BUNKER_WIDTH - (i)*BUNKER_SPACING;
+					yQuad = y;// +SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+
+//					if(i==3){xil_printf("\n\rOffset %d %d",xQuad,yQuad);}
 
 					// Quadrant indicator
 					if((xQuad>BUNKER_QUAD_X_1) & (xQuad<BUNKER_QUAD_X_2)) {
 						if((yQuad>BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
 							quadIndex = 0;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 						else if((yQuad>BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
-							quadIndex = 4;
+							quadIndex = 3;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 						else if((yQuad>BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
-							quadIndex = 7;
+							quadIndex = 6;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 					}
 					else if((xQuad>BUNKER_QUAD_X_2) & (xQuad<BUNKER_QUAD_X_3)) {
 						if((yQuad>BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
 							quadIndex = 1;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 						else if((yQuad>BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
-							quadIndex = 5;
+							quadIndex = 4;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 						else if((yQuad>BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
-							quadIndex = 8;
+							quadIndex = 7;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 					}
 					else if((xQuad>BUNKER_QUAD_X_3) & (xQuad<BUNKER_QUAD_X_3+BUNKER_QUAD_WIDTH)) {
 						if((yQuad>BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
 							quadIndex = 2;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 						else if((yQuad>BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
-							quadIndex = 6;
+							quadIndex = 5;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 						else if((yQuad>BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
-							quadIndex = 9;
+							quadIndex = 8;
+//							xil_printf("\n\rquadIndex: %d",quadIndex);
 						}
 					}
-
-					if(bunker_24x18[y] & (1 << x)) {
-						xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
-						yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-						screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+					else {
+						quadIndex = 0;
+//						xil_printf("\n\rquadIndex: %d",quadIndex);
 					}
+
+					quadDamage = bunkerStatus[i][quadIndex]; // Indicates which damage block to render
+//					if(i==3) {xil_printf(" quadDamage: %d i: %d quadIndex: %d",quadDamage,i,quadIndex);}
+					switch(quadDamage) {
+					case 0: // no damage
+//						if(bunker_24x18[y] & (1 << x)) {
+//							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+//							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+//							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+//						}
+						break;
+					case 1:
+						if((bunkerDamage0_6x6[y%6] & (1 << (x%6)))) {
+//							xil_printf(" yas ");
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+						}
+//						else {
+////							xil_printf(" nope %d ",y);
+////							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+//						}
+						break;
+					case 2:
+						if(bunker_24x18[y] & (1 << x)) {
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+						}
+						break;
+					case 3:
+						if(bunker_24x18[y] & (1 << x)) {
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+						}
+						break;
+					case 4: // annihilation
+						if(bunker_24x18[y] & (1 << x)) {
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+						}
+						break;
+					}
+
+//					for(j = 0 ; j < 500000; j++){}
+//					if(bunker_24x18[y] & (1 << x)) {
+//						xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+//						yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+//						screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+//					}
 				}
 			}
 		}
