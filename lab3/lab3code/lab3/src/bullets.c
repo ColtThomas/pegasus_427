@@ -123,29 +123,32 @@ void bullets_draw_tank_bullet() {
 
 // Figure out what to do with the alien 0x0 stuff
 void bullets_fire_aliens(){
-	point_t thing = globals_getAlienBlockPosition();
-//	xil_printf("\r\nAlien block position before: %d %d",thing.x,thing.y);
+
 	if(alien_bullet_count<GLOBALS_NUMBER_OF_ALIEN_BULLETS) {
-//		alien_bullet_status[0] = true;
+
 		alien_bullet_count++;
-		xil_printf("\r\nSpawn ",alien_bullet_count);
+		xil_printf("\r\nSpawn %d",alien_bullet_count);
+
 		// Reset global position on bullet
 		point_t alienBulletPos = globals_getAlienBlockPosition();
 		alienBulletPos.x += BULLET_ALIEN_HALFSPACE;
 		alienBulletPos.y += ALIEN_BLOCK_HEIGHT;
-		globals_setAlienBulletPosition(alienBulletPos,0x0);
-		thing = globals_getAlienBulletPosition(0x0);
-//		xil_printf("\r\nAlien block position after: %d %d",thing.x,thing.y);
+		globals_setAlienBulletPosition(alienBulletPos,alien_bullet_count);
+
+
 		// draw the tank bullet
 		bullets_draw_alien_bullets();
 	}
 }
 
 void bullets_draw_alien_bullets() {
-	point_t alienBulletPos = globals_getAlienBulletPosition(0x0);
+	point_t alienBulletPos;
+	int xOffset,yOffset;
+	int x, y, i;
 //	xil_printf("\r\nAlien block position: %d %d",alienBulletPos.x,alienBulletPos.y);
-		int xOffset,yOffset;
-		int x, y;
+	for(i = 0 ; i < alien_bullet_count; i++) {
+		alienBulletPos = globals_getAlienBulletPosition(i);
+//		xil_printf("\r\n Drawing bullet %d",i);
 		for(y = 0; y < BULLET_HEIGHT; y++) {
 			for(x = 0; x < BULLET_WIDTH; x++) {
 				if( (alien_bullet_down_3x5[y]) & (1 << x) ) {
@@ -156,10 +159,13 @@ void bullets_draw_alien_bullets() {
 
 			}
 		}
+	}
 }
 
-void bullets_erase_alien_bullet() {
-	point_t alienBulletPos = globals_getAlienBulletPosition(0x0);
+void bullets_erase_alien_bullet(unsigned char bullet) {
+//	xil_printf("\r\n Erasing bullet %d",bullet);
+
+	point_t alienBulletPos = globals_getAlienBulletPosition(bullet);
 	int xOffset,yOffset;
 //	alienFired = false;
 	int x, y;
@@ -194,21 +200,24 @@ void bullets_update_position() {
 	}
 
 	// Alien bullets update
-	bullets_erase_alien_bullet();
 
-	point_t alienBulletPos = globals_getAlienBulletPosition(0x0);
-	alienBulletPos.y += BULLET_SPEED;
-	globals_setAlienBulletPosition(alienBulletPos,0x0);
+	point_t alienBulletPos;
+	int i;
+	for(i=0;i<alien_bullet_count; i++) {
+		bullets_erase_alien_bullet(i);
+		alienBulletPos = globals_getAlienBulletPosition(i);
+		alienBulletPos.y += BULLET_SPEED;
+		globals_setAlienBulletPosition(alienBulletPos,i);
 
-	// See if the bullet hit anything, or the edge
-	// <add the bunker hit>
-	xil_printf("\r\nCurrent pos: %d %d",alienBulletPos.x,alienBulletPos.y);
+		// See if the bullet hit anything, or the edge
+		// <add the bunker hit>
+//		xil_printf("\r\nCurrent pos: %d %d",alienBulletPos.x,alienBulletPos.y);
 
-	if((alienBulletPos.y>SCREEN_HEIGHT) & (alien_bullet_count>0)) {
-		alien_bullet_count--;
-		xil_printf("\r\nGoner ",alien_bullet_count);
-	} else {
-		bullets_draw_alien_bullets();
+		if((alienBulletPos.y>SCREEN_HEIGHT) & (alien_bullet_count>0)) {
+			alien_bullet_count--;
+			xil_printf("\r\nGoner %d",alien_bullet_count);
+		} else {
+			bullets_draw_alien_bullets();
+		}
 	}
-
 }
