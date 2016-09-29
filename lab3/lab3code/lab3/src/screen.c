@@ -172,6 +172,7 @@ bunkers_draw_initial();
 	    		 aliens_update_position();
 	    		 break;
 	    	 case '9': // update all bullets
+	    		 bullets_update_position();
 	    		 break;
 	    	 }
 	         if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {
