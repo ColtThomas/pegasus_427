@@ -142,6 +142,7 @@ bunkers_draw_initial();
 	    		 tank_move_right();
 	    		 break;
 	    	 case '8':
+//	    		 xil_printf("update aliens\r\n");
 	    		 aliens_update_position();
 	    		 break;
 	    	 }
