@@ -69,10 +69,10 @@ void tank_move_right() {
 		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
 			if((tank_15x8[y] & (1<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (1<<(x)))) { //some changes has occured to this pixel
 					if(((tank_15x8)[y]) &(1<<x)) {
-						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-1-x,y+TANK_Y,SCREEN_GREEN);
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-1-x,y+TANK_Y,SCREEN_GREEN);
 					}
 					else {
-						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-1-x,y+TANK_Y,SCREEN_BLACK);
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-1-x,y+TANK_Y,SCREEN_BLACK);
 					}
 			}
 		}
