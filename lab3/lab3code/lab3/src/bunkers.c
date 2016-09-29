@@ -137,7 +137,7 @@ void bunkers_draw_initial() {
 void bunkers_update() {
 		int i,j;
 		int x, y;
-		int xOffset,yOffset,xQuad,yQuad,quadIndex,quadDamage = 0; // lml..O,O..lml
+		int xOffset,yOffset,xQuad,yQuad,quadIndex,quadDamage = 0;
 
 		for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
 			xil_printf("\r\nBunker %d",i);

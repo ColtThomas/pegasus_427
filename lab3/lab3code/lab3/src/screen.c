@@ -11,6 +11,7 @@
 #include "tank.h"
 #include "aliens.h"
 #include "bunkers.h"
+#include "bullets.h"
 
 #define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
@@ -150,6 +151,7 @@ bunkers_draw_initial();
 	    	 case '3': // fire random alien missile
 	    		 break;
 	    	 case '5': // fire tank bullet
+	    		 bullets_fire_tank();
 	    	 	 break;
 	    	 case '4': // move tank left
 	    		 tank_move_left();

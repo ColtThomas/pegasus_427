@@ -18,4 +18,6 @@ void bunkers_draw_initial();
 bool bunkers_check_hit(int x, int y);
 
 void bunkers_update();
+
+void bunker_damage(int bunkerNum, int quadrant);
 #endif /* BUNKERS_H_ */
