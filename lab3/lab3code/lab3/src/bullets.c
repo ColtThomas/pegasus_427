@@ -11,6 +11,7 @@
 #include<stdint.h>
 #include<stdio.h>
 #include<stdbool.h>
+#include<stdlib.h>
 
 #define BULLET_HEIGHT 5
 #define BULLET_WIDTH 3
@@ -74,6 +75,9 @@ static bool tankFired = false;
 static bool alien_bullet_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static u8 alien_bullet_count = 0;
 
+u16 bullets_randMod11() {
+	return rand() % 11;	// Random number generated to add random sequence square
+}
 
 void bullets_fire_tank() {
 	if(!tankFired) {
@@ -134,7 +138,7 @@ void bullets_fire_aliens(){
 
 			// Reset global position on bullet
 			point_t alienBulletPos = globals_getAlienBlockPosition();
-			alienBulletPos.x += BULLET_ALIEN_HALFSPACE;
+			alienBulletPos.x += BULLET_ALIEN_HALFSPACE+ bullets_randMod11()*ALIEN_WIDTH;
 			alienBulletPos.y += ALIEN_BLOCK_HEIGHT;
 			globals_setAlienBulletPosition(alienBulletPos,i);
 
