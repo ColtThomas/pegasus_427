@@ -128,6 +128,7 @@ void screen_run_test() {
 char input;
 unsigned char input_number;
 tank_draw_initial();
+tank_draw_lives_initial();
 aliens_draw_initial();
 bunkers_draw_initial();
 	     while (1) {

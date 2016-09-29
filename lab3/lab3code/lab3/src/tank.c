@@ -9,6 +9,7 @@
 #include "globals.h"
 #include<stdint.h>
 #include<stdio.h>
+#include<stdbool.h>
 
 #define packWord15(b14,b13,b12,b11,b10,b9,b8,b7,b6,b5,b4,b3,b2,b1,b0) \
 ((b14 << 14) | (b13 << 13) | (b12 << 12) | (b11 << 11) | (b10 << 10) | (b9  << 9 ) | (b8  << 8 ) |						  \
@@ -18,6 +19,9 @@
 #define TANK_HEIGHT 8
 #define TANK_WIDTH 15
 #define TANK_MOVEMENT 3
+#define LIVES_Y 10
+
+#define NUMBER_OF_LIVES 3
 
 static const long tank_15x8[] =
 {
@@ -30,6 +34,7 @@ packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
 packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
 packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
 };
+static const int tank_lives_positions[NUMBER_OF_LIVES] = {250, 270, 290};
 
 void tank_draw_initial() {
 	int x, y;
@@ -37,6 +42,19 @@ void tank_draw_initial() {
 		for(y = 0; y < TANK_HEIGHT; y++) {
 			if(tank_15x8[y] & (1 << x)) {
 				screen_draw_double_pixel(x+globals_getTankPosition(),y+TANK_Y,SCREEN_GREEN);
+			}
+		}
+	}
+}
+
+void tank_draw_lives_initial() {
+	int x, y, i;
+	for(i = 0; i < NUMBER_OF_LIVES; i++) {
+		for(x = 0; x < TANK_WIDTH; x++) {
+			for(y = 0; y < TANK_HEIGHT; y++) {
+				if(tank_15x8[y] & (1 << x)) {
+					screen_draw_double_pixel(x+tank_lives_positions[i],y+LIVES_Y,SCREEN_GREEN);
+				}
 			}
 		}
 	}

@@ -13,6 +13,8 @@
 
 void tank_draw_initial();
 
+void tank_draw_lives_initial();
+
 void tank_move_left();
 
 void tank_move_right();
