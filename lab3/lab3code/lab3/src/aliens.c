@@ -24,6 +24,11 @@
 #define ALIEN_BLOCK_HEIGHT 5*ALIEN_SPACING
 #define ALIEN_BLOCK_WIDTH ALIENS_PER_ROW*ALIEN_SPACING
 #define ALIEN_MOVEMENT 4
+#define ALIEN_ROWS 5
+#define ALIEN_COLUMNS 11
+
+#define COLUMN_0 0
+#define COLUMN_10 10
 
 static bool aliens_legs_in;
 
@@ -145,12 +150,45 @@ void aliens_draw_initial() {
 	}
 }
 
+bool column_dead(char column) {
+	bool all_aliens_dead = true; // be optimistic
+	int i;
+	for(i = 0; i < ALIEN_ROWS; i++) {
+		if(!globals_isDeadAlien(column + i*ALIENS_PER_ROW)) {
+			all_aliens_dead = false;
+			break;
+		}
+	}
+	return all_aliens_dead;
+}
+
+void move_left_border(char column, int *left_border) {
+	if(!column_dead(column) || column > ALIEN_COLUMNS) return;
+	else {
+		*left_border -= ALIEN_SPACING;
+		move_left_border(column+1, left_border);
+	}
+}
+
+void move_right_border(char column, int *right_border) {
+	if(!column_dead(column) || column < COLUMN_0) return;
+	else {
+		*right_border += ALIEN_SPACING;
+		move_right_border(column-1, right_border);
+	}
+}
+
 void aliens_update_position() {
 	//static bool moved_down = true;
 	static bool moving_left = false; // start moving right
 	point_t blockposition = globals_getAlienBlockPosition();
 	point_t position;
-	if ((blockposition.x <= BUFFER_WIDTH && moving_left) || (blockposition.x >= SCREEN_WIDTH-ALIEN_BLOCK_WIDTH-BUFFER_WIDTH && !moving_left)) { // on side, needs to move down;
+	int left_border = BUFFER_WIDTH; // add logic for dead alien rows
+	int right_border = SCREEN_WIDTH-ALIEN_BLOCK_WIDTH-BUFFER_WIDTH;
+	move_left_border(COLUMN_0, &left_border);
+	move_right_border(COLUMN_10, &right_border);
+
+	if ((blockposition.x <= left_border && moving_left) || (blockposition.x >= right_border && !moving_left)) { // on side, needs to move down;
 		//move down
 		//		xil_printf("moving down\r\n");
 		int x, y, i;
