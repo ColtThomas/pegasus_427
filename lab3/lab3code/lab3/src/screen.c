@@ -12,6 +12,8 @@
 #include "aliens.h"
 #include "bunkers.h"
 #include "bullets.h"
+#include "text.h"
+#include "globals.h"
 
 #define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
@@ -129,6 +131,8 @@ void screen_run_test() {
 char input,input1,input2;
 int i;
 unsigned char input_number;
+point_t thing;
+
 tank_draw_initial();
 tank_draw_lives_initial();
 aliens_draw_initial();
@@ -139,6 +143,11 @@ bunkers_draw_initial();
 	        // frameIndex = (frameIndex + 1) % 2;  // Alternate between frame 0 and frame 1.
 	    	 input = getchar();
 	    	 switch(input) {
+	    	 case '1':
+	    		 thing.x = 5;
+	    		 thing.y = 5;
+	    		 text_write('L',thing);
+	    		 break;
 	    	 case '2':
 	    		 input = getchar();
 	    		 input -= '0'; // turns the character digit into the value of digit
