@@ -14,7 +14,7 @@ static point_t alienBlockPosition;
 static point_t alienBulletPositions[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static unsigned char bunkerErosionStates[GLOBALS_NUMBER_OF_BUNKERS][GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER];
 static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
-
+//static bool alien_bullet_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 //initializes globals arrays and structs
 void globals_init() {
 	tankPosition = INITIAL_TANK_POS;
@@ -26,6 +26,7 @@ void globals_init() {
 	for(i = 0; i < GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
 		alienBulletPositions[i].x = -1;
 		alienBulletPositions[i].y = -1;
+//		alien_bullet_status[i] = false;
 	}
 	for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
 		for(j = 0; j < GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER; j++) {

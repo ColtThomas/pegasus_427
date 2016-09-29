@@ -17,3 +17,4 @@ void bullets_update_position();
 void bullets_erase_tank_bullet();
 void bullets_draw_tank_bullet();
 void bullets_draw_tank_bullet();
+void bullets_draw_alien_bullets();

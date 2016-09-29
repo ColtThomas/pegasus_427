@@ -149,6 +149,7 @@ bunkers_draw_initial();
 	    		 aliens_kill_alien(input_number);
 	    		 break;
 	    	 case '3': // fire random alien missile
+	    		 bullets_fire_aliens();
 	    		 break;
 	    	 case '5': // fire tank bullet
 	    		 bullets_fire_tank();
