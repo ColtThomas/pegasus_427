@@ -37,6 +37,9 @@ void globals_killAlien(unsigned char alien);
 
 bool globals_isDeadAlien(unsigned char alien);
 
+void globals_setAlienBulletStatus(unsigned char bullet,bool status);
+bool globals_getAlienBulletStatus(unsigned char bullet);
+
 #endif /* GLOBALS_H_ */
 
 /*tank position (x, y)

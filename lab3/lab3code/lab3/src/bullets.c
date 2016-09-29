@@ -33,6 +33,8 @@
 #define ALIEN_ROWS 5
 #define ALIEN_COLUMNS 11
 
+static bool bullet_alien_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
+
 #define BULLET_ALIEN_HALFSPACE ALIEN_WIDTH/2 - 1
 #define packword3(b2,b1,b0) \
 		( (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
@@ -123,21 +125,27 @@ void bullets_draw_tank_bullet() {
 
 // Figure out what to do with the alien 0x0 stuff
 void bullets_fire_aliens(){
+	unsigned char i;
+	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS;i++){
+		if(!globals_getAlienBulletStatus(i) & (i<=alien_bullet_count)) {
+			xil_printf("\r\nSpawn %d",alien_bullet_count);
 
+			// Reset global position on bullet
+			point_t alienBulletPos = globals_getAlienBlockPosition();
+			alienBulletPos.x += BULLET_ALIEN_HALFSPACE;
+			alienBulletPos.y += ALIEN_BLOCK_HEIGHT;
+			globals_setAlienBulletPosition(alienBulletPos,alien_bullet_count);
+
+
+			// draw the tank bullet
+			globals_setAlienBulletStatus(i,true);
+			bullets_draw_alien_bullets();
+		}
+	}
+
+	// Indicate that a single bullet was fired
 	if(alien_bullet_count<GLOBALS_NUMBER_OF_ALIEN_BULLETS) {
-
 		alien_bullet_count++;
-		xil_printf("\r\nSpawn %d",alien_bullet_count);
-
-		// Reset global position on bullet
-		point_t alienBulletPos = globals_getAlienBlockPosition();
-		alienBulletPos.x += BULLET_ALIEN_HALFSPACE;
-		alienBulletPos.y += ALIEN_BLOCK_HEIGHT;
-		globals_setAlienBulletPosition(alienBulletPos,alien_bullet_count);
-
-
-		// draw the tank bullet
-		bullets_draw_alien_bullets();
 	}
 }
 
@@ -145,18 +153,22 @@ void bullets_draw_alien_bullets() {
 	point_t alienBulletPos;
 	int xOffset,yOffset;
 	int x, y, i;
-//	xil_printf("\r\nAlien block position: %d %d",alienBulletPos.x,alienBulletPos.y);
-	for(i = 0 ; i < alien_bullet_count; i++) {
-		alienBulletPos = globals_getAlienBulletPosition(i);
-//		xil_printf("\r\n Drawing bullet %d",i);
-		for(y = 0; y < BULLET_HEIGHT; y++) {
-			for(x = 0; x < BULLET_WIDTH; x++) {
-				if( (alien_bullet_down_3x5[y]) & (1 << x) ) {
-					xOffset = x + alienBulletPos.x;
-					yOffset = y + alienBulletPos.y;
-					screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
-				}
+	for(i = 0 ; i < GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
+		if(globals_getAlienBulletStatus(i)) {
 
+			alienBulletPos = globals_getAlienBulletPosition(i);
+	//		xil_printf("\r\nAlien block position: %d %d",alienBulletPos.x,alienBulletPos.y);
+
+			xil_printf("\r\n Drawing bullet %d",i);
+			for(y = 0; y < BULLET_HEIGHT; y++) {
+				for(x = 0; x < BULLET_WIDTH; x++) {
+					if( (alien_bullet_down_3x5[y]) & (1 << x) ) {
+						xOffset = x + alienBulletPos.x;
+						yOffset = y + alienBulletPos.y;
+						screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+					}
+
+				}
 			}
 		}
 	}
@@ -202,8 +214,8 @@ void bullets_update_position() {
 	// Alien bullets update
 
 	point_t alienBulletPos;
-	int i;
-	for(i=0;i<alien_bullet_count; i++) {
+	unsigned char i;
+	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
 		bullets_erase_alien_bullet(i);
 		alienBulletPos = globals_getAlienBulletPosition(i);
 		alienBulletPos.y += BULLET_SPEED;
@@ -213,8 +225,9 @@ void bullets_update_position() {
 		// <add the bunker hit>
 //		xil_printf("\r\nCurrent pos: %d %d",alienBulletPos.x,alienBulletPos.y);
 
-		if((alienBulletPos.y>SCREEN_HEIGHT) & (alien_bullet_count>0)) {
+		if((alienBulletPos.y>SCREEN_HEIGHT) & globals_getAlienBulletStatus(i)) {
 			alien_bullet_count--;
+			globals_setAlienBulletStatus(i,false);
 			xil_printf("\r\nGoner %d",alien_bullet_count);
 		} else {
 			bullets_draw_alien_bullets();
