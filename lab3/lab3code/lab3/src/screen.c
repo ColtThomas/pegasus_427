@@ -144,9 +144,7 @@ bunkers_draw_initial();
 	    	 input = getchar();
 	    	 switch(input) {
 	    	 case '1':
-	    		 thing.x = 5;
-	    		 thing.y = 5;
-	    		 text_write('L',thing);
+	    		 text_draw_score();
 	    		 break;
 	    	 case '2':
 	    		 input = getchar();
