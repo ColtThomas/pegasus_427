@@ -108,10 +108,10 @@ static const int bunkerDamage3_6x6[] = {
 
 
 u32 bunkerStatus[4][9] = { // global values to change
-		{1,1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1,1}
+		{0,0,0,0,0,0,0,0,1},
+		{0,0,0,0,0,0,0,0,2},
+		{0,0,0,0,0,0,0,0,3},
+		{0,0,0,0,0,0,0,0,4}
 };
 
 void bunkers_draw_initial() {
@@ -203,46 +203,35 @@ void bunkers_update() {
 					}
 
 					quadDamage = bunkerStatus[i][quadIndex]; // Indicates which damage block to render
-//					if(i==3) {xil_printf(" quadDamage: %d i: %d quadIndex: %d",quadDamage,i,quadIndex);}
 					switch(quadDamage) {
 					case 0: // no damage
-//						if(bunker_24x18[y] & (1 << x)) {
-//							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
-//							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-//							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
-//						}
 						break;
 					case 1:
 						if((bunkerDamage0_6x6[y%6] & (1 << (x%6)))) {
-//							xil_printf(" yas ");
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
 							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 						}
-//						else {
-////							xil_printf(" nope %d ",y);
-////							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
-//						}
 						break;
 					case 2:
-						if(bunker_24x18[y] & (1 << x)) {
+						if((bunkerDamage1_6x6[y%6] & (1 << (x%6)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 						}
 						break;
 					case 3:
-						if(bunker_24x18[y] & (1 << x)) {
+						if((bunkerDamage2_6x6[y%6] & (1 << (x%6)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 						}
 						break;
 					case 4: // annihilation
-						if(bunker_24x18[y] & (1 << x)) {
+						if((bunkerDamage3_6x6[y%6] & (1 << (x%6)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-							screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 						}
 						break;
 					}
