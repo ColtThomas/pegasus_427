@@ -152,7 +152,7 @@ void aliens_update_position() {
 	point_t position;
 	if ((blockposition.x <= BUFFER_WIDTH && moving_left) || (blockposition.x >= SCREEN_WIDTH-ALIEN_BLOCK_WIDTH-BUFFER_WIDTH && !moving_left)) { // on side, needs to move down;
 		//move down
-//		xil_printf("moving down\r\n");
+		//		xil_printf("moving down\r\n");
 		int x, y, i;
 		for(i = 0; i < GLOBALS_NUMBER_OF_ALIENS; i++) {
 			//xil_printf("moving alien %d\r\n",i);
@@ -342,7 +342,7 @@ void aliens_update_position() {
 		moving_left = !moving_left;
 	}
 	else if(moving_left) {
-//		xil_printf("moving left\r\n");
+		//		xil_printf("moving left\r\n");
 		int x, y, i;
 		for(i = 0; i < GLOBALS_NUMBER_OF_ALIENS; i++) {
 			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move
@@ -442,11 +442,11 @@ void aliens_update_position() {
 
 		blockposition.x -= ALIEN_MOVEMENT;
 		globals_setAlienBlockPosition(blockposition);
-//		if(blockposition.x <= BUFFER_WIDTH && moving_left) xil_printf("about to move down\r\n");
+		//		if(blockposition.x <= BUFFER_WIDTH && moving_left) xil_printf("about to move down\r\n");
 		//move left
 	}
 	else {
-//		xil_printf("moving right\r\n");
+		//		xil_printf("moving right\r\n");
 		int x, y, i;
 		for(i = 0; i < GLOBALS_NUMBER_OF_ALIENS; i++) {
 			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move
@@ -548,8 +548,52 @@ void aliens_update_position() {
 
 		blockposition.x += ALIEN_MOVEMENT;
 		globals_setAlienBlockPosition(blockposition);
-//		if(blockposition.x >= SCREEN_WIDTH-ALIEN_BLOCK_WIDTH-BUFFER_WIDTH) xil_printf("about to move down\r\n");
+		//		if(blockposition.x >= SCREEN_WIDTH-ALIEN_BLOCK_WIDTH-BUFFER_WIDTH) xil_printf("about to move down\r\n");
 		//move right
 	}
 	aliens_legs_in = !aliens_legs_in;
+}
+
+
+void aliens_kill_alien(unsigned char alien) {
+	globals_killAlien(alien); // kills the alien in the globals.
+	// but... we still have to undraw him.
+	point_t position;
+	int x, y;
+	position.x = globals_getAlienBlockPosition().x + ALIEN_SPACING*(alien%ALIENS_PER_ROW);
+	position.y = globals_getAlienBlockPosition().y + ALIEN_SPACING*(alien/ALIENS_PER_ROW);
+	for(x = 0; x < ALIEN_WIDTH; x++) {
+		for(y = 0; y < ALIEN_HEIGHT; y++) {
+			if(alien < TOP_ROW && aliens_legs_in) {
+				if(alien_top_in_12x8[y] & (1 << x)) {
+					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
+				}
+			}
+			else if (alien < MIDDLE_ROW && aliens_legs_in) {
+				if(alien_middle_in_12x8[y] & (1 << x)) {
+					screen_draw_double_pixel(x+position.x+1,y+position.y,SCREEN_BLACK); // this actually draws a mirror image, so the +1 corrects for that to avoid later movement problems.
+				}
+			}
+			else if (alien < BOTTOM_ROW && aliens_legs_in) {
+				if(alien_bottom_in_12x8[y] & (1 << x)) {
+					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
+				}
+			}
+			if(alien < TOP_ROW && !aliens_legs_in) {
+				if(alien_top_out_12x8[y] & (1 << x)) {
+					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
+				}
+			}
+			else if (alien < MIDDLE_ROW && !aliens_legs_in) {
+				if(alien_middle_out_12x8[y] & (1 << x)) {
+					screen_draw_double_pixel(x+position.x+1,y+position.y,SCREEN_BLACK); // this actually draws a mirror image, so the +1 corrects for that to avoid later movement problems.
+				}
+			}
+			else if (alien < BOTTOM_ROW && !aliens_legs_in) {
+				if(alien_bottom_out_12x8[y] & (1 << x)) {
+					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
+				}
+			}
+		}
+	}
 }

@@ -126,6 +126,7 @@ void screen_draw_double_pixel(int x, int y, int color) {
 void screen_run_test() {
 	//int sillyTimer = MAX_SILLY_TIMER;  // Just a cheap delay between frames.
 char input;
+unsigned char input_number;
 tank_draw_initial();
 aliens_draw_initial();
 bunkers_draw_initial();
@@ -135,6 +136,15 @@ bunkers_draw_initial();
 	        // frameIndex = (frameIndex + 1) % 2;  // Alternate between frame 0 and frame 1.
 	    	 input = getchar();
 	    	 switch(input) {
+	    	 case '2':
+	    		 input = getchar();
+	    		 input -= '0'; // turns the character digit into the value of digit
+	    		 input_number = input * 10; // puts first input into high-order digit of two-digit number
+	    		 input = getchar();
+	    		 input -= '0';
+	    		 input_number += input; // adds in low-order digit
+	    		 aliens_kill_alien(input_number);
+	    		 break;
 	    	 case '4':
 	    		 tank_move_left();
 	    		 break;

@@ -15,4 +15,6 @@ void aliens_draw_initial();
 
 void aliens_update_position();
 
+void aliens_kill_alien(unsigned char alien);
+
 #endif /* ALIENS_H_ */
