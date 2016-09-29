@@ -158,11 +158,11 @@ void bunkers_update() {
 							quadIndex = 0;
 //							xil_printf("\r\nquad0");
 						}
-						else if((yQuad>BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
 							quadIndex = 3;
 //							xil_printf(".");
 						}
-						else if((yQuad>BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
 							quadIndex = 6;
 //							xil_printf(".");
 						}
@@ -172,11 +172,11 @@ void bunkers_update() {
 							quadIndex = 1;
 //							xil_printf(".");
 						}
-						else if((yQuad>BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
 							quadIndex = 4;
 //							xil_printf(".");
 						}
-						else if((yQuad>BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
 							quadIndex = 7;
 //							xil_printf(".");
 						}
@@ -186,11 +186,11 @@ void bunkers_update() {
 							quadIndex = 2;
 //							xil_printf(".");
 						}
-						else if((yQuad>BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
 							quadIndex = 5;
 //							xil_printf(".");
 						}
-						else if((yQuad>BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
 							quadIndex = 8;
 //							xil_printf(".");
 						}
