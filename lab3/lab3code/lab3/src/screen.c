@@ -1,173 +1,274 @@
 /*
- * screen.c
+ * bunkers.c
  *
- *  Created on: Sep 23, 2016
+ *  Created on: Sep 27, 2016
  *      Author: superman
  */
 
-
-#include "screen.h"
-#include <stdio.h>
-#include "tank.h"
-#include "aliens.h"
 #include "bunkers.h"
+#include "screen.h"
+#include <stdbool.h>
+#include <stdio.h>
 
-#define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
-#define MAX_SILLY_TIMER 10000000;
+#define packword24(b23,b22,b21,b20,b19,b18,b17,b16,b15,b14,b13,b12,b11,b10,b9,b8,b7,b6,b5,b4,b3,b2,b1,b0) \
+		((b23 << 23)|(b22<< 22)|(b21<< 21)|(b20<< 20)|(b19<< 19)|(b18<< 18)|(b17 << 17)|(b16<< 16)|(b15<< 15)|(b14<< 14)|(b13<< 13)|(b12<< 12) | (b11 << 11) | (b10 << 10) | (b9  << 9 ) | (b8  << 8 ) |						  \
+				(b7  << 7 ) | (b6  << 6 ) | (b5  << 5 ) | (b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
+
+#define packword6(b5,b4,b3,b2,b1,b0) \
+		((b5  << 5 ) | (b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ))
+
+#define BUNKER_MARGIN_BOTTOM 60
+#define BUNKER_MARGIN_RIGHT 60
+#define BUNKER_WIDTH 24
+#define BUNKER_HEIGHT 18
+#define BUNKER_SPACING 45
+
+// Boundary definitions for hit indication
+#define BUNKER_LOWER_BOUND SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM
+#define BUNKER_UPPER_BOUND SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM - BUNKER_HEIGHT
+#define BUNKER_ONE_LEFT_BOUND BUNKER_SPACING
+#define BUNKER_ONE_RIGHT_BOUND BUNKER_SPACING + BUNKER_WIDTH
+#define BUNKER_TWO_LEFT_BOUND BUNKER_SPACING*2 + BUNKER_WIDTH
+#define BUNKER_TWO_RIGHT_BOUND BUNKER_SPACING*2 + BUNKER_WIDTH*2
+#define BUNKER_THREE_LEFT_BOUND BUNKER_SPACING*3 + BUNKER_WIDTH*2
+#define BUNKER_THREE_RIGHT_BOUND BUNKER_SPACING*3 + BUNKER_WIDTH*3
+#define BUNKER_FOUR_LEFT_BOUND BUNKER_SPACING*4 + BUNKER_WIDTH*3
+#define BUNKER_FOUR_RIGHT_BOUND BUNKER_SPACING*4 + BUNKER_WIDTH*4
+
+#define BUNKER_QUAD_WIDTH BUNKER_WIDTH/3
+#define BUNKER_QUAD_HEIGHT BUNKER_HEIGHT/3
+#define BUNKER_QUAD_X_1 0
+#define BUNKER_QUAD_X_2 BUNKER_QUAD_WIDTH
+#define BUNKER_QUAD_X_3 BUNKER_QUAD_WIDTH*2
+#define BUNKER_QUAD_Y_1 0
+#define BUNKER_QUAD_Y_2 BUNKER_QUAD_HEIGHT
+#define BUNKER_QUAD_Y_3 BUNKER_QUAD_HEIGHT*2
+
+// Shape of the entire bunker.
+static const int bunker_24x18[] =
+{
+packword24(0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0),
+packword24(0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0),
+packword24(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0),
+packword24(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1),
+packword24(1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1)
+};
+
+// These are the blocks that comprise the bunker and each time a bullet
+// strikes one of these blocks, you erode the block as you sequence through
+// these patterns.
+static const int bunkerDamage0_6x6[] = {
+	packword6(0,1,1,0,0,0),
+	packword6(0,0,0,0,0,1),
+	packword6(1,1,0,1,0,0),
+	packword6(1,0,0,0,0,0),
+	packword6(0,0,1,1,0,0),
+	packword6(0,0,0,0,1,0)
+};
+
+static const int bunkerDamage1_6x6[] = {
+	packword6(1,1,1,0,1,0),
+	packword6(1,0,1,0,0,1),
+	packword6(1,1,0,1,1,1),
+	packword6(1,0,0,0,0,0),
+	packword6(0,1,1,1,0,1),
+	packword6(0,1,1,0,1,0)
+};
+
+static const int bunkerDamage2_6x6[] = {
+	packword6(1,1,1,1,1,1),
+	packword6(1,0,1,1,0,1),
+	packword6(1,1,0,1,1,1),
+	packword6(1,1,0,1,1,0),
+	packword6(0,1,1,1,0,1),
+	packword6(1,1,1,1,1,1)
+};
+
+static const int bunkerDamage3_6x6[] = {
+	packword6(1,1,1,1,1,1),
+	packword6(1,1,1,1,1,1),
+	packword6(1,1,1,1,1,1),
+	packword6(1,1,1,1,1,1),
+	packword6(1,1,1,1,1,1),
+	packword6(1,1,1,1,1,1)
+};
 
 
-unsigned int * framePointer;
-//unsigned int * framePointer1;
-int frameIndex = 0;
-XAxiVdma videoDMAController;
+u32 bunkerStatus[4][9] = { // global values to change
+		{1,0,0,0,0,0,0,4,0},
+		{0,0,0,0,0,0,0,4,0},
+		{0,0,0,0,0,0,0,4,0},
+		{0,0,0,0,0,0,0,4,0}
+};
 
-void screen_init() {
-	init_platform();                   // Necessary for all programs.
-	int Status;                        // Keep track of success/failure of system function calls.
-
-	// There are 3 steps to initializing the vdma driver and IP.
-	// Step 1: lookup the memory structure that is used to access the vdma driver.
-    XAxiVdma_Config * VideoDMAConfig = XAxiVdma_LookupConfig(XPAR_AXI_VDMA_0_DEVICE_ID);
-    // Step 2: Initialize the memory structure and the hardware.
-    if(XST_FAILURE == XAxiVdma_CfgInitialize(&videoDMAController, VideoDMAConfig,	XPAR_AXI_VDMA_0_BASEADDR)) {
-    	xil_printf("VideoDMA Did not initialize.\r\n");
-    }
-    // Step 3: (optional) set the frame store number.
-    if(XST_FAILURE ==  XAxiVdma_SetFrmStore(&videoDMAController, 2, XAXIVDMA_READ)) {
-    	xil_printf("Set Frame Store Failed.");
-    }
-    // Initialization is complete at this point.
-
-    // Setup the frame counter. We want two read frames. We don't need any write frames but the
-    // function generates an error if you set the write frame count to 0. We set it to 2
-    // but ignore it because we don't need a write channel at all.
-    XAxiVdma_FrameCounter myFrameConfig;
-    myFrameConfig.ReadFrameCount = 2;
-    myFrameConfig.ReadDelayTimerCount = 10;
-    myFrameConfig.WriteFrameCount =2;
-    myFrameConfig.WriteDelayTimerCount = 10;
-    Status = XAxiVdma_SetFrameCounter(&videoDMAController, &myFrameConfig);
-    if (Status != XST_SUCCESS) {
-	   xil_printf("Set frame counter failed %d\r\n", Status);
-	   if(Status == XST_VDMA_MISMATCH_ERROR)
-		   xil_printf("DMA Mismatch Error\r\n");
-    }
-    // Now we tell the driver about the geometry of our frame buffer and a few other things.
-    // Our image is 480 x 640.
-    XAxiVdma_DmaSetup myFrameBuffer;
-    myFrameBuffer.VertSizeInput = 480;    // 480 vertical pixels.
-    myFrameBuffer.HoriSizeInput = 640*4;  // 640 horizontal (32-bit pixels).
-    myFrameBuffer.Stride = 640*4;         // Dont' worry about the rest of the values.
-    myFrameBuffer.FrameDelay = 0;
-    myFrameBuffer.EnableCircularBuf=1;
-    myFrameBuffer.EnableSync = 0;
-    myFrameBuffer.PointNum = 0;
-    myFrameBuffer.EnableFrameCounter = 0;
-    myFrameBuffer.FixedFrameStoreAddr = 0;
-    if(XST_FAILURE == XAxiVdma_DmaConfig(&videoDMAController, XAXIVDMA_READ, &myFrameBuffer)) {
-    	xil_printf("DMA Config Failed\r\n");
-     }
-    // We need to give the frame buffer pointers to the memory that it will use. This memory
-    // is where you will write your video data. The vdma IP/driver then streams it to the HDMI
-    // IP.
-     myFrameBuffer.FrameStoreStartAddr[0] = FRAME_BUFFER_0_ADDR;
-   //  myFrameBuffer.FrameStoreStartAddr[1] = FRAME_BUFFER_0_ADDR + 4*640*480;
-
-     if(XST_FAILURE == XAxiVdma_DmaSetBufferAddr(&videoDMAController, XAXIVDMA_READ,
-    		               myFrameBuffer.FrameStoreStartAddr)) {
-    	 xil_printf("DMA Set Address Failed Failed\r\n");
-     }
-     // Print a sanity message if you get this far.
-     xil_printf("Woohoo! I made it through initialization.\n\r");
-     // Now, let's get ready to start displaying some stuff on the screen.
-     // The variables framePointer and framePointer1 are just pointers to the base address
-     // of frame 0 and frame 1.
-     framePointer = (unsigned int *) FRAME_BUFFER_0_ADDR;
-    // framePointer1 = ((unsigned int *) FRAME_BUFFER_0_ADDR) + 640*480;
-
-     // This tells the HDMI controller the resolution of your display (there must be a better way to do this).
-          XIo_Out32(XPAR_AXI_HDMI_0_BASEADDR, 640*480);
-
-          // Start the DMA for the read channel only.
-          if(XST_FAILURE == XAxiVdma_DmaStart(&videoDMAController, XAXIVDMA_READ)){
-         	 xil_printf("DMA START FAILED\r\n");
-          }
-          // We have two frames, let's park on frame 0. Use frameIndex to index them.
-          // Note that you have to start the DMA process before parking on a frame.
-          if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {
-         	 xil_printf("vdma parking failed\n\r");
-          }
+void bunkers_draw_initial() {
+	int i;
+	int x, y;
+	int xOffset;
+	int yOffset;
+	for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
+		for(x = 0; x < BUNKER_WIDTH; x++) {
+			for(y = 0; y < BUNKER_HEIGHT; y++) {
+				if(bunker_24x18[y] & (1 << x)) {
+					xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+					yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_GREEN);
+				}
+			}
+		}
+	}
 
 }
 
-void screen_clear() {
-	int row, col;
-	for(row = 0; row < SCREEN_PIXELS_DOWN; row++) {
-		for(col = 0; col < SCREEN_PIXELS_ACROSS; col++) {
-			framePointer[row*SCREEN_PIXELS_ACROSS + col] = SCREEN_BLACK;
+// Might want to consider splitting this to update a specific bunker to save render time
+void bunkers_update() {
+		int i,j;
+		int x, y;
+		int xOffset,yOffset,xQuad,yQuad,quadIndex,quadDamage = 0; // lml..O,O..lml
+
+		for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
+			xil_printf("\r\nBunker %d",i);
+			for(y = 0; y < BUNKER_HEIGHT; y++) {
+				for(x = 0; x < BUNKER_WIDTH; x++) {
+					// Figure out how to distinguish a quadrant
+					xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+					yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+
+					// Used to determine if coordinate is in a quadrant
+					xQuad = x;
+					yQuad = y;
+
+
+					// Quadrant indicator
+					if((xQuad>=BUNKER_QUAD_X_1) & (xQuad<BUNKER_QUAD_X_2)) {
+						if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
+							quadIndex = 0;
+//							xil_printf("\r\nquad0");
+						}
+						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+							quadIndex = 3;
+//							xil_printf(".");
+						}
+						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+							quadIndex = 6;
+//							xil_printf(".");
+						}
+					}
+					else if((xQuad>=BUNKER_QUAD_X_2) & (xQuad<BUNKER_QUAD_X_3)) {
+						if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
+							quadIndex = 1;
+//							xil_printf(".");
+						}
+						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+							quadIndex = 4;
+//							xil_printf(".");
+						}
+						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+							quadIndex = 7;
+//							xil_printf(".");
+						}
+					}
+					else if((xQuad>=BUNKER_QUAD_X_3) & (xQuad<BUNKER_QUAD_X_3+BUNKER_QUAD_WIDTH)) {
+						if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
+							quadIndex = 2;
+//							xil_printf(".");
+						}
+						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+							quadIndex = 5;
+//							xil_printf(".");
+						}
+						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+							quadIndex = 8;
+//							xil_printf(".");
+						}
+					}
+					else {
+						quadIndex = 0;
+//						xil_printf("-");
+					}
+
+					quadDamage = bunkerStatus[i][quadIndex]; // Indicates which damage block to render
+					switch(quadDamage) {
+					case 0: // no damage
+						break;
+					case 1:
+						if((bunkerDamage0_6x6[y%6] & (1 << (x%6)))) {
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+//							xil_printf("#");
+						}
+						break;
+					case 2:
+						if((bunkerDamage1_6x6[y%6] & (1 << (x%6)))) {
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+						}
+						break;
+					case 3:
+						if((bunkerDamage2_6x6[y%6] & (1 << (x%6)))) {
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+						}
+						break;
+					case 4: // annihilation
+						if((bunkerDamage3_6x6[y%6] & (1 << (x%6)))) {
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+						}
+						break;
+					}
+
+//					for(j=0;j<200000;j++){}
+				}
+			}
 		}
+}
+
+// This will be useful when doing hits
+bool bunkers_check_hit(int x, int y) {
+	if((y <= BUNKER_UPPER_BOUND) & (y >= BUNKER_LOWER_BOUND)) {
+		if((x <= BUNKER_ONE_RIGHT_BOUND) & (x >= BUNKER_ONE_LEFT_BOUND)){
+			return true;
+		}
+		else if ((x <= BUNKER_TWO_RIGHT_BOUND) & (x >= BUNKER_TWO_LEFT_BOUND)){
+			return true;
+		}
+		else if ((x <= BUNKER_THREE_RIGHT_BOUND) & (x >= BUNKER_THREE_LEFT_BOUND)){
+			return true;
+		}
+		else if ((x <= BUNKER_FOUR_RIGHT_BOUND) & (x >= BUNKER_FOUR_LEFT_BOUND)){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
 	}
 }
 
-void screen_draw_pixel(int x, int y, int color) {
-	framePointer[y*SCREEN_PIXELS_ACROSS + x] = color;
-//	temporary delay
-//	unsigned int i;
-//	for(i = 0; i < 1000000; i++);
+void bunker_damage(int bunkerNum, int quadrant) {
+//		bunkerStatus[bunkerNum][quadrant] = (bunkerStatus[bunkerNum][quadrant] < 4 ) ? bunkerStatus[bunkerNum][quadrant]++:bunkerStatus[bunkerNum][quadrant];
+		if(bunkerStatus[bunkerNum][quadrant]<4) {
+			xil_printf("\r\nDamage");
+			bunkerStatus[bunkerNum][quadrant]++;
+		}
 }
-
-void screen_draw_double_pixel(int x, int y, int color) {
-	screen_draw_pixel(x*2, y*2, color);
-	screen_draw_pixel(x*2+1, y*2+1, color);
-	screen_draw_pixel(x*2+1, y*2, color);
-	screen_draw_pixel(x*2, y*2+1, color);
-}
-
-void screen_run_test() {
-	//int sillyTimer = MAX_SILLY_TIMER;  // Just a cheap delay between frames.
-char input,input1,input2;
-unsigned char input_number;
-tank_draw_initial();
-tank_draw_lives_initial();
-aliens_draw_initial();
-bunkers_draw_initial();
-	     while (1) {
-	    	// while (sillyTimer) sillyTimer--;    // Decrement the timer.
-	    	// sillyTimer = MAX_SILLY_TIMER;       // Reset the timer.
-	        // frameIndex = (frameIndex + 1) % 2;  // Alternate between frame 0 and frame 1.
-	    	 input = getchar();
-	    	 switch(input) {
-	    	 case '2':
-	    		 input = getchar();
-	    		 input -= '0'; // turns the character digit into the value of digit
-	    		 input_number = input * 10; // puts first input into high-order digit of two-digit number
-	    		 input = getchar();
-	    		 input -= '0';
-	    		 input_number += input; // adds in low-order digit
-	    		 aliens_kill_alien(input_number);
-	    		 break;
-	    	 case '4':
-	    		 tank_move_left();
-	    		 break;
-	    	 case '6':
-	    		 tank_move_right();
-	    		 break;
-	    	 case '8':
-//	    		 xil_printf("update aliens\r\n");
-	    		 aliens_update_position();
-	    		 break;
-	    	 case '5':
-	    		 input1 = getchar();
-	    		 input1 -= '0';
-	    		 input2 = getchar();
-	    		 input2 -= '0';
-	    	 	 bunker_damage(input1,input2);
-	    	 	 bunkers_update();
-	    	 	 break;
-	    	 }
-	         if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {
-	        	 xil_printf("vdma parking failed\n\r");
-	        }
-	     }
-}
-
