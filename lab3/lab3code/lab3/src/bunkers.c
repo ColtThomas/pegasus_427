@@ -46,6 +46,7 @@
 #define BUNKER_QUAD_Y_2 BUNKER_QUAD_HEIGHT
 #define BUNKER_QUAD_Y_3 BUNKER_QUAD_HEIGHT*2
 
+// Used to define the quadrants of the bunker
 #define BUNKER_QUAD_ZERO 0
 #define BUNKER_QUAD_ONE 1
 #define BUNKER_QUAD_TWO 2
@@ -57,6 +58,19 @@
 #define BUNKER_QUAD_EIGHT 8
 #define BUNKER_QUAD_NINE 9
 #define BUNKER_QUAD_VOID 0
+
+// Used as damage status of the bunker quadrants
+#define BUNKER_DMG_0 0
+#define BUNKER_DMG_1 1
+#define BUNKER_DMG_2 2
+#define BUNKER_DMG_3 3
+#define BUNKER_DMG_4 4
+
+// Since some of the bitmaps are smaller we have to use modulo
+// operations to avoid any illegal memory access
+#define BUNKER_MOD 6
+#define BUNKER_QUANTITY 4
+
 // Shape of the entire bunker.
 static const int bunker_24x18[] =
 {
@@ -171,7 +185,8 @@ void bunkers_update() {
 
 
 					// Each bunker is divided into 9 quadrants. These quadrants will help us apply
-					// damage to each patch on the bunker as they get hit.
+					// damage to each patch on the bunker as they get hit. The quad index is assigned 
+					// as the pixel coordinate crosses quadrant boundaries
 					if((xQuad>=BUNKER_QUAD_X_1) & (xQuad<BUNKER_QUAD_X_2)) {
 						if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
 							quadIndex = BUNKER_QUAD_ZERO;
@@ -205,52 +220,49 @@ void bunkers_update() {
 							quadIndex = BUNKER_QUAD_EIGHT;
 						}
 					}
-					else {
+					else { // Value is void when the pixel is in no quadrant at all
 						quadIndex = BUNKER_QUAD_VOID;
 					}
 
 					quadDamage = bunkerStatus[i][quadIndex]; // Indicates which damage block to render
 					switch(quadDamage) {
-					case 0: // no damage
+					case BUNKER_DMG_0: // No damage, so we don't do anything to save execution time
 						break;
-					case 1:
-						if((bunkerDamage0_6x6[y%6] & (1 << (x%6)))) {
-							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
-							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
-//							xil_printf("#");
-						}
-						break;
-					case 2:
-						if((bunkerDamage1_6x6[y%6] & (1 << (x%6)))) {
+					case BUNKER_DMG_1: // Mildly damaged bunker bitmap generation
+						if((bunkerDamage0_6x6[y%BUNKER_MOD] & (1 << (x%BUNKER_MOD)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
 							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 						}
 						break;
-					case 3:
-						if((bunkerDamage2_6x6[y%6] & (1 << (x%6)))) {
+					case BUNKER_DMG_2:// Moderately damaged bunker bitmap generation
+						if((bunkerDamage1_6x6[y%BUNKER_MOD] & (1 << (x%BUNKER_MOD)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
 							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 						}
 						break;
-					case 4: // annihilation
-						if((bunkerDamage3_6x6[y%6] & (1 << (x%6)))) {
+					case BUNKER_DMG_3: // Heavily damaged bunker bitmap generation
+						if((bunkerDamage2_6x6[y%BUNKER_MOD] & (1 << (x%BUNKER_MOD)))) {
+							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
+							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
+							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+						}
+						break;
+					case BUNKER_DMG_4: // annihilation, or destroyed quadrant
+						if((bunkerDamage3_6x6[y%BUNKER_MOD] & (1 << (x%BUNKER_MOD)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
 							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 						}
 						break;
 					}
-
-//					for(j=0;j<200000;j++){}
 				}
 			}
 		}
 }
 
-// This will be useful when doing hits
+// This will be useful when doing hits; this is for future implementations of collision detection
 bool bunkers_check_hit(int x, int y) {
 	if((y <= BUNKER_UPPER_BOUND) & (y >= BUNKER_LOWER_BOUND)) {
 		if((x <= BUNKER_ONE_RIGHT_BOUND) & (x >= BUNKER_ONE_LEFT_BOUND)){
@@ -274,10 +286,9 @@ bool bunkers_check_hit(int x, int y) {
 	}
 }
 
+// Function call used to inflict damage on a particular bunker's quadrant
 void bunker_damage(int bunkerNum, int quadrant) {
-//		bunkerStatus[bunkerNum][quadrant] = (bunkerStatus[bunkerNum][quadrant] < 4 ) ? bunkerStatus[bunkerNum][quadrant]++:bunkerStatus[bunkerNum][quadrant];
-		if(bunkerStatus[bunkerNum][quadrant]<4) {
-			xil_printf("\r\nDamage");
-			bunkerStatus[bunkerNum][quadrant]++;
+		if(bunkerStatus[bunkerNum][quadrant]<BUNKER_QUANTITY) {
+			bunkerStatus[bunkerNum][quadrant]++; // The higher the stored value, the higher the damage
 		}
 }
