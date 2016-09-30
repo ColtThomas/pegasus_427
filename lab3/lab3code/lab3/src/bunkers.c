@@ -169,7 +169,7 @@ void bunkers_draw_initial() {
 // Might want to consider splitting this to update a specific bunker to save render time
 void bunkers_update() {
 		// We do a lot of iteration though each bunker and the quadrants of each one
-		int32_t i,j;
+		int32_t i;
 		int32_t x, y;
 		int32_t xOffset,yOffset,xQuad,yQuad,quadIndex,quadDamage = 0;
 		// Iterate though each bunker
