@@ -10,6 +10,7 @@
 #include "xio.h"
 #include "time.h"
 #include "unistd.h"
+#include<stdint.h>
 
 #ifndef SCREEN_H_
 #define SCREEN_H_
@@ -34,12 +35,13 @@ void screen_init();
 void screen_clear();
 
 // draws a 2x2 pixel. X and Y should be values from a 320x240 grid, not a 640x480.
-void screen_draw_double_pixel(int x, int y, int color);
+void screen_draw_double_pixel(int32_t x, int32_t y, int32_t color);
 
 //draws a single pixel on a 640x480 grid
-void screen_draw_pixel(int x, int y, int color);
+void screen_draw_pixel(int32_t x, int32_t y, int32_t color);
 
-void screen_run_test(); // to be deprecated, probably.
+// draws space_invaders basics to screen, then awaits test input from UART
+void screen_run_test();
 // I'm thinking that instead of a busy loop, this should be triggered by a FIT interrupt. but this works for now.
 
 #endif /* SCREEN_H_ */

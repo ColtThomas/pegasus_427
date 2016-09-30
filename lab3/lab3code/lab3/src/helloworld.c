@@ -31,18 +31,17 @@
 #include "globals.h"
 #include "tank.h"
 #define DEBUG
+
 void print(char *str);
-
-
 
 int main()
 {
+	// calls initializer functions, then runs screen test
 	screen_init();
 	globals_init();
 	screen_clear();
+	screen_run_test();
+	cleanup_platform();
 
-     screen_run_test();
-     cleanup_platform();
-
-    return 0;
+	return 0;
 }

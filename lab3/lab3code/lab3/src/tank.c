@@ -20,6 +20,8 @@
 #define TANK_WIDTH 15
 #define TANK_MOVEMENT 3
 #define LIVES_Y 10
+#define BIT_MASK 1
+#define X_OFFSET 1
 
 #define NUMBER_OF_LIVES 3
 
@@ -34,25 +36,28 @@ packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
 packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
 packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
 };
-static const int tank_lives_positions[NUMBER_OF_LIVES] = {250, 270, 290};
+static const int32_t tank_lives_positions[NUMBER_OF_LIVES] = {250, 270, 290};
 
+// draws the tank near the center bottom of the screen
 void tank_draw_initial() {
-	int x, y;
+	int32_t x, y;
 	for(x = 0; x < TANK_WIDTH; x++) {
 		for(y = 0; y < TANK_HEIGHT; y++) {
-			if(tank_15x8[y] & (1 << x)) {
+			if(tank_15x8[y] & (BIT_MASK << x)) {
 				screen_draw_double_pixel(x+globals_getTankPosition(),y+TANK_Y,SCREEN_GREEN);
 			}
 		}
 	}
 }
 
+// draws 3 copies of the tank in the top right corner of the screen
+// to represent the number of remaining lives
 void tank_draw_lives_initial() {
-	int x, y, i;
+	int32_t x, y, i;
 	for(i = 0; i < NUMBER_OF_LIVES; i++) {
 		for(x = 0; x < TANK_WIDTH; x++) {
 			for(y = 0; y < TANK_HEIGHT; y++) {
-				if(tank_15x8[y] & (1 << x)) {
+				if(tank_15x8[y] & (BIT_MASK << x)) {
 					screen_draw_double_pixel(x+tank_lives_positions[i],y+LIVES_Y,SCREEN_GREEN);
 				}
 			}
@@ -60,18 +65,19 @@ void tank_draw_lives_initial() {
 	}
 }
 
+// moves the tank to the left
 void tank_move_left() {
 
-	int x, y;
+	int32_t x, y;
 	if(globals_getTankPosition()-TANK_MOVEMENT < 0) return;
 	for(y = 0; y < TANK_HEIGHT; y++) {
 		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
-			if((tank_15x8[y] & (1<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (1<<(x)))) { //some changes has occured to this pixel
-					if(((tank_15x8)[y]<<TANK_MOVEMENT) &(1<<x)) {
-						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-1-x,y+TANK_Y,SCREEN_GREEN);
+			if((tank_15x8[y] & (BIT_MASK<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+					if(((tank_15x8)[y]<<TANK_MOVEMENT) &(BIT_MASK<<x)) {
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
 					}
 					else {
-						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-1-x,y+TANK_Y,SCREEN_BLACK);
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
 					}
 			}
 		}
@@ -79,18 +85,19 @@ void tank_move_left() {
 	globals_setTankPosition(globals_getTankPosition()-TANK_MOVEMENT);
 }
 
+// moves the tank to the right
 void tank_move_right() {
 
-	int x, y;
+	int32_t x, y;
 	if(globals_getTankPosition()+TANK_MOVEMENT >= SCREEN_WIDTH - TANK_WIDTH) return;
 	for(y = 0; y < TANK_HEIGHT; y++) {
 		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
-			if((tank_15x8[y] & (1<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (1<<(x)))) { //some changes has occured to this pixel
-					if(((tank_15x8)[y]) &(1<<x)) {
-						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-1-x,y+TANK_Y,SCREEN_GREEN);
+			if((tank_15x8[y] & (BIT_MASK<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+					if(((tank_15x8)[y]) &(BIT_MASK<<x)) {
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
 					}
 					else {
-						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-1-x,y+TANK_Y,SCREEN_BLACK);
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
 					}
 			}
 		}

@@ -135,7 +135,7 @@ void bunkers_draw_initial() {
 
 // Might want to consider splitting this to update a specific bunker to save render time
 void bunkers_update() {
-		int i,j;
+		int i, j;
 		int x, y;
 		int xOffset,yOffset,xQuad,yQuad,quadIndex,quadDamage = 0;
 

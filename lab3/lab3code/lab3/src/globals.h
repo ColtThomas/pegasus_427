@@ -9,6 +9,7 @@
 #define GLOBALS_H_
 
 #include<stdbool.h>
+#include<stdint.h>
 
 #define GLOBALS_NUMBER_OF_ALIEN_BULLETS 4
 #define GLOBALS_NUMBER_OF_BUNKERS 4
@@ -30,45 +31,38 @@
 
 // struct to hold x and y coordinates.
 // All globals functions that return point_t, it represents the top-left corner of the item.
-typedef struct {short x; short y;} point_t;
+typedef struct {int16_t x; int16_t y;} point_t;
 
 // sets up initial values for several globals
 void globals_init();
 
-// set and get the position of the specified tank
-void globals_setTankPosition(unsigned short val);
+// set and get the position of the tank
+void globals_setTankPosition(uint16_t val);
 unsigned short globals_getTankPosition();
 
+// set and get the position of the tank bullet
 void globals_setTankBulletPosition(point_t val);
 point_t globals_getTankBulletPosition();
 
+// set and get the position of the block of aliens
 void globals_setAlienBlockPosition(point_t val);
 point_t globals_getAlienBlockPosition();
 
-void globals_setAlienBulletPosition(point_t val, unsigned char bullet);
-point_t globals_getAlienBulletPosition(unsigned char bullet);
+// set and get the position of the specified alien bullet
+void globals_setAlienBulletPosition(point_t val, uint8_t bullet);
+point_t globals_getAlienBulletPosition(uint8_t bullet);
 
-void globals_setBunkerErosionState(unsigned char state, unsigned char bunker, unsigned char block);
-unsigned char globals_getBunkerErosionState(unsigned char bunker, unsigned char block);
+// set and get the erosion state of the specified bunker (0-3) and block (0-9)
+void globals_setBunkerErosionState(uint8_t state, uint8_t bunker, uint8_t block);
+uint8_t globals_getBunkerErosionState(uint8_t bunker, uint8_t block);
 
-void globals_killAlien(unsigned char alien);
+// mark the specified alien as dead.
+// does not undraw! use aliens_killAlien for that
+void globals_killAlien(uint8_t alien);
 
-bool globals_isDeadAlien(unsigned char alien);
+bool globals_isDeadAlien(uint8_t alien);
 
-void globals_setAlienBulletStatus(unsigned char bullet,bool status);
-bool globals_getAlienBulletStatus(unsigned char bullet);
+void globals_setAlienBulletStatus(uint8_t bullet,bool status);
+bool globals_getAlienBulletStatus(uint8_t bullet);
 
 #endif /* GLOBALS_H_ */
-
-/*tank position (x, y)
-tank bullet position (x, y)
-alien block position (x, y)
-alien bullet-0 position (x, y, bullet_type)
-alien bullet-1 position (x, y, bullet_type)
-alien bullet-2 position (x, y, bullet_type)
-alien bullet-3 position (x, y, bullet_type)
-bunker 0 erosion state (right-most)
-bunker 1 erosion state
-bunker 2 erosion state
-bunker 3 erosion state (left-most)
-*/

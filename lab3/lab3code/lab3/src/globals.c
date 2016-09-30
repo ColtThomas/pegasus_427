@@ -6,26 +6,32 @@
  */
 #include "globals.h"
 #include<stdbool.h>
+#include<stdint.h>
 #define INITIAL_TANK_POS 152
+#define INITIAL_ALIEN_X 10
+#define INITIAL_ALIEN_Y 30
 
-static unsigned short tankPosition;
+#define NULL_LOCATION -1
+
+static uint16_t tankPosition;
 static point_t tankBulletPosition;
 static point_t alienBlockPosition;
 static point_t alienBulletPositions[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
-static unsigned char bunkerErosionStates[GLOBALS_NUMBER_OF_BUNKERS][GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER];
+static uint8_t bunkerErosionStates[GLOBALS_NUMBER_OF_BUNKERS][GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER];
 static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
 static bool alien_bullet_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
+
 //initializes globals arrays and structs
 void globals_init() {
 	tankPosition = INITIAL_TANK_POS;
-	tankBulletPosition.x = -1;
-	tankBulletPosition.y = -1;
-	alienBlockPosition.x = 10;
-	alienBlockPosition.y = 30;
-	int i,j;
+	tankBulletPosition.x = NULL_LOCATION;
+	tankBulletPosition.y = NULL_LOCATION;
+	alienBlockPosition.x = INITIAL_ALIEN_X;
+	alienBlockPosition.y = INITIAL_ALIEN_Y;
+	int32_t i,j;
 	for(i = 0; i < GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
-		alienBulletPositions[i].x = -1;
-		alienBulletPositions[i].y = -1;
+		alienBulletPositions[i].x = NULL_LOCATION;
+		alienBulletPositions[i].y = NULL_LOCATION;
 //		alien_bullet_status[i] = false;
 	}
 	for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
@@ -41,11 +47,11 @@ void globals_init() {
 	}
 }
 
-void globals_setTankPosition(unsigned short val) {
+void globals_setTankPosition(uint16_t val) {
 	tankPosition = val;
 //	xil_printf("tank position is %d",tankPosition);
 }
-unsigned short globals_getTankPosition() {
+uint16_t globals_getTankPosition() {
 	return tankPosition;
 }
 
@@ -63,47 +69,47 @@ point_t globals_getAlienBlockPosition() {
 	return alienBlockPosition;
 }
 
-void globals_setAlienBulletPosition(point_t val, unsigned char bullet) {
+void globals_setAlienBulletPosition(point_t val, uint8_t bullet) {
 	if(bullet < GLOBALS_NUMBER_OF_ALIEN_BULLETS) {
 		alienBulletPositions[bullet] = val;
 	}
 }
-point_t globals_getAlienBulletPosition(unsigned char bullet) {
+point_t globals_getAlienBulletPosition(uint8_t bullet) {
 	if(bullet < GLOBALS_NUMBER_OF_ALIEN_BULLETS) {
 		return alienBulletPositions[bullet];
 	}
 	point_t null_point;
-	null_point.x = -1; // this will actually be a very large number, since these are unsigned chars.
-	null_point.y = -1; // this ensures that it's a large enough value to be off-screen
+	null_point.x = NULL_LOCATION; // this will actually be a very large number, since these are unsigned chars.
+	null_point.y = NULL_LOCATION; // this ensures that it's a large enough value to be off-screen
 	return null_point;
 }
 
-void globals_setBunkerErosionState(unsigned char state, unsigned char bunker, unsigned char block) {
+void globals_setBunkerErosionState(uint8_t state, uint8_t bunker, uint8_t block) {
 	if(bunker < GLOBALS_NUMBER_OF_BUNKERS && block < GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER) {
 		bunkerErosionStates[bunker][block] = state;
 	}
 }
 
-unsigned char globals_getBunkerErosionState(unsigned char bunker, unsigned char block) {
+uint8_t globals_getBunkerErosionState(uint8_t bunker, uint8_t block) {
 	if(bunker < GLOBALS_NUMBER_OF_BUNKERS && block < GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER) {
 		return bunkerErosionStates[bunker][block];
 	}
-	else return -1; // very large, thus improper, number, to indicate error.
+	else return NULL_LOCATION; // very large, thus improper, number, to indicate error.
 }
 
-void globals_killAlien(unsigned char alien) {
+void globals_killAlien(uint8_t alien) {
 	if(alien < GLOBALS_NUMBER_OF_ALIENS) aliens_dead[alien] = true;
 }
 
-bool globals_isDeadAlien(unsigned char alien) {
+bool globals_isDeadAlien(uint8_t alien) {
 	if(alien < GLOBALS_NUMBER_OF_ALIENS) return aliens_dead[alien];
 	else return true;
 }
 
-void globals_setAlienBulletStatus(unsigned char bullet,bool status) {
+void globals_setAlienBulletStatus(uint8_t bullet,bool status) {
 	alien_bullet_status[bullet] = status;
 }
 
-bool globals_getAlienBulletStatus(unsigned char bullet) {
+bool globals_getAlienBulletStatus(uint8_t bullet) {
 	return alien_bullet_status[bullet];
 }
