@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+// Used to define the bitmaps
 #define packword24(b23,b22,b21,b20,b19,b18,b17,b16,b15,b14,b13,b12,b11,b10,b9,b8,b7,b6,b5,b4,b3,b2,b1,b0) \
 		((b23 << 23)|(b22<< 22)|(b21<< 21)|(b20<< 20)|(b19<< 19)|(b18<< 18)|(b17 << 17)|(b16<< 16)|(b15<< 15)|(b14<< 14)|(b13<< 13)|(b12<< 12) | (b11 << 11) | (b10 << 10) | (b9  << 9 ) | (b8  << 8 ) |						  \
 				(b7  << 7 ) | (b6  << 6 ) | (b5  << 5 ) | (b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
@@ -143,10 +144,10 @@ u32 bunkerStatus[4][9] = { // global values to change
 
 // Initialization function for the bunkers
 void bunkers_draw_initial() {
-	int i;
-	int x, y;
-	int xOffset;
-	int yOffset;
+	int32_t i;
+	int32_t x, y;
+	int32_t xOffset;
+	int32_t yOffset;
 	// Iterate though all 4 bunkers
 	for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
 		
@@ -168,9 +169,9 @@ void bunkers_draw_initial() {
 // Might want to consider splitting this to update a specific bunker to save render time
 void bunkers_update() {
 		// We do a lot of iteration though each bunker and the quadrants of each one
-		int i,j;
-		int x, y;
-		int xOffset,yOffset,xQuad,yQuad,quadIndex,quadDamage = 0;
+		int32_t i,j;
+		int32_t x, y;
+		int32_t xOffset,yOffset,xQuad,yQuad,quadIndex,quadDamage = 0;
 		// Iterate though each bunker
 		for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
 			for(y = 0; y < BUNKER_HEIGHT; y++) {
@@ -263,7 +264,7 @@ void bunkers_update() {
 }
 
 // This will be useful when doing hits; this is for future implementations of collision detection
-bool bunkers_check_hit(int x, int y) {
+bool bunkers_check_hit(int32_t x, int32_t y) {
 	if((y <= BUNKER_UPPER_BOUND) & (y >= BUNKER_LOWER_BOUND)) {
 		if((x <= BUNKER_ONE_RIGHT_BOUND) & (x >= BUNKER_ONE_LEFT_BOUND)){
 			return true;
@@ -287,7 +288,7 @@ bool bunkers_check_hit(int x, int y) {
 }
 
 // Function call used to inflict damage on a particular bunker's quadrant
-void bunker_damage(int bunkerNum, int quadrant) {
+void bunker_damage(int32_t bunkerNum, int32_t quadrant) {
 		if(bunkerStatus[bunkerNum][quadrant]<BUNKER_QUANTITY) {
 			bunkerStatus[bunkerNum][quadrant]++; // The higher the stored value, the higher the damage
 		}
