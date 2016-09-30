@@ -137,15 +137,14 @@ tank_draw_initial();
 tank_draw_lives_initial();
 aliens_draw_initial();
 bunkers_draw_initial();
+text_draw_score();
+
 	     while (1) {
 	    	// while (sillyTimer) sillyTimer--;    // Decrement the timer.
 	    	// sillyTimer = MAX_SILLY_TIMER;       // Reset the timer.
 	        // frameIndex = (frameIndex + 1) % 2;  // Alternate between frame 0 and frame 1.
 	    	 input = getchar();
 	    	 switch(input) {
-	    	 case '1':
-	    		 text_draw_score();
-	    		 break;
 	    	 case '2':
 	    		 input = getchar();
 	    		 input -= '0'; // turns the character digit into the value of digit
