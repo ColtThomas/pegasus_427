@@ -9,9 +9,12 @@
 #include<stdint.h>
 #include<stdio.h>
 #include<stdbool.h>
+
+// definition for the bitmap
 #define packWord5(b4,b3,b2,b1,b0) \
 		((b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
 
+// Text dimensions and initial positions
 #define TEXT_WIDTH 5
 #define TEXT_HEIGHT 7
 #define TEXT_SPACING 2
@@ -266,8 +269,10 @@ static const long M_5x7[] =
 
 // Plug in a char and a coordinate, and that char will write to the screen
 void text_write(unsigned char val, point_t coord){
-	int x, y;
-//	long character;
+	int32_t x, y;
+
+	// This is a long switch statement that could be optimized; it takes the char input
+	// and draws the respective char on the gamescreen
 	switch(val){
 	case ' ':
 		// Optimize this by sticking it into a function
@@ -473,28 +478,30 @@ void text_write(unsigned char val, point_t coord){
 }
 
 void text_draw_score(){
+	
 	// Draw out text for the lives
 	point_t currentPoint;
 	unsigned char livesMessage[TEXT_LIFE_TXT_LEN] = {
 			'L','I','V','E','S'
 	};
+	
+	// Set the initial point of the string
 	currentPoint.x = TEXT_LIVES_INIT_X;
 	currentPoint.y = TEXT_LIVES_INIT_Y;
-	int i;
-	for(i=0;i<TEXT_LIFE_TXT_LEN;i++){
-//			xil_printf("\r\nCoordinates: %d %d",currentPoint.x,currentPoint.y);
+	int32_t i;
+	for(i=0;i<TEXT_LIFE_TXT_LEN;i++){;
 			text_write(livesMessage[i], currentPoint);
 			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 		}
-	// Draw out the text for the score
-
+	
+	// Draw out the text for the score; eventually we will pass in the score here
 	unsigned char scoreMessage[TEXT_SCORE_TXT_LEN] = {
 			'S','C','O','R','E',' ','0'
 	};
+	// Initial coordinate for the score board
 	currentPoint.x = TEXT_SCORE_INIT_X;
 	currentPoint.y = TEXT_SCORE_INIT_Y;
 	for(i=0;i<TEXT_SCORE_TXT_LEN;i++){
-//		xil_printf("\r\nCoordinates: %d %d",currentPoint.x,currentPoint.y);
 		text_write(scoreMessage[i], currentPoint);
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}
