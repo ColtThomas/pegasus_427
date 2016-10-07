@@ -12,6 +12,7 @@
 #include "aliens.h"
 #include "bunkers.h"
 #include "bullets.h"
+#include "bulletHandler.h"
 #include "text.h"
 #include "globals.h"
 #include<stdint.h>
@@ -195,7 +196,7 @@ void screen_run_test() {
 			aliens_update_position();
 			break;
 		case UPDATE_BULLETS: // update all bullets
-			bullets_update_position();
+			bulletHandler_tick();
 			break;
 		}
 		if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {

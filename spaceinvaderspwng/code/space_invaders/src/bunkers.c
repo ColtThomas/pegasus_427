@@ -25,6 +25,11 @@
 #define BUNKER_HEIGHT 18
 #define BUNKER_SPACING 45
 
+#define BUNKER_ONE 1
+#define BUNKER_TWO 2
+#define BUNKER_THREE 3
+#define BUNKER_FOUR 4
+
 // Boundary definitions for hit indication
 #define BUNKER_LOWER_BOUND SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM
 #define BUNKER_UPPER_BOUND SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM - BUNKER_HEIGHT
@@ -166,6 +171,50 @@ void bunkers_draw_initial() {
 
 }
 
+uint32_t bunkers_get_quadrant(uint32_t xQuad,uint32_t yQuad){
+	uint32_t quadIndex = 0;
+	// Each bunker is divided into 9 quadrants. These quadrants will help us apply
+	// damage to each patch on the bunker as they get hit. The quad index is assigned
+	// as the pixel coordinate crosses quadrant boundaries
+	if((xQuad>=BUNKER_QUAD_X_1) & (xQuad<BUNKER_QUAD_X_2)) {
+		if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
+			quadIndex = BUNKER_QUAD_ZERO;
+		}
+		else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+			quadIndex = BUNKER_QUAD_THREE;
+		}
+		else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+			quadIndex = BUNKER_QUAD_SIX;
+		}
+	}
+	else if((xQuad>=BUNKER_QUAD_X_2) & (xQuad<BUNKER_QUAD_X_3)) {
+		if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
+			quadIndex = BUNKER_QUAD_ONE;
+		}
+		else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+			quadIndex = BUNKER_QUAD_FOUR;
+		}
+		else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+			quadIndex = BUNKER_QUAD_SEVEN;
+		}
+	}
+	else if((xQuad>=BUNKER_QUAD_X_3) & (xQuad<BUNKER_QUAD_X_3+BUNKER_QUAD_WIDTH)) {
+		if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
+			quadIndex = BUNKER_QUAD_TWO;
+		}
+		else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
+			quadIndex = BUNKER_QUAD_FIVE;
+		}
+		else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
+			quadIndex = BUNKER_QUAD_EIGHT;
+		}
+	}
+	else { // Value is void when the pixel is in no quadrant at all
+		quadIndex = BUNKER_QUAD_VOID;
+	}
+	return quadIndex;
+}
+
 // Might want to consider splitting this to update a specific bunker to save render time
 void bunkers_update() {
 		// We do a lot of iteration though each bunker and the quadrants of each one
@@ -184,46 +233,8 @@ void bunkers_update() {
 					xQuad = x;
 					yQuad = y;
 
+					quadIndex = bunkers_get_quadrant(xQuad,yQuad);
 
-					// Each bunker is divided into 9 quadrants. These quadrants will help us apply
-					// damage to each patch on the bunker as they get hit. The quad index is assigned 
-					// as the pixel coordinate crosses quadrant boundaries
-					if((xQuad>=BUNKER_QUAD_X_1) & (xQuad<BUNKER_QUAD_X_2)) {
-						if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
-							quadIndex = BUNKER_QUAD_ZERO;
-						}
-						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
-							quadIndex = BUNKER_QUAD_THREE;
-						}
-						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
-							quadIndex = BUNKER_QUAD_SIX;
-						}
-					}
-					else if((xQuad>=BUNKER_QUAD_X_2) & (xQuad<BUNKER_QUAD_X_3)) {
-						if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
-							quadIndex = BUNKER_QUAD_ONE;
-						}
-						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
-							quadIndex = BUNKER_QUAD_FOUR;
-						}
-						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
-							quadIndex = BUNKER_QUAD_SEVEN;
-						}
-					}
-					else if((xQuad>=BUNKER_QUAD_X_3) & (xQuad<BUNKER_QUAD_X_3+BUNKER_QUAD_WIDTH)) {
-						if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
-							quadIndex = BUNKER_QUAD_TWO;
-						}
-						else if((yQuad>=BUNKER_QUAD_Y_2) & (yQuad<BUNKER_QUAD_Y_3)) {
-							quadIndex = BUNKER_QUAD_FIVE;
-						}
-						else if((yQuad>=BUNKER_QUAD_Y_3) & (yQuad<BUNKER_QUAD_Y_3+BUNKER_QUAD_HEIGHT)) {
-							quadIndex = BUNKER_QUAD_EIGHT;
-						}
-					}
-					else { // Value is void when the pixel is in no quadrant at all
-						quadIndex = BUNKER_QUAD_VOID;
-					}
 
 					quadDamage = bunkerStatus[i][quadIndex]; // Indicates which damage block to render
 					switch(quadDamage) {
@@ -263,19 +274,41 @@ void bunkers_update() {
 		}
 }
 
+// Function call used to inflict damage on a particular bunker's quadrant
+void bunker_damage(int32_t bunkerNum, int32_t quadrant) {
+		xil_printf("\r\nDamage Applied");
+		if(bunkerStatus[bunkerNum][quadrant]<BUNKER_QUANTITY) {
+			bunkerStatus[bunkerNum][quadrant]++; // The higher the stored value, the higher the damage
+		}
+}
+
+
 // This will be useful when doing hits; this is for future implementations of collision detection
-bool bunkers_check_hit(int32_t x, int32_t y) {
-	if((y <= BUNKER_UPPER_BOUND) & (y >= BUNKER_LOWER_BOUND)) {
-		if((x <= BUNKER_ONE_RIGHT_BOUND) & (x >= BUNKER_ONE_LEFT_BOUND)){
+bool bunkers_check_hit(point_t pos) {
+	uint32_t quadrant;
+	if((pos.y <= BUNKER_UPPER_BOUND) & (pos.y >= BUNKER_LOWER_BOUND)) {
+		if((pos.x <= BUNKER_ONE_RIGHT_BOUND) & (pos.x >= BUNKER_ONE_LEFT_BOUND)){
+			xil_printf("\r\nBunker 1 hit");
+			quadrant = bunkers_get_quadrant(pos.x,pos.y);
+			bunker_damage(BUNKER_ONE, quadrant);
 			return true;
 		}
-		else if ((x <= BUNKER_TWO_RIGHT_BOUND) & (x >= BUNKER_TWO_LEFT_BOUND)){
+		else if ((pos.x <= BUNKER_TWO_RIGHT_BOUND) & (pos.x >= BUNKER_TWO_LEFT_BOUND)){
+			xil_printf("\r\nBunker 2 hit");
+			quadrant = bunkers_get_quadrant(pos.x,pos.y);
+			bunker_damage(BUNKER_TWO, quadrant);
 			return true;
 		}
-		else if ((x <= BUNKER_THREE_RIGHT_BOUND) & (x >= BUNKER_THREE_LEFT_BOUND)){
+		else if ((pos.x <= BUNKER_THREE_RIGHT_BOUND) & (pos.x >= BUNKER_THREE_LEFT_BOUND)){
+			xil_printf("\r\nBunker 3 hit");
+			quadrant = bunkers_get_quadrant(pos.x,pos.y);
+			bunker_damage(BUNKER_THREE, quadrant);
 			return true;
 		}
-		else if ((x <= BUNKER_FOUR_RIGHT_BOUND) & (x >= BUNKER_FOUR_LEFT_BOUND)){
+		else if ((pos.x <= BUNKER_FOUR_RIGHT_BOUND) & (pos.x >= BUNKER_FOUR_LEFT_BOUND)){
+			xil_printf("\r\nBunker 4 hit");
+			quadrant = bunkers_get_quadrant(pos.x,pos.y);
+			bunker_damage(BUNKER_FOUR, quadrant);
 			return true;
 		}
 		else {
@@ -287,9 +320,4 @@ bool bunkers_check_hit(int32_t x, int32_t y) {
 	}
 }
 
-// Function call used to inflict damage on a particular bunker's quadrant
-void bunker_damage(int32_t bunkerNum, int32_t quadrant) {
-		if(bunkerStatus[bunkerNum][quadrant]<BUNKER_QUANTITY) {
-			bunkerStatus[bunkerNum][quadrant]++; // The higher the stored value, the higher the damage
-		}
-}
+
