@@ -13,6 +13,7 @@
 #include<stdbool.h>
 #include<stdlib.h>
 
+uint32_t bullets_get_speed();
 // fires bullet from tank
 void bullets_fire_tank();
 
