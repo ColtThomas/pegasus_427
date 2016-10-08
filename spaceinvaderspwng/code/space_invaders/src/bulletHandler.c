@@ -17,21 +17,13 @@ point_t alienBullets[GLOBALS_NUMBER_OF_ALIEN_BULLETS],nextPos;
 
 		// Check bunker areas and update on a hit
 		if (bunkers_check_hit(nextPos)) {
-			xil_printf("\r\nHit detected!");
-			bunkers_update();
+//			xil_printf("\r\nHit detected!");
 
 			// remove the bullet
 			bullets_remove_alien_bullet(i);
 			globals_setAlienBulletStatus(i,false);
 		}
-		else {
-			xil_printf(".");
-		}
-
 		// Check alien areas
-
-
-
 
 	}
 
@@ -41,7 +33,8 @@ point_t alienBullets[GLOBALS_NUMBER_OF_ALIEN_BULLETS],nextPos;
 
 	// Check tank areas
 
-// Apply appropriate damage to bunkers; report alien hit or tank hit
+	// Apply appropriate damage to bunkers; report alien hit or tank hit
+	bunkers_update();
 
 
 // Update the bullets

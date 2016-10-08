@@ -171,11 +171,12 @@ void bunkers_draw_initial() {
 
 }
 
-uint32_t bunkers_get_quadrant(uint32_t xQuad,uint32_t yQuad){
+uint32_t bunkers_get_quadrant(uint32_t xQuad,uint32_t yQuad,bool debug){
 	uint32_t quadIndex = 0;
 	// Each bunker is divided into 9 quadrants. These quadrants will help us apply
 	// damage to each patch on the bunker as they get hit. The quad index is assigned
 	// as the pixel coordinate crosses quadrant boundaries
+//	if(debug) {xil_printf("\r\nQuad map: %d %d",xQuad,yQuad);}
 	if((xQuad>=BUNKER_QUAD_X_1) & (xQuad<BUNKER_QUAD_X_2)) {
 		if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
 			quadIndex = BUNKER_QUAD_ZERO;
@@ -234,7 +235,7 @@ void bunkers_update() {
 					xQuad = x;
 					yQuad = y;
 
-					quadIndex = bunkers_get_quadrant(xQuad,yQuad);
+					quadIndex = bunkers_get_quadrant(xQuad,yQuad,false);
 
 
 					quadDamage = bunkerStatus[i][quadIndex]; // Indicates which damage block to render
@@ -289,7 +290,7 @@ bool bunker_damage(int32_t bunkerNum, int32_t quadrant) {
 point_t bunkers_get_relative_pos(point_t pos, uint32_t bunker){
 	point_t relativePoint;
 	relativePoint.x = pos.x - BUNKER_SPACING - bunker*BUNKER_SPACING - bunker* BUNKER_WIDTH;
-	relativePoint.y = pos.y - SCREEN_HEIGHT + BUNKER_MARGIN_BOTTOM;
+	relativePoint.y = pos.y - SCREEN_HEIGHT + BUNKER_MARGIN_BOTTOM+bullets_get_speed(); // had a problem where I would get negative y values without the speed put in the equation
 
 	return relativePoint;
 }
@@ -306,30 +307,30 @@ bool bunkers_check_hit(point_t pos) {
 //		xil_printf("\r\nIn bounds");
 		if((pos.x <= BUNKER_ONE_RIGHT_BOUND) & (pos.x >= BUNKER_ONE_LEFT_BOUND)){
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_ONE);
-			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
-			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y);
-			xil_printf("\r\nBunker 1 hit... quadrant %d",quadrant);
+//			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
+			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
+//			xil_printf("\r\nBunker 1 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_ONE, quadrant);
 		}
 		else if ((pos.x <= BUNKER_TWO_RIGHT_BOUND) & (pos.x >= BUNKER_TWO_LEFT_BOUND)){
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_TWO);
-			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
-			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y);
-			xil_printf("\r\nBunker 2 hit... quadrant %d",quadrant);
+//			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
+			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
+//			xil_printf("\r\nBunker 2 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_TWO, quadrant);
 		}
 		else if ((pos.x <= BUNKER_THREE_RIGHT_BOUND) & (pos.x >= BUNKER_THREE_LEFT_BOUND)){
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_THREE);
-			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
-			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y);
-			xil_printf("\r\nBunker 3 hit... quadrant %d",quadrant);
+//			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
+			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
+//			xil_printf("\r\nBunker 3 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_THREE, quadrant);
 		}
 		else if ((pos.x <= BUNKER_FOUR_RIGHT_BOUND) & (pos.x >= BUNKER_FOUR_LEFT_BOUND)){
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_FOUR);
-			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
-			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y);
-			xil_printf("\r\nBunker 4 hit... quadrant %d",quadrant);
+//			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
+			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
+//			xil_printf("\r\nBunker 4 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_FOUR, quadrant);
 		}
 		else {

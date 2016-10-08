@@ -163,7 +163,7 @@ void bullets_fire_aliens(){
 		if(!globals_getAlienBulletStatus(i) & !launch) {
 			launch=true;
 			alien_bullet_type[i]=bullets_randMod3();
-			xil_printf("\r\nSpawn %d",i);
+//			xil_printf("\r\nSpawn %d",i);
 
 			// Reset global position on bullet
 			point_t alienBulletPos = globals_getAlienBlockPosition();
@@ -289,7 +289,7 @@ void bullets_update_position() {
 			if((alienBulletPos.y>SCREEN_HEIGHT) & globals_getAlienBulletStatus(i)) {
 //				alien_bullet_count--;
 				globals_setAlienBulletStatus(i,false);
-				xil_printf("\r\nGoner %d",i);
+//				xil_printf("\r\nGoner %d",i);
 			} else {
 				bullets_draw_alien_bullet(i,alien_bullet_type[i]);
 			}
