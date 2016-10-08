@@ -14,6 +14,10 @@
 #include<stdlib.h>
 
 uint32_t bullets_get_speed();
+
+uint32_t bullets_get_height();
+
+
 // fires bullet from tank
 void bullets_fire_tank();
 
@@ -23,8 +27,8 @@ void bullets_fire_aliens();
 // moves all bullets one position. alien bullets move down, tank bullet moves up.
 void bullets_update_position();
 
-// clears the current tank bullet
-void bullets_erase_tank_bullet();
+// Removes tank bullet and sets the globals to indicate likewise
+void bullets_remove_tank_bullet();
 
 // draws tank bullet in incremented position
 void bullets_draw_tank_bullet();
@@ -32,8 +36,8 @@ void bullets_draw_tank_bullet();
 // draws specified alien bullet in incremented position
 void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type);
 
-// erases current specified alien bullet
-void bullets_erase_alien_bullet(uint8_t bullet,uint32_t type);
+// Removes alien bullet and sets the globals to indicate likewise
+void bullets_remove_alien_bullet(uint8_t bullet);
 #endif /* BULLETS_H_ */
 
 

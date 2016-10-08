@@ -21,6 +21,11 @@ point_t alienBullets[GLOBALS_NUMBER_OF_ALIEN_BULLETS],nextPos;
 			bunkers_update();
 
 			// remove the bullet
+			bullets_remove_alien_bullet(i);
+			globals_setAlienBulletStatus(i,false);
+		}
+		else {
+			xil_printf(".");
 		}
 
 		// Check alien areas

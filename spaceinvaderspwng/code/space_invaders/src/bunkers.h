@@ -24,6 +24,6 @@ bool bunkers_check_hit(point_t pos);
 void bunkers_update();
 
 // Applies one unit of damage to given quadrant of any bunker
-void bunker_damage(int32_t bunkerNum, int32_t quadrant);
+bool bunker_damage(int32_t bunkerNum, int32_t quadrant);
 
 #endif /* BUNKERS_H_ */

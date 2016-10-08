@@ -89,6 +89,11 @@ uint32_t bullets_get_speed() {
 	return BULLET_SPEED;
 }
 
+uint32_t bullets_get_height() {
+	return BULLET_HEIGHT;
+}
+
+
 uint32_t alien_bullet_type[BULLET_VARIATIONS] = {
 		TYPE_0,TYPE_0,TYPE_0
 };
@@ -290,4 +295,20 @@ void bullets_update_position() {
 			}
 		}
 	}
+}
+
+
+void bullets_remove_tank_bullet() {
+	bullets_erase_tank_bullet();
+	tankFired = false;
+}
+
+void bullets_remove_alien_bullet(uint8_t bullet) {
+	point_t clear;
+	clear.x = 0;
+	clear.y = 0;
+
+	bullets_erase_alien_bullet(bullet,alien_bullet_type[bullet]);
+	globals_setAlienBulletStatus(bullet,false);
+	globals_setAlienBulletPosition(clear,bullet);
 }
