@@ -18,7 +18,7 @@ void bunkers_draw_initial();
 
 // Verifies if the coordinates are located on the bunker; returns 
 // true for a collision
-bool bunkers_check_hit(point_t pos);
+bool bunkers_check_hit(point_t pos,bool bulletIsAlien);
 
 // Checks the bunker damage and updates the bunker status
 void bunkers_update();
