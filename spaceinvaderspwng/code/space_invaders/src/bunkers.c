@@ -31,8 +31,8 @@
 #define BUNKER_FOUR 3
 
 // Boundary definitions for hit indication
-#define BUNKER_LOWER_BOUND SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM - bullets_get_height()
-#define BUNKER_UPPER_BOUND SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM + BUNKER_HEIGHT - bullets_get_height()
+#define BUNKER_LOWER_BOUND SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM
+#define BUNKER_UPPER_BOUND SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM + BUNKER_HEIGHT
 #define BUNKER_ONE_LEFT_BOUND BUNKER_SPACING
 #define BUNKER_ONE_RIGHT_BOUND BUNKER_SPACING + BUNKER_WIDTH
 #define BUNKER_TWO_LEFT_BOUND BUNKER_SPACING*2 + BUNKER_WIDTH
@@ -287,10 +287,10 @@ bool bunker_damage(int32_t bunkerNum, int32_t quadrant) {
 }
 
 // function translates the given position to the quadrant position
-point_t bunkers_get_relative_pos(point_t pos, uint32_t bunker,int32_t offset){
+point_t bunkers_get_relative_pos(point_t pos, uint32_t bunker){
 	point_t relativePoint;
 	relativePoint.x = pos.x - BUNKER_SPACING - bunker*BUNKER_SPACING - bunker* BUNKER_WIDTH;
-	relativePoint.y = pos.y - SCREEN_HEIGHT + BUNKER_MARGIN_BOTTOM+offset; // had a problem where I would get negative y values without the speed put in the equation
+	relativePoint.y = pos.y - SCREEN_HEIGHT + BUNKER_MARGIN_BOTTOM; // had a problem where I would get negative y values without the speed put in the equation
 //	+bullets_get_speed()
 	return relativePoint;
 }
@@ -298,9 +298,9 @@ point_t bunkers_get_relative_pos(point_t pos, uint32_t bunker,int32_t offset){
 // This will be useful when doing hits; this is for future implementations of collision detection
 bool bunkers_check_hit(point_t pos,bool bulletIsAlien) {
 	uint32_t quadrant;
-	int32_t offset = (bulletIsAlien)? bullets_get_speed() : bullets_get_height();
+	int32_t offset = (bulletIsAlien)? bullets_get_height() : -bullets_get_height()-bullets_get_speed(); // consider a global
 	point_t relativePoint;
-
+	pos.y += offset; // both types of bullets approach from different sides, so they have different offset
 	/*
 	 * Here is an idea for the offset prob: just add the offset to the initial pos value and then
 	 * remove respective offset from bunkers_get_relative_pos as well as the boundaries in the
@@ -308,32 +308,32 @@ bool bunkers_check_hit(point_t pos,bool bulletIsAlien) {
 	 * or bullet height
 	 */
 
-	xil_printf("\r\npos: %d %d",pos.x,pos.y);
+	if(!bulletIsAlien){xil_printf("\r\npos: %d %d",pos.x,pos.y);}
 	if((pos.y <= BUNKER_UPPER_BOUND) && (pos.y >= BUNKER_LOWER_BOUND)) {
 //		xil_printf("\r\nIn bounds");
 		if((pos.x <= BUNKER_ONE_RIGHT_BOUND) & (pos.x >= BUNKER_ONE_LEFT_BOUND)){
-			relativePoint = bunkers_get_relative_pos(pos, BUNKER_ONE,offset);
+			relativePoint = bunkers_get_relative_pos(pos, BUNKER_ONE);
 			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 1 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_ONE, quadrant);
 		}
 		else if ((pos.x <= BUNKER_TWO_RIGHT_BOUND) & (pos.x >= BUNKER_TWO_LEFT_BOUND)){
-			relativePoint = bunkers_get_relative_pos(pos, BUNKER_TWO,offset);
+			relativePoint = bunkers_get_relative_pos(pos, BUNKER_TWO);
 			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 2 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_TWO, quadrant);
 		}
 		else if ((pos.x <= BUNKER_THREE_RIGHT_BOUND) & (pos.x >= BUNKER_THREE_LEFT_BOUND)){
-			relativePoint = bunkers_get_relative_pos(pos, BUNKER_THREE,offset);
+			relativePoint = bunkers_get_relative_pos(pos, BUNKER_THREE);
 			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 3 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_THREE, quadrant);
 		}
 		else if ((pos.x <= BUNKER_FOUR_RIGHT_BOUND) & (pos.x >= BUNKER_FOUR_LEFT_BOUND)){
-			relativePoint = bunkers_get_relative_pos(pos, BUNKER_FOUR,offset);
+			relativePoint = bunkers_get_relative_pos(pos, BUNKER_FOUR);
 			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 4 hit... quadrant %d",quadrant);
