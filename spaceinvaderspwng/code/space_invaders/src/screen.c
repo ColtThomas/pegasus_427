@@ -163,6 +163,9 @@ void screen_run_test() {
 	while (1) {
 		input = getchar();
 		switch(input) {
+		case '1': //debug
+			tank_respawn();
+			break;
 		case KILL_ALIEN:
 			input = getchar();
 			input -= CHAR_TO_INT; // turns the character digit into the value of digit
