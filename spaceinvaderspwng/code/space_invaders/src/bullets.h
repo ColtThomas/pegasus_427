@@ -25,7 +25,7 @@ void bullets_fire_tank();
 void bullets_fire_aliens();
 
 // moves all bullets one position. alien bullets move down, tank bullet moves up.
-void bullets_update_position();
+void bullets_update_position(); // Mind mid air collision with bullets
 
 // Removes tank bullet and sets the globals to indicate likewise
 void bullets_remove_tank_bullet();

@@ -24,4 +24,7 @@ void tank_move_left();
 // moves the tank to the right
 void tank_move_right();
 
+bool tank_check_hit(point_t pos);
+
+void tank_respawn();
 #endif /* TANK_H_ */

@@ -7,6 +7,7 @@
 #include "tank.h"
 #include "screen.h"
 #include "globals.h"
+#include "bullets.h"
 #include<stdint.h>
 #include<stdio.h>
 #include<stdbool.h>
@@ -19,11 +20,23 @@
 #define TANK_HEIGHT 8
 #define TANK_WIDTH 15
 #define TANK_MOVEMENT 3
+#define TANK_NUM_BITMAPS 4
 #define LIVES_Y 10
 #define BIT_MASK 1
 #define X_OFFSET 1
-
+#define TANK_RESPAWN_POS 158
 #define NUMBER_OF_LIVES 3
+
+// Indexes for bitmaps
+#define TANK_INIT 0
+#define TANK_DMG_A 1
+#define TANK_DMG_B 2
+#define TANK_DMG_C 3
+
+// Tank Directions
+#define TANK_LEFT 0
+#define TANK_RIGHT 1
+#define TANK_NO_MOTION 2
 
 static const long tank_15x8[] =
 {
@@ -36,8 +49,45 @@ packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
 packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),
 packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
 };
-static const int32_t tank_lives_positions[NUMBER_OF_LIVES] = {250, 270, 290};
 
+static const long tank_destroyed_a_15x8[] =
+{
+packWord15(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),
+packWord15(0,0,0,1,0,0,0,0,0,1,0,1,0,1,0),
+packWord15(0,0,0,0,0,0,1,0,1,0,0,0,0,0,0),
+packWord15(0,0,1,0,1,0,0,0,0,0,0,0,1,0,0),
+packWord15(0,0,0,0,0,1,0,0,1,1,0,0,0,0,0),
+packWord15(1,0,0,1,1,1,1,1,1,1,1,1,1,0,0),
+packWord15(0,0,1,1,1,1,1,1,1,1,1,1,1,1,0),
+packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+};
+
+static const long tank_destroyed_b_15x8[] =
+{
+packWord15(0,0,0,0,0,0,0,0,0,0,1,0,0,0,0),
+packWord15(0,1,0,0,0,0,0,1,0,0,0,0,0,0,0),
+packWord15(0,0,0,0,0,1,0,0,0,0,0,0,1,0,0),
+packWord15(1,0,0,1,0,0,0,1,0,0,0,0,0,0,1),
+packWord15(0,0,0,0,0,1,0,0,1,1,0,0,0,0,0),
+packWord15(0,1,0,1,1,1,1,1,1,1,1,1,1,0,0),
+packWord15(0,0,1,1,1,1,1,1,1,1,1,1,1,1,0),
+packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+};
+
+static const long tank_destroyed_c_15x8[] =
+{
+packWord15(0,0,0,0,0,0,0,0,1,0,0,0,0,0,0),
+packWord15(0,0,0,1,0,0,0,0,0,0,0,0,1,0,0),
+packWord15(0,0,0,0,0,1,0,0,0,1,0,0,0,0,0),
+packWord15(0,1,0,0,0,0,0,0,0,0,0,1,0,1,0),
+packWord15(0,0,1,0,0,1,0,0,1,1,0,0,0,0,1),
+packWord15(0,0,0,1,1,1,1,1,1,1,1,1,1,0,0),
+packWord15(0,0,1,1,1,1,1,1,1,1,1,1,1,1,0),
+packWord15(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+};
+
+static const int32_t tank_lives_positions[NUMBER_OF_LIVES] = {250, 270, 290};
+static const long *tank_bitmap_array[TANK_NUM_BITMAPS] = {tank_15x8,tank_destroyed_a_15x8,tank_destroyed_b_15x8,tank_destroyed_c_15x8};
 // draws the tank near the center bottom of the screen
 void tank_draw_initial() {
 	int32_t x, y;
@@ -65,15 +115,14 @@ void tank_draw_lives_initial() {
 	}
 }
 
-// moves the tank to the left
-void tank_move_left() {
-
-	int32_t x, y;
-	if(globals_getTankPosition()-TANK_MOVEMENT < 0) return;
+void tank_redraw(uint32_t pre_image,uint32_t post_image,uint32_t direction){
+	uint32_t x,y;
+	uint32_t xBitShift = (direction!=TANK_LEFT)? 0:TANK_MOVEMENT;
+	uint32_t offset = (direction!=TANK_NO_MOTION)? TANK_MOVEMENT:0;
 	for(y = 0; y < TANK_HEIGHT; y++) {
-		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
-			if((tank_15x8[y] & (BIT_MASK<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
-					if(((tank_15x8)[y]<<TANK_MOVEMENT) &(BIT_MASK<<x)) {
+		for(x = 0; x < TANK_WIDTH+offset; x++) {
+			if((tank_bitmap_array[pre_image][y] & (BIT_MASK<<x)) != ((tank_bitmap_array[post_image][y]<<offset) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+					if((tank_bitmap_array[post_image][y]<<xBitShift) &(BIT_MASK<<x)) {
 						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
 					}
 					else {
@@ -82,25 +131,131 @@ void tank_move_left() {
 			}
 		}
 	}
+}
+// moves the tank to the left
+void tank_move_left() {
+
+	int32_t x, y;
+	if(globals_getTankPosition()-TANK_MOVEMENT < 0) return;
+	tank_redraw(TANK_INIT,TANK_INIT,TANK_LEFT);
+//	for(y = 0; y < TANK_HEIGHT; y++) {
+//		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
+//			if((tank_15x8[y] & (BIT_MASK<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+//					if(((tank_15x8)[y]<<TANK_MOVEMENT) &(BIT_MASK<<x)) {
+//						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
+//					}
+//					else {
+//						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
+//					}
+//			}
+//		}
+//	}
 	globals_setTankPosition(globals_getTankPosition()-TANK_MOVEMENT);
 }
 
 // moves the tank to the right
 void tank_move_right() {
-
-	int32_t x, y;
 	if(globals_getTankPosition()+TANK_MOVEMENT >= SCREEN_WIDTH - TANK_WIDTH) return;
+	tank_redraw(TANK_INIT,TANK_INIT,TANK_RIGHT);
+	int32_t x, y;
+
+//	for(y = 0; y < TANK_HEIGHT; y++) {
+//		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
+//			if((tank_15x8[y] & (BIT_MASK<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+//					if(((tank_15x8)[y]) &(BIT_MASK<<x)) {
+//						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
+//					}
+//					else {
+//						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
+//					}
+//			}
+//		}
+//	}
+	globals_setTankPosition(globals_getTankPosition()+TANK_MOVEMENT);
+}
+
+// COME BACK AND DO THIS MORE EFFICIENTLY!!!!!
+void tank_animate() {
+	int32_t x, y,j;
+	for(j=0;j<10000;j++){}
 	for(y = 0; y < TANK_HEIGHT; y++) {
 		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
-			if((tank_15x8[y] & (BIT_MASK<<x)) != ((tank_15x8[y]<<TANK_MOVEMENT) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
-					if(((tank_15x8)[y]) &(BIT_MASK<<x)) {
-						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
+			if((tank_destroyed_a_15x8[y] & (BIT_MASK<<x)) != ((tank_destroyed_b_15x8[y]) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+				xil_printf("\r\n.");
+					if(((tank_destroyed_b_15x8)[y]) &(BIT_MASK<<x)) {
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
 					}
 					else {
-						screen_draw_double_pixel(globals_getTankPosition()+TANK_MOVEMENT+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
 					}
 			}
 		}
 	}
-	globals_setTankPosition(globals_getTankPosition()+TANK_MOVEMENT);
+	for(j=0;j<10000;j++){}
+	for(y = 0; y < TANK_HEIGHT; y++) {
+		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
+			if((tank_destroyed_b_15x8[y] & (BIT_MASK<<x)) != ((tank_destroyed_c_15x8[y]) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+				xil_printf("\r\n.");
+					if(((tank_destroyed_c_15x8)[y]) &(BIT_MASK<<x)) {
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
+					}
+					else {
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
+					}
+			}
+		}
+	}
+
+}
+
+void tank_demolish(){
+	int32_t x, y;
+		if(globals_getTankPosition() >= SCREEN_WIDTH - TANK_WIDTH){
+			xil_printf("\r\nMEOW");
+			return;
+		}
+		for(y = 0; y < TANK_HEIGHT; y++) {
+			for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
+				if((tank_15x8[y] & (BIT_MASK<<x)) != ((tank_destroyed_a_15x8[y]) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+					xil_printf("\r\n.");
+						if(((tank_destroyed_a_15x8)[y]) &(BIT_MASK<<x)) {
+							screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
+						}
+						else {
+							screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
+						}
+				}
+			}
+		}
+		tank_animate();
+}
+
+
+bool tank_check_hit(point_t pos){
+	xil_printf("\r\npos: %d %d",pos.x,pos.y);
+	pos.y += bullets_get_height();
+	if((pos.y>=TANK_Y) && (pos.y <= TANK_Y+TANK_HEIGHT)) {
+		tank_demolish();
+		return true;
+	}
+	return false;
+}
+
+void tank_respawn() {
+	// Erase debris
+	uint32_t x,y;
+	for(y = 0; y < TANK_HEIGHT; y++) {
+		for(x = 0; x < TANK_WIDTH+TANK_MOVEMENT; x++) {
+			if((tank_destroyed_b_15x8[y] & (BIT_MASK<<x)) != ((tank_destroyed_c_15x8[y]) & (BIT_MASK<<(x)))) { //some changes has occured to this pixel
+				xil_printf("\r\n.");
+					if(((tank_destroyed_c_15x8)[y]) &(BIT_MASK<<x)) {
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_GREEN);
+					}
+					else {
+						screen_draw_double_pixel(globals_getTankPosition()+TANK_WIDTH-X_OFFSET-x,y+TANK_Y,SCREEN_BLACK);
+					}
+			}
+		}
+	}
+	// Draw initial tank; verify the position coordinates
 }

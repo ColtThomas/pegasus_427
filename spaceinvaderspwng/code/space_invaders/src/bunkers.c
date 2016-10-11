@@ -308,33 +308,33 @@ bool bunkers_check_hit(point_t pos,bool bulletIsAlien) {
 	 * or bullet height
 	 */
 
-	if(!bulletIsAlien){xil_printf("\r\npos: %d %d",pos.x,pos.y);}
+//	if(!bulletIsAlien){xil_printf("\r\npos: %d %d",pos.x,pos.y);}
 	if((pos.y <= BUNKER_UPPER_BOUND) && (pos.y >= BUNKER_LOWER_BOUND)) {
 //		xil_printf("\r\nIn bounds");
 		if((pos.x <= BUNKER_ONE_RIGHT_BOUND) & (pos.x >= BUNKER_ONE_LEFT_BOUND)){
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_ONE);
-			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
+//			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 1 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_ONE, quadrant);
 		}
 		else if ((pos.x <= BUNKER_TWO_RIGHT_BOUND) & (pos.x >= BUNKER_TWO_LEFT_BOUND)){
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_TWO);
-			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
+//			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 2 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_TWO, quadrant);
 		}
 		else if ((pos.x <= BUNKER_THREE_RIGHT_BOUND) & (pos.x >= BUNKER_THREE_LEFT_BOUND)){
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_THREE);
-			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
+//			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 3 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_THREE, quadrant);
 		}
 		else if ((pos.x <= BUNKER_FOUR_RIGHT_BOUND) & (pos.x >= BUNKER_FOUR_LEFT_BOUND)){
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_FOUR);
-			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
+//			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 4 hit... quadrant %d",quadrant);
 			return bunker_damage(BUNKER_FOUR, quadrant);
