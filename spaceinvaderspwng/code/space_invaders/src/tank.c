@@ -209,8 +209,10 @@ bool tank_check_hit(point_t pos){
 	xil_printf("\r\npos: %d %d",pos.x,pos.y);
 	pos.y += bullets_get_height();
 	if((pos.y>=TANK_Y) && (pos.y <= TANK_Y+TANK_HEIGHT)) {
-		tank_demolish();
-		return true;
+		if((pos.x>=globals_getTankPosition()) && (pos.x<=globals_getTankPosition()+TANK_WIDTH)){
+			tank_demolish();
+			return true;
+		}
 	}
 	return false;
 }

@@ -172,7 +172,7 @@ void bullets_fire_aliens(){
 			globals_setAlienBulletPosition(alienBulletPos,i);
 
 
-			// draw the tank bullet
+			// draw the alien bullet
 			globals_setAlienBulletStatus(i,true);
 			bullets_draw_alien_bullet(i,alien_bullet_type[i]);
 		}
