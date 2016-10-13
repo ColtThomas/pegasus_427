@@ -621,13 +621,15 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 	uint8_t row = 0;
 	bool hit = false;
 	// Check the row
-	for(i=0; i < GLOBALS_ALIEN_ROWS; i++) {
+	for(i=1; i <= GLOBALS_ALIEN_ROWS; i++) {
 		if((relativePos.y>=GLOBALS_ALIEN_SPACING*i) &&(relativePos.y<GLOBALS_ALIEN_SPACING*i+GLOBALS_ALIEN_HEIGHT)) {
-			row = i*GLOBALS_ALIENS_PER_ROW;
+			row = (i-1)*GLOBALS_ALIENS_PER_ROW;
 			hit=true;
+			xil_printf("\r\nYAY");
 		}
 	}
-	if(hit){return false;}
+	if(!hit) {return hit;}
+	else{hit = false;}
 	xil_printf("\r\nRow %d hit",row);
 	// Check the column
 	uint8_t column = 0;
@@ -637,9 +639,16 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 			hit = true;
 		}
 	}
+
+	if(!hit) {return hit;}
 	xil_printf("\r\nColumn %d hit",column);
 	xil_printf("\r\nAlien number: %d",column+row);
-//	if(column==0){return false;}
+	uint8_t alien = column+row;
+	if(hit && !globals_isDeadAlien(alien)) {
+		aliens_kill_alien(alien);
+	} else {
+		hit = false;
+	}
 
 	return hit;
 }
