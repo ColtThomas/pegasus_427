@@ -7,6 +7,7 @@
 #include "globals.h"
 #include<stdbool.h>
 #include<stdint.h>
+#include <stdlib.h>
 #define INITIAL_TANK_POS 152
 #define INITIAL_ALIEN_X 10
 #define INITIAL_ALIEN_Y 40
@@ -15,6 +16,7 @@
 static uint16_t tankPosition;
 static point_t tankBulletPosition;
 static point_t alienBlockPosition;
+static point_t saucerPosition;
 static point_t alienBulletPositions[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static uint8_t bunkerErosionStates[GLOBALS_NUMBER_OF_BUNKERS][GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER];
 static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
@@ -66,6 +68,13 @@ void globals_setAlienBlockPosition(point_t val) {
 }
 point_t globals_getAlienBlockPosition() {
 	return alienBlockPosition;
+}
+
+void globals_setSaucerPosition(point_t val) {
+	saucerPosition = val;
+}
+point_t globals_getSaucerPosition() {
+	return saucerPosition;
 }
 
 void globals_setAlienBulletPosition(point_t val, uint8_t bullet) {

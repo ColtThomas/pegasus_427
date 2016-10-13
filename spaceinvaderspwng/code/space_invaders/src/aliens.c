@@ -7,6 +7,7 @@
 #include "aliens.h"
 #include "screen.h"
 #include "bunkers.h"
+#include "text.h"
 #include <stdbool.h>
 #include<stdio.h>
 #include<stdint.h>
@@ -32,6 +33,14 @@
 #define BIT_MASK 0x1
 #define X_OFFSET 1
 #define COLUMN_OFFSET 1
+
+#define ALIENS_LOW_SCORE 10
+#define ALIENS_MIDDLE_SCORE 20
+#define ALIENS_TOP_SCORE 40
+
+#define ALIENS_LOW_CLASS 54
+#define ALIENS_MIDDLE_CLASS 32
+#define ALIENS_TOP_CLASS 10
 
 #define ALIEN_LAND_POINT 130 // Y coordinate indicating
 #define COLUMN_0 0
@@ -577,9 +586,20 @@ void aliens_update_position() {
 	aliens_legs_in = !aliens_legs_in;
 }
 
+void aliens_score_tick(uint8_t alien){
+
+	if(alien<=ALIENS_TOP_CLASS){
+		text_add_score(ALIENS_TOP_SCORE);
+	} else if(alien<=ALIENS_MIDDLE_CLASS){
+		text_add_score(ALIENS_MIDDLE_SCORE);
+	} else if(alien<=ALIENS_LOW_CLASS) {
+		text_add_score(ALIENS_LOW_SCORE);
+	}
+}
 // kill and blank the given alien
 void aliens_kill_alien(uint8_t alien) {
 	globals_killAlien(alien); // kills the alien in the globals.
+	aliens_score_tick(alien); // add respective score
 	// but... we still have to undraw him.
 	point_t position;
 	int32_t x, y;
@@ -647,7 +667,7 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 	xil_printf("\r\nRow %d hit",row);
 	// Check the column
 	uint8_t column = 0;
-	for(i=1; i <= GLOBALS_ALIEN_COLUMNS ; i++) {
+	for(i=0; i <= GLOBALS_ALIEN_COLUMNS ; i++) {
 		if((relativePos.x>=GLOBALS_ALIEN_SPACING*i) &&(relativePos.x<GLOBALS_ALIEN_SPACING*i+GLOBALS_ALIEN_WIDTH)) {
 			column = i;
 			hit = true;
@@ -684,6 +704,7 @@ bool aliens_landed() {
 	point_t pos = globals_getAlienBlockPosition();
 	if(pos.y>=ALIEN_LAND_POINT){
 		xil_printf("\r\nGAME OVER");
+		text_game_over();
 		globals_setGameStatus(true);
 		return true;
 	} else {

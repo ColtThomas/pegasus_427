@@ -8,6 +8,7 @@
 #include "screen.h"
 #include "globals.h"
 #include "bullets.h"
+#include "text.h"
 #include<stdint.h>
 #include<stdio.h>
 #include<stdbool.h>
@@ -157,6 +158,7 @@ void tank_remove_life() {
 	if(playerLives<=0) {
 		globals_setGameStatus(true);
 		xil_printf("\r\nGAME OVER");
+		text_game_over();
 	}
 
 }
