@@ -6,6 +6,7 @@
  */
 #include "aliens.h"
 #include "screen.h"
+#include "bunkers.h"
 #include <stdbool.h>
 #include<stdio.h>
 #include<stdint.h>
@@ -213,6 +214,7 @@ void aliens_update_position() {
 			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move; if alien is dead, moving would redraw it, so we do nothing.
 				position.x = blockposition.x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
 				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
+
 				for(y = 0; y < ALIEN_HEIGHT+ALIEN_MOVEMENT; y++) {
 					for(x = 0; x < ALIEN_WIDTH; x++) {
 						if(i < TOP_ROW) {
@@ -368,6 +370,8 @@ void aliens_update_position() {
 						}
 					}
 				}
+			// This will erode the bunker, only if alien is alive
+			bunkers_check_hit(position,2);
 			}
 		}
 		blockposition.y += ALIEN_MOVEMENT;
@@ -380,6 +384,7 @@ void aliens_update_position() {
 			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move
 				position.x = blockposition.x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
 				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
+
 				for(y = 0; y < ALIEN_HEIGHT; y++) {
 					for(x = 0; x < ALIEN_WIDTH+ALIEN_MOVEMENT; x++) {
 						if(i < TOP_ROW) {
@@ -462,6 +467,8 @@ void aliens_update_position() {
 						}
 					}
 				}
+			// This will erode the bunker, only if alien is alive
+			bunkers_check_hit(position,2);
 			}
 		}
 		blockposition.x -= ALIEN_MOVEMENT;
@@ -473,6 +480,7 @@ void aliens_update_position() {
 			if(!globals_isDeadAlien(i)) { //alien is alive, so it must move
 				position.x = blockposition.x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
 				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
+
 				for(y = 0; y < ALIEN_HEIGHT; y++) {
 					for(x = 0; x < ALIEN_WIDTH+ALIEN_MOVEMENT; x++) {
 						if(i < TOP_ROW) {
@@ -555,11 +563,16 @@ void aliens_update_position() {
 						}
 					}
 				}
+
+			// This will erode the bunker, only if alien is alive
+			bunkers_check_hit(position,2);
+
 			}
 		}
 		blockposition.x += ALIEN_MOVEMENT;
 		globals_setAlienBlockPosition(blockposition);
 	}
+
 	aliens_legs_in = !aliens_legs_in;
 }
 
@@ -621,7 +634,7 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 	uint8_t row = 0;
 	bool hit = false;
 	// Check the row
-	for(i=1; i <= GLOBALS_ALIEN_ROWS; i++) {
+	for(i=0; i <= GLOBALS_ALIEN_ROWS; i++) {
 		if((relativePos.y>=GLOBALS_ALIEN_SPACING*i) &&(relativePos.y<GLOBALS_ALIEN_SPACING*i+GLOBALS_ALIEN_HEIGHT)) {
 			row = (i)*GLOBALS_ALIENS_PER_ROW;
 			hit=true;

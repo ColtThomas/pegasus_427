@@ -16,6 +16,7 @@
 #include "text.h"
 #include "globals.h"
 #include<stdint.h>
+#include "alienHandler.h"
 
 #define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
@@ -197,9 +198,8 @@ void screen_run_test() {
 //			bunkers_update();
 			break;
 		case UPDATE_ALIENS: // update alien position
-			aliens_update_position();
-			testPoint = globals_getAlienBlockPosition();
-			xil_printf("\r\nblock pos: %d %d",testPoint.x,testPoint.y );
+			alienHandler_tick();
+
 			break;
 		case UPDATE_BULLETS: // update all bullets
 			bulletHandler_tick();

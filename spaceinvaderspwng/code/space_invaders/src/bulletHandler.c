@@ -10,16 +10,16 @@ uint32_t i;
 point_t alienBullets[GLOBALS_NUMBER_OF_ALIEN_BULLETS],nextPos,clear;
 clear.x = 0;
 clear.y = 0;
-bool bulletIsAlien;
+uint8_t hitType;
 // We need to see if the bullet will move into a collision area
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS;i++){
-		bulletIsAlien = true;
+		hitType = 0;
 		alienBullets[i] = globals_getAlienBulletPosition(i);		// Get the position and then increment to
 		nextPos = alienBullets[i];									// simulate the next position. We want
 		nextPos.y += bullets_get_speed();							// to see if the next bullet will collide
 
 		// Check bunker areas and update on a hit
-		if (bunkers_check_hit(nextPos,bulletIsAlien)) {
+		if (bunkers_check_hit(nextPos,hitType)) {
 //			xil_printf("\r\nHit detected!");
 
 			// remove the bullet
@@ -42,8 +42,8 @@ bool bulletIsAlien;
 
 	// Check tank areas
 	nextPos = globals_getTankBulletPosition();
-	bulletIsAlien = false;
-	if (bunkers_check_hit(nextPos,bulletIsAlien)) {
+	hitType = 1;
+	if (bunkers_check_hit(nextPos,hitType)) {
 //		xil_printf("\r\nHit detected!");
 
 		// remove the bullet
@@ -59,7 +59,7 @@ bool bulletIsAlien;
 		globals_setTankBulletPosition(clear);
 	}
 	// Apply appropriate damage to bunkers; report alien hit or tank hit
-	bunkers_update();
+//	bunkers_update();
 
 
 // Update the bullets

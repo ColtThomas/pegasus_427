@@ -17,7 +17,6 @@
 // collision of bullets and necessary communication of effects. These effects include:
 // - Increment Score
 // - Decrement Lives or tank hit flag
-// - Returning the index of the killed alien? (we will see if we should handle it here.)
 void bulletHandler_tick();
 
 #endif /* BULLETHANDLER_H_ */

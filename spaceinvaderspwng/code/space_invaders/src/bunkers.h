@@ -18,7 +18,7 @@ void bunkers_draw_initial();
 
 // Verifies if the coordinates are located on the bunker; returns 
 // true for a collision
-bool bunkers_check_hit(point_t pos,bool bulletIsAlien);
+bool bunkers_check_hit(point_t pos,uint8_t hitType);
 
 // Checks the bunker damage and updates the bunker status
 void bunkers_update();
@@ -26,4 +26,6 @@ void bunkers_update();
 // Applies one unit of damage to given quadrant of any bunker
 bool bunker_damage(int32_t bunkerNum, int32_t quadrant);
 
+// Destroys given row of bunker
+bool bunker_destroy_row(int32_t bunkerNum, int32_t row);
 #endif /* BUNKERS_H_ */
