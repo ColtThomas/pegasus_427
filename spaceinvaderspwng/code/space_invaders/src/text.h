@@ -12,10 +12,11 @@
 #include "globals.h"
 
 // Used to write a char to the game screen at given coordinate
-void text_write(unsigned char val, point_t coord);
+void text_write(unsigned char val, point_t coord,bool erase);
 
 // Draws the scoreboard values to the top of the screen
 void text_draw_score();
 
-void text_increment_score(uint32_t points);
+void text_increment_score();
+void text_add_score(uint32_t points);
 #endif /* TEXT_H_ */

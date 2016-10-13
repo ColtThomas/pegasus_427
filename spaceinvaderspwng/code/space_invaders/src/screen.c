@@ -166,8 +166,9 @@ void screen_run_test() {
 		input = getchar();
 		switch(input) {
 		case '1': //debug
+			text_increment_score();
 //			tank_remove_life();
-			bunker_destroy_row(0);
+//			bunker_destroy_row(0);
 			break;
 		case KILL_ALIEN:
 			input = getchar();
