@@ -154,7 +154,10 @@ void tank_remove_life() {
 			}
 		}
 	}
-	if(playerLives<=0) {xil_printf("\r\nGAME OVER");}
+	if(playerLives<=0) {
+		globals_setGameStatus(true);
+		xil_printf("\r\nGAME OVER");
+	}
 
 }
 

@@ -623,7 +623,7 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 	// Check the row
 	for(i=1; i <= GLOBALS_ALIEN_ROWS; i++) {
 		if((relativePos.y>=GLOBALS_ALIEN_SPACING*i) &&(relativePos.y<GLOBALS_ALIEN_SPACING*i+GLOBALS_ALIEN_HEIGHT)) {
-			row = (i-1)*GLOBALS_ALIENS_PER_ROW;
+			row = (i)*GLOBALS_ALIENS_PER_ROW;
 			hit=true;
 			xil_printf("\r\nYAY");
 		}
@@ -661,11 +661,6 @@ bool aliens_check_hit(point_t pos){
 
 			// Figure which alien box it is in
 			return aliens_get_alien_select(pos);
-			// Is the alien dead?
-				// Remove the respective alien
-
-
-//			return true;
 		}
 	}
 	return false;
@@ -675,6 +670,7 @@ bool aliens_landed() {
 	point_t pos = globals_getAlienBlockPosition();
 	if(pos.y>=ALIEN_LAND_POINT){
 		xil_printf("\r\nGAME OVER");
+		globals_setGameStatus(true);
 		return true;
 	} else {
 		return false;

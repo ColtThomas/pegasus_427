@@ -26,8 +26,9 @@ void tank_move_right();
 
 bool tank_check_hit(point_t pos);
 
+// Decrements a life and redraws new tank
 void tank_respawn();
 
-void tank_remove_life();
-void tank_add_life();
+//void tank_remove_life();
+//void tank_add_life();
 #endif /* TANK_H_ */

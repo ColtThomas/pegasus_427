@@ -65,4 +65,6 @@ bool globals_isDeadAlien(uint8_t alien);
 void globals_setAlienBulletStatus(uint8_t bullet,bool status);
 bool globals_getAlienBulletStatus(uint8_t bullet);
 
+void globals_setGameStatus(bool status);
+bool globals_isGameOver();
 #endif /* GLOBALS_H_ */

@@ -9,7 +9,7 @@
 #include<stdint.h>
 #define INITIAL_TANK_POS 152
 #define INITIAL_ALIEN_X 10
-#define INITIAL_ALIEN_Y 30
+#define INITIAL_ALIEN_Y 40
 
 #define NULL_LOCATION -1
 
@@ -20,7 +20,7 @@ static point_t alienBulletPositions[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static uint8_t bunkerErosionStates[GLOBALS_NUMBER_OF_BUNKERS][GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER];
 static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
 static bool alien_bullet_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
-
+static bool gameOver = false;
 //initializes globals arrays and structs
 void globals_init() {
 	tankPosition = INITIAL_TANK_POS;
@@ -112,4 +112,12 @@ void globals_setAlienBulletStatus(uint8_t bullet,bool status) {
 
 bool globals_getAlienBulletStatus(uint8_t bullet) {
 	return alien_bullet_status[bullet];
+}
+
+void globals_setGameStatus(bool status) {
+	gameOver = status;
+}
+
+bool globals_isGameOver() {
+	return gameOver;
 }
