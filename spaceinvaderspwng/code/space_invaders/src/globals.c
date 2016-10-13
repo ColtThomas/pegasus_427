@@ -16,7 +16,7 @@
 static uint16_t tankPosition;
 static point_t tankBulletPosition;
 static point_t alienBlockPosition;
-static uint32_t saucerPosition;
+static int32_t saucerPosition;
 static point_t alienBulletPositions[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static uint8_t bunkerErosionStates[GLOBALS_NUMBER_OF_BUNKERS][GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER];
 static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
@@ -70,10 +70,10 @@ point_t globals_getAlienBlockPosition() {
 	return alienBlockPosition;
 }
 
-void globals_setSaucerPosition(uint16_t val) {
+void globals_setSaucerPosition(int32_t val) {
 	saucerPosition = val;
 }
-uint32_t globals_getSaucerPosition() {
+int32_t globals_getSaucerPosition() {
 	return saucerPosition;
 }
 
