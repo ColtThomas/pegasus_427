@@ -59,7 +59,7 @@ uint8_t hitType;
 		globals_setTankBulletPosition(clear);
 	}
 	// Apply appropriate damage to bunkers; report alien hit or tank hit
-//	bunkers_update();
+	bunkers_update();
 
 
 // Update the bullets

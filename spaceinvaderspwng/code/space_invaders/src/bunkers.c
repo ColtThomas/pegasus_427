@@ -24,7 +24,7 @@
 #define BUNKER_WIDTH 24
 #define BUNKER_HEIGHT 18
 #define BUNKER_SPACING 45
-
+#define BUNKER_ROWS 3
 #define BUNKER_ONE 0
 #define BUNKER_TWO 1
 #define BUNKER_THREE 2
@@ -76,7 +76,8 @@
 // operations to avoid any illegal memory access
 #define BUNKER_MOD 6
 #define BUNKER_QUANTITY 4
-
+#define BUNKER_ROW_INC 3
+#define BUNKER_QUADRANTS 9
 // Shape of the entire bunker.
 static const int bunker_24x18[] =
 {
@@ -147,6 +148,7 @@ u32 bunkerStatus[4][9] = { // global values to change
 		{0,0,0,0,0,0,0,4,0}
 };
 
+static uint32_t rowCounter[4] = {0,0,0,0};
 // Initialization function for the bunkers
 void bunkers_draw_initial() {
 	int32_t i;
@@ -299,6 +301,27 @@ bool bunker_destroy(int32_t bunkerNum, int32_t quadrant) {
 		return false;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+void bunker_destroy_row(int32_t bunkerNum){
+	bool update = false;
+	uint32_t i,limit;
+
+	if(rowCounter[bunkerNum]<BUNKER_QUADRANTS){
+		limit = rowCounter[bunkerNum]+BUNKER_ROW_INC;
+		xil_printf("\r\nRow counter: %d",rowCounter[bunkerNum]);
+		for(i=rowCounter[bunkerNum];i<limit;i++) {
+			xil_printf("\r\nQuad: %d",i);
+			if(bunkerStatus[bunkerNum][i]!=BUNKER_DMG_4){
+				bunkerStatus[bunkerNum][i]=BUNKER_DMG_4;
+				update=true;
+			}
+			rowCounter[bunkerNum]++;
+		}
+	}
+	bunkers_update();
+}
 // function translates the given position to the quadrant position
 point_t bunkers_get_relative_pos(point_t pos, uint32_t bunker){
 	point_t relativePoint;
@@ -313,7 +336,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 	uint32_t quadrant;
 	int32_t offset = (hitType==0)? bullets_get_height() : // alien bullet
 					 (hitType==1)? -bullets_get_height()-bullets_get_speed():
-							 bullets_get_height(); // consider a global
+							 GLOBALS_ALIEN_HEIGHT-1; // consider a global
 	point_t relativePoint;
 	pos.y += offset; // both types of bullets approach from different sides, so they have different offset
 	/*
@@ -332,7 +355,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 			xil_printf("\r\nBunker 1 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
-//				bunker_destroy(BUNKER_ONE,quadrant);
+				bunker_destroy_row(BUNKER_ONE);
 			}
 			return bunker_damage(BUNKER_ONE, quadrant);
 
@@ -343,7 +366,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 			xil_printf("\r\nBunker 2 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
-//				bunker_destroy(BUNKER_TWO,quadrant);
+				bunker_destroy_row(BUNKER_TWO);
 			}
 			return bunker_damage(BUNKER_TWO, quadrant);
 		}
@@ -353,7 +376,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 			xil_printf("\r\nBunker 3 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
-//				bunker_destroy(BUNKER_THREE,quadrant);
+				bunker_destroy_row(BUNKER_THREE);
 			}
 			return bunker_damage(BUNKER_THREE, quadrant);
 		}
@@ -363,7 +386,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 			xil_printf("\r\nBunker 4 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
-//				bunker_destroy(BUNKER_FOUR,quadrant);
+				bunker_destroy_row(BUNKER_FOUR);
 			}
 			return bunker_damage(BUNKER_FOUR, quadrant);
 		}
