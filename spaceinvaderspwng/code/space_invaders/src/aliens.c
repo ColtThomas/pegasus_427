@@ -608,7 +608,7 @@ void aliens_kill_alien(uint8_t alien) {
 }
 
 // Returns the alien that the point corresponds to
-void aliens_get_alien_select(point_t currentPos) { // change uint8_t
+bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 	point_t blockPos = globals_getAlienBlockPosition();
 
 	point_t relativePos;
@@ -617,9 +617,31 @@ void aliens_get_alien_select(point_t currentPos) { // change uint8_t
 
 	// Remember that the bullet has to go though spaces
 	// Now you have relative point > , <=
-	if((relativePos.y>=0) &&(relativePos.y<0)) {
-
+	uint32_t i;
+	uint8_t row = 0;
+	bool hit = false;
+	// Check the row
+	for(i=0; i < GLOBALS_ALIEN_ROWS; i++) {
+		if((relativePos.y>=GLOBALS_ALIEN_SPACING*i) &&(relativePos.y<GLOBALS_ALIEN_SPACING*i+GLOBALS_ALIEN_HEIGHT)) {
+			row = i*GLOBALS_ALIENS_PER_ROW;
+			hit=true;
+		}
 	}
+	if(hit){return false;}
+	xil_printf("\r\nRow %d hit",row);
+	// Check the column
+	uint8_t column = 0;
+	for(i=1; i <= GLOBALS_ALIEN_COLUMNS ; i++) {
+		if((relativePos.x>=GLOBALS_ALIEN_SPACING*i) &&(relativePos.x<GLOBALS_ALIEN_SPACING*i+GLOBALS_ALIEN_WIDTH)) {
+			column = i;
+			hit = true;
+		}
+	}
+	xil_printf("\r\nColumn %d hit",column);
+	xil_printf("\r\nAlien number: %d",column+row);
+//	if(column==0){return false;}
+
+	return hit;
 }
 
 bool aliens_check_hit(point_t pos){
@@ -629,12 +651,12 @@ bool aliens_check_hit(point_t pos){
 			xil_printf("\r\nBullet Hit");
 
 			// Figure which alien box it is in
-
+			return aliens_get_alien_select(pos);
 			// Is the alien dead?
 				// Remove the respective alien
 
 
-			return true;
+//			return true;
 		}
 	}
 	return false;

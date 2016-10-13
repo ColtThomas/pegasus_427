@@ -278,7 +278,7 @@ void bunkers_update() {
 
 // Function call used to inflict damage on a particular bunker's quadrant
 bool bunker_damage(int32_t bunkerNum, int32_t quadrant) {
-		xil_printf("\r\nDamage Applied");
+//		xil_printf("\r\nDamage Applied");
 		if(bunkerStatus[bunkerNum][quadrant]<BUNKER_QUANTITY) {
 			bunkerStatus[bunkerNum][quadrant]++; // The higher the stored value, the higher the damage
 			return true;

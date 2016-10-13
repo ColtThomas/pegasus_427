@@ -210,11 +210,11 @@ void tank_animate() {
 	int32_t j;
 
 	for(j=0;j<50000;j++){}
-	xil_printf("\r\nAnimate change");
+//	xil_printf("\r\nAnimate change");
 	tank_redraw(TANK_DMG_A,TANK_DMG_B,TANK_NO_MOTION);
 
 	for(j=0;j<50000;j++){}
-	xil_printf("\r\nAnimate change");
+//	xil_printf("\r\nAnimate change");
 	tank_redraw(TANK_DMG_B,TANK_DMG_C,TANK_NO_MOTION);
 	for(j=0;j<50000;j++){}
 //	tank_redraw(TANK_DMG_C,TANK_GHOST,TANK_NO_MOTION);
@@ -223,10 +223,10 @@ void tank_animate() {
 
 void tank_demolish(){
 		if(globals_getTankPosition() >= SCREEN_WIDTH - TANK_WIDTH){
-			xil_printf("\r\nMEOW");
+//			xil_printf("\r\nMEOW");
 			return;
 		}
-		xil_printf("\r\nAnimate change");
+//		xil_printf("\r\nAnimate change");
 		tank_redraw(TANK_INIT,TANK_DMG_A,TANK_NO_MOTION);
 		tank_animate();
 		tank_remove_life();
@@ -234,7 +234,7 @@ void tank_demolish(){
 
 
 bool tank_check_hit(point_t pos){
-	xil_printf("\r\npos: %d %d",pos.x,pos.y);
+//	xil_printf("\r\npos: %d %d",pos.x,pos.y);
 	pos.y += bullets_get_height();
 	if((pos.y>=TANK_Y) && (pos.y <= TANK_Y+TANK_HEIGHT)) {
 		if((pos.x>=globals_getTankPosition()) && (pos.x<=globals_getTankPosition()+TANK_WIDTH)){
@@ -247,7 +247,7 @@ bool tank_check_hit(point_t pos){
 
 void tank_respawn() {
 	// Erase debris
-	xil_printf("\r\nrespawn");
+//	xil_printf("\r\nrespawn");
 	tank_redraw(TANK_DMG_C,TANK_GHOST,TANK_NO_MOTION);
 	globals_setTankPosition(TANK_RESPAWN_POS);
 	// Draw initial tank; verify the position coordinates
