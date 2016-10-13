@@ -3,7 +3,7 @@
 #include "globals.h"
 #include "bunkers.h"
 #include "tank.h"
-
+#include "aliens.h"
 // Consider ticking the tank before the bullets in case the tank collides with the bullets
 void bulletHandler_tick() {
 uint32_t i;
@@ -48,12 +48,16 @@ bool bulletIsAlien;
 
 		// remove the bullet
 		bullets_remove_tank_bullet();
-			globals_setAlienBulletStatus(i,false);
-			globals_setTankBulletPosition(clear);
+		globals_setAlienBulletStatus(i,false);
+		globals_setTankBulletPosition(clear);
 	}
 
 	//check alien hit
-
+	if(aliens_check_hit(nextPos)) {
+		bullets_remove_tank_bullet();
+		globals_setAlienBulletStatus(i,false);
+		globals_setTankBulletPosition(clear);
+	}
 	// Apply appropriate damage to bunkers; report alien hit or tank hit
 	bunkers_update();
 

@@ -25,4 +25,8 @@ void aliens_update_position();
 // kill and blank the given alien
 void aliens_kill_alien(uint8_t alien);
 
+bool aliens_check_hit(point_t pos);
+
+bool aliens_landed(); // Find a place for this
+
 #endif /* ALIENS_H_ */

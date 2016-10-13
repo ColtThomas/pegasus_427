@@ -27,4 +27,7 @@ void tank_move_right();
 bool tank_check_hit(point_t pos);
 
 void tank_respawn();
+
+void tank_remove_life();
+void tank_add_life();
 #endif /* TANK_H_ */

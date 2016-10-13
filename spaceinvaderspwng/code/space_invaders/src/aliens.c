@@ -32,6 +32,7 @@
 #define X_OFFSET 1
 #define COLUMN_OFFSET 1
 
+#define ALIEN_LAND_POINT 130 // Y coordinate indicating
 #define COLUMN_0 0
 #define COLUMN_10 10
 
@@ -605,3 +606,47 @@ void aliens_kill_alien(uint8_t alien) {
 		}
 	}
 }
+
+// Returns the alien that the point corresponds to
+void aliens_get_alien_select(point_t currentPos) { // change uint8_t
+	point_t blockPos = globals_getAlienBlockPosition();
+
+	point_t relativePos;
+	relativePos.x = currentPos.x-blockPos.x;
+	relativePos.y = currentPos.y-blockPos.y;
+
+	// Remember that the bullet has to go though spaces
+	// Now you have relative point > , <=
+	if((relativePos.y>=0) &&(relativePos.y<0)) {
+
+	}
+}
+
+bool aliens_check_hit(point_t pos){
+	point_t alienPos = globals_getAlienBlockPosition();
+	if((pos.x>=alienPos.x) && (pos.x<=alienPos.x+GLOBALS_ALIEN_BLOCK_WIDTH)) {
+		if((pos.y>=alienPos.y) && (pos.y<=alienPos.y+GLOBALS_ALIEN_BLOCK_HEIGHT)) {
+			xil_printf("\r\nBullet Hit");
+
+			// Figure which alien box it is in
+
+			// Is the alien dead?
+				// Remove the respective alien
+
+
+			return true;
+		}
+	}
+	return false;
+}
+
+bool aliens_landed() {
+	point_t pos = globals_getAlienBlockPosition();
+	if(pos.y>=ALIEN_LAND_POINT){
+		xil_printf("\r\nGAME OVER");
+		return true;
+	} else {
+		return false;
+	}
+}
+

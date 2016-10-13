@@ -159,12 +159,13 @@ void screen_run_test() {
 	bunkers_draw_initial();
 	text_draw_score();
 
+	point_t testPoint;
 	// input/response loop
 	while (1) {
 		input = getchar();
 		switch(input) {
 		case '1': //debug
-			tank_respawn();
+//			tank_remove_life();
 			break;
 		case KILL_ALIEN:
 			input = getchar();
@@ -188,15 +189,17 @@ void screen_run_test() {
 			tank_move_right();
 			break;
 		case ERODE_BUNKER: // erode bunker
-			input = getchar();
-			input -= CHAR_TO_INT;
-			for(i=0;i<GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER;i++){
-				bunker_damage(input,i);
-			}
-			bunkers_update();
+//			input = getchar();
+//			input -= CHAR_TO_INT;
+//			for(i=0;i<GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER;i++){
+//				bunker_damage(input,i);
+//			}
+//			bunkers_update();
 			break;
 		case UPDATE_ALIENS: // update alien position
 			aliens_update_position();
+			testPoint = globals_getAlienBlockPosition();
+			xil_printf("\r\nblock pos: %d %d",testPoint.x,testPoint.y );
 			break;
 		case UPDATE_BULLETS: // update all bullets
 			bulletHandler_tick();
