@@ -120,20 +120,23 @@ void saucer_update() {
 
 		if(globals_getSaucerPosition()>=0 && globals_getSaucerPosition()<=SAUCER_RIGHT_X-SAUCER_MOVEMENT) {
 			// increment/decrement position
-			int32_t currentPos = globals_getSaucerPosition();
+//			int32_t currentPos = globals_getSaucerPosition();
 			if(leftBound==SAUCER_LEFT) {
 				globals_setSaucerPosition(globals_getSaucerPosition()+SAUCER_MOVEMENT);
 			}
 			else {
 				globals_setSaucerPosition(globals_getSaucerPosition()-SAUCER_MOVEMENT);
 			}
-			xil_printf("\r\nNewPos: %d",globals_getSaucerPosition());
+//			xil_printf("\r\nNewPos: %d",globals_getSaucerPosition());
 			saucer_redraw(leftBound);
 		} else {
 			saucer_erase();
 			isSpawned = false;
+
 		}
 		// if off the screen, raise flag for spawn enable. Make sure saucer doesn't roll around
+	} else {
+		xil_printf("\r\nNOPE");
 	}
 
 }
@@ -152,7 +155,7 @@ void saucer_spawn() {
 							   SAUCER_RIGHT_X;
 //		initPos.y = (leftBound)? SAUCER_LEFT_Y:
 //								 SAUCER_RIGHT_Y;
-		xil_printf("\r\ninitPos: %d",initPos);
+//		xil_printf("\r\ninitPos: %d",initPos);
 		globals_setSaucerPosition(initPos);
 		// draw alien at that position
 		saucer_draw_initial(leftBound);
@@ -173,7 +176,7 @@ bool saucer_check_hit(point_t pos){
 			text_add_score(score);
 
 			// print score
-			text_print_saucer_score();
+			text_print_saucer_score(score);
 
 			// reset flag
 			isSpawned = false;

@@ -310,9 +310,9 @@ void bunker_destroy_row(int32_t bunkerNum){
 
 	if(rowCounter[bunkerNum]<BUNKER_QUADRANTS){
 		limit = rowCounter[bunkerNum]+BUNKER_ROW_INC;
-		xil_printf("\r\nRow counter: %d",rowCounter[bunkerNum]);
+//		xil_printf("\r\nRow counter: %d",rowCounter[bunkerNum]);
 		for(i=rowCounter[bunkerNum];i<limit;i++) {
-			xil_printf("\r\nQuad: %d",i);
+//			xil_printf("\r\nQuad: %d",i);
 			if(bunkerStatus[bunkerNum][i]!=BUNKER_DMG_4){
 				bunkerStatus[bunkerNum][i]=BUNKER_DMG_4;
 				update=true;
@@ -353,7 +353,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_ONE);
 //			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
-			xil_printf("\r\nBunker 1 hit... quadrant %d",quadrant);
+//			xil_printf("\r\nBunker 1 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
 				bunker_destroy_row(BUNKER_ONE);
 			}
@@ -364,7 +364,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_TWO);
 //			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
-			xil_printf("\r\nBunker 2 hit... quadrant %d",quadrant);
+//			xil_printf("\r\nBunker 2 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
 				bunker_destroy_row(BUNKER_TWO);
 			}
@@ -374,7 +374,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_THREE);
 //			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
-			xil_printf("\r\nBunker 3 hit... quadrant %d",quadrant);
+//			xil_printf("\r\nBunker 3 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
 				bunker_destroy_row(BUNKER_THREE);
 			}
@@ -384,7 +384,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			relativePoint = bunkers_get_relative_pos(pos, BUNKER_FOUR);
 //			xil_printf("\r\nPos: %d %d",relativePoint.x,relativePoint.y);
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
-			xil_printf("\r\nBunker 4 hit... quadrant %d",quadrant);
+//			xil_printf("\r\nBunker 4 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
 				bunker_destroy_row(BUNKER_FOUR);
 			}

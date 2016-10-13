@@ -29,7 +29,7 @@ uint8_t hitType;
 		}
 		// Check tank
 		if(tank_check_hit(nextPos)) {
-				xil_printf("\r\nTank Hit");
+//				xil_printf("\r\nTank Hit");
 
 				// remove the bullet
 				bullets_remove_alien_bullet(i);
@@ -58,16 +58,15 @@ uint8_t hitType;
 		bullets_remove_tank_bullet();
 		globals_setAlienBulletStatus(i,false);
 		globals_setTankBulletPosition(clear);
-	}
-
-	// See if the saucer was hit
-	if(saucer_check_hit(nextPos)){
+	} else if (saucer_check_hit(nextPos)){
 		xil_printf("\r\nSaucer Hit!!!");
 		// remove the bullet
 		bullets_remove_tank_bullet();
 		globals_setTankBulletPosition(clear);
 
 	}
+
+
 	// Apply appropriate damage to bunkers; report alien hit or tank hit
 	bunkers_update();
 

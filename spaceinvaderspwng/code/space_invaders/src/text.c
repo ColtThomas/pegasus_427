@@ -661,7 +661,15 @@ void text_game_over() {
 		}
 }
 
-void text_print_saucer_score() {
+void text_set_saucer_score(unsigned char score,uint32_t indx) {
+	saucerPoints[indx] = score;
+}
+
+void text_print_saucer_score(uint32_t points) {
+	text_set_saucer_score(points/100,0);
+	text_set_saucer_score(points/10,1);
+	text_set_saucer_score(points%10,2);
+
 	point_t currentPoint;
 	currentPoint.x = globals_getSaucerPosition();
 	currentPoint.y = SAUCER_Y;
@@ -671,3 +679,14 @@ void text_print_saucer_score() {
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}
 }
+
+//void text_erase_saucer_score() {
+//	point_t currentPoint;
+//	currentPoint.x = globals_getSaucerPosition();
+//	currentPoint.y = SAUCER_Y;
+//	int32_t i;
+//	for(i=0;i<TEXT_SAUCER_TXT_LEN;i++){;
+//		text_write(saucerPoints[i], currentPoint,SCREEN_BLACK);
+//		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
+//	}
+//}
