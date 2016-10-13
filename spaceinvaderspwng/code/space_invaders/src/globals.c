@@ -10,7 +10,6 @@
 #define INITIAL_TANK_POS 152
 #define INITIAL_ALIEN_X 10
 #define INITIAL_ALIEN_Y 40
-
 #define NULL_LOCATION -1
 
 static uint16_t tankPosition;
@@ -121,3 +120,5 @@ void globals_setGameStatus(bool status) {
 bool globals_isGameOver() {
 	return gameOver;
 }
+
+

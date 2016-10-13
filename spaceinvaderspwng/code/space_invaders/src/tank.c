@@ -21,7 +21,7 @@
 #define TANK_WIDTH 15
 #define TANK_MOVEMENT 3
 #define TANK_NUM_BITMAPS 5
-#define LIVES_Y 10
+#define LIVES_Y 2
 #define BIT_MASK 1
 #define X_OFFSET 1
 #define TANK_RESPAWN_POS 158

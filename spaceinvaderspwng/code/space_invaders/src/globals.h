@@ -67,4 +67,7 @@ bool globals_getAlienBulletStatus(uint8_t bullet);
 
 void globals_setGameStatus(bool status);
 bool globals_isGameOver();
+
+void globals_setGameScore();
+unsigned char globals_getGameScore();
 #endif /* GLOBALS_H_ */

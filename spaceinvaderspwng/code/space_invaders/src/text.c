@@ -18,13 +18,19 @@
 #define TEXT_WIDTH 5
 #define TEXT_HEIGHT 7
 #define TEXT_SPACING 2
-#define TEXT_SCORE_INIT_X 10
-#define TEXT_SCORE_INIT_Y 11
-#define TEXT_LIVES_INIT_X 200
-#define TEXT_LIVES_INIT_Y 11
-#define TEXT_SCORE_TXT_LEN 7
-#define TEXT_LIFE_TXT_LEN 5
 
+#define TEXT_SCORE_INIT_X 2
+#define TEXT_SCORE_INIT_Y 2
+#define TEXT_SCORE_TXT_LEN 6
+#define TEXT_SCORE_NUM_X TEXT_SCORE_INIT_X + \
+		TEXT_WIDTH*TEXT_SCORE_TXT_LEN + \
+		TEXT_SPACING*TEXT_SCORE_TXT_LEN
+#define TEXT_SCORE_NUM_Y TEXT_SCORE_INIT_Y
+
+#define TEXT_LIVES_INIT_X 200
+#define TEXT_LIVES_INIT_Y 2
+#define TEXT_LIFE_TXT_LEN 5
+#define TEXT_SCORE_NUM_LEN 5
 static const long SPACE_5x7[] =
 {
 		packWord5(0,0,0,0,0),
@@ -267,6 +273,9 @@ static const long M_5x7[] =
 		packWord5(1,0,0,0,1),
 };
 
+static unsigned char currentScore[TEXT_SCORE_NUM_LEN] = {'0',' ',' ',' ',' '};
+
+
 // Plug in a char and a coordinate, and that char will write to the screen
 void text_write(unsigned char val, point_t coord){
 	int32_t x, y;
@@ -476,6 +485,28 @@ void text_write(unsigned char val, point_t coord){
 		break;
 	}
 }
+void text_increment_score(uint32_t points) {
+	switch(points){
+		case 10:
+			break;
+		case 20:
+			break;
+		case 40:
+			break;
+		case 50:
+			break;
+		case 100:
+			break;
+		case 150:
+			break;
+		case 200:
+			break;
+		case 250:
+			break;
+		case 300:
+			break;
+	}
+}
 
 void text_draw_score(){
 	
@@ -494,15 +525,23 @@ void text_draw_score(){
 			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 		}
 	
-	// Draw out the text for the score; eventually we will pass in the score here
+	// Draw out the text for the score
 	unsigned char scoreMessage[TEXT_SCORE_TXT_LEN] = {
-			'S','C','O','R','E',' ','0'
+			'S','C','O','R','E',' '
 	};
 	// Initial coordinate for the score board
 	currentPoint.x = TEXT_SCORE_INIT_X;
 	currentPoint.y = TEXT_SCORE_INIT_Y;
 	for(i=0;i<TEXT_SCORE_TXT_LEN;i++){
 		text_write(scoreMessage[i], currentPoint);
+		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
+	}
+
+	// Draw out the score itself
+	currentPoint.x = TEXT_SCORE_NUM_X;
+	currentPoint.y = TEXT_SCORE_NUM_Y;
+	for(i=0;i<TEXT_SCORE_NUM_LEN;i++){
+		text_write(currentScore[i], currentPoint);
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}
 }

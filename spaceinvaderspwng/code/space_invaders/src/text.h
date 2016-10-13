@@ -17,4 +17,5 @@ void text_write(unsigned char val, point_t coord);
 // Draws the scoreboard values to the top of the screen
 void text_draw_score();
 
+void text_increment_score(uint32_t points);
 #endif /* TEXT_H_ */
