@@ -18,7 +18,9 @@ void text_write(unsigned char val, point_t coord,uint32_t color);
 void text_draw_score();
 
 void text_increment_score();
+
 void text_add_score(uint32_t points);
 
+void text_print_saucer_score();
 void text_game_over();
 #endif /* TEXT_H_ */

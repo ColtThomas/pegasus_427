@@ -12,6 +12,9 @@
 #include "globals.h"
 #include <stdint.h>
 
+#define SAUCER_Y 15
+
 void saucer_update();
 void saucer_spawn();
+bool saucer_check_hit(point_t pos);
 #endif /* SAUCER_H_ */

@@ -7,6 +7,7 @@
 
 #include "text.h"
 #include "screen.h"
+#include "saucer.h"
 #include<stdint.h>
 #include<stdio.h>
 #include<stdbool.h>
@@ -32,7 +33,7 @@
 #define TEXT_LIVES_INIT_Y 2
 #define TEXT_LIFE_TXT_LEN 5
 #define TEXT_SCORE_NUM_LEN 5
-
+#define TEXT_SAUCER_TXT_LEN 3
 #define TEXT_GAME_OVER 6
 #define TEXT_GAME_OVER_X SCREEN_WIDTH/2-TEXT_GAME_OVER/2*(TEXT_WIDTH+TEXT_SPACING)
 #define TEXT_GAME_OVER_Y SCREEN_HEIGHT/2
@@ -325,7 +326,7 @@ static const long M_5x7[] =
 };
 
 static unsigned char currentScore[TEXT_SCORE_NUM_LEN] = {'0','0','0','0','0'};
-
+static unsigned char saucerPoints[TEXT_SAUCER_TXT_LEN] = {'0','0','0'};
 
 // Plug in a char and a coordinate, and that char will write to the screen
 void text_write(unsigned char val, point_t coord,uint32_t color){
@@ -658,4 +659,15 @@ void text_game_over() {
 			text_write(livesMessage[i], currentPoint,SCREEN_RED);
 			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 		}
+}
+
+void text_print_saucer_score() {
+	point_t currentPoint;
+	currentPoint.x = globals_getSaucerPosition();
+	currentPoint.y = SAUCER_Y;
+	int32_t i;
+	for(i=0;i<TEXT_SAUCER_TXT_LEN;i++){;
+		text_write(saucerPoints[i], currentPoint,SCREEN_GREEN);
+		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
+	}
 }

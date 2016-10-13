@@ -26,6 +26,8 @@
 #define SAUCER_WIDTH 16
 #define SAUCER_HEIGHT 7
 #define SAUCER_MOVEMENT 8
+
+#define SAUCER_POINT_VAR 4
 #define BIT_MASK 1
 #define X_OFFSET 1
 
@@ -57,8 +59,12 @@ packword16(1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1)
 
 static uint32_t leftBound;
 static bool isSpawned = false;
+static uint32_t saucerPoints[SAUCER_POINT_VAR] = {50,100,150,300};
 uint32_t saucer_randMod2() {
 	return rand() % 1;	// Random number generated to add random sequence square
+}
+uint32_t saucer_randMod3() {
+	return rand() % 3;	// Random number generated to add random sequence square
 }
 
 void saucer_draw_initial(){
@@ -150,6 +156,31 @@ void saucer_spawn() {
 		globals_setSaucerPosition(initPos);
 		// draw alien at that position
 		saucer_draw_initial(leftBound);
+	}
+
+
+}
+
+bool saucer_check_hit(point_t pos){
+	// See if the point is in bounds
+	if((pos.y>=SAUCER_RIGHT_Y) && (pos.y<=SAUCER_RIGHT_Y+SAUCER_HEIGHT)) {
+		if((pos.x>=globals_getSaucerPosition()) && (pos.x<=globals_getSaucerPosition()+SAUCER_WIDTH)){
+			// erase the alien
+			saucer_erase();
+
+			uint32_t score = saucerPoints[saucer_randMod3()];
+			// add random score
+			text_add_score(score);
+
+			// print score
+			text_print_saucer_score();
+
+			// reset flag
+			isSpawned = false;
+			return true;
+		}
+	} else {
+		return false;
 	}
 
 
