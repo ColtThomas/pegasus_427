@@ -86,6 +86,7 @@ void timer_interrupt_handler() {
 	static int32_t frame_count = 0; // used to allow things to be every nth frame, by using mod.
 	static int32_t bullet_time = -1;
 	static int32_t saucer_time = -1;
+	xil_printf("saucer_time %d\r\n",saucer_time);
 	if(bullet_time == -1) {
 		bullet_time = NEW_BULLET_TIME; // the next bullet will come in NEW_BULLET_TIME frames
 	} // this should only ever run on the first tick

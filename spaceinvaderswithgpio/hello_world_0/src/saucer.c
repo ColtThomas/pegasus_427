@@ -135,10 +135,7 @@ void saucer_update() {
 
 		}
 		// if off the screen, raise flag for spawn enable. Make sure saucer doesn't roll around
-	} else {
-		//xil_printf("\r\nNOPE");
 	}
-
 }
 
 
