@@ -136,7 +136,7 @@ void saucer_update() {
 		}
 		// if off the screen, raise flag for spawn enable. Make sure saucer doesn't roll around
 	} else {
-		xil_printf("\r\nNOPE");
+		//xil_printf("\r\nNOPE");
 	}
 
 }
@@ -186,5 +186,9 @@ bool saucer_check_hit(point_t pos){
 		return false;
 	}
 
+	return false;
+}
 
+bool saucer_is_spawned() {
+	return isSpawned;
 }
