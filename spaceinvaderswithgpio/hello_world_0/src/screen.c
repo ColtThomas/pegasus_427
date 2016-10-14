@@ -136,6 +136,10 @@ void screen_draw_double_pixel(int32_t x, int32_t y, int32_t color) {
 	screen_draw_pixel(twice(x), p_after(y), color);
 }
 
+int32_t screen_double_color_pixel(int32_t x, int32_t y) {
+	return framePointer[twice(y)*SCREEN_PIXELS_ACROSS + twice(x)];
+}
+
 // some #defines used by run_test
 #define KILL_ALIEN '2'
 #define FIRE_A_BULLET '3'

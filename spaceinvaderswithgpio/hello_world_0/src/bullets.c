@@ -85,6 +85,15 @@ static const int32_t alien_bullet_zig_3x5[] =
 
 static bool tankFired = false;
 
+// Used to see how far up we need to fire up the alien block
+static uint32_t alienBulletHeightPos[ALIEN_COLUMNS] = {0,0,0,0,0,0,0,0,0,0,0};
+
+void bullets_update_bullets_pos(uint32_t column) {
+	if(alienBulletHeightPos[column]<=ALIEN_ROWS){
+		alienBulletHeightPos[column]++;
+	}
+}
+
 uint32_t bullets_get_speed() {
 	return BULLET_SPEED;
 }
@@ -148,7 +157,7 @@ void bullets_draw_tank_bullet() {
 			if( (tank_bullet_3x5[y]) & (BIT_MASK << x) ) {
 				xOffset = x + tankBulletPos.x;
 				yOffset = y + tankBulletPos.y;
-				screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+				screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 			}
 
 		}
@@ -167,14 +176,18 @@ void bullets_fire_aliens(){
 
 			// Reset global position on bullet
 			point_t alienBulletPos = globals_getAlienBlockPosition();
-			alienBulletPos.x += BULLET_ALIEN_HALFSPACE+ bullets_randMod11()*ALIEN_WIDTH;
-			alienBulletPos.y += ALIEN_BLOCK_HEIGHT;
-			globals_setAlienBulletPosition(alienBulletPos,i);
+			uint32_t alienRandColumn = bullets_randMod11();
+			if(alienBulletHeightPos[alienRandColumn]<ALIEN_ROWS) {
+				uint32_t alienRandHeight = alienBulletHeightPos[alienRandColumn];
+				alienBulletPos.x += BULLET_ALIEN_HALFSPACE+ alienRandColumn*ALIEN_WIDTH;
+				alienBulletPos.y += ALIEN_BLOCK_HEIGHT - ALIEN_HEIGHT *alienRandHeight ;
+				globals_setAlienBulletPosition(alienBulletPos,i);
 
 
-			// draw the alien bullet
-			globals_setAlienBulletStatus(i,true);
-			bullets_draw_alien_bullet(i,alien_bullet_type[i]);
+				// draw the alien bullet
+				globals_setAlienBulletStatus(i,true);
+				bullets_draw_alien_bullet(i,alien_bullet_type[i]);
+			}
 		}
 	}
 
@@ -198,19 +211,19 @@ void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type) {
 				if( (alien_bullet_down_3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
-					screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 				}
 			} else if (type==TYPE_1) {
 				if( (alien_bullet_up_3x5[y]) & (BIT_MASK << x) ) {
 									xOffset = x + alienBulletPos.x;
 									yOffset = y + alienBulletPos.y;
-									screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+									screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 								}
 			} else {
 				if( (alien_bullet_zig_3x5[y]) & (BIT_MASK << x) ) {
 									xOffset = x + alienBulletPos.x;
 									yOffset = y + alienBulletPos.y;
-									screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+									screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 								}
 			}
 
