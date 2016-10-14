@@ -13,6 +13,7 @@ C_SRCS += \
 ../src/globals.c \
 ../src/helloworld.c \
 ../src/platform.c \
+../src/saucer.c \
 ../src/screen.c \
 ../src/tank.c \
 ../src/text.c 
@@ -30,6 +31,7 @@ OBJS += \
 ./src/globals.o \
 ./src/helloworld.o \
 ./src/platform.o \
+./src/saucer.o \
 ./src/screen.o \
 ./src/tank.o \
 ./src/text.o 
@@ -44,6 +46,7 @@ C_DEPS += \
 ./src/globals.d \
 ./src/helloworld.d \
 ./src/platform.d \
+./src/saucer.d \
 ./src/screen.d \
 ./src/tank.d \
 ./src/text.d 

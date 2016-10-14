@@ -12,7 +12,7 @@ src/aliens.d src/aliens.o: ../src/aliens.c ../src/aliens.h \
   ../../hello_world_bsp_0/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_0/microblaze_0/include/xil_assert.h \
   ../../hello_world_bsp_0/microblaze_0/include/xio.h ../src/globals.h \
-  ../src/bunkers.h
+  ../src/bunkers.h ../src/text.h
 
 ../src/aliens.h:
 
@@ -49,3 +49,5 @@ src/aliens.d src/aliens.o: ../src/aliens.c ../src/aliens.h \
 ../src/globals.h:
 
 ../src/bunkers.h:
+
+../src/text.h:

@@ -6,6 +6,8 @@
  */
 
 #include "text.h"
+#include "screen.h"
+#include "saucer.h"
 #include<stdint.h>
 #include<stdio.h>
 #include<stdbool.h>
@@ -31,6 +33,12 @@
 #define TEXT_LIVES_INIT_Y 2
 #define TEXT_LIFE_TXT_LEN 5
 #define TEXT_SCORE_NUM_LEN 5
+#define TEXT_SAUCER_TXT_LEN 3
+#define TEXT_GAME_OVER 6
+#define TEXT_GAME_OVER_X SCREEN_WIDTH/2-TEXT_GAME_OVER/2*(TEXT_WIDTH+TEXT_SPACING)
+#define TEXT_GAME_OVER_Y SCREEN_HEIGHT/2
+
+#define TEXT_SCORE_INDX 3 // used to iterate through the score array
 static const long SPACE_5x7[] =
 {
 		packWord5(0,0,0,0,0),
@@ -128,6 +136,50 @@ static const long R_5x7[] =
 		packWord5(1,0,0,0,1),
 		packWord5(1,0,0,0,1),
 		packWord5(1,0,0,0,1),
+};
+
+static const long W_5x7[] =
+{
+		packWord5(1,0,0,0,1),
+		packWord5(1,0,0,0,1),
+		packWord5(1,0,0,0,1),
+		packWord5(1,0,0,0,1),
+		packWord5(1,0,1,0,1),
+		packWord5(0,1,0,1,0),
+		packWord5(0,1,0,1,0),
+};
+
+//static const long A_5x7[] =
+//{
+//		packWord5(0,0,1,0,0),
+//		packWord5(0,1,0,1,0),
+//		packWord5(0,1,0,1,0),
+//		packWord5(1,0,1,0,1),
+//		packWord5(1,0,0,0,1),
+//		packWord5(1,0,0,0,1),
+//		packWord5(1,0,0,0,1),
+//};
+
+static const long T_5x7[] =
+{
+		packWord5(1,1,1,1,1),
+		packWord5(0,0,1,0,0),
+		packWord5(0,0,1,0,0),
+		packWord5(0,0,1,0,0),
+		packWord5(0,0,1,0,0),
+		packWord5(0,0,1,0,0),
+		packWord5(0,0,1,0,0),
+};
+
+static const long D_5x7[] =
+{
+		packWord5(1,1,1,0,0),
+		packWord5(1,0,0,1,0),
+		packWord5(1,0,0,0,1),
+		packWord5(1,0,0,0,1),
+		packWord5(1,0,0,0,1),
+		packWord5(1,0,0,1,0),
+		packWord5(1,1,1,0,0),
 };
 
 static const long Zero_5x7[] =
@@ -273,11 +325,11 @@ static const long M_5x7[] =
 		packWord5(1,0,0,0,1),
 };
 
-static unsigned char currentScore[TEXT_SCORE_NUM_LEN] = {'0',' ',' ',' ',' '};
-
+static unsigned char currentScore[TEXT_SCORE_NUM_LEN] = {'0','0','0','0','0'};
+static unsigned char saucerPoints[TEXT_SAUCER_TXT_LEN] = {'0','0','0'};
 
 // Plug in a char and a coordinate, and that char will write to the screen
-void text_write(unsigned char val, point_t coord,bool erase){
+void text_write(unsigned char val, point_t coord,uint32_t color){
 	int32_t x, y;
 
 	// This is a long switch statement that could be optimized; it takes the char input
@@ -288,7 +340,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(SPACE_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -298,7 +350,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(L_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -307,7 +359,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(I_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -316,7 +368,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(V_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -325,7 +377,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(E_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -334,7 +386,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(S_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -343,7 +395,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(C_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -352,7 +404,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(O_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -361,7 +413,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(R_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -370,7 +422,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(G_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -379,7 +431,34 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(A_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
+				}
+			}
+		}
+		break;
+	case 'W':
+		for(y = 0; y < TEXT_HEIGHT; y++) {
+			for(x = 0; x < TEXT_WIDTH; x++) {
+				if(W_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
+				}
+			}
+		}
+		break;
+	case 'D':
+		for(y = 0; y < TEXT_HEIGHT; y++) {
+			for(x = 0; x < TEXT_WIDTH; x++) {
+				if(D_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
+				}
+			}
+		}
+		break;
+	case 'T':
+		for(y = 0; y < TEXT_HEIGHT; y++) {
+			for(x = 0; x < TEXT_WIDTH; x++) {
+				if(T_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -388,7 +467,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(M_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_WHITE);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -397,7 +476,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Zero_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -406,7 +485,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(One_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -415,7 +494,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Two_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -424,7 +503,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Three_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -433,7 +512,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Four_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -442,7 +521,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Five_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -451,7 +530,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Six_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -460,7 +539,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Seven_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -469,7 +548,7 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Eight_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
@@ -478,11 +557,25 @@ void text_write(unsigned char val, point_t coord,bool erase){
 		for(y = 0; y < TEXT_HEIGHT; y++) {
 			for(x = 0; x < TEXT_WIDTH; x++) {
 				if(Nine_5x7[y] & (1 << (TEXT_WIDTH-x-1))) {
-					screen_draw_double_pixel(x+coord.x,y+coord.y,(erase)?SCREEN_BLACK:SCREEN_GREEN);
+					screen_draw_double_pixel(x+coord.x,y+coord.y,color);
 				}
 			}
 		}
 		break;
+	}
+}
+
+bool text_increment_digit(uint32_t digit){
+	if(digit<0){
+		return false;
+	}
+
+	if(currentScore[digit]!='9'){
+		currentScore[digit]++;
+		return true;
+	} else {
+		currentScore[digit]='0';
+		return text_increment_digit(digit-1);
 	}
 }
 void text_increment_score(){
@@ -492,58 +585,24 @@ void text_increment_score(){
 	currentPoint.x = TEXT_SCORE_NUM_X;
 	currentPoint.y = TEXT_SCORE_NUM_Y;
 	for(i=0;i<TEXT_SCORE_NUM_LEN;i++){
-		text_write(currentScore[i], currentPoint,true);
+		text_write(currentScore[i], currentPoint,SCREEN_BLACK);
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}
 
-	for(i=0;i<TEXT_SCORE_NUM_LEN;i++) {
-		if(currentScore[i]=='9'){
-			currentScore[i]='1';
-			currentScore[i+1]='0';
-			break;
-		}
-		else if(currentScore[i]==' '){
-			break;
-		}
-		else {
-
-			currentScore[i]++;
-			break;
-		}
-
-	}
+	text_increment_digit(TEXT_SCORE_INDX);
 
 
+	currentPoint.x = TEXT_SCORE_NUM_X;
+	currentPoint.y = TEXT_SCORE_NUM_Y;
 	for(i=0;i<TEXT_SCORE_NUM_LEN;i++){
-		text_write(currentScore[i], currentPoint,false);
+		text_write(currentScore[i], currentPoint,SCREEN_GREEN);
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}
 }
 void text_add_score(uint32_t points) {
 	uint32_t i;
 	for(i=0;i<points/10;i++) {
-
-	}
-
-	switch(points){
-		case 10:
-			break;
-		case 20:
-			break;
-		case 40:
-			break;
-		case 50:
-			break;
-		case 100:
-			break;
-		case 150:
-			break;
-		case 200:
-			break;
-		case 250:
-			break;
-		case 300:
-			break;
+		text_increment_score();
 	}
 }
 
@@ -560,9 +619,9 @@ void text_draw_score(){
 	currentPoint.y = TEXT_LIVES_INIT_Y;
 	int32_t i;
 	for(i=0;i<TEXT_LIFE_TXT_LEN;i++){;
-			text_write(livesMessage[i], currentPoint,false);
-			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
-		}
+		text_write(livesMessage[i], currentPoint,SCREEN_WHITE);
+		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
+	}
 	
 	// Draw out the text for the score
 	unsigned char scoreMessage[TEXT_SCORE_TXT_LEN] = {
@@ -572,7 +631,7 @@ void text_draw_score(){
 	currentPoint.x = TEXT_SCORE_INIT_X;
 	currentPoint.y = TEXT_SCORE_INIT_Y;
 	for(i=0;i<TEXT_SCORE_TXT_LEN;i++){
-		text_write(scoreMessage[i], currentPoint,false);
+		text_write(scoreMessage[i], currentPoint,SCREEN_WHITE);
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}
 
@@ -580,7 +639,54 @@ void text_draw_score(){
 	currentPoint.x = TEXT_SCORE_NUM_X;
 	currentPoint.y = TEXT_SCORE_NUM_Y;
 	for(i=0;i<TEXT_SCORE_NUM_LEN;i++){
-		text_write(currentScore[i], currentPoint,false);
+		text_write(currentScore[i], currentPoint,SCREEN_GREEN);
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}
 }
+
+void text_game_over() {
+	// Draw out text for the lives
+		point_t currentPoint;
+		unsigned char livesMessage[TEXT_GAME_OVER] = {
+				'W','A','S','T','E','D'
+		};
+
+		// Set the initial point of the string
+		currentPoint.x = TEXT_GAME_OVER_X;
+		currentPoint.y = TEXT_GAME_OVER_Y;
+		int32_t i;
+		for(i=0;i<TEXT_GAME_OVER;i++){;
+			text_write(livesMessage[i], currentPoint,SCREEN_RED);
+			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
+		}
+}
+
+void text_set_saucer_score(unsigned char score,uint32_t indx) {
+	saucerPoints[indx] = score;
+}
+
+void text_print_saucer_score(uint32_t points) {
+	text_set_saucer_score(points/100,0);
+	text_set_saucer_score(points/10,1);
+	text_set_saucer_score(points%10,2);
+
+	point_t currentPoint;
+	currentPoint.x = globals_getSaucerPosition();
+	currentPoint.y = SAUCER_Y;
+	int32_t i;
+	for(i=0;i<TEXT_SAUCER_TXT_LEN;i++){;
+		text_write(saucerPoints[i], currentPoint,SCREEN_GREEN);
+		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
+	}
+}
+
+//void text_erase_saucer_score() {
+//	point_t currentPoint;
+//	currentPoint.x = globals_getSaucerPosition();
+//	currentPoint.y = SAUCER_Y;
+//	int32_t i;
+//	for(i=0;i<TEXT_SAUCER_TXT_LEN;i++){;
+//		text_write(saucerPoints[i], currentPoint,SCREEN_BLACK);
+//		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
+//	}
+//}

@@ -48,6 +48,10 @@ point_t globals_getTankBulletPosition();
 void globals_setAlienBlockPosition(point_t val);
 point_t globals_getAlienBlockPosition();
 
+// set and get the position of the saucer
+void globals_setSaucerPosition(int32_t val);
+int32_t globals_getSaucerPosition();
+
 // set and get the position of the specified alien bullet
 void globals_setAlienBulletPosition(point_t val, uint8_t bullet);
 point_t globals_getAlienBulletPosition(uint8_t bullet);

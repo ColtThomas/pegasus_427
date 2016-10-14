@@ -1,5 +1,5 @@
-src/text.d src/text.o: ../src/text.c ../src/text.h ../src/screen.h \
-  ../src/platform.h ../src/platform_config.h \
+src/saucer.d src/saucer.o: ../src/saucer.c ../src/saucer.h \
+  ../src/screen.h ../src/platform.h ../src/platform_config.h \
   ../../hello_world_bsp_0/microblaze_0/include/xparameters.h \
   ../../hello_world_bsp_0/microblaze_0/include/xaxivdma.h \
   ../../hello_world_bsp_0/microblaze_0/include/xaxivdma_hw.h \
@@ -12,9 +12,9 @@ src/text.d src/text.o: ../src/text.c ../src/text.h ../src/screen.h \
   ../../hello_world_bsp_0/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_0/microblaze_0/include/xil_assert.h \
   ../../hello_world_bsp_0/microblaze_0/include/xio.h ../src/globals.h \
-  ../src/saucer.h
+  ../src/bunkers.h ../src/text.h
 
-../src/text.h:
+../src/saucer.h:
 
 ../src/screen.h:
 
@@ -48,4 +48,6 @@ src/text.d src/text.o: ../src/text.c ../src/text.h ../src/screen.h \
 
 ../src/globals.h:
 
-../src/saucer.h:
+../src/bunkers.h:
+
+../src/text.h:

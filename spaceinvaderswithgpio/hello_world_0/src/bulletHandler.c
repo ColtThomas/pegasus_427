@@ -4,6 +4,7 @@
 #include "bunkers.h"
 #include "tank.h"
 #include "aliens.h"
+#include "saucer.h"
 // Consider ticking the tank before the bullets in case the tank collides with the bullets
 void bulletHandler_tick() {
 uint32_t i;
@@ -28,7 +29,7 @@ uint8_t hitType;
 		}
 		// Check tank
 		if(tank_check_hit(nextPos)) {
-				xil_printf("\r\nTank Hit");
+//				xil_printf("\r\nTank Hit");
 
 				// remove the bullet
 				bullets_remove_alien_bullet(i);
@@ -48,7 +49,7 @@ uint8_t hitType;
 
 		// remove the bullet
 		bullets_remove_tank_bullet();
-		globals_setAlienBulletStatus(i,false);
+		globals_setAlienBulletStatus(i,false); // Wait, do we need this?
 		globals_setTankBulletPosition(clear);
 	}
 
@@ -57,7 +58,15 @@ uint8_t hitType;
 		bullets_remove_tank_bullet();
 		globals_setAlienBulletStatus(i,false);
 		globals_setTankBulletPosition(clear);
+	} else if (saucer_check_hit(nextPos)){
+		xil_printf("\r\nSaucer Hit!!!");
+		// remove the bullet
+		bullets_remove_tank_bullet();
+		globals_setTankBulletPosition(clear);
+
 	}
+
+
 	// Apply appropriate damage to bunkers; report alien hit or tank hit
 	bunkers_update();
 

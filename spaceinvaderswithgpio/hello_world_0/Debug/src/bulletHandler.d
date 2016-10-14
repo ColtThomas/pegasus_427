@@ -13,7 +13,7 @@ src/bulletHandler.d src/bulletHandler.o: ../src/bulletHandler.c \
   ../../hello_world_bsp_0/microblaze_0/include/xstatus.h \
   ../../hello_world_bsp_0/microblaze_0/include/xil_assert.h \
   ../../hello_world_bsp_0/microblaze_0/include/xio.h ../src/globals.h \
-  ../src/bunkers.h ../src/tank.h ../src/aliens.h
+  ../src/bunkers.h ../src/tank.h ../src/aliens.h ../src/saucer.h
 
 ../src/bullets.h:
 
@@ -54,3 +54,5 @@ src/bulletHandler.d src/bulletHandler.o: ../src/bulletHandler.c \
 ../src/tank.h:
 
 ../src/aliens.h:
+
+../src/saucer.h:
