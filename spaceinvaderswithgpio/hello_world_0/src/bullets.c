@@ -88,12 +88,24 @@ static bool tankFired = false;
 // Used to see how far up we need to fire up the alien block
 static uint32_t alienBulletHeightPos[ALIEN_COLUMNS] = {0,0,0,0,0,0,0,0,0,0,0};
 
-void bullets_update_bullets_pos(uint32_t column) {
-
-
-	if(alienBulletHeightPos[column]<=ALIEN_ROWS){
-		alienBulletHeightPos[column]++;
+void bullets_update_bullets_pos() {
+	uint32_t i,j;
+//	bool rowCheck = false; // This is used to make sure that we only fire from the bottom
+	for(i=ALIEN_COLUMNS-1;i>0;i--) {
+		for(j=ALIEN_ROWS-1;j>0;j--) {
+			if(globals_isDeadAlien(i+j*ALIEN_COLUMNS)) {
+				alienBulletHeightPos[i]++;
+			} else {
+				break;
+			}
+		}
 	}
+
+
+
+//	if(alienBulletHeightPos[column]<=ALIEN_ROWS){
+//		alienBulletHeightPos[column]++;
+//	}
 }
 
 uint32_t bullets_get_speed() {
@@ -118,7 +130,7 @@ uint32_t bullets_randMod3() {
 }
 
 void bullets_fire_tank() {
-	if(!tankFired) {
+	if(!tankFired & !globals_isGameOver()) {
 		tankFired = true;
 
 		// Reset global position on bullet
@@ -171,7 +183,7 @@ void bullets_fire_aliens(){
 	uint8_t i;
 	bool launch=false;
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS;i++){
-		if(!globals_getAlienBulletStatus(i) & !launch) {
+		if(!globals_getAlienBulletStatus(i) & !launch & !globals_isGameOver()) {
 			launch=true;
 			alien_bullet_type[i]=bullets_randMod3();
 //			xil_printf("\r\nSpawn %d",i);
@@ -193,10 +205,7 @@ void bullets_fire_aliens(){
 		}
 	}
 
-	// Indicate that a single bullet was fired
-//	if(alien_bullet_count<GLOBALS_NUMBER_OF_ALIEN_BULLETS) {
-//		alien_bullet_count++;
-//	}
+
 }
 
 void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type) {
