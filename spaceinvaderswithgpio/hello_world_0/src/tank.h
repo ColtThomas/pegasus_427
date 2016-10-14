@@ -29,6 +29,11 @@ bool tank_check_hit(point_t pos);
 // Decrements a life and redraws new tank
 void tank_respawn();
 
+// return true if the tank is dying
+bool tank_is_dying();
+
+void tank_update_death();
+
 //void tank_remove_life();
 //void tank_add_life();
 #endif /* TANK_H_ */
