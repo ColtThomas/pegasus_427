@@ -89,6 +89,8 @@ static bool tankFired = false;
 static uint32_t alienBulletHeightPos[ALIEN_COLUMNS] = {0,0,0,0,0,0,0,0,0,0,0};
 
 void bullets_update_bullets_pos(uint32_t column) {
+
+
 	if(alienBulletHeightPos[column]<=ALIEN_ROWS){
 		alienBulletHeightPos[column]++;
 	}

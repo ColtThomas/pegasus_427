@@ -27,6 +27,7 @@
 #define SCREEN_GREEN 0x0000FF00
 #define SCREEN_BLUE 0x000000FF
 #define SCREEN_WHITE 0x00FFFFFF
+#define SCREEN_HOTPINK 0xFF69B4
 
 // moved all the init stuff into here.
 void screen_init();
