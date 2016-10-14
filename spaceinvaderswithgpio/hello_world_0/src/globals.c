@@ -8,6 +8,8 @@
 #include<stdbool.h>
 #include<stdint.h>
 #include <stdlib.h>
+#include "core.h"
+
 #define INITIAL_TANK_POS 152
 #define INITIAL_ALIEN_X 10
 #define INITIAL_ALIEN_Y 40
@@ -124,6 +126,7 @@ bool globals_getAlienBulletStatus(uint8_t bullet) {
 
 void globals_setGameStatus(bool status) {
 	gameOver = status;
+	core_end_game();
 }
 
 bool globals_isGameOver() {

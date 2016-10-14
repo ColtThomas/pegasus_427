@@ -38,7 +38,7 @@
 #define NEW_BULLET_SPACING 5 // ensures that new bullets are at least this many frames apart
 #define NEW_BULLET_TIME (rand() % NEW_BULLET_MAX_RAND + 1)*NEW_BULLET_SPACING
 
-#define NEW_SAUCER_MAX_RAND 30 // create a new saucer at a max of this many spaces
+#define NEW_SAUCER_MAX_RAND 20 // create a new saucer at a max of this many spaces
 #define NEW_SAUCER_SPACING 40 // ensures that new saucer are at least this many frames apart
 #define NEW_SAUCER_TIME (rand() % NEW_SAUCER_MAX_RAND + 1)*NEW_SAUCER_SPACING
 
@@ -86,13 +86,13 @@ void timer_interrupt_handler() {
 	static int32_t frame_count = 0; // used to allow things to be every nth frame, by using mod.
 	static int32_t bullet_time = -1;
 	static int32_t saucer_time = -1;
-	xil_printf("saucer_time %d\r\n",saucer_time);
+	//xil_printf("saucer_time %d\r\n",saucer_time);
 	if(bullet_time == -1) {
 		bullet_time = NEW_BULLET_TIME; // the next bullet will come in NEW_BULLET_TIME frames
 	} // this should only ever run on the first tick
 	if(saucer_time == -1) {
 		saucer_time = NEW_SAUCER_TIME;
-		xil_printf("new saucer time: %d\r\n",saucer_time);
+	//	xil_printf("new saucer time: %d\r\n",saucer_time);
 	} // this too
 
 	frame_timer++;
@@ -119,10 +119,10 @@ void timer_interrupt_handler() {
 		frame_timer = 0;
 
 		// move saucer, if spawned
-		if(frame_count % SAUCER_FRAME_COUNT == 0 && game_started && !tank_is_dying() && saucer_is_spawned()) {
-			saucer_update();
-		}
-		//move aliens
+//		if(frame_count % SAUCER_FRAME_COUNT == 0 && game_started && !tank_is_dying() && saucer_is_spawned()) {
+//			saucer_update();
+//		}
+		//move aliens and saucer
 		if(frame_count % ALIEN_FRAME_COUNT == 0 && game_started && !tank_is_dying()) { //pause the aliens while the death animation goes on
 			alienHandler_tick();
 		}
@@ -153,6 +153,7 @@ void timer_interrupt_handler() {
 			tank_update_death();
 		}
 
+		xil_printf("%d\r\n",frame_count);
 		frame_count++;
 		//xil_printf("interrupt!");
 	}
@@ -171,6 +172,7 @@ void interrupt_handler_dispatcher(void* ptr) {
 	if (intc_status & XPAR_FIT_TIMER_0_INTERRUPT_MASK){
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_FIT_TIMER_0_INTERRUPT_MASK);
 		timer_interrupt_handler();
+		//xil_printf("exit interrupt\r\n");
 	}
 	if (intc_status & XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK){
 		XGpio_InterruptClear(&gpPB, 0xFFFFFFFF); // ack this interrupt, but we do nothing with it.
@@ -207,6 +209,8 @@ int core_init (void) {
 	return 0;
 }
 
+//GAME OVER
+
 void core_draw_initial() {
 	tank_draw_initial();
 	tank_draw_lives_initial();
@@ -217,4 +221,9 @@ void core_draw_initial() {
 
 void core_run() {
 	microblaze_enable_interrupts();
+}
+
+void core_end_game() {
+	game_started = false;
+	microblaze_disable_interrupts();
 }

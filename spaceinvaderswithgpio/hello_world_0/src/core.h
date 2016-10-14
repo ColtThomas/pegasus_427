@@ -17,4 +17,6 @@ void core_draw_initial();
 // start your engines! but really, enables interrupts to start the game moving.
 void core_run();
 
+void core_end_game();
+
 #endif /* CORE_H_ */
