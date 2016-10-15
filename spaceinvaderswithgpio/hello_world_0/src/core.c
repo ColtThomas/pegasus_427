@@ -145,7 +145,7 @@ void timer_interrupt_handler() {
 			tank_move_right();
 		}
 		// fire tank bullet
-		if(fire_button_pressed() && !tank_is_dying()) {
+		if(fire_button_pressed()/* && !tank_is_dying()*/) {
 			bullets_fire_tank();
 		}
 		// animate tank death

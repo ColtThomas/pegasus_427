@@ -94,24 +94,18 @@ void bullets_update_bullets_pos(uint8_t alien) { // redo this function
 	uint32_t j;
 	bool update = false;
 	uint32_t column = alien % ALIEN_COLUMNS;
-	xil_printf("\r\nChange on column %d",column);
+//	xil_printf("\r\nChange on column %d",column);
 //	bool rowCheck = false; // This is used to make sure that we only fire from the bottom
 	for(j=ALIEN_ROWS;j>0;j--) {
 		if(globals_isDeadAlien(column+(j-1)*ALIEN_COLUMNS)) {
 			alienBulletHeightPos[column] = ALIEN_ROWS - j + 1;
 			update = true;
-			xil_printf("\r\nHeight modified column: %d height: %d",column,alienBulletHeightPos[column]);
+//			xil_printf("\r\nHeight modified column: %d height: %d",column,alienBulletHeightPos[column]);
 		} else {
 			break;
 		}
 	}
 
-
-
-
-//	if(alienBulletHeightPos[column]<=ALIEN_ROWS){
-//		alienBulletHeightPos[column]++;
-//	}
 }
 
 uint32_t bullets_get_speed() {
@@ -202,7 +196,7 @@ void bullets_fire_aliens(){
 				alienBulletPos.x += BULLET_ALIEN_HALFSPACE+ alienRandColumn*ALIEN_WIDTH;
 				alienBulletPos.y += ALIEN_BLOCK_HEIGHT - ALIEN_HEIGHT *alienRandHeight ;
 				globals_setAlienBulletPosition(alienBulletPos,i);
-				xil_printf("\r\nSpawn bullet: %d %d Column: %d Row: %d",alienBulletPos.x,alienBulletPos.y,alienRandColumn,alienRandHeight);
+//				xil_printf("\r\nSpawn bullet: %d %d Column: %d Row: %d",alienBulletPos.x,alienBulletPos.y,alienRandColumn,alienRandHeight);
 
 				// draw the alien bullet
 				globals_setAlienBulletStatus(i,true);
