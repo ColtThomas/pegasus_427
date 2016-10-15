@@ -178,7 +178,7 @@ uint32_t bunkers_get_quadrant(uint32_t xQuad,uint32_t yQuad,bool debug){
 	// Each bunker is divided into 9 quadrants. These quadrants will help us apply
 	// damage to each patch on the bunker as they get hit. The quad index is assigned
 	// as the pixel coordinate crosses quadrant boundaries
-	if(debug) {xil_printf("\r\nQuad map: %d %d",xQuad,yQuad);}
+//	if(debug) {xil_printf("\r\nQuad map: %d %d",xQuad,yQuad);}
 	if((xQuad>=BUNKER_QUAD_X_1) & (xQuad<BUNKER_QUAD_X_2)) {
 		if((yQuad>=BUNKER_QUAD_Y_1) & (yQuad<BUNKER_QUAD_Y_2)) {
 			quadIndex = BUNKER_QUAD_ZERO;
