@@ -248,28 +248,36 @@ void bunkers_update() {
 						if((bunkerDamage0_6x6[y%BUNKER_MOD] & (1 << (x%BUNKER_MOD)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+							if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_WHITE){
+								screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+							}
 						}
 						break;
 					case BUNKER_DMG_2:// Moderately damaged bunker bitmap generation
 						if((bunkerDamage1_6x6[y%BUNKER_MOD] & (1 << (x%BUNKER_MOD)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+							if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_WHITE){
+								screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+							}
 						}
 						break;
 					case BUNKER_DMG_3: // Heavily damaged bunker bitmap generation
 						if((bunkerDamage2_6x6[y%BUNKER_MOD] & (1 << (x%BUNKER_MOD)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+							if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_WHITE){
+								screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+							}
 						}
 						break;
 					case BUNKER_DMG_4: // annihilation, or destroyed quadrant
 						if((bunkerDamage3_6x6[y%BUNKER_MOD] & (1 << (x%BUNKER_MOD)))) {
 							xOffset = x + BUNKER_SPACING + i*BUNKER_SPACING + i* BUNKER_WIDTH;
 							yOffset = y + SCREEN_HEIGHT - BUNKER_MARGIN_BOTTOM;
-							screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+							if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_WHITE){
+								screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+							}
 						}
 						break;
 					}

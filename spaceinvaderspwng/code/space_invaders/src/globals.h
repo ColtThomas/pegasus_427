@@ -28,6 +28,7 @@
 #define GLOBALS_ALIEN_MOVEMENT 4
 #define GLOBALS_ALIEN_ROWS 5
 #define GLOBALS_ALIEN_COLUMNS 11
+#define GLOBALS_NULL_LOCATION -1
 
 // struct to hold x and y coordinates.
 // All globals functions that return point_t, it represents the top-left corner of the item.
@@ -74,4 +75,8 @@ bool globals_isGameOver();
 
 void globals_setGameScore();
 unsigned char globals_getGameScore();
+
+void globals_toggleSaucer();
+bool globals_saucerSpawned() ;
+
 #endif /* GLOBALS_H_ */

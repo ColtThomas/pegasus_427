@@ -27,6 +27,8 @@
 #define SCREEN_GREEN 0x0000FF00
 #define SCREEN_BLUE 0x000000FF
 #define SCREEN_WHITE 0x00FFFFFF
+#define SCREEN_HOTPINK 0xFF69B4
+
 
 // moved all the init stuff into here.
 void screen_init();
@@ -39,6 +41,9 @@ void screen_draw_double_pixel(int32_t x, int32_t y, int32_t color);
 
 //draws a single pixel on a 640x480 grid
 void screen_draw_pixel(int32_t x, int32_t y, int32_t color);
+
+//returns the color of the current pixel
+int32_t screen_double_color_pixel(int32_t x, int32_t y);
 
 // draws space_invaders basics to screen, then awaits test input from UART
 void screen_run_test();

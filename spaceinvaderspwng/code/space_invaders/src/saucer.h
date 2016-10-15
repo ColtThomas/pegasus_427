@@ -17,4 +17,5 @@
 void saucer_update();
 void saucer_spawn();
 bool saucer_check_hit(point_t pos);
+bool saucer_is_spawned();
 #endif /* SAUCER_H_ */

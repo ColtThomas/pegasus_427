@@ -117,6 +117,8 @@ void screen_clear() {
 	}
 }
 
+
+
 //draws a single pixel on a 640x480 grid
 void screen_draw_pixel(int32_t x, int32_t y, int32_t color) {
 	framePointer[y*SCREEN_PIXELS_ACROSS + x] = color;
@@ -133,6 +135,10 @@ void screen_draw_double_pixel(int32_t x, int32_t y, int32_t color) {
 	screen_draw_pixel(p_after(x), p_after(y), color);
 	screen_draw_pixel(p_after(x), twice(y), color);
 	screen_draw_pixel(twice(x), p_after(y), color);
+}
+
+int32_t screen_double_color_pixel(int32_t x, int32_t y) {
+	return framePointer[twice(y)*SCREEN_PIXELS_ACROSS + twice(x)];
 }
 
 // some #defines used by run_test
@@ -164,7 +170,15 @@ void screen_run_test() {
 	// input/response loop
 	while (1) {
 		input = getchar();
+
+		bulletHandler_tick();
+
+
+
 		switch(input) {
+
+		// Tick handler
+
 		case '1': //debug
 //			text_game_over();
 //			tank_respawn();

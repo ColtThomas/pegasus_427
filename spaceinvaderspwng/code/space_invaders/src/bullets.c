@@ -20,6 +20,8 @@
 
 #define BULLET_VARIATIONS 3
 
+#define BULLET_Y_BOUNDARY 10 + BULLET_HEIGHT
+
 #define ALIEN_WIDTH GLOBALS_ALIEN_WIDTH
 #define ALIEN_HEIGHT GLOBALS_ALIEN_HEIGHT
 
@@ -85,6 +87,29 @@ static const int32_t alien_bullet_zig_3x5[] =
 
 static bool tankFired = false;
 
+// Used to see how far up we need to fire up the alien block
+static uint32_t alienBulletHeightPos[ALIEN_COLUMNS] = {0,0,0,0,0,0,0,0,0,0,0};
+
+void bullets_update_bullets_pos() {
+	uint32_t i,j;
+//	bool rowCheck = false; // This is used to make sure that we only fire from the bottom
+	for(i=ALIEN_COLUMNS-1;i>0;i--) {
+		for(j=ALIEN_ROWS-1;j>0;j--) {
+			if(globals_isDeadAlien(i+j*ALIEN_COLUMNS)) {
+				alienBulletHeightPos[i]++;
+			} else {
+				break;
+			}
+		}
+	}
+
+
+
+//	if(alienBulletHeightPos[column]<=ALIEN_ROWS){
+//		alienBulletHeightPos[column]++;
+//	}
+}
+
 uint32_t bullets_get_speed() {
 	return BULLET_SPEED;
 }
@@ -107,7 +132,7 @@ uint32_t bullets_randMod3() {
 }
 
 void bullets_fire_tank() {
-	if(!tankFired) {
+	if(!tankFired & !globals_isGameOver()) {
 		tankFired = true;
 
 		// Reset global position on bullet
@@ -148,7 +173,7 @@ void bullets_draw_tank_bullet() {
 			if( (tank_bullet_3x5[y]) & (BIT_MASK << x) ) {
 				xOffset = x + tankBulletPos.x;
 				yOffset = y + tankBulletPos.y;
-				screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+				screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 			}
 
 		}
@@ -160,28 +185,29 @@ void bullets_fire_aliens(){
 	uint8_t i;
 	bool launch=false;
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS;i++){
-		if(!globals_getAlienBulletStatus(i) & !launch) {
+		if(!globals_getAlienBulletStatus(i) & !launch & !globals_isGameOver()) {
 			launch=true;
 			alien_bullet_type[i]=bullets_randMod3();
 //			xil_printf("\r\nSpawn %d",i);
 
 			// Reset global position on bullet
 			point_t alienBulletPos = globals_getAlienBlockPosition();
-			alienBulletPos.x += BULLET_ALIEN_HALFSPACE+ bullets_randMod11()*ALIEN_WIDTH;
-			alienBulletPos.y += ALIEN_BLOCK_HEIGHT;
-			globals_setAlienBulletPosition(alienBulletPos,i);
+			uint32_t alienRandColumn = bullets_randMod11();
+			if(alienBulletHeightPos[alienRandColumn]<ALIEN_ROWS) {
+				uint32_t alienRandHeight = alienBulletHeightPos[alienRandColumn];
+				alienBulletPos.x += BULLET_ALIEN_HALFSPACE+ alienRandColumn*ALIEN_WIDTH;
+				alienBulletPos.y += ALIEN_BLOCK_HEIGHT - ALIEN_HEIGHT *alienRandHeight ;
+				globals_setAlienBulletPosition(alienBulletPos,i);
 
 
-			// draw the alien bullet
-			globals_setAlienBulletStatus(i,true);
-			bullets_draw_alien_bullet(i,alien_bullet_type[i]);
+				// draw the alien bullet
+				globals_setAlienBulletStatus(i,true);
+				bullets_draw_alien_bullet(i,alien_bullet_type[i]);
+			}
 		}
 	}
 
-	// Indicate that a single bullet was fired
-//	if(alien_bullet_count<GLOBALS_NUMBER_OF_ALIEN_BULLETS) {
-//		alien_bullet_count++;
-//	}
+
 }
 
 void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type) {
@@ -198,19 +224,19 @@ void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type) {
 				if( (alien_bullet_down_3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
-					screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 				}
 			} else if (type==TYPE_1) {
 				if( (alien_bullet_up_3x5[y]) & (BIT_MASK << x) ) {
 									xOffset = x + alienBulletPos.x;
 									yOffset = y + alienBulletPos.y;
-									screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+									screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 								}
 			} else {
 				if( (alien_bullet_zig_3x5[y]) & (BIT_MASK << x) ) {
 									xOffset = x + alienBulletPos.x;
 									yOffset = y + alienBulletPos.y;
-									screen_draw_double_pixel(xOffset,yOffset,SCREEN_WHITE);
+									screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 								}
 			}
 
@@ -255,19 +281,16 @@ void bullets_erase_alien_bullet(uint8_t bullet,uint32_t type) {
 
 void bullets_update_position() {
 	// Tank bullet update
-	bullets_erase_tank_bullet();
-
 	point_t tankBulletPos = globals_getTankBulletPosition();
-	tankBulletPos.y -= BULLET_SPEED;
-	globals_setTankBulletPosition(tankBulletPos);
 
-	// See if the bullet hit anything, or the edge
-	// <add the bunker hit>
-//	xil_printf("\r\nCurrent pos: %d %d",tankBulletPos.x,tankBulletPos.y);
-
-	if(tankBulletPos.y>BULLET_START_Y || tankBulletPos.y < 0) {
+	if(tankBulletPos.y>BULLET_START_Y || tankBulletPos.y < BULLET_Y_BOUNDARY) {
 		tankFired = false;
+		bullets_remove_tank_bullet();
 	} else {
+		bullets_erase_tank_bullet();
+
+		tankBulletPos.y -= BULLET_SPEED;
+		globals_setTankBulletPosition(tankBulletPos);
 		bullets_draw_tank_bullet();
 	}
 

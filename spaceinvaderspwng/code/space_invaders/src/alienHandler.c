@@ -4,6 +4,7 @@
 #include "bunkers.h"
 #include "tank.h"
 #include "aliens.h"
+#include "saucer.h"
 
 void alienHandler_tick() {
 	if(!aliens_landed()){
@@ -13,7 +14,7 @@ void alienHandler_tick() {
 	}
 
 	// verify if the aliens are over the bunker
-	point_t testPoint = globals_getAlienBlockPosition();
+//	point_t testPoint = globals_getAlienBlockPosition();
 //	xil_printf("\r\nblock pos: %d %d",testPoint.x,testPoint.y );
 
 

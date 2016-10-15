@@ -105,6 +105,12 @@ static const int32_t tank_lives_positions[NUMBER_OF_LIVES] = {250, 270, 290};
 static const long *tank_bitmap_array[TANK_NUM_BITMAPS] = {tank_15x8,tank_destroyed_a_15x8,tank_destroyed_b_15x8,tank_destroyed_c_15x8,tank_ghost15x8};
 
 static uint32_t playerLives = 0; // Can we do this? Off by one error
+static bool tank_dying = false;
+
+bool tank_is_dying() {
+	return tank_dying;
+}
+
 // draws the tank near the center bottom of the screen
 void tank_draw_initial() {
 	int32_t x, y;
@@ -210,32 +216,32 @@ void tank_move_right() {
 	globals_setTankPosition(globals_getTankPosition()+TANK_MOVEMENT);
 }
 
-// COME BACK AND DO THIS MORE EFFICIENTLY!!!!!
-void tank_animate() {
-	int32_t j;
+//// COME BACK AND DO THIS MORE EFFICIENTLY!!!!!
+//void tank_animate() {
+//	int32_t j;
+//
+//	for(j=0;j<50000;j++){}
+////	xil_printf("\r\nAnimate change");
+//	tank_redraw(TANK_DMG_A,TANK_DMG_B,TANK_NO_MOTION);
+//
+//	for(j=0;j<50000;j++){}
+////	xil_printf("\r\nAnimate change");
+//	tank_redraw(TANK_DMG_B,TANK_DMG_C,TANK_NO_MOTION);
+//	for(j=0;j<50000;j++){}
+////	tank_redraw(TANK_DMG_C,TANK_GHOST,TANK_NO_MOTION);
+//
+//}
 
-	for(j=0;j<50000;j++){}
-//	xil_printf("\r\nAnimate change");
-	tank_redraw(TANK_DMG_A,TANK_DMG_B,TANK_NO_MOTION);
-
-	for(j=0;j<50000;j++){}
-//	xil_printf("\r\nAnimate change");
-	tank_redraw(TANK_DMG_B,TANK_DMG_C,TANK_NO_MOTION);
-	for(j=0;j<50000;j++){}
-//	tank_redraw(TANK_DMG_C,TANK_GHOST,TANK_NO_MOTION);
-
-}
-
-void tank_demolish(){
-		if(globals_getTankPosition() >= SCREEN_WIDTH - TANK_WIDTH){
-//			xil_printf("\r\nMEOW");
-			return;
-		}
-//		xil_printf("\r\nAnimate change");
-		tank_redraw(TANK_INIT,TANK_DMG_A,TANK_NO_MOTION);
-		tank_animate();
-		tank_remove_life();
-}
+//void tank_demolish(){
+//		if(globals_getTankPosition() >= SCREEN_WIDTH - TANK_WIDTH){
+////			xil_printf("\r\nMEOW");
+//			return;
+//		}
+////		xil_printf("\r\nAnimate change");
+//	//	tank_redraw(TANK_INIT,TANK_DMG_A,TANK_NO_MOTION);
+//		tank_animate();
+//		tank_remove_life();
+//}
 
 
 bool tank_check_hit(point_t pos){
@@ -243,7 +249,8 @@ bool tank_check_hit(point_t pos){
 	pos.y += bullets_get_height();
 	if((pos.y>=TANK_Y) && (pos.y <= TANK_Y+TANK_HEIGHT)) {
 		if((pos.x>=globals_getTankPosition()) && (pos.x<=globals_getTankPosition()+TANK_WIDTH)){
-			tank_demolish();
+			tank_dying = true;
+		//	tank_demolish();
 			return true;
 		}
 	}
@@ -253,9 +260,39 @@ bool tank_check_hit(point_t pos){
 void tank_respawn() {
 	// Erase debris
 //	xil_printf("\r\nrespawn");
-	tank_redraw(TANK_DMG_C,TANK_GHOST,TANK_NO_MOTION);
+	//tank_redraw(TANK_DMG_C,TANK_GHOST,TANK_NO_MOTION);
 	globals_setTankPosition(TANK_RESPAWN_POS);
 	// Draw initial tank; verify the position coordinates
 	tank_redraw(TANK_GHOST,TANK_INIT,TANK_NO_MOTION);
 
+}
+
+#define DEATH_PHASE_0 0
+#define DEATH_PHASE_1 1
+#define DEATH_PHASE_2 2
+#define DEATH_PHASE_3 3
+#define DEATH_PHASE_4 4
+
+void tank_update_death() {
+	static int8_t death_phase = 0;
+	switch(death_phase) {
+	case DEATH_PHASE_0:
+		tank_remove_life();
+		tank_redraw(TANK_INIT,TANK_DMG_A,TANK_NO_MOTION);
+		break;
+	case DEATH_PHASE_1:
+		tank_redraw(TANK_DMG_A,TANK_DMG_B,TANK_NO_MOTION);
+		break;
+	case DEATH_PHASE_2:
+		tank_redraw(TANK_DMG_B,TANK_DMG_C,TANK_NO_MOTION);
+		break;
+	case DEATH_PHASE_3:
+		tank_redraw(TANK_DMG_C,TANK_GHOST,TANK_NO_MOTION);
+		break;
+	case DEATH_PHASE_4: // final animation phase
+		tank_respawn();
+		death_phase = -1;
+		tank_dying = false;
+	}
+	death_phase++;
 }

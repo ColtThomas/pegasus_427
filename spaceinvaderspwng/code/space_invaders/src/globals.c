@@ -8,10 +8,12 @@
 #include<stdbool.h>
 #include<stdint.h>
 #include <stdlib.h>
+//#include "core.h"
+
 #define INITIAL_TANK_POS 152
 #define INITIAL_ALIEN_X 10
 #define INITIAL_ALIEN_Y 40
-#define NULL_LOCATION -1
+
 
 static uint16_t tankPosition;
 static point_t tankBulletPosition;
@@ -21,18 +23,23 @@ static point_t alienBulletPositions[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static uint8_t bunkerErosionStates[GLOBALS_NUMBER_OF_BUNKERS][GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER];
 static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
 static bool alien_bullet_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
-static bool gameOver = false;
+static bool gameOver;
+static bool saucerSpawned;
+
 //initializes globals arrays and structs
 void globals_init() {
 	tankPosition = INITIAL_TANK_POS;
-	tankBulletPosition.x = NULL_LOCATION;
-	tankBulletPosition.y = NULL_LOCATION;
+	tankBulletPosition.x = GLOBALS_NULL_LOCATION;
+	tankBulletPosition.y = GLOBALS_NULL_LOCATION;
 	alienBlockPosition.x = INITIAL_ALIEN_X;
 	alienBlockPosition.y = INITIAL_ALIEN_Y;
+	saucerPosition = GLOBALS_NULL_LOCATION;
+	saucerSpawned = false;
+	gameOver = false;
 	int32_t i,j;
 	for(i = 0; i < GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
-		alienBulletPositions[i].x = NULL_LOCATION;
-		alienBulletPositions[i].y = NULL_LOCATION;
+		alienBulletPositions[i].x = GLOBALS_NULL_LOCATION;
+		alienBulletPositions[i].y = GLOBALS_NULL_LOCATION;
 //		alien_bullet_status[i] = false;
 	}
 	for(i = 0; i < GLOBALS_NUMBER_OF_BUNKERS; i++) {
@@ -87,8 +94,8 @@ point_t globals_getAlienBulletPosition(uint8_t bullet) {
 		return alienBulletPositions[bullet];
 	}
 	point_t null_point;
-	null_point.x = NULL_LOCATION; // this will actually be a very large number, since these are unsigned chars.
-	null_point.y = NULL_LOCATION; // this ensures that it's a large enough value to be off-screen
+	null_point.x = GLOBALS_NULL_LOCATION; // this will actually be a very large number, since these are unsigned chars.
+	null_point.y = GLOBALS_NULL_LOCATION; // this ensures that it's a large enough value to be off-screen
 	return null_point;
 }
 
@@ -102,7 +109,7 @@ uint8_t globals_getBunkerErosionState(uint8_t bunker, uint8_t block) {
 	if(bunker < GLOBALS_NUMBER_OF_BUNKERS && block < GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER) {
 		return bunkerErosionStates[bunker][block];
 	}
-	else return NULL_LOCATION; // very large, thus improper, number, to indicate error.
+	else return GLOBALS_NULL_LOCATION; // very large, thus improper, number, to indicate error.
 }
 
 void globals_killAlien(uint8_t alien) {
@@ -124,10 +131,18 @@ bool globals_getAlienBulletStatus(uint8_t bullet) {
 
 void globals_setGameStatus(bool status) {
 	gameOver = status;
+	core_end_game();
 }
 
 bool globals_isGameOver() {
 	return gameOver;
 }
 
+void globals_toggleSaucer() {
+	saucerSpawned = !saucerSpawned;
+}
+
+bool globals_saucerSpawned() {
+	return saucerSpawned;
+}
 
