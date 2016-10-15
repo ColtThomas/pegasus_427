@@ -58,8 +58,9 @@ uint8_t hitType;
 		bullets_remove_tank_bullet();
 		globals_setAlienBulletStatus(i,false);
 		globals_setTankBulletPosition(clear);
-	} else if (saucer_check_hit(nextPos)){
-		xil_printf("\r\nSaucer Hit!!!");
+	}
+	if (saucer_check_hit(nextPos)){
+//		xil_printf("\r\nSaucer Hit!!!");
 		// remove the bullet
 		bullets_remove_tank_bullet();
 		globals_setTankBulletPosition(clear);

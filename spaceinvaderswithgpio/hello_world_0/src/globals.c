@@ -23,7 +23,9 @@ static point_t alienBulletPositions[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static uint8_t bunkerErosionStates[GLOBALS_NUMBER_OF_BUNKERS][GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER];
 static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
 static bool alien_bullet_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
-static bool gameOver = false;
+static bool gameOver;
+static bool saucerSpawned;
+
 //initializes globals arrays and structs
 void globals_init() {
 	tankPosition = INITIAL_TANK_POS;
@@ -31,6 +33,9 @@ void globals_init() {
 	tankBulletPosition.y = GLOBALS_NULL_LOCATION;
 	alienBlockPosition.x = INITIAL_ALIEN_X;
 	alienBlockPosition.y = INITIAL_ALIEN_Y;
+	saucerPosition = GLOBALS_NULL_LOCATION;
+	saucerSpawned = false;
+	gameOver = false;
 	int32_t i,j;
 	for(i = 0; i < GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
 		alienBulletPositions[i].x = GLOBALS_NULL_LOCATION;
@@ -133,4 +138,11 @@ bool globals_isGameOver() {
 	return gameOver;
 }
 
+void globals_toggleSaucer() {
+	saucerSpawned = !saucerSpawned;
+}
+
+bool globals_saucerSpawned() {
+	return saucerSpawned;
+}
 

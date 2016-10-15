@@ -75,4 +75,8 @@ bool globals_isGameOver();
 
 void globals_setGameScore();
 unsigned char globals_getGameScore();
+
+void globals_toggleSaucer();
+bool globals_saucerSpawned() ;
+
 #endif /* GLOBALS_H_ */

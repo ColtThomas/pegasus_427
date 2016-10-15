@@ -58,7 +58,7 @@ static const uint32_t saucer_ghost_16x7[] =
 };
 
 static uint32_t leftBound;
-static bool isSpawned = false;
+
 static uint32_t saucerPoints[SAUCER_POINT_VAR] = {50,100,150,300};
 uint32_t saucer_randMod2() {
 	return rand() % 2;	// Random number generated to add random sequence square
@@ -112,8 +112,9 @@ void saucer_erase() {
 }
 
 void saucer_update() {
+//	xil_printf("\r\nsaucer update %s",globals_saucerSpawned()?"spawned":"not spawned");
 	// check to see if it has spawned
-	if(isSpawned) {
+	if(globals_saucerSpawned()) {
 		//		xil_printf("\r\nmove saucer");
 		// see which side it spawned from
 
@@ -122,20 +123,22 @@ void saucer_update() {
 			// increment/decrement position
 			//			int32_t currentPos = globals_getSaucerPosition();
 
-//			xil_printf("\r\nmove right");
+//			xil_printf(" move right");
 			globals_setSaucerPosition(globals_getSaucerPosition()+SAUCER_MOVEMENT);
 			saucer_redraw(leftBound);
 		}
 		else if(globals_getSaucerPosition()>=SAUCER_MOVEMENT && globals_getSaucerPosition()<=SAUCER_RIGHT_X && leftBound==SAUCER_RIGHT) { // MOVE LEFT
-//			xil_printf("\r\nmove leftt");
+//			xil_printf(" move leftt");
 			globals_setSaucerPosition(globals_getSaucerPosition()-SAUCER_MOVEMENT);
 			saucer_redraw(leftBound);
 		}
 		//			xil_printf("\r\nNewPos: %d",globals_getSaucerPosition());
 
 		else {
+//			xil_printf("\r\nsaucer going off screen");
 			saucer_erase();
-			isSpawned = false;
+			globals_setSaucerPosition(GLOBALS_NULL_LOCATION);
+			 globals_toggleSaucer();
 
 		}
 		// if off the screen, raise flag for spawn enable. Make sure saucer doesn't roll around
@@ -146,8 +149,8 @@ void saucer_update() {
 void saucer_spawn() {
 
 	// check to see if the flag is raised
-	if(!isSpawned) {
-		isSpawned = true;
+	if(!globals_saucerSpawned()) {
+		globals_toggleSaucer();
 		// randomly pick left or right
 		leftBound =saucer_randMod2();
 //		xil_printf("\r\nSaucer Spawned on %s",leftBound?"right":"left");
@@ -161,18 +164,18 @@ void saucer_spawn() {
 		// draw alien at that position
 		saucer_draw_initial();
 	}
-
-
 }
 
 bool saucer_check_hit(point_t pos){
 	if(globals_getSaucerPosition() == GLOBALS_NULL_LOCATION) { // saucer is not currently on screen
+//		xil_printf("\r\nno saucer");
 		return false;
 	}
 	// See if the point is in bounds
 	if((pos.y>=SAUCER_RIGHT_Y) && (pos.y<=SAUCER_RIGHT_Y+SAUCER_HEIGHT)) {
 		if((pos.x>=globals_getSaucerPosition()) && (pos.x<=globals_getSaucerPosition()+SAUCER_WIDTH)){
 			// erase the alien
+//		xil_printf("\r\nhit saucer");
 			saucer_erase();
 			globals_setSaucerPosition(GLOBALS_NULL_LOCATION);
 
@@ -184,16 +187,14 @@ bool saucer_check_hit(point_t pos){
 			text_print_saucer_score(score);
 
 			// reset flag
-			isSpawned = false;
+			globals_toggleSaucer();
 			return true;
 		}
-	} else {
-		return false;
 	}
-
+//	xil_printf("\r\nmissed saucer");
 	return false;
 }
 
 bool saucer_is_spawned() {
-	return isSpawned;
+	return globals_saucerSpawned();
 }

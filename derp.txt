@@ -3,8 +3,6 @@ To do list
 
 
 -bunker erode when the aliens run over it (faked it... test with automated bullets)
--saucer freezes on any other collision
-
 -add alien explosion
 -fix the bullet boundary on the top
 -Figure out why the 4th bullet screws up the globals
@@ -25,3 +23,4 @@ Done
 -Push button implementation
 -saucer (invisible) can still be hit even after being hit
 -saucer only spawns from left side
+-saucer freezes on any other collision
