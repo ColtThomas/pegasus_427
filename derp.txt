@@ -3,15 +3,14 @@ To do list
 
 
 -bunker erode when the aliens run over it (faked it... test with automated bullets)
-
 -saucer freezes on any other collision
--saucer (invisible) can still be hit even after being hit
 -add alien explosion
 -fix the bullet boundary on the top
 -Figure out why the 4th bullet screws up the globals
 	- somehow the saucer fixed this, but now it has a bug
 -fix the clipping of bullets on the bunkers/tank
 -game over conditions are buggy
+-weird conditions when aliens get low
 -report
 
 Done
@@ -23,3 +22,4 @@ Done
 -Dont forget to respawn tank
 -Red alien ship thing
 -Push button implementation
+-saucer (invisible) can still be hit even after being hit

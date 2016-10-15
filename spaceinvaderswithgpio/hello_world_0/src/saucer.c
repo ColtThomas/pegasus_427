@@ -61,7 +61,7 @@ static uint32_t leftBound;
 static bool isSpawned = false;
 static uint32_t saucerPoints[SAUCER_POINT_VAR] = {50,100,150,300};
 uint32_t saucer_randMod2() {
-	return rand() % 1;	// Random number generated to add random sequence square
+	return rand() % 2;	// Random number generated to add random sequence square
 }
 uint32_t saucer_randMod3() {
 	return rand() % 3;	// Random number generated to add random sequence square
@@ -155,18 +155,22 @@ void saucer_spawn() {
 //		xil_printf("\r\ninitPos: %d",initPos);
 		globals_setSaucerPosition(initPos);
 		// draw alien at that position
-		saucer_draw_initial(leftBound);
+		saucer_draw_initial();
 	}
 
 
 }
 
 bool saucer_check_hit(point_t pos){
+	if(globals_getSaucerPosition() == GLOBALS_NULL_LOCATION) { // saucer is not currently on screen
+		return false;
+	}
 	// See if the point is in bounds
 	if((pos.y>=SAUCER_RIGHT_Y) && (pos.y<=SAUCER_RIGHT_Y+SAUCER_HEIGHT)) {
 		if((pos.x>=globals_getSaucerPosition()) && (pos.x<=globals_getSaucerPosition()+SAUCER_WIDTH)){
 			// erase the alien
 			saucer_erase();
+			globals_setSaucerPosition(GLOBALS_NULL_LOCATION);
 
 			uint32_t score = saucerPoints[saucer_randMod3()];
 			// add random score
