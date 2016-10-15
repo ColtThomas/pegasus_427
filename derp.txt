@@ -1,10 +1,10 @@
 To do list
 
 
-
+-Tank respawns when game over instead of staying rubble
 -bunker erode when the aliens run over it (faked it... test with automated bullets)
 -add alien explosion
--fix the bullet boundary on the top
+-fire button doesn't always fire
 -Figure out why the 4th bullet screws up the globals
 	- somehow the saucer fixed this, but now it has a bug
 -fix the clipping of bullets on the bunkers/tank
@@ -24,3 +24,4 @@ Done
 -saucer (invisible) can still be hit even after being hit
 -saucer only spawns from left side
 -saucer freezes on any other collision
+-fix the bullet boundary on the top
