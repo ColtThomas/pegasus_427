@@ -38,8 +38,8 @@
 #define NEW_BULLET_SPACING 5 // ensures that new bullets are at least this many frames apart
 #define NEW_BULLET_TIME (rand() % NEW_BULLET_MAX_RAND + 1)*NEW_BULLET_SPACING
 
-#define NEW_SAUCER_MAX_RAND 20 // create a new saucer at a max of this many spaces
-#define NEW_SAUCER_SPACING 40 // ensures that new saucer are at least this many frames apart
+#define NEW_SAUCER_MAX_RAND 10 // create a new saucer at a max of this many spaces
+#define NEW_SAUCER_SPACING 30 // ensures that new saucer are at least this many frames apart
 #define NEW_SAUCER_TIME (rand() % NEW_SAUCER_MAX_RAND + 1)*NEW_SAUCER_SPACING
 
 // Masks used to identify the push buttons
@@ -112,7 +112,7 @@ void timer_interrupt_handler() {
 		if(saucer_time == 0 && game_started && !tank_is_dying()) {
 			saucer_time = NEW_SAUCER_TIME;
 			saucer_spawn();
-			xil_printf("spawn saucer\r\n");
+		//	xil_printf("spawn saucer\r\n");
 		}
 
 		// reset frame timer
@@ -153,7 +153,7 @@ void timer_interrupt_handler() {
 			tank_update_death();
 		}
 
-		xil_printf("%d\r\n",frame_count);
+	//	xil_printf("%d\r\n",frame_count);
 		frame_count++;
 		//xil_printf("interrupt!");
 	}
