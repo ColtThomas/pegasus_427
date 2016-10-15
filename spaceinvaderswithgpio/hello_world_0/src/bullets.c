@@ -20,6 +20,8 @@
 
 #define BULLET_VARIATIONS 3
 
+#define BULLET_Y_BOUNDARY 10 + BULLET_HEIGHT
+
 #define ALIEN_WIDTH GLOBALS_ALIEN_WIDTH
 #define ALIEN_HEIGHT GLOBALS_ALIEN_HEIGHT
 
@@ -279,19 +281,16 @@ void bullets_erase_alien_bullet(uint8_t bullet,uint32_t type) {
 
 void bullets_update_position() {
 	// Tank bullet update
-	bullets_erase_tank_bullet();
-
 	point_t tankBulletPos = globals_getTankBulletPosition();
-	tankBulletPos.y -= BULLET_SPEED;
-	globals_setTankBulletPosition(tankBulletPos);
 
-	// See if the bullet hit anything, or the edge
-	// <add the bunker hit>
-//	xil_printf("\r\nCurrent pos: %d %d",tankBulletPos.x,tankBulletPos.y);
-
-	if(tankBulletPos.y>BULLET_START_Y || tankBulletPos.y < 0) {
+	if(tankBulletPos.y>BULLET_START_Y || tankBulletPos.y < BULLET_Y_BOUNDARY) {
 		tankFired = false;
+		bullets_remove_tank_bullet();
 	} else {
+		bullets_erase_tank_bullet();
+
+		tankBulletPos.y -= BULLET_SPEED;
+		globals_setTankBulletPosition(tankBulletPos);
 		bullets_draw_tank_bullet();
 	}
 

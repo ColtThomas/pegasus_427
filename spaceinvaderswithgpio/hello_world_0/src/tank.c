@@ -277,6 +277,7 @@ void tank_update_death() {
 	static int8_t death_phase = 0;
 	switch(death_phase) {
 	case DEATH_PHASE_0:
+		tank_remove_life();
 		tank_redraw(TANK_INIT,TANK_DMG_A,TANK_NO_MOTION);
 		break;
 	case DEATH_PHASE_1:
