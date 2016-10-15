@@ -17,7 +17,7 @@ uint32_t bullets_get_speed();
 
 uint32_t bullets_get_height();
 
-void bullets_update_bullets_pos();
+void bullets_update_bullets_pos(uint8_t alien);
 // fires bullet from tank
 void bullets_fire_tank();
 

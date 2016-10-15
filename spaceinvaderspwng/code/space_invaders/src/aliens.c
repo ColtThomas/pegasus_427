@@ -600,6 +600,7 @@ void aliens_score_tick(uint8_t alien){
 void aliens_kill_alien(uint8_t alien) {
 	globals_killAlien(alien); // kills the alien in the globals.
 	aliens_score_tick(alien); // add respective score
+	bullets_update_bullets_pos(alien);
 	// but... we still have to undraw him.
 	point_t position;
 	int32_t x, y;
