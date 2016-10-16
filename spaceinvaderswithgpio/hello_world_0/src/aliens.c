@@ -620,7 +620,7 @@ void aliens_update_frontline() {
 		globals_setAlienBlockRowCount(rowCount);
 //		xil_printf("\r\nSet Front line: %d",frontLineY-ALIEN_SPACING);
 		globals_setAlienBlockFrontLine(frontLineY - ALIEN_SPACING);
-//		xil_printf("\r\nDecremented: %d",globals_getAlienBlockFrontLine());
+		xil_printf("\r\nDecremented: %d",globals_getAlienBlockFrontLine());
 //		xil_printf("\r\nDecrement Row %d ",globals_getAlienBlockRowCount());
 	}
 }
