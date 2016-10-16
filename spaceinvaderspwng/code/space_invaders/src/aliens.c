@@ -7,6 +7,7 @@
 #include "aliens.h"
 #include "screen.h"
 #include "bunkers.h"
+#include "bullets.h"
 #include "text.h"
 #include <stdbool.h>
 #include<stdio.h>
@@ -168,7 +169,18 @@ void aliens_draw_initial() {
 		}
 	}
 }
-
+bool row_dead(int8_t row) {
+	bool all_aliens_dead = true;
+	int32_t i;
+//	xil_printf("\r\nChecking row %d",row);
+	for(i = 0; i < ALIEN_COLUMNS; i++) {
+		if(!globals_isDeadAlien((row-1)*ALIENS_PER_ROW + i)) {
+			all_aliens_dead = false;
+			break;
+		}
+	}
+	return all_aliens_dead;
+}
 // checks to see if all aliens in the given column are dead.
 bool column_dead(int8_t column) {
 	bool all_aliens_dead = true; // be optimistic
@@ -596,11 +608,31 @@ void aliens_score_tick(uint8_t alien){
 		text_add_score(ALIENS_LOW_SCORE);
 	}
 }
+
+void aliens_update_frontline() {
+//	bool row_dead(int8_t row);
+
+	int8_t rowCount = globals_getAlienBlockRowCount();
+//	xil_printf("\r\nPassing in %d",rowCount);
+	uint32_t frontLineY = globals_getAlienBlockFrontLine();
+	while(row_dead(rowCount)/* && (rowCount>0)*/){
+		rowCount = globals_getAlienBlockRowCount()-1;
+		globals_setAlienBlockRowCount(rowCount);
+//		xil_printf("\r\nSet Front line: %d",frontLineY-ALIEN_SPACING);
+		globals_setAlienBlockFrontLine(frontLineY - ALIEN_SPACING);
+		xil_printf("\r\nDecremented: %d",globals_getAlienBlockFrontLine());
+//		xil_printf("\r\nDecrement Row %d ",globals_getAlienBlockRowCount());
+	}
+}
+
+
 // kill and blank the given alien
 void aliens_kill_alien(uint8_t alien) {
 	globals_killAlien(alien); // kills the alien in the globals.
 	aliens_score_tick(alien); // add respective score
-	bullets_update_bullets_pos(alien);
+	bullets_update_bullets_pos(alien); // shift the bullet spawn points
+	aliens_update_frontline();
+
 	// but... we still have to undraw him.
 	point_t position;
 	int32_t x, y;
@@ -703,7 +735,8 @@ bool aliens_check_hit(point_t pos){
 
 bool aliens_landed() {
 	point_t pos = globals_getAlienBlockPosition();
-	if(pos.y>=ALIEN_LAND_POINT){
+	xil_printf("\r\nPos: %d",pos.y-globals_getAlienBlockFrontLine());
+	if(pos.y>=(ALIEN_LAND_POINT-globals_getAlienBlockFrontLine())){
 		xil_printf("\r\nGAME OVER");
 		text_game_over();
 		globals_setGameStatus(true);

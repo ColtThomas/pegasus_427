@@ -25,7 +25,8 @@ static bool aliens_dead[GLOBALS_NUMBER_OF_ALIENS];
 static bool alien_bullet_status[GLOBALS_NUMBER_OF_ALIEN_BULLETS];
 static bool gameOver;
 static bool saucerSpawned;
-
+static uint32_t alienBlockFrontLine;
+static int8_t alienBlockRowCount;
 //initializes globals arrays and structs
 void globals_init() {
 	tankPosition = INITIAL_TANK_POS;
@@ -33,6 +34,8 @@ void globals_init() {
 	tankBulletPosition.y = GLOBALS_NULL_LOCATION;
 	alienBlockPosition.x = INITIAL_ALIEN_X;
 	alienBlockPosition.y = INITIAL_ALIEN_Y;
+	alienBlockFrontLine = 0;
+	alienBlockRowCount = GLOBALS_ALIEN_ROWS;
 	saucerPosition = GLOBALS_NULL_LOCATION;
 	saucerSpawned = false;
 	gameOver = false;
@@ -77,9 +80,26 @@ point_t globals_getAlienBlockPosition() {
 	return alienBlockPosition;
 }
 
+void globals_setAlienBlockFrontLine(uint32_t val) {
+	alienBlockFrontLine = val;
+}
+uint32_t globals_getAlienBlockFrontLine() {
+
+	return alienBlockFrontLine;
+}
+void globals_setAlienBlockRowCount(int8_t val) {
+	alienBlockRowCount = val;
+}
+
+int8_t globals_getAlienBlockRowCount() {
+	return alienBlockRowCount;
+}
+
+
 void globals_setSaucerPosition(int32_t val) {
 	saucerPosition = val;
 }
+
 int32_t globals_getSaucerPosition() {
 	return saucerPosition;
 }

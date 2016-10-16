@@ -165,6 +165,7 @@ void screen_run_test() {
 	aliens_draw_initial();
 	bunkers_draw_initial();
 	text_draw_score();
+	uint32_t j;
 
 	point_t testPoint;
 	// input/response loop
@@ -187,13 +188,16 @@ void screen_run_test() {
 //			bunker_destroy_row(0);
 			break;
 		case KILL_ALIEN:
-			input = getchar();
-			input -= CHAR_TO_INT; // turns the character digit into the value of digit
-			input_number = times_ten(input); // puts first input into high-order digit of two-digit number
-			input = getchar();
-			input -= CHAR_TO_INT;
-			input_number += input; // adds in low-order digit
-			aliens_kill_alien(input_number);
+			for(j=25;j<55;j++) {
+				aliens_kill_alien(j);
+			}
+//			input = getchar();
+//			input -= CHAR_TO_INT; // turns the character digit into the value of digit
+//			input_number = times_ten(input); // puts first input into high-order digit of two-digit number
+//			input = getchar();
+//			input -= CHAR_TO_INT;
+//			input_number += input; // adds in low-order digit
+//			aliens_kill_alien(input_number);
 			break;
 		case FIRE_A_BULLET: // fire random alien missile
 			bullets_fire_aliens();
