@@ -237,7 +237,7 @@ void aliens_update_position() {
 				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
 
 				// This will erode the bunker, only if alien is alive
-//				bunkers_check_hit(position,2);
+				bunkers_check_hit(position,0);
 
 				for(y = 0; y < ALIEN_HEIGHT+ALIEN_MOVEMENT; y++) {
 					for(x = 0; x < ALIEN_WIDTH; x++) {
@@ -407,8 +407,9 @@ void aliens_update_position() {
 				position.x = blockposition.x + ALIEN_SPACING*(i%ALIENS_PER_ROW);
 				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
 
+
 				// This will erode the bunker, only if alien is alive
-//				bunkers_check_hit(position,2);
+				bunkers_check_hit(position,0);
 
 				for(y = 0; y < ALIEN_HEIGHT; y++) {
 					for(x = 0; x < ALIEN_WIDTH+ALIEN_MOVEMENT; x++) {
@@ -505,7 +506,7 @@ void aliens_update_position() {
 				position.y = blockposition.y + ALIEN_SPACING*(i/ALIENS_PER_ROW);
 
 				// This will erode the bunker, only if alien is alive
-//				bunkers_check_hit(position,2);
+				bunkers_check_hit(position,0);
 
 				for(y = 0; y < ALIEN_HEIGHT; y++) {
 					for(x = 0; x < ALIEN_WIDTH+ALIEN_MOVEMENT; x++) {

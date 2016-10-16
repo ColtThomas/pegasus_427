@@ -17,7 +17,6 @@
 #include "globals.h"
 #include<stdint.h>
 #include "alienHandler.h"
-#include "core.h"
 
 #define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
@@ -118,6 +117,8 @@ void screen_clear() {
 	}
 }
 
+
+
 //draws a single pixel on a 640x480 grid
 void screen_draw_pixel(int32_t x, int32_t y, int32_t color) {
 	framePointer[y*SCREEN_PIXELS_ACROSS + x] = color;
@@ -127,18 +128,26 @@ void screen_draw_pixel(int32_t x, int32_t y, int32_t color) {
 #define twice(x) (x)*2
 #define p_after(x) twice((x))+1
 
+int32_t screen_double_color_pixel(int32_t x, int32_t y) {
+	return framePointer[twice(y)*SCREEN_PIXELS_ACROSS + twice(x)];
+}
+
 // draws a 2x2 pixel. X and Y should be values from a 320x240 grid, not a 640x480.
 // this allowed us to map everything we draw onto a smaller grid
 void screen_draw_double_pixel(int32_t x, int32_t y, int32_t color) {
+//	if((screen_double_color_pixel(x,y)==SCREEN_GREEN) && (color==SCREEN_WHITE)) {
+//		point_t pos;
+//		pos.x=x;
+//		pos.y=y;
+//		bunkers_check_hit(pos,0);
+//	}
 	screen_draw_pixel(twice(x), twice(y), color);
 	screen_draw_pixel(p_after(x), p_after(y), color);
 	screen_draw_pixel(p_after(x), twice(y), color);
 	screen_draw_pixel(twice(x), p_after(y), color);
 }
 
-int32_t screen_double_color_pixel(int32_t x, int32_t y) {
-	return framePointer[twice(y)*SCREEN_PIXELS_ACROSS + twice(x)];
-}
+
 
 // some #defines used by run_test
 #define KILL_ALIEN '2'
@@ -155,30 +164,48 @@ int32_t screen_double_color_pixel(int32_t x, int32_t y) {
 // draws space_invaders basics to screen, then awaits test input from UART
 void screen_run_test() {
 	char input;
-//	int32_t i;
+	int32_t i;
 	uint8_t input_number;
 
 	// initial draws
-	core_draw_initial();
+	tank_draw_initial();
+	tank_draw_lives_initial();
+	aliens_draw_initial();
+	bunkers_draw_initial();
+	text_draw_score();
+	uint32_t j;
 
-	//point_t testPoint;
+	point_t testPoint;
 	// input/response loop
 	while (1) {
 		input = getchar();
+
+		bulletHandler_tick();
+
+
+
 		switch(input) {
+
+		// Tick handler
+
 		case '1': //debug
-			text_increment_score();
+//			text_game_over();
+//			tank_respawn();
+			saucer_spawn();
 //			tank_remove_life();
 //			bunker_destroy_row(0);
 			break;
 		case KILL_ALIEN:
-			input = getchar();
-			input -= CHAR_TO_INT; // turns the character digit into the value of digit
-			input_number = times_ten(input); // puts first input into high-order digit of two-digit number
-			input = getchar();
-			input -= CHAR_TO_INT;
-			input_number += input; // adds in low-order digit
-			aliens_kill_alien(input_number);
+			for(j=25;j<55;j++) {
+				aliens_kill_alien(j);
+			}
+//			input = getchar();
+//			input -= CHAR_TO_INT; // turns the character digit into the value of digit
+//			input_number = times_ten(input); // puts first input into high-order digit of two-digit number
+//			input = getchar();
+//			input -= CHAR_TO_INT;
+//			input_number += input; // adds in low-order digit
+//			aliens_kill_alien(input_number);
 			break;
 		case FIRE_A_BULLET: // fire random alien missile
 			bullets_fire_aliens();
@@ -213,3 +240,4 @@ void screen_run_test() {
 		}
 	}
 }
+

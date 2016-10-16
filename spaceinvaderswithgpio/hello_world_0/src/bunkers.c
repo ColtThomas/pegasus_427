@@ -359,7 +359,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 1 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
-				bunker_destroy_row(BUNKER_ONE);
+				bunker_destroy(BUNKER_ONE,quadrant);
 			}
 			return bunker_damage(BUNKER_ONE, quadrant);
 
@@ -371,7 +371,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 2 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
-				bunker_destroy_row(BUNKER_TWO);
+				bunker_destroy(BUNKER_TWO,quadrant);
 			}
 			return bunker_damage(BUNKER_TWO, quadrant);
 		}
@@ -382,7 +382,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 3 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
-				bunker_destroy_row(BUNKER_THREE);
+				bunker_destroy(BUNKER_THREE,quadrant);
 			}
 			return bunker_damage(BUNKER_THREE, quadrant);
 		}
@@ -393,7 +393,7 @@ bool bunkers_check_hit(point_t pos,uint8_t hitType) {
 			quadrant = bunkers_get_quadrant(relativePoint.x,relativePoint.y,true);
 //			xil_printf("\r\nBunker 4 hit... quadrant %d",quadrant);
 			if(hitType==2){ // destroy it if alien
-				bunker_destroy_row(BUNKER_FOUR);
+				bunker_destroy(BUNKER_FOUR,quadrant);
 			}
 			return bunker_damage(BUNKER_FOUR, quadrant);
 		}
