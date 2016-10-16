@@ -735,7 +735,7 @@ bool aliens_check_hit(point_t pos){
 
 bool aliens_landed() {
 	point_t pos = globals_getAlienBlockPosition();
-	xil_printf("\r\nPos: %d",pos.y-globals_getAlienBlockFrontLine());
+//	xil_printf("\r\nPos: %d",pos.y-globals_getAlienBlockFrontLine());
 	if(pos.y>=(ALIEN_LAND_POINT-globals_getAlienBlockFrontLine())){
 		xil_printf("\r\nGAME OVER");
 		text_game_over();
