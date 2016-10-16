@@ -128,18 +128,26 @@ void screen_draw_pixel(int32_t x, int32_t y, int32_t color) {
 #define twice(x) (x)*2
 #define p_after(x) twice((x))+1
 
+int32_t screen_double_color_pixel(int32_t x, int32_t y) {
+	return framePointer[twice(y)*SCREEN_PIXELS_ACROSS + twice(x)];
+}
+
 // draws a 2x2 pixel. X and Y should be values from a 320x240 grid, not a 640x480.
 // this allowed us to map everything we draw onto a smaller grid
 void screen_draw_double_pixel(int32_t x, int32_t y, int32_t color) {
+//	if((screen_double_color_pixel(x,y)==SCREEN_GREEN) && (color==SCREEN_WHITE)) {
+//		point_t pos;
+//		pos.x=x;
+//		pos.y=y;
+//		bunkers_check_hit(pos,0);
+//	}
 	screen_draw_pixel(twice(x), twice(y), color);
 	screen_draw_pixel(p_after(x), p_after(y), color);
 	screen_draw_pixel(p_after(x), twice(y), color);
 	screen_draw_pixel(twice(x), p_after(y), color);
 }
 
-int32_t screen_double_color_pixel(int32_t x, int32_t y) {
-	return framePointer[twice(y)*SCREEN_PIXELS_ACROSS + twice(x)];
-}
+
 
 // some #defines used by run_test
 #define KILL_ALIEN '2'

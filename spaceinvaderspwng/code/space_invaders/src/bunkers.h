@@ -26,6 +26,9 @@ void bunkers_update();
 // Applies one unit of damage to given quadrant of any bunker
 bool bunker_damage(int32_t bunkerNum, int32_t quadrant);
 
+// Destroys the bunker chunk
+bool bunker_destroy(int32_t bunkerNum, int32_t quadrant);
+
 // Destroys top row of bunker
 void bunker_destroy_row(int32_t bunkerNum);
 #endif /* BUNKERS_H_ */
