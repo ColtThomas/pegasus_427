@@ -49,6 +49,14 @@ point_t globals_getTankBulletPosition();
 void globals_setAlienBlockPosition(point_t val);
 point_t globals_getAlienBlockPosition();
 
+// set and get the y value of the front row of aliens
+void globals_setAlienBlockFrontLine(uint32_t val);
+uint32_t globals_getAlienBlockFrontLine();
+
+// set and get the row count for game status
+void globals_setAlienBlockRowCount(int8_t val);
+int8_t globals_getAlienBlockRowCount();
+
 // set and get the position of the saucer
 void globals_setSaucerPosition(int32_t val);
 int32_t globals_getSaucerPosition();
