@@ -170,11 +170,9 @@ void aliens_draw_initial() {
 	}
 }
 bool row_dead(int8_t row) {
-	xil_printf("row_dead %d ", row);
 	if(row <= 0) return true;
 	bool all_aliens_dead = true;
 	int32_t i;
-//	xil_printf("\r\nChecking row %d",row);
 	for(i = 0; i < ALIEN_COLUMNS; i++) {
 		if(!globals_isDeadAlien((row-1)*ALIENS_PER_ROW + i)) {
 			all_aliens_dead = false;
@@ -618,7 +616,6 @@ void aliens_update_frontline() {
 	uint32_t frontLineY = globals_getAlienBlockFrontLine();
 
 	while(row_dead(rowCount) && (rowCount>0)){
-		xil_printf("while");
 		rowCount = globals_getAlienBlockRowCount()-1;
 		globals_setAlienBlockRowCount(rowCount);
 
@@ -630,18 +627,12 @@ void aliens_update_frontline() {
 
 // kill and blank the given alien
 void aliens_kill_alien(uint8_t alien) {
-//	xil_printf("killing alien");
 	globals_killAlien(alien); // kills the alien in the globals.
-//	xil_printf("globally killed");
 	aliens_score_tick(alien); // add respective score
-//	xil_printf("score ticked");
 	bullets_update_bullets_pos(alien); // shift the bullet spawn points
-	xil_printf("\r\nbullets updated");
 	aliens_update_frontline();
-	xil_printf("frontline updated");
 
 	// but... we still have to undraw him.
-	xil_printf("undrawing alien");
 	point_t position;
 	int32_t x, y;
 	position.x = globals_getAlienBlockPosition().x + ALIEN_SPACING*(alien%ALIENS_PER_ROW);
@@ -682,9 +673,8 @@ void aliens_kill_alien(uint8_t alien) {
 	}
 
 	// and possibly end the game
-	xil_printf("all dead?");
 	if(globals_allAliensDead()) {
-		xil_printf("ending game");
+		text_game_over_win();
 		globals_setGameStatus(true); // end the game
 	}
 }
@@ -707,12 +697,10 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 		if((relativePos.y>=GLOBALS_ALIEN_SPACING*i) &&(relativePos.y<GLOBALS_ALIEN_SPACING*i+GLOBALS_ALIEN_HEIGHT)) {
 			row = (i)*GLOBALS_ALIENS_PER_ROW;
 			hit=true;
-//			xil_printf("\r\nYAY");
 		}
 	}
 	if(!hit) {return hit;}
 	else{hit = false;}
-//	xil_printf("\r\nRow %d hit",row);
 	// Check the column
 	uint8_t column = 0;
 	for(i=0; i <= GLOBALS_ALIEN_COLUMNS ; i++) {
@@ -723,11 +711,8 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 	}
 
 	if(!hit) {return hit;}
-//	xil_printf("\r\nColumn %d hit",column);
-//	xil_printf("\r\nAlien number: %d",column+row);
 	uint8_t alien = column+row;
 	if(hit && !globals_isDeadAlien(alien)) {
-//		xil_printf("kill alien!");
 		aliens_kill_alien(alien);
 	} else {
 		hit = false;
@@ -740,7 +725,6 @@ bool aliens_check_hit(point_t pos){
 	point_t alienPos = globals_getAlienBlockPosition();
 	if((pos.x>=alienPos.x) && (pos.x<=alienPos.x+GLOBALS_ALIEN_BLOCK_WIDTH)) {
 		if((pos.y>=alienPos.y) && (pos.y<=alienPos.y+GLOBALS_ALIEN_BLOCK_HEIGHT)) {
-//			xil_printf("\r\nBullet Hit");
 
 			// Figure which alien box it is in
 			return aliens_get_alien_select(pos);
@@ -751,7 +735,6 @@ bool aliens_check_hit(point_t pos){
 
 bool aliens_landed() {
 	point_t pos = globals_getAlienBlockPosition();
-//	xil_printf("\r\nPos: %d",pos.y-globals_getAlienBlockFrontLine());
 	if(pos.y>=(ALIEN_LAND_POINT-globals_getAlienBlockFrontLine())){
 		xil_printf("\r\nGAME OVER");
 		text_game_over();

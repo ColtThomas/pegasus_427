@@ -135,6 +135,7 @@ void timer_interrupt_handler() {
 		// don't start the game until a button is pressed
 		if(game_button_pressed() && !game_started) {
 			game_started = true;
+			srand(frame_count); // seed the random depending on how long the user waits before pressing the button to start the game.
 		}
 		//move tank left, if needed
 		if(left_button_pressed() && frame_count % TANK_FRAME_COUNT == 0 && !tank_is_dying()) {
@@ -225,8 +226,7 @@ void core_run() {
 }
 
 void core_end_game() {
-	xil_printf("core end game");
 	game_started = false;
-	//microblaze_disable_interrupts();
+	// disable interrupts to prevent any further control or motion, thus completely ending the game.
 	XIntc_MasterDisable(XPAR_INTC_0_BASEADDR);
 }

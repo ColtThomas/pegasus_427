@@ -35,7 +35,9 @@
 #define TEXT_SCORE_NUM_LEN 5
 #define TEXT_SAUCER_TXT_LEN 3
 #define TEXT_GAME_OVER 6
+#define TEXT_GAME_OVER_WIN 7
 #define TEXT_GAME_OVER_X SCREEN_WIDTH/2-TEXT_GAME_OVER/2*(TEXT_WIDTH+TEXT_SPACING)
+#define TEXT_GAME_OVER_WIN_X SCREEN_WIDTH/2-TEXT_GAME_OVER_WIN/2*(TEXT_WIDTH+TEXT_SPACING)
 #define TEXT_GAME_OVER_Y SCREEN_HEIGHT/2
 
 #define TEXT_SCORE_INDX 3 // used to iterate through the score array
@@ -655,7 +657,24 @@ void text_game_over() {
 		currentPoint.x = TEXT_GAME_OVER_X;
 		currentPoint.y = TEXT_GAME_OVER_Y;
 		int32_t i;
-		for(i=0;i<TEXT_GAME_OVER;i++){;
+		for(i=0;i<TEXT_GAME_OVER;i++){
+			text_write(livesMessage[i], currentPoint,SCREEN_RED);
+			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
+		}
+}
+
+void text_game_over_win() {
+	// Draw out text for the lives
+		point_t currentPoint;
+		unsigned char livesMessage[TEXT_GAME_OVER_WIN] = {
+				'A','W','E','S','O','M','E'
+		};
+
+		// Set the initial point of the string
+		currentPoint.x = TEXT_GAME_OVER_WIN_X;
+		currentPoint.y = TEXT_GAME_OVER_Y;
+		int32_t i;
+		for(i=0;i<TEXT_GAME_OVER_WIN;i++){
 			text_write(livesMessage[i], currentPoint,SCREEN_RED);
 			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 		}

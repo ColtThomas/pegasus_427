@@ -153,7 +153,6 @@ void tank_add_life() {
 void tank_remove_life() {
 	uint32_t x, y;
 	playerLives--;
-	xil_printf("\r\nDELETED!!!! %d",playerLives);
 	for(x = 0; x < TANK_WIDTH; x++) {
 		for(y = 0; y < TANK_HEIGHT; y++) {
 			if(tank_15x8[y] & (BIT_MASK << x)) {
@@ -162,7 +161,6 @@ void tank_remove_life() {
 		}
 	}
 	if(playerLives<=0) {
-		xil_printf("\r\nGAME OVER");
 		text_game_over();
 		globals_setGameStatus(true);
 	}
