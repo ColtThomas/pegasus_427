@@ -678,7 +678,7 @@ void text_game_over_win() {
 		currentPoint.y = TEXT_GAME_OVER_Y;
 		int32_t i;
 		for(i=0;i<TEXT_GAME_OVER_WIN;i++){
-			text_write(livesMessage[i], currentPoint,SCREEN_RED);
+			text_write(livesMessage[i], currentPoint,SCREEN_SKYBLUE);
 			currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 		}
 }
