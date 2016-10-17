@@ -177,14 +177,16 @@ bool saucer_check_hit(point_t pos){
 			// erase the alien
 //		xil_printf("\r\nhit saucer");
 			saucer_erase();
+			// print score
+			uint32_t score = saucerPoints[saucer_randMod3()];
+						// add random score
+						text_add_score(score);
+
+						text_begin_saucer_score(score);
+				//		text_print_saucer_score(score);
 			globals_setSaucerPosition(GLOBALS_NULL_LOCATION);
 
-			uint32_t score = saucerPoints[saucer_randMod3()];
-			// add random score
-			text_add_score(score);
 
-			// print score
-			text_print_saucer_score(score);
 
 			// reset flag
 			globals_toggleSaucer();

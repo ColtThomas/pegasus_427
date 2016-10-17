@@ -33,6 +33,7 @@
 #define TANK_FRAME_COUNT 1 // allow updating the tank every this many frames
 #define TANK_DEATH_FRAME_COUNT 15 // change animation every this many frames
 #define SAUCER_FRAME_COUNT 6
+#define SAUCER_SCORE_FRAME_COUNT 30
 
 #define NEW_BULLET_MAX_RAND 50 // create a new bullet at a max of this many spaces
 #define NEW_BULLET_SPACING 5 // ensures that new bullets are at least this many frames apart
@@ -86,6 +87,7 @@ void timer_interrupt_handler() {
 	static int32_t frame_count = 0; // used to allow things to be every nth frame, by using mod.
 	static int32_t bullet_time = -1;
 	static int32_t saucer_time = -1;
+	static int32_t saucer_score_timer = 0;
 	//xil_printf("saucer_time %d\r\n",saucer_time);
 	if(bullet_time == -1) {
 		bullet_time = NEW_BULLET_TIME; // the next bullet will come in NEW_BULLET_TIME frames
@@ -122,14 +124,17 @@ void timer_interrupt_handler() {
 //		if(frame_count % SAUCER_FRAME_COUNT == 0 && game_started && !tank_is_dying() && saucer_is_spawned()) {
 //			saucer_update();
 //		}
+
+		//update all bullet positions
+				if(frame_count % BULLET_FRAME_COUNT == 0 && game_started && !tank_is_dying()) {
+					bulletHandler_tick();
+				}
+
 		//move aliens and saucer
 		if(frame_count % ALIEN_FRAME_COUNT == 0 && game_started && !tank_is_dying()) { //pause the aliens while the death animation goes on
 			alienHandler_tick();
 		}
-		//update all bullet positions
-		if(frame_count % BULLET_FRAME_COUNT == 0 && game_started && !tank_is_dying()) {
-			bulletHandler_tick();
-		}
+
 
 		//check buttons
 		// don't start the game until a button is pressed
@@ -152,6 +157,12 @@ void timer_interrupt_handler() {
 		// animate tank death
 		if(tank_is_dying() && frame_count % TANK_DEATH_FRAME_COUNT == 0) {
 			tank_update_death();
+		}
+		if(text_saucer_score_begun()) {
+			if(saucer_score_timer++ >= SAUCER_SCORE_FRAME_COUNT) { // leave the score there for a number of frames
+				text_print_saucer_score(true); //erase saucer score
+				saucer_score_timer = 0;
+			}
 		}
 
 	//	xil_printf("%d\r\n",frame_count);

@@ -329,6 +329,8 @@ static const long M_5x7[] =
 
 static unsigned char currentScore[TEXT_SCORE_NUM_LEN] = {'0','0','0','0','0'};
 static unsigned char saucerPoints[TEXT_SAUCER_TXT_LEN] = {'0','0','0'};
+static bool saucerScoreBegun = false;
+static point_t saucerScorePosition;
 
 // Plug in a char and a coordinate, and that char will write to the screen
 void text_write(unsigned char val, point_t coord,uint32_t color){
@@ -684,19 +686,35 @@ void text_set_saucer_score(unsigned char score,uint32_t indx) {
 	saucerPoints[indx] = score;
 }
 
-void text_print_saucer_score(uint32_t points) {
-	text_set_saucer_score(points/100,0);
-	text_set_saucer_score(points/10,1);
-	text_set_saucer_score(points%10,2);
-
-	point_t currentPoint;
-	currentPoint.x = globals_getSaucerPosition();
-	currentPoint.y = SAUCER_Y;
+void text_print_saucer_score(bool erase) {
+	xil_printf("\r\n%s_saucer_score",erase?"erase":"print");
 	int32_t i;
+	point_t currentPoint = saucerScorePosition;
 	for(i=0;i<TEXT_SAUCER_TXT_LEN;i++){;
-		text_write(saucerPoints[i], currentPoint,SCREEN_GREEN);
+		text_write(saucerPoints[i], currentPoint,erase?SCREEN_BLACK:SCREEN_RED);
 		currentPoint.x += TEXT_WIDTH+TEXT_SPACING;
 	}
+	if(erase) {
+		saucerScoreBegun = false;
+	}
+}
+
+void text_begin_saucer_score(uint32_t points) {
+	if(saucerScoreBegun) { // erase old score
+		xil_printf("saucerScoreBegun");
+		text_print_saucer_score(true);
+	}
+	saucerScoreBegun = true;
+	text_set_saucer_score(points/100+'0',0);
+	text_set_saucer_score((points%100)/10+'0',1);
+	text_set_saucer_score(points%10+'0',2);
+	saucerScorePosition.x = globals_getSaucerPosition();
+	saucerScorePosition.y = SAUCER_Y;
+	text_print_saucer_score(false);
+}
+
+bool text_saucer_score_begun() {
+	return saucerScoreBegun;
 }
 
 //void text_erase_saucer_score() {

@@ -21,7 +21,9 @@ void text_increment_score();
 
 void text_add_score(uint32_t points);
 
-void text_print_saucer_score(uint32_t points);
+void text_print_saucer_score(bool erase);
+void text_begin_saucer_score(uint32_t points);
+bool text_saucer_score_begun();
 void text_set_saucer_score(unsigned char score,uint32_t indx);
 void text_game_over();
 void text_game_over_win();
