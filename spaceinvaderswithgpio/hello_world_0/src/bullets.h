@@ -17,6 +17,7 @@ uint32_t bullets_get_speed();
 
 uint32_t bullets_get_height();
 
+// This will advance the bullets
 void bullets_update_bullets_pos(uint8_t alien);
 
 void bullets_rotate();

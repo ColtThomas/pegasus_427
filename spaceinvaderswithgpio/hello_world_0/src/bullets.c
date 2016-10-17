@@ -10,47 +10,57 @@
 #include "globals.h"
 #include "bunkers.h"
 
-
+// Graphic contants for the bullets
 #define BULLET_HEIGHT 5
 #define BULLET_WIDTH 3
 
 #define BULLET_SPEED 4
 
+// Define the starting position for tank bullets
 #define BULLET_START_X globals_getTankPosition() + 6
 #define BULLET_START_Y 220 - 2*BULLET_HEIGHT
+#define BULLET_Y_BOUNDARY 10 + BULLET_HEIGHT
 
 #define BULLET_VARIATIONS 4
 
-#define BULLET_Y_BOUNDARY 10 + BULLET_HEIGHT
-
+// Borrowing the globals for alien hit boxes
 #define ALIEN_WIDTH GLOBALS_ALIEN_SPACING
 #define ALIEN_HEIGHT GLOBALS_ALIEN_SPACING
 
+// These will indicate the height positions for the bunker hit areas
 #define TOP_ROW GLOBALS_TOP_ROW
 #define MIDDLE_ROW GLOBALS_MIDDLE_ROW
 #define BOTTOM_ROW GLOBALS_BOTTOM_ROW
 
+// Used for alien bullet launch locations
 #define ALIENS_PER_ROW GLOBALS_ALIENS_PER_ROW
 #define ALIEN_SPACING GLOBALS_ALIEN_SPACING
-
+#define BULLET_ALIEN_HALFSPACE ALIEN_WIDTH/2 - 1
 #define BUFFER_WIDTH GLOBALS_BUFFER_WIDTH
 
+//
 #define ALIEN_BLOCK_HEIGHT GLOBALS_ALIEN_BLOCK_HEIGHT
 #define ALIEN_BLOCK_WIDTH GLOBALS_ALIEN_BLOCK_WIDTH
 #define ALIEN_MOVEMENT GLOBALS_ALIEN_MOVEMENT
 #define ALIEN_ROWS GLOBALS_ALIEN_ROWS
 #define ALIEN_COLUMNS GLOBALS_ALIEN_COLUMNS
 #define BIT_MASK 0x1
+
+// Represent the bullet types that we have
 #define TYPE_0 0
 #define TYPE_1 1
 #define TYPE_2 2
 #define TYPE_3 3
-#define BULLET_ALIEN_HALFSPACE ALIEN_WIDTH/2 - 1
+
+// random modulus
+#define MOD_11 11
+#define MOD_4 4
+// These are four our bitmap definitions
 #define packword3(b2,b1,b0) \
 		( (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
 
 
-
+// Bitmaps for the various bullets
 static const int32_t tank_bullet_3x5[] =
 {
 		packword3(0,1,0),
@@ -97,6 +107,7 @@ static const int32_t alien_bullet_zig_inv3x5[] =
 		packword3(0,1,0)
 };
 
+// The var to make sure only one tank bullet is fired at a time
 static bool tankFired = false;
 
 // Used to see how far up we need to fire up the alien block
@@ -106,21 +117,18 @@ void bullets_update_bullets_pos(uint8_t alien) { // redo this function
 	uint32_t j;
 	bool update = false;
 	uint32_t column = alien % ALIEN_COLUMNS;
-//	xil_printf("\r\nChange on column %d",column);
-//	bool rowCheck = false; // This is used to make sure that we only fire from the bottom
+
+	// Iterate through all the bullets and change the positions
 	for(j=ALIEN_ROWS;j>0;j--) {
 		if(globals_isDeadAlien(column+(j-1)*ALIEN_COLUMNS)) {
-			alienBulletHeightPos[column] = ALIEN_ROWS - j + 1;
+			alienBulletHeightPos[column] = ALIEN_ROWS - j + 1; // Increment the bullet position
 			update = true;
-//			xil_printf("\r\nHeight modified column: %d height: %d",column,alienBulletHeightPos[column]);
 		} else {
 			break;
 		}
 	}
 
 }
-
-
 
 uint32_t bullets_get_speed() {
 	return BULLET_SPEED;
@@ -130,21 +138,20 @@ uint32_t bullets_get_height() {
 	return BULLET_HEIGHT;
 }
 
-
 uint32_t alien_bullet_type[BULLET_VARIATIONS] = {
 		TYPE_0,TYPE_0,TYPE_0,TYPE_0
 };
 
 uint16_t bullets_randMod11() {
-	return rand() % 11;	// Random number generated to add random sequence square
+	return rand() % MOD_11;	// Random number generated to add random sequence square
 }
 
 uint32_t bullets_randMod4() {
-	return rand() % 4;	// Random number generated to add random sequence square
+	return rand() % MOD_4;	// Random number generated to add random sequence square
 }
 
 
-
+// It fires... you guessed it! the tank bullet
 void bullets_fire_tank() {
 	if(!tankFired & !globals_isGameOver()) {
 		tankFired = true;
@@ -164,8 +171,9 @@ void bullets_fire_tank() {
 void bullets_erase_tank_bullet() {
 	point_t tankBulletPos = globals_getTankBulletPosition();
 	int32_t xOffset,yOffset;
-//	tankFired = false;
 	int32_t x, y;
+
+	// Iterate through the y and x bitmap values and draw over them in black
 	for(y = 0; y < BULLET_HEIGHT; y++) {
 		for(x = 0; x < BULLET_WIDTH; x++) {
 			if( (tank_bullet_3x5[y]) & (BIT_MASK << x) ) {
@@ -178,20 +186,24 @@ void bullets_erase_tank_bullet() {
 	}
 }
 
+// Draws the bullet at the stored global tank bullet position
 void bullets_draw_tank_bullet() {
-	point_t tankBulletPos = globals_getTankBulletPosition();
+	point_t tankBulletPos = globals_getTankBulletPosition(); // Grab the global pos
 	int32_t xOffset,yOffset;
 	int32_t x, y;
+
+	// Iterate through the bitmap
 	for(y = 0; y < BULLET_HEIGHT; y++) {
 		for(x = 0; x < BULLET_WIDTH; x++) {
 			if( (tank_bullet_3x5[y]) & (BIT_MASK << x) ) {
 				xOffset = x + tankBulletPos.x;
 				yOffset = y + tankBulletPos.y;
+
+				// You have to make sure that you aren't overwriting things not pink
 				if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_HOTPINK) {
 					screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 				}
 			}
-
 		}
 	}
 }
@@ -200,28 +212,33 @@ void bullets_draw_tank_bullet() {
 void bullets_fire_aliens(){
 	uint8_t i;
 	bool launch=false;
+
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS;i++){
+		// If the bullet hasn't been launched yet, launch it
 		if(!globals_getAlienBulletStatus(i) & !launch & !globals_isGameOver()) {
 			launch=true;
-			alien_bullet_type[i]=bullets_randMod4();
-//			xil_printf("\r\nSpawn %d",i);
+			alien_bullet_type[i]=bullets_randMod4(); // Randomize the bullet type and store it
 
 			// Reset global position on bullet
 			point_t alienBulletPos = globals_getAlienBlockPosition();
 			uint32_t alienRandColumn = bullets_randMod11();
+
+			// we want to make sure that we only launch the bullet at the bottom-most alien
 			if(alienBulletHeightPos[alienRandColumn]<ALIEN_ROWS) {
 				uint32_t alienRandHeight = alienBulletHeightPos[alienRandColumn];
 				alienBulletPos.x += BULLET_ALIEN_HALFSPACE+ alienRandColumn*ALIEN_WIDTH;
 				alienBulletPos.y += ALIEN_BLOCK_HEIGHT - ALIEN_HEIGHT *alienRandHeight ;
+
+				// We don't want to draw the bullet over the bunker; just destroy it and
+				// save the time and cpu usage
 				if(!bunkers_check_hit(alienBulletPos,0))	{
 					globals_setAlienBulletPosition(alienBulletPos,i);
-	//				xil_printf("\r\nSpawn bullet: %d %d Column: %d Row: %d",alienBulletPos.x,alienBulletPos.y,alienRandColumn,alienRandHeight);
 
 					// draw the alien bullet
 					globals_setAlienBulletStatus(i,true);
 					bullets_draw_alien_bullet(i,alien_bullet_type[i]);
 				} else {
-					launch=false;
+					launch=false; // Bullet hit something
 				}
 			}
 		}
@@ -230,33 +247,34 @@ void bullets_fire_aliens(){
 
 }
 
+// This will draw the specified bullet type
 void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type) {
 	point_t alienBulletPos;
 	int32_t xOffset,yOffset;
 	int32_t x, y;
-	alienBulletPos = globals_getAlienBulletPosition(bullet);
-	//		xil_printf("\r\nAlien block position: %d %d",alienBulletPos.x,alienBulletPos.y);
+	alienBulletPos = globals_getAlienBulletPosition(bullet); // Taking a bullet (1-4) and get pos
 
-//	xil_printf("\r\n Drawing bullet %d",i);
+	// Redraw the bullet, depending on the type that it is. There are four types of bitmaps.
 	for(y = 0; y < BULLET_HEIGHT; y++) {
 		for(x = 0; x < BULLET_WIDTH; x++) {
-			if(type==TYPE_0){
+			if(type==TYPE_0){ // up arrow bullet
 				if( (alien_bullet_down_3x5[y]) & (BIT_MASK << x) ) {
+					xOffset = x + alienBulletPos.x;
+					yOffset = y + alienBulletPos.y;
+					// Don't redraw if we don't need to
+					if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_HOTPINK) {
+						screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
+					}
+				}
+			} else if (type==TYPE_1) { // down arrow bullet
+				if( (alien_bullet_up_3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
 					if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_HOTPINK) {
 						screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 					}
 				}
-			} else if (type==TYPE_1) {
-				if( (alien_bullet_up_3x5[y]) & (BIT_MASK << x) ) {
-									xOffset = x + alienBulletPos.x;
-									yOffset = y + alienBulletPos.y;
-									if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_HOTPINK) {
-										screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
-									}
-								}
-			} else if (type==TYPE_2) {
+			} else if (type==TYPE_2) { // inverted lighningbolt
 				if( (alien_bullet_zig_inv3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
@@ -264,7 +282,7 @@ void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type) {
 						screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 					}
 				}
-			} else {
+			} else { // lightning bolt
 				if( (alien_bullet_zig_3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
@@ -280,34 +298,35 @@ void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type) {
 
 }
 
+// Erase the specified bullet given the type by function call
 void bullets_erase_alien_bullet(uint8_t bullet,uint32_t type) {
-//	xil_printf("\r\n Erasing bullet %d",bullet);
 
 	point_t alienBulletPos = globals_getAlienBulletPosition(bullet);
 	int32_t xOffset,yOffset;
-//	alienFired = false;
 	int32_t x, y;
+
+	// Iterate the bitmaps depending on the bullet type
 	for(y = 0; y < BULLET_HEIGHT; y++) {
 		for(x = 0; x < BULLET_WIDTH; x++) {
-			if(type==TYPE_0){
+			if(type==TYPE_0){ // The up arrow bullet
 				if( (alien_bullet_down_3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
 					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 				}
-			} else if (type==TYPE_1) {
+			} else if (type==TYPE_1) { // Down arrow bullet
 				if( (alien_bullet_up_3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
 					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 				}
-			} else if (type==TYPE_2) {
+			} else if (type==TYPE_2) { // lightning bolt inverted
 				if( (alien_bullet_zig_inv3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
 					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 				}
-			}else {
+			}else { // lightning bolt
 				if( (alien_bullet_zig_3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
@@ -319,10 +338,12 @@ void bullets_erase_alien_bullet(uint8_t bullet,uint32_t type) {
 	}
 }
 
+// This will tick the bullets and progress them one step
 void bullets_update_position() {
 	// Tank bullet update
 	point_t tankBulletPos = globals_getTankBulletPosition();
 
+	// As long as the tank bullet is on the screen, we continue drawing it
 	if(tankBulletPos.y>BULLET_START_Y || tankBulletPos.y < BULLET_Y_BOUNDARY) {
 		tankFired = false;
 		bullets_remove_tank_bullet();
@@ -335,7 +356,6 @@ void bullets_update_position() {
 	}
 
 	// Alien bullets update
-
 	point_t alienBulletPos;
 	uint8_t i;
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
@@ -345,14 +365,8 @@ void bullets_update_position() {
 			alienBulletPos.y += BULLET_SPEED;
 			globals_setAlienBulletPosition(alienBulletPos,i);
 
-			// See if the bullet hit anything, or the edge
-			// <add the bunker hit>
-	//		xil_printf("\r\nCurrent pos: %d %d",alienBulletPos.x,alienBulletPos.y);
-
-			if((alienBulletPos.y>SCREEN_HEIGHT) & globals_getAlienBulletStatus(i)) {
-//				alien_bullet_count--;
+			if((alienBulletPos.y>GLOBALS_ALIEN_BULLET_Y_MAX) & globals_getAlienBulletStatus(i)) {
 				globals_setAlienBulletStatus(i,false);
-//				xil_printf("\r\nGoner %d",i);
 			} else {
 				bullets_draw_alien_bullet(i,alien_bullet_type[i]);
 			}
