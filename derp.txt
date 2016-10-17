@@ -4,6 +4,7 @@ To do list
 
 -add alien explosion
 -bullet/alien collision artifacting
+-saucer score
 -report
 
 Done
