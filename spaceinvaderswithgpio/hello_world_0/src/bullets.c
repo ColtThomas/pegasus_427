@@ -358,13 +358,17 @@ void bullets_update_position() {
 	// Alien bullets update
 	point_t alienBulletPos;
 	uint8_t i;
+
+	// Iterate thorugh the alien bullets
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
+		// Only mess with it if it is launched
 		if(globals_getAlienBulletStatus(i)) {
 			bullets_erase_alien_bullet(i,alien_bullet_type[i]);
 			alienBulletPos = globals_getAlienBulletPosition(i);
 			alienBulletPos.y += BULLET_SPEED;
 			globals_setAlienBulletPosition(alienBulletPos,i);
 
+			// Make sure that the alien bullets don't go too far down the screen
 			if((alienBulletPos.y>GLOBALS_ALIEN_BULLET_Y_MAX) & globals_getAlienBulletStatus(i)) {
 				globals_setAlienBulletStatus(i,false);
 			} else {
@@ -374,12 +378,13 @@ void bullets_update_position() {
 	}
 }
 
-
+// Gets rid of the tank bullets
 void bullets_remove_tank_bullet() {
 	bullets_erase_tank_bullet();
 	tankFired = false;
 }
 
+// gets rid of specified alien bullets
 void bullets_remove_alien_bullet(uint8_t bullet) {
 	point_t clear;
 	clear.x = 0;
@@ -390,10 +395,13 @@ void bullets_remove_alien_bullet(uint8_t bullet) {
 	globals_setAlienBulletPosition(clear,bullet);
 }
 
+// Simple function that will rotate the alien types. We want to erase and redraw the new bullet
 void bullets_rotate() {
 	uint32_t i;
 	for(i=0;i<BULLET_VARIATIONS;i++){
+
 		bullets_erase_alien_bullet(i,alien_bullet_type[i]);
+		// The arrows are types 0 and 1, lightningbolts 2 and 3
 		switch(alien_bullet_type[i]){
 		case TYPE_0:
 			alien_bullet_type[i] = TYPE_1;

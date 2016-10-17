@@ -21,16 +21,12 @@ uint8_t hitType;
 
 		// Check bunker areas and update on a hit
 		if (bunkers_check_hit(nextPos,hitType)) {
-//			xil_printf("\r\nHit detected!");
-
 			// remove the bullet
 			bullets_remove_alien_bullet(i);
 			globals_setAlienBulletStatus(i,false);
 		}
 		// Check tank
 		if(tank_check_hit(nextPos)) {
-//				xil_printf("\r\nTank Hit");
-
 				// remove the bullet
 				bullets_remove_alien_bullet(i);
 				globals_setAlienBulletStatus(i,false);
@@ -45,29 +41,24 @@ uint8_t hitType;
 	nextPos = globals_getTankBulletPosition();
 	hitType = 1;
 	if (bunkers_check_hit(nextPos,hitType)) {
-//		xil_printf("\r\nHit detected!");
 
 		// remove the bullet
 		bullets_remove_tank_bullet();
-		//globals_setAlienBulletStatus(i,false); // Wait, do we need this? I don't think so.
 		globals_setTankBulletPosition(clear);
 	}
 
 	//check alien hit
 	if(aliens_check_hit(nextPos)) {
-		//xil_printf("Hit!");
 		bullets_remove_tank_bullet();
-	//	globals_setAlienBulletStatus(i,false);
 		globals_setTankBulletPosition(clear);
 	}
+
+	// check saucer hit
 	if (saucer_check_hit(nextPos)){
-//		xil_printf("\r\nSaucer Hit!!!");
 		// remove the bullet
 		bullets_remove_tank_bullet();
 		globals_setTankBulletPosition(clear);
-
 	}
-
 
 	// Apply appropriate damage to bunkers; report alien hit or tank hit
 	bunkers_update();
