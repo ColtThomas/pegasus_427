@@ -45,7 +45,7 @@
 #define NEW_SAUCER_TIME (rand() % NEW_SAUCER_MAX_RAND + 1)*NEW_SAUCER_SPACING
 
 // Masks used to identify the push buttons
-const int BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
+const uint8_t BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 #define BTN_LEFT 3
 #define BTN_FIRE 0
 #define BTN_RIGHT 1
@@ -186,7 +186,7 @@ void timer_interrupt_handler() {
 // but pb_interrupt_handler() is called before ack'ing the interrupt controller?
 void interrupt_handler_dispatcher(void* ptr) {
 //	xil_printf("int");
-	int intc_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR);
+	uint32_t intc_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR);
 	buttonStateReg = XGpio_DiscreteRead(&gpPB, 1); // read buttons
 	// Check the FIT interrupt first.
 	if (intc_status & XPAR_FIT_TIMER_0_INTERRUPT_MASK){
@@ -200,10 +200,10 @@ void interrupt_handler_dispatcher(void* ptr) {
 	}
 }
 
-int core_init (void) {
+int32_t core_init (void) {
 	//init_platform();
 	// Initialize the GPIO peripherals.
-	int success;
+	int32_t success;
 	//time_t t;
 	//print("dude, this does something\n\r");
 	success = XGpio_Initialize(&gpPB, XPAR_PUSH_BUTTONS_5BITS_DEVICE_ID);
@@ -228,8 +228,6 @@ int core_init (void) {
 
 	return 0;
 }
-
-//GAME OVER
 
 void core_draw_initial() {
 	tank_draw_initial();

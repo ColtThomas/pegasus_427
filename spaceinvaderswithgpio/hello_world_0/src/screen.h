@@ -45,7 +45,7 @@ void screen_draw_pixel(int32_t x, int32_t y, int32_t color);
 int32_t screen_double_color_pixel(int32_t x, int32_t y);
 
 // draws space_invaders basics to screen, then awaits test input from UART
+// uses a busy loop; replaced by core.h functions for FIT timer game implementation.
 void screen_run_test();
-// I'm thinking that instead of a busy loop, this should be triggered by a FIT interrupt. but this works for now.
 
 #endif /* SCREEN_H_ */

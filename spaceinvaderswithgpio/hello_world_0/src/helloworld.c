@@ -22,23 +22,16 @@
 
 #include <stdio.h>
 #include "platform.h"
-#include "xparameters.h"
-#include "xaxivdma.h"
-#include "xio.h"
-#include "time.h"
 #include "unistd.h"
 #include "screen.h"
 #include "globals.h"
-#include "tank.h"
 #include "core.h"
-#define DEBUG
-
-void print(char *str);
 
 int main()
 {
 
-	// calls initializer functions, then runs screen test
+	// calls initializer functions, then runs game core
+	init_platform();
 	screen_init();
 	globals_init();
 	screen_clear();

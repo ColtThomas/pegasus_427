@@ -260,12 +260,12 @@ void aliens_erase(uint8_t alien) {
 }
 
 void aliens_draw_explosion(bool erase) {
-		int32_t x, y;
+	int32_t x, y;
 	for(x = 0; x < ALIEN_WIDTH; x++) {
 		for(y = 0; y < ALIEN_HEIGHT; y++) {
 			if(alien_explosion_12x10[y] & (BIT_MASK << x)) {
-										screen_draw_double_pixel(x+dying_point.x,y+dying_point.y,erase?SCREEN_BLACK:SCREEN_WHITE);
-									}
+				screen_draw_double_pixel(x+dying_point.x,y+dying_point.y,erase?SCREEN_BLACK:SCREEN_WHITE);
+			}
 		}
 	}
 }
@@ -656,7 +656,6 @@ void aliens_update_position() {
 }
 
 void aliens_score_tick(uint8_t alien){
-
 	if(alien<=ALIENS_TOP_CLASS){
 		text_add_score(ALIENS_TOP_SCORE);
 	} else if(alien<=ALIENS_MIDDLE_CLASS){
