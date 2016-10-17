@@ -4,7 +4,6 @@ To do list
 
 -add alien explosion
 -bullet/alien collision artifacting
--saucer score
 -report
 
 Done
@@ -28,5 +27,6 @@ Done
 	- somehow the saucer fixed this, but now it has a bug
 -fix the clipping of bullets on the bunkers/tank
 -weird conditions when aliens get low
+-saucer score
 
 
