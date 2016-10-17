@@ -19,7 +19,7 @@
 #define BULLET_START_X globals_getTankPosition() + 6
 #define BULLET_START_Y 220 - 2*BULLET_HEIGHT
 
-#define BULLET_VARIATIONS 3
+#define BULLET_VARIATIONS 4
 
 #define BULLET_Y_BOUNDARY 10 + BULLET_HEIGHT
 
@@ -43,7 +43,8 @@
 #define BIT_MASK 0x1
 #define TYPE_0 0
 #define TYPE_1 1
-
+#define TYPE_2 2
+#define TYPE_3 3
 #define BULLET_ALIEN_HALFSPACE ALIEN_WIDTH/2 - 1
 #define packword3(b2,b1,b0) \
 		( (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
@@ -79,11 +80,21 @@ static const int32_t alien_bullet_down_3x5[] =
 
 static const int32_t alien_bullet_zig_3x5[] =
 {
-		packword3(1,0,0),
 		packword3(0,1,0),
 		packword3(0,0,1),
 		packword3(0,1,0),
-		packword3(1,0,0)
+		packword3(1,0,0),
+		packword3(0,1,0)
+};
+
+
+static const int32_t alien_bullet_zig_inv3x5[] =
+{
+		packword3(0,1,0),
+		packword3(1,0,0),
+		packword3(0,1,0),
+		packword3(0,0,1),
+		packword3(0,1,0)
 };
 
 static bool tankFired = false;
@@ -109,6 +120,8 @@ void bullets_update_bullets_pos(uint8_t alien) { // redo this function
 
 }
 
+
+
 uint32_t bullets_get_speed() {
 	return BULLET_SPEED;
 }
@@ -119,16 +132,18 @@ uint32_t bullets_get_height() {
 
 
 uint32_t alien_bullet_type[BULLET_VARIATIONS] = {
-		TYPE_0,TYPE_0,TYPE_0
+		TYPE_0,TYPE_0,TYPE_0,TYPE_0
 };
 
 uint16_t bullets_randMod11() {
 	return rand() % 11;	// Random number generated to add random sequence square
 }
 
-uint32_t bullets_randMod3() {
-	return rand() % 3;	// Random number generated to add random sequence square
+uint32_t bullets_randMod4() {
+	return rand() % 4;	// Random number generated to add random sequence square
 }
+
+
 
 void bullets_fire_tank() {
 	if(!tankFired & !globals_isGameOver()) {
@@ -188,7 +203,7 @@ void bullets_fire_aliens(){
 	for(i=0;i<GLOBALS_NUMBER_OF_ALIEN_BULLETS;i++){
 		if(!globals_getAlienBulletStatus(i) & !launch & !globals_isGameOver()) {
 			launch=true;
-			alien_bullet_type[i]=bullets_randMod3();
+			alien_bullet_type[i]=bullets_randMod4();
 //			xil_printf("\r\nSpawn %d",i);
 
 			// Reset global position on bullet
@@ -241,14 +256,22 @@ void bullets_draw_alien_bullet(uint8_t bullet,uint32_t type) {
 										screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
 									}
 								}
+			} else if (type==TYPE_2) {
+				if( (alien_bullet_zig_inv3x5[y]) & (BIT_MASK << x) ) {
+					xOffset = x + alienBulletPos.x;
+					yOffset = y + alienBulletPos.y;
+					if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_HOTPINK) {
+						screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
+					}
+				}
 			} else {
 				if( (alien_bullet_zig_3x5[y]) & (BIT_MASK << x) ) {
-									xOffset = x + alienBulletPos.x;
-									yOffset = y + alienBulletPos.y;
-									if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_HOTPINK) {
-										screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
-									}
-								}
+					xOffset = x + alienBulletPos.x;
+					yOffset = y + alienBulletPos.y;
+					if(screen_double_color_pixel(xOffset,yOffset)!=SCREEN_HOTPINK) {
+						screen_draw_double_pixel(xOffset,yOffset,SCREEN_HOTPINK);
+					}
+				}
 			}
 
 
@@ -278,7 +301,13 @@ void bullets_erase_alien_bullet(uint8_t bullet,uint32_t type) {
 					yOffset = y + alienBulletPos.y;
 					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
 				}
-			} else {
+			} else if (type==TYPE_2) {
+				if( (alien_bullet_zig_inv3x5[y]) & (BIT_MASK << x) ) {
+					xOffset = x + alienBulletPos.x;
+					yOffset = y + alienBulletPos.y;
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+				}
+			}else {
 				if( (alien_bullet_zig_3x5[y]) & (BIT_MASK << x) ) {
 					xOffset = x + alienBulletPos.x;
 					yOffset = y + alienBulletPos.y;
@@ -345,4 +374,26 @@ void bullets_remove_alien_bullet(uint8_t bullet) {
 	bullets_erase_alien_bullet(bullet,alien_bullet_type[bullet]);
 	globals_setAlienBulletStatus(bullet,false);
 	globals_setAlienBulletPosition(clear,bullet);
+}
+
+void bullets_rotate() {
+	uint32_t i;
+	for(i=0;i<BULLET_VARIATIONS;i++){
+		bullets_erase_alien_bullet(i,alien_bullet_type[i]);
+		switch(alien_bullet_type[i]){
+		case TYPE_0:
+			alien_bullet_type[i] = TYPE_1;
+			break;
+		case TYPE_1:
+			alien_bullet_type[i] = TYPE_0;
+			break;
+		case TYPE_2:
+			alien_bullet_type[i] = TYPE_3;
+			break;
+		default:
+			alien_bullet_type[i] = TYPE_2;
+			break;
+		}
+		bullets_draw_alien_bullet(i,alien_bullet_type[i]);
+	}
 }
