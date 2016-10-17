@@ -2,14 +2,8 @@ To do list
 
 
 
--bunker erode when the aliens run over it (faked it... test with automated bullets)
 -add alien explosion
-
--Figure out why the 4th bullet screws up the globals
-	- somehow the saucer fixed this, but now it has a bug
--fix the clipping of bullets on the bunkers/tank
-
--weird conditions when aliens get low
+-bullet/alien collision artifacting
 -report
 
 Done
@@ -28,3 +22,10 @@ Done
 -Tank respawns when game over instead of staying rubble
 -fire button doesn't always fire
 -game over conditions are buggy
+-bunker erode when the aliens run over it (faked it... test with automated bullets)
+-Figure out why the 4th bullet screws up the globals
+	- somehow the saucer fixed this, but now it has a bug
+-fix the clipping of bullets on the bunkers/tank
+-weird conditions when aliens get low
+
+
