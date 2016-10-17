@@ -25,7 +25,7 @@
 #define SAUCER_RIGHT_Y 15
 #define SAUCER_WIDTH 16
 #define SAUCER_HEIGHT 7
-#define SAUCER_MOVEMENT 8
+#define SAUCER_MOVEMENT 4
 
 #define SAUCER_POINT_VAR 4
 #define BIT_MASK 1

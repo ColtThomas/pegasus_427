@@ -28,11 +28,11 @@
 #define FRAMES_PER_SECOND 30
 #define TIMER_FRAME TIMER_SEC/FRAMES_PER_SECOND
 
-#define ALIEN_FRAME_COUNT 8 // update aliens every this many frames
+#define ALIEN_FRAME_COUNT 10 // update aliens every this many frames
 #define BULLET_FRAME_COUNT 1 // bullets update a little faster
 #define TANK_FRAME_COUNT 1 // allow updating the tank every this many frames
 #define TANK_DEATH_FRAME_COUNT 15 // change animation every this many frames
-#define SAUCER_FRAME_COUNT 6
+#define SAUCER_FRAME_COUNT 3
 #define SAUCER_SCORE_FRAME_COUNT 30
 #define ALIEN_DEATH_FRAME_COUNT 2 // change animation every this many frames
 
@@ -40,8 +40,8 @@
 #define NEW_BULLET_SPACING 5 // ensures that new bullets are at least this many frames apart
 #define NEW_BULLET_TIME (rand() % NEW_BULLET_MAX_RAND + 1)*NEW_BULLET_SPACING
 
-#define NEW_SAUCER_MAX_RAND 10 // create a new saucer at a max of this many spaces
-#define NEW_SAUCER_SPACING 30 // ensures that new saucer are at least this many frames apart
+#define NEW_SAUCER_MAX_RAND 8 // create a new saucer at a max of this many spaces
+#define NEW_SAUCER_SPACING 60 // ensures that new saucer are at least this many frames apart
 #define NEW_SAUCER_TIME (rand() % NEW_SAUCER_MAX_RAND + 1)*NEW_SAUCER_SPACING
 
 // Masks used to identify the push buttons
@@ -51,6 +51,8 @@ const uint8_t BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 #define BTN_RIGHT 1
 #define BTN_DOWN 2
 #define BTN_UP 4
+
+#define BOTTOM_LINE_Y SCREEN_HEIGHT - 10
 
 u32 buttonStateReg; // Read the button values with this variable
 
@@ -115,16 +117,15 @@ void timer_interrupt_handler() {
 		if(saucer_time == 0 && game_started && !tank_is_dying()) {
 			saucer_time = NEW_SAUCER_TIME;
 			saucer_spawn();
-		//	xil_printf("spawn saucer\r\n");
 		}
 
 		// reset frame timer
 		frame_timer = 0;
 
-		// move saucer, if spawned
-//		if(frame_count % SAUCER_FRAME_COUNT == 0 && game_started && !tank_is_dying() && saucer_is_spawned()) {
-//			saucer_update();
-//		}
+		 //move saucer, if spawned
+		if(frame_count % SAUCER_FRAME_COUNT == 0 && game_started && !tank_is_dying() && saucer_is_spawned()) {
+			saucer_update();
+		}
 
 		//update all bullet positions
 				if(frame_count % BULLET_FRAME_COUNT == 0 && game_started && !tank_is_dying()) {
@@ -229,12 +230,21 @@ int32_t core_init (void) {
 	return 0;
 }
 
+void draw_bottom_line() {
+	int32_t x, y;
+	y = BOTTOM_LINE_Y;
+	for(x = 0; x < SCREEN_WIDTH; x++) {
+		screen_draw_double_pixel(x, y, SCREEN_GREEN);
+	}
+}
+
 void core_draw_initial() {
 	tank_draw_initial();
 	tank_draw_lives_initial();
 	aliens_draw_initial();
 	bunkers_draw_initial();
 	text_draw_score();
+	draw_bottom_line();
 }
 
 void core_run() {

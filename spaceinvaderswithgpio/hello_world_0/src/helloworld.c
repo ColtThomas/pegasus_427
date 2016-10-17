@@ -29,7 +29,7 @@
 
 int main()
 {
-
+	int64_t idle_count;
 	// calls initializer functions, then runs game core
 	init_platform();
 	screen_init();
@@ -38,7 +38,9 @@ int main()
 	core_init();
 	core_draw_initial();//run_test();
 	core_run();
-	while(1);
+	while(1) {
+		xil_printf("\r\n%d",idle_count++);
+	}
 	cleanup_platform();
 
 	return 0;
