@@ -34,6 +34,7 @@
 #define TANK_DEATH_FRAME_COUNT 15 // change animation every this many frames
 #define SAUCER_FRAME_COUNT 6
 #define SAUCER_SCORE_FRAME_COUNT 30
+#define ALIEN_DEATH_FRAME_COUNT 2 // change animation every this many frames
 
 #define NEW_BULLET_MAX_RAND 50 // create a new bullet at a max of this many spaces
 #define NEW_BULLET_SPACING 5 // ensures that new bullets are at least this many frames apart
@@ -158,6 +159,12 @@ void timer_interrupt_handler() {
 		if(tank_is_dying() && frame_count % TANK_DEATH_FRAME_COUNT == 0) {
 			tank_update_death();
 		}
+		// animate alien death
+		if(aliens_is_dying() && frame_count % ALIEN_DEATH_FRAME_COUNT == 0) {
+			aliens_update_death();
+		}
+
+		// if needed, erase saucer score after given time
 		if(text_saucer_score_begun()) {
 			if(saucer_score_timer++ >= SAUCER_SCORE_FRAME_COUNT) { // leave the score there for a number of frames
 				text_print_saucer_score(true); //erase saucer score

@@ -135,6 +135,10 @@ static const int32_t alien_bottom_out_12x8[] =
 		packword12(1,1,0,0,0,0,0,0,0,0,1,1)
 };
 
+static bool is_dying = false;
+static uint8_t dying_alien;
+point_t dying_point;
+
 // draws the aliens in their initial positions on the board.
 void aliens_draw_initial() {
 	int32_t i;
@@ -211,6 +215,58 @@ void move_right_border(int8_t column, int32_t *right_border) {
 	else {
 		*right_border += ALIEN_SPACING;
 		move_right_border(column-COLUMN_OFFSET, right_border);
+	}
+}
+
+void aliens_erase(uint8_t alien) {
+	point_t position;
+	int32_t x, y;
+	position.x = globals_getAlienBlockPosition().x + ALIEN_SPACING*(alien%ALIENS_PER_ROW);
+	position.y = globals_getAlienBlockPosition().y + ALIEN_SPACING*(alien/ALIENS_PER_ROW);
+	for(x = 0; x < ALIEN_WIDTH; x++) {
+		for(y = 0; y < ALIEN_HEIGHT; y++) {
+			if(alien < TOP_ROW && aliens_legs_in) {
+				if(alien_top_in_12x8[y] & (BIT_MASK << x)) {
+					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
+				}
+			}
+			else if (alien < MIDDLE_ROW && aliens_legs_in) {
+				if(alien_middle_in_12x8[y] & (BIT_MASK << x)) {
+					screen_draw_double_pixel(x+position.x+X_OFFSET,y+position.y,SCREEN_BLACK); // this actually draws a mirror image, so the +1 corrects for that to avoid later movement problems.
+				}
+			}
+			else if (alien < BOTTOM_ROW && aliens_legs_in) {
+				if(alien_bottom_in_12x8[y] & (BIT_MASK << x)) {
+					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
+				}
+			}
+			if(alien < TOP_ROW && !aliens_legs_in) {
+				if(alien_top_out_12x8[y] & (BIT_MASK << x)) {
+					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
+				}
+			}
+			else if (alien < MIDDLE_ROW && !aliens_legs_in) {
+				if(alien_middle_out_12x8[y] & (BIT_MASK << x)) {
+					screen_draw_double_pixel(x+position.x+X_OFFSET,y+position.y,SCREEN_BLACK); // this actually draws a mirror image, so the +1 corrects for that to avoid later movement problems.
+				}
+			}
+			else if (alien < BOTTOM_ROW && !aliens_legs_in) {
+				if(alien_bottom_out_12x8[y] & (BIT_MASK << x)) {
+					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
+				}
+			}
+		}
+	}
+}
+
+void aliens_draw_explosion(bool erase) {
+		int32_t x, y;
+	for(x = 0; x < ALIEN_WIDTH; x++) {
+		for(y = 0; y < ALIEN_HEIGHT; y++) {
+			if(alien_explosion_12x10[y] & (BIT_MASK << x)) {
+										screen_draw_double_pixel(x+dying_point.x,y+dying_point.y,erase?SCREEN_BLACK:SCREEN_WHITE);
+									}
+		}
 	}
 }
 
@@ -627,50 +683,21 @@ void aliens_update_frontline() {
 
 // kill and blank the given alien
 void aliens_kill_alien(uint8_t alien) {
+	// set up for animation
+	is_dying = true;
+	dying_alien = alien;
+	dying_point.x = globals_getAlienBlockPosition().x + ALIEN_SPACING*(alien%ALIENS_PER_ROW);
+	dying_point.y = globals_getAlienBlockPosition().y + ALIEN_SPACING*(alien/ALIENS_PER_ROW);
+
+
 	globals_killAlien(alien); // kills the alien in the globals.
 	aliens_score_tick(alien); // add respective score
 	bullets_update_bullets_pos(alien); // shift the bullet spawn points
 	aliens_update_frontline();
 
 	// but... we still have to undraw him.
-	point_t position;
-	int32_t x, y;
-	position.x = globals_getAlienBlockPosition().x + ALIEN_SPACING*(alien%ALIENS_PER_ROW);
-	position.y = globals_getAlienBlockPosition().y + ALIEN_SPACING*(alien/ALIENS_PER_ROW);
-	for(x = 0; x < ALIEN_WIDTH; x++) {
-		for(y = 0; y < ALIEN_HEIGHT; y++) {
-			if(alien < TOP_ROW && aliens_legs_in) {
-				if(alien_top_in_12x8[y] & (BIT_MASK << x)) {
-					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
-				}
-			}
-			else if (alien < MIDDLE_ROW && aliens_legs_in) {
-				if(alien_middle_in_12x8[y] & (BIT_MASK << x)) {
-					screen_draw_double_pixel(x+position.x+X_OFFSET,y+position.y,SCREEN_BLACK); // this actually draws a mirror image, so the +1 corrects for that to avoid later movement problems.
-				}
-			}
-			else if (alien < BOTTOM_ROW && aliens_legs_in) {
-				if(alien_bottom_in_12x8[y] & (BIT_MASK << x)) {
-					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
-				}
-			}
-			if(alien < TOP_ROW && !aliens_legs_in) {
-				if(alien_top_out_12x8[y] & (BIT_MASK << x)) {
-					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
-				}
-			}
-			else if (alien < MIDDLE_ROW && !aliens_legs_in) {
-				if(alien_middle_out_12x8[y] & (BIT_MASK << x)) {
-					screen_draw_double_pixel(x+position.x+X_OFFSET,y+position.y,SCREEN_BLACK); // this actually draws a mirror image, so the +1 corrects for that to avoid later movement problems.
-				}
-			}
-			else if (alien < BOTTOM_ROW && !aliens_legs_in) {
-				if(alien_bottom_out_12x8[y] & (BIT_MASK << x)) {
-					screen_draw_double_pixel(x+position.x,y+position.y,SCREEN_BLACK);
-				}
-			}
-		}
-	}
+	aliens_erase(alien);
+
 
 	// and possibly end the game
 	if(globals_allAliensDead()) {
@@ -745,3 +772,32 @@ bool aliens_landed() {
 	}
 }
 
+bool aliens_is_dying() {
+	return is_dying;
+}
+
+#define DEATH_PHASE_0 0
+#define DEATH_PHASE_1 1
+#define DEATH_PHASE_2 2
+#define DEATH_PHASE_3 3
+#define DEATH_PHASE_4 4
+
+void aliens_update_death() {
+	static int8_t death_phase = 0;
+	switch(death_phase) {
+	case DEATH_PHASE_0:
+		aliens_erase(dying_alien); // write this
+		break;
+	case DEATH_PHASE_1:
+		aliens_draw_explosion(false); // draw explosion
+		break;
+	case DEATH_PHASE_2:
+		//aliens_draw(); // leave explosion there an extra moment
+		break;
+	case DEATH_PHASE_3: // final animation phase
+		aliens_draw_explosion(true); // erase explosion
+		death_phase = -1;
+		is_dying = false;
+	}
+	death_phase++;
+}

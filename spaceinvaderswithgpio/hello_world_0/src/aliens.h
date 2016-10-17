@@ -29,4 +29,7 @@ bool aliens_check_hit(point_t pos);
 
 bool aliens_landed(); // Find a place for this
 
+bool aliens_is_dying();
+void aliens_update_death();
+
 #endif /* ALIENS_H_ */
