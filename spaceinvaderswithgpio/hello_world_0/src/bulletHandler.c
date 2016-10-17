@@ -49,14 +49,15 @@ uint8_t hitType;
 
 		// remove the bullet
 		bullets_remove_tank_bullet();
-		globals_setAlienBulletStatus(i,false); // Wait, do we need this?
+		//globals_setAlienBulletStatus(i,false); // Wait, do we need this? I don't think so.
 		globals_setTankBulletPosition(clear);
 	}
 
 	//check alien hit
 	if(aliens_check_hit(nextPos)) {
+		//xil_printf("Hit!");
 		bullets_remove_tank_bullet();
-		globals_setAlienBulletStatus(i,false);
+	//	globals_setAlienBulletStatus(i,false);
 		globals_setTankBulletPosition(clear);
 	}
 	if (saucer_check_hit(nextPos)){

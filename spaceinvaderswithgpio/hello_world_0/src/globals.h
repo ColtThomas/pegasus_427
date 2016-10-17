@@ -72,6 +72,7 @@ uint8_t globals_getBunkerErosionState(uint8_t bunker, uint8_t block);
 // mark the specified alien as dead.
 // does not undraw! use aliens_killAlien for that
 void globals_killAlien(uint8_t alien);
+bool globals_allAliensDead();
 
 bool globals_isDeadAlien(uint8_t alien);
 
@@ -86,5 +87,7 @@ unsigned char globals_getGameScore();
 
 void globals_toggleSaucer();
 bool globals_saucerSpawned() ;
+
+
 
 #endif /* GLOBALS_H_ */

@@ -8,6 +8,7 @@
 #include<stdbool.h>
 #include<stdint.h>
 #include <stdlib.h>
+#include "core.h"
 //#include "core.h"
 
 #define INITIAL_TANK_POS 152
@@ -27,8 +28,11 @@ static bool gameOver;
 static bool saucerSpawned;
 static uint32_t alienBlockFrontLine;
 static int8_t alienBlockRowCount;
+static int8_t numberOfDeadAliens;
+
 //initializes globals arrays and structs
 void globals_init() {
+	numberOfDeadAliens = 0;
 	tankPosition = INITIAL_TANK_POS;
 	tankBulletPosition.x = GLOBALS_NULL_LOCATION;
 	tankBulletPosition.y = GLOBALS_NULL_LOCATION;
@@ -133,7 +137,10 @@ uint8_t globals_getBunkerErosionState(uint8_t bunker, uint8_t block) {
 }
 
 void globals_killAlien(uint8_t alien) {
-	if(alien < GLOBALS_NUMBER_OF_ALIENS) aliens_dead[alien] = true;
+	if(alien < GLOBALS_NUMBER_OF_ALIENS) {
+		aliens_dead[alien] = true;
+		numberOfDeadAliens++;
+	}
 }
 
 bool globals_isDeadAlien(uint8_t alien) {
@@ -166,3 +173,6 @@ bool globals_saucerSpawned() {
 	return saucerSpawned;
 }
 
+bool globals_allAliensDead() {
+	return numberOfDeadAliens == GLOBALS_NUMBER_OF_ALIENS;
+}

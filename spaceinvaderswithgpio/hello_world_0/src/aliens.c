@@ -170,6 +170,8 @@ void aliens_draw_initial() {
 	}
 }
 bool row_dead(int8_t row) {
+	xil_printf("row_dead %d ", row);
+	if(row <= 0) return true;
 	bool all_aliens_dead = true;
 	int32_t i;
 //	xil_printf("\r\nChecking row %d",row);
@@ -611,30 +613,35 @@ void aliens_score_tick(uint8_t alien){
 }
 
 void aliens_update_frontline() {
-//	bool row_dead(int8_t row);
-
 	int8_t rowCount = globals_getAlienBlockRowCount();
-//	xil_printf("\r\nPassing in %d",rowCount);
+
 	uint32_t frontLineY = globals_getAlienBlockFrontLine();
-	while(row_dead(rowCount)/* && (rowCount>0)*/){
+
+	while(row_dead(rowCount) && (rowCount>0)){
+		xil_printf("while");
 		rowCount = globals_getAlienBlockRowCount()-1;
 		globals_setAlienBlockRowCount(rowCount);
-//		xil_printf("\r\nSet Front line: %d",frontLineY-ALIEN_SPACING);
+
 		globals_setAlienBlockFrontLine(frontLineY - ALIEN_SPACING);
-		xil_printf("\r\nDecremented: %d",globals_getAlienBlockFrontLine());
-//		xil_printf("\r\nDecrement Row %d ",globals_getAlienBlockRowCount());
+
 	}
 }
 
 
 // kill and blank the given alien
 void aliens_kill_alien(uint8_t alien) {
+//	xil_printf("killing alien");
 	globals_killAlien(alien); // kills the alien in the globals.
+//	xil_printf("globally killed");
 	aliens_score_tick(alien); // add respective score
+//	xil_printf("score ticked");
 	bullets_update_bullets_pos(alien); // shift the bullet spawn points
+	xil_printf("\r\nbullets updated");
 	aliens_update_frontline();
+	xil_printf("frontline updated");
 
 	// but... we still have to undraw him.
+	xil_printf("undrawing alien");
 	point_t position;
 	int32_t x, y;
 	position.x = globals_getAlienBlockPosition().x + ALIEN_SPACING*(alien%ALIENS_PER_ROW);
@@ -672,6 +679,13 @@ void aliens_kill_alien(uint8_t alien) {
 				}
 			}
 		}
+	}
+
+	// and possibly end the game
+	xil_printf("all dead?");
+	if(globals_allAliensDead()) {
+		xil_printf("ending game");
+		globals_setGameStatus(true); // end the game
 	}
 }
 
@@ -713,6 +727,7 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 //	xil_printf("\r\nAlien number: %d",column+row);
 	uint8_t alien = column+row;
 	if(hit && !globals_isDeadAlien(alien)) {
+//		xil_printf("kill alien!");
 		aliens_kill_alien(alien);
 	} else {
 		hit = false;

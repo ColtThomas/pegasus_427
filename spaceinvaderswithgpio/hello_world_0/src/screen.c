@@ -17,6 +17,7 @@
 #include "globals.h"
 #include<stdint.h>
 #include "alienHandler.h"
+#include "saucer.h"
 
 #define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
@@ -164,8 +165,8 @@ void screen_draw_double_pixel(int32_t x, int32_t y, int32_t color) {
 // draws space_invaders basics to screen, then awaits test input from UART
 void screen_run_test() {
 	char input;
-	int32_t i;
-	uint8_t input_number;
+//	int32_t i;
+//	uint8_t input_number;
 
 	// initial draws
 	tank_draw_initial();
@@ -175,7 +176,7 @@ void screen_run_test() {
 	text_draw_score();
 	uint32_t j;
 
-	point_t testPoint;
+//	point_t testPoint;
 	// input/response loop
 	while (1) {
 		input = getchar();

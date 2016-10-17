@@ -166,6 +166,7 @@ void timer_interrupt_handler() {
 // Question: Why is the timer_interrupt_handler() called after ack'ing the interrupt controller
 // but pb_interrupt_handler() is called before ack'ing the interrupt controller?
 void interrupt_handler_dispatcher(void* ptr) {
+//	xil_printf("int");
 	int intc_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR);
 	buttonStateReg = XGpio_DiscreteRead(&gpPB, 1); // read buttons
 	// Check the FIT interrupt first.
@@ -224,6 +225,8 @@ void core_run() {
 }
 
 void core_end_game() {
+	xil_printf("core end game");
 	game_started = false;
-	microblaze_disable_interrupts();
+	//microblaze_disable_interrupts();
+	XIntc_MasterDisable(XPAR_INTC_0_BASEADDR);
 }
