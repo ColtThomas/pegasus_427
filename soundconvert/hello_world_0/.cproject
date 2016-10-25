@@ -91,9 +91,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="xilinx.gnu.mb.exe.debug.630153398.158362935" name="ctosound.c" rcbsApplicability="disable" resourcePath="src/sound/ctosound.c" toolsToInvoke="xilinx.gnu.mb.c.toolchain.compiler.debug.912850611.1231333200">
-						<tool id="xilinx.gnu.mb.c.toolchain.compiler.debug.912850611.1231333200" name="MicroBlaze gcc compiler" superClass="xilinx.gnu.mb.c.toolchain.compiler.debug.912850611"/>
-					</fileInfo>
 					<sourceEntries>
 						<entry excluding="src/sound/ctosound.c|src/sound/soundconvert.c|src/helloworld.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>

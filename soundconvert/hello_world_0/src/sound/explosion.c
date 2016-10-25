@@ -1,7 +1,7 @@
 // explosion file generated from wav file by Dallen Ford and Colt Thomas.
 
-#include<stdint.h>
 
+#include "explosion.h"
 uint32_t explosionRate = 11025;
 
 uint32_t explosionFrames = 8728;
@@ -1099,3 +1099,16 @@ uint32_t explosion[] = {
 125,125,125,125,125,123,120,125,
 120,125,128,128,128,129,125,129
 };
+
+
+uint32_t getExplosionRate() {
+	return explosionRate;
+}
+
+uint32_t getExplosionFrames() {
+	return explosionFrames;
+}
+
+uint32_t * getExplosionData() {
+	return explosion;
+}
