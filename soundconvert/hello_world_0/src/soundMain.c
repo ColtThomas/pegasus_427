@@ -16,6 +16,7 @@
 #include "sound.h"
 #include <xbasic_types.h>
 #include <xio.h>
+#include "xparameters.h"
 int main()
 {
 	// calls initializer functions, then runs sount test
@@ -23,16 +24,12 @@ int main()
 
 	// AC-97 Inits per instruction from lab 5 overview
 
-//	XAC97_mSetControl(XPAR_AUDIO_CODEC_BASEADDR, AC97_ENABLE_RESET_AC97);
-//	usleep(100);
-//	XAC97_mSetControl(XPAR_AUDIO_CODEC_BASEADDR, AC97_DISABLE_RESET_AC97);
-//	usleep(100);
-//	XAC97_SoftReset(XPAR_AUDIO_CODEC_BASEADDR);
-
-	XAC97_HardReset(XPAR_AUDIO_CODEC_BASEADDR);
+	XAC97_HardReset(XPAR_AXI_AC97_0_BASEADDR);
 
 	// This will do what you think it will do
+	xil_printf("\r\nderp");
 	run_sound_test();
+	xil_printf("\r\ndone");
 
 	cleanup_platform();
 

@@ -10,7 +10,8 @@ src/soundMain.d src/soundMain.o: ../src/soundMain.c ../src/platform.h \
   ../../hello_world_bsp_0/microblaze_0/include/xgpio_l.h \
   ../../hello_world_bsp_0/microblaze_0/include/xil_io.h \
   ../../hello_world_bsp_0/microblaze_0/include/mb_interface.h \
-  ../src/globals.h ../src/sound.h
+  ../src/globals.h ../src/sound.h \
+  ../../hello_world_bsp_0/microblaze_0/include/xparameters.h
 
 ../src/platform.h:
 
@@ -41,3 +42,5 @@ src/soundMain.d src/soundMain.o: ../src/soundMain.c ../src/platform.h \
 ../src/globals.h:
 
 ../src/sound.h:
+
+../../hello_world_bsp_0/microblaze_0/include/xparameters.h:

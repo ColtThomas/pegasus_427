@@ -60,7 +60,7 @@
 #define AC97_3DControl          0x22
 #define AC97_PowerDown          0x26
 #define AC97_ExtendedAudioID    0x28
-#define AC97_ExtendedAudioStat  0x2A
+#define AC97_ExtendedAudioStat  0x2A // This is our Variable Rate Audio (VRA)...?
 #define AC97_PCM_DAC_Rate       0x2C
 #define AC97_PCM_ADC_Rate       0x32
 #define AC97_PCM_DAC_Rate0      0x78

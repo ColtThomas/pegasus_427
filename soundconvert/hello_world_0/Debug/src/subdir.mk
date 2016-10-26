@@ -10,6 +10,7 @@ C_SRCS += \
 ../src/bullets.c \
 ../src/bunkers.c \
 ../src/core.c \
+../src/explosion.c \
 ../src/globals.c \
 ../src/platform.c \
 ../src/saucer.c \
@@ -30,6 +31,7 @@ OBJS += \
 ./src/bullets.o \
 ./src/bunkers.o \
 ./src/core.o \
+./src/explosion.o \
 ./src/globals.o \
 ./src/platform.o \
 ./src/saucer.o \
@@ -47,6 +49,7 @@ C_DEPS += \
 ./src/bullets.d \
 ./src/bunkers.d \
 ./src/core.d \
+./src/explosion.d \
 ./src/globals.d \
 ./src/platform.d \
 ./src/saucer.d \
