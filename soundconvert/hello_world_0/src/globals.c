@@ -29,7 +29,8 @@ static bool saucerSpawned;
 static uint32_t alienBlockFrontLine;
 static int8_t alienBlockRowCount;
 static int8_t numberOfDeadAliens;
-
+static uint32_t * currentSoundData; // Takes the next 256 samples ready to put into the FIFO
+static bool soundStatus;
 //initializes globals arrays and structs
 void globals_init() {
 	numberOfDeadAliens = 0;
@@ -175,4 +176,19 @@ bool globals_saucerSpawned() {
 
 bool globals_allAliensDead() {
 	return numberOfDeadAliens == GLOBALS_NUMBER_OF_ALIENS;
+}
+
+void globals_setNextSoundSamples(uint32_t * data) {
+	currentSoundData = data;
+}
+
+uint32_t * globals_getNextSoundSamples() {
+	return currentSoundData;
+}
+
+bool globals_getSoundStatus() {
+	return soundStatus;
+}
+void globals_setSoundStatus(bool status){
+	soundStatus = status;
 }

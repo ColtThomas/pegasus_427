@@ -89,6 +89,9 @@ unsigned char globals_getGameScore();
 void globals_toggleSaucer();
 bool globals_saucerSpawned() ;
 
-
-
+// Global functions using for setting the next sound samples
+void globals_setNextSoundSamples(uint32_t * data);
+uint32_t * globals_getNextSoundSamples();
+bool globals_getSoundStatus(); // indicates whether the FIFO is ready to receive sound
+void globals_setSoundStatus(bool status); // set by the interrupt controller for sound
 #endif /* GLOBALS_H_ */

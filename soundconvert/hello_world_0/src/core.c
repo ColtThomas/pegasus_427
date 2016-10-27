@@ -21,7 +21,7 @@
 #include "alienHandler.h"
 #include "saucer.h"
 #include <stdlib.h>
-
+#include "xac97_l.h"
 #define TIMER_SEC 100 // timer period is 10ms, so 100 periods is one second
 #define NUMBER_OF_BUTTONS 5
 
@@ -53,6 +53,8 @@ const uint8_t BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 #define BTN_UP 4
 
 #define BOTTOM_LINE_Y SCREEN_HEIGHT - 10
+
+#define AC97_MAX_SAMPLES 256
 
 u32 buttonStateReg; // Read the button values with this variable
 
@@ -179,6 +181,20 @@ void timer_interrupt_handler() {
 	}
 }
 
+void ac97_interrupt_handler() {
+	uint32_t * data;
+	uint32_t rate;
+	uint32_t frames;
+	uint32_t i;
+	rate = getExplosionRate();
+	frames = getExplosionFrames();
+	data = getExplosionData();
+	for(i=0;i<AC97_MAX_SAMPLES;i++){
+		XAC97_mSetInFifoData(XPAR_AXI_AC97_0_BASEADDR, data[i]);
+	}
+	xil_printf("\r\nFired");
+}
+
 // Main interrupt handler, queries the interrupt controller to see what peripheral
 // fired the interrupt and then dispatches the corresponding interrupt handler.
 // This routine acks the interrupt at the controller level but the peripheral
@@ -195,9 +211,16 @@ void interrupt_handler_dispatcher(void* ptr) {
 		timer_interrupt_handler();
 		//xil_printf("exit interrupt\r\n");
 	}
+	// Check the push buttons
 	if (intc_status & XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK){
 		XGpio_InterruptClear(&gpPB, 0xFFFFFFFF); // ack this interrupt, but we do nothing with it.
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK);
+	}
+	// Check the AC97 interrupts
+	if (intc_status & XPAR_AXI_AC97_0_INTERRUPT_MASK){
+		ac97_interrupt_handler();
+		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_AXI_AC97_0_INTERRUPT_MASK);
+		XAC97_EnableInterupts(XPAR_AXI_AC97_0_BASEADDR);
 	}
 }
 
@@ -216,8 +239,9 @@ int32_t core_init (void) {
 	XGpio_InterruptEnable(&gpPB, 0xFFFFFFFF);
 
 	microblaze_register_handler(interrupt_handler_dispatcher, NULL);
+	// Enable the FIT, the GPIO and the AC97
 	XIntc_EnableIntr(XPAR_INTC_0_BASEADDR,
-			(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK));
+			(XPAR_FIT_TIMER_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
 	XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
 
 	// seed random for bullets

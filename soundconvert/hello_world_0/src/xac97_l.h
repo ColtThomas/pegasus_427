@@ -282,4 +282,5 @@ void XAC97_WriteFifo(Xuint32 BaseAddress, Xuint32 Sample);
 Xuint32 XAC97_ReadFifo(Xuint32 BaseAddress);
 void XAC97_ClearFifos(Xuint32 BaseAddress);
 
+void XAC97_EnableInterupts(Xuint32 BaseAddress);
 #endif
