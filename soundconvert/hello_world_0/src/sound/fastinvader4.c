@@ -145,3 +145,15 @@ uint32_t fastinvader4[] = {
 116,111,105,111,116,111,111,116,
 111,116,111,111,116,111,116,111
 };
+
+uint32_t getFastinvader4Rate() {
+	return fastinvader4Rate;
+}
+
+uint32_t getFastinvader4Frames() {
+	return fastinvader4Frames;
+}
+
+uint32_t * getFastinvader4Data() {
+	return fastinvader4;
+}

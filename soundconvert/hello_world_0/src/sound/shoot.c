@@ -518,3 +518,16 @@ uint32_t shoot[] = {
 125,125,125,125,129,125,125,125,
 126,128,128,129,125,129,125,125
 };
+
+
+uint32_t getShootRate() {
+	return shootRate;
+}
+
+uint32_t getShootFrames() {
+	return shootFrames;
+}
+
+uint32_t * getShootData() {
+	return shoot;
+}
