@@ -180,5 +180,4 @@ void XAC97_ClearFifos(Xuint32 BaseAddress) {
 }
 void XAC97_EnableInterupts(Xuint32 BaseAddress) {
 	XAC97_mSetControl(BaseAddress, AC97_ENABLE_IN_FIFO_INTERRUPT);
-	xil_printf("\r\ninterrupts enabled");
 }

@@ -39,7 +39,7 @@ int main()
 	core_draw_initial();//run_test();
 	core_run();
 	while(1) {
-		xil_printf("\r\n%d",idle_count++);
+//		xil_printf("\r\n%d",idle_count++);
 	}
 	cleanup_platform();
 

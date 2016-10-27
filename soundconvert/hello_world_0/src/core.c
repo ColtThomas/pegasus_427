@@ -55,7 +55,7 @@ const uint8_t BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 #define BOTTOM_LINE_Y SCREEN_HEIGHT - 10
 
 #define AC97_MAX_SAMPLES 256
-
+#define AC97_RATE_DEFAULT 11025
 u32 buttonStateReg; // Read the button values with this variable
 
 XGpio gpLED;  // This is a handle for the LED GPIO block.
@@ -182,17 +182,38 @@ void timer_interrupt_handler() {
 }
 
 void ac97_interrupt_handler() {
+	// Consider making this more dynamic and having a variable rate
+
 	uint32_t * data;
-	uint32_t rate;
+//	uint32_t rate;
 	uint32_t frames;
 	uint32_t i;
-	rate = getExplosionRate();
-	frames = getExplosionFrames();
-	data = getExplosionData();
-	for(i=0;i<AC97_MAX_SAMPLES;i++){
-		XAC97_mSetInFifoData(XPAR_AXI_AC97_0_BASEADDR, data[i]);
+//	rate = getExplosionRate();
+	frames = globals_getCurrentSoundFrames();
+	data = globals_getNextSoundSamples();
+//	globals_setSoundStatus(false); // Don't let the data get overwritten
+
+	// The sound.c functions will set the status to false when ready to transmit
+	// so we don't waste computations the whole time
+	if(globals_getSoundStatus()){
+//		xil_printf("\r\nPlaying Sound...");
+		for(i=0;i<AC97_MAX_SAMPLES;i++){
+
+			if(globals_getCurrentFrameIndex()>=globals_getCurrentSoundFrames()) {
+				globals_setSoundStatus(false);
+				xil_printf("\r\nSound Done");
+				break;
+			} else {
+				XAC97_mSetInFifoData(XPAR_AXI_AC97_0_BASEADDR, data[globals_getCurrentFrameIndex()]);
+							globals_incrementCurrentFrameIndex();
+			}
+		}
+
+
+	} else {
+//		xil_printf("\r\nDenied");
+		XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
 	}
-	xil_printf("\r\nFired");
 }
 
 // Main interrupt handler, queries the interrupt controller to see what peripheral
@@ -225,6 +246,26 @@ void interrupt_handler_dispatcher(void* ptr) {
 }
 
 int32_t core_init (void) {
+	/*
+	 * Initialization for the AC97
+	 */
+	// AC-97 Inits per instruction from lab 5 overview
+	XAC97_HardReset(XPAR_AXI_AC97_0_BASEADDR);
+
+	// await the codec
+	XAC97_AwaitCodecReady(XPAR_AXI_AC97_0_BASEADDR);
+	// enable the VRA
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_ExtendedAudioStat, 1);
+	// Set the frequency on the DAC
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR,AC97_PCM_DAC_Rate,AC97_RATE_DEFAULT );
+	// Set the volume - base address, master volume address, volume level
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR,AC97_MasterVol, AC97_VOL_MAX);
+	//clear FIFO
+	XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
+	// set control bit to cause the IN_FIFO interrupts
+	//add AC97 mask to general INT masks
+	XAC97_EnableInterupts(XPAR_AXI_AC97_0_BASEADDR);
+
 	//init_platform();
 	// Initialize the GPIO peripherals.
 	int32_t success;

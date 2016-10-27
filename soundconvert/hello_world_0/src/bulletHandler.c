@@ -5,6 +5,7 @@
 #include "tank.h"
 #include "aliens.h"
 #include "saucer.h"
+#include "sound.h"
 // Consider ticking the tank before the bullets in case the tank collides with the bullets
 void bulletHandler_tick() {
 uint32_t i;
@@ -30,6 +31,9 @@ uint8_t hitType;
 				// remove the bullet
 				bullets_remove_alien_bullet(i);
 				globals_setAlienBulletStatus(i,false);
+
+				// play the sound
+				sound_playTankExplode();
 		}
 	}
 

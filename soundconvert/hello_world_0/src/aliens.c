@@ -284,6 +284,8 @@ void aliens_update_position() {
 	move_left_border(COLUMN_0, &left_border); // adjust left boundary if needed
 	move_right_border(COLUMN_10, &right_border); // adjust left boundary if needed
 
+	sound_playMarch();
+
 	if ((blockposition.x <= left_border && moving_left) || (blockposition.x >= right_border && !moving_left)) { // on side, needs to move down;
 		//move down
 		int32_t x, y, i;

@@ -9,6 +9,7 @@
 #include "screen.h"
 #include "globals.h"
 #include "bunkers.h"
+#include "sound.h"
 
 // Graphic contants for the bullets
 #define BULLET_HEIGHT 5
@@ -155,6 +156,7 @@ uint32_t bullets_randMod4() {
 void bullets_fire_tank() {
 	if(!tankFired & !globals_isGameOver()) {
 		tankFired = true;
+		sound_playShoot();
 
 		// Reset global position on bullet
 		point_t tankBulletPos;

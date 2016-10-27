@@ -77,7 +77,6 @@ int main()
 
 	uint32_t rate;
 	rate = getExplosionRate();
-
 	// AC-97 Inits per instruction from lab 5 overview
 	XAC97_HardReset(XPAR_AXI_AC97_0_BASEADDR);
 
