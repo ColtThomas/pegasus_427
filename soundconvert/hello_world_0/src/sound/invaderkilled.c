@@ -430,3 +430,16 @@ uint32_t invaderkilled[] = {
 116,126,154,145,108,111,115,141,
 150,110,116,122,133,158,115,111
 };
+
+
+uint32_t getInvaderkilledRate() {
+	return invaderkilledRate;
+}
+
+uint32_t getInvaderkilledFrames() {
+	return invaderkilledFrames;
+}
+
+uint32_t * getInvaderkilledData() {
+	return invaderkilled;
+}

@@ -3233,3 +3233,15 @@ uint32_t ufo_lowpitch[] = {
 128,128,128,128,128,128,128,128,
 128,128,128,128,128,128,128,128
 };
+
+uint32_t getUfo_lowpitchRate() {
+	return ufo_lowpitchRate;
+}
+
+uint32_t getUfo_lowpitchFrames() {
+	return ufo_lowpitchFrames;
+}
+
+uint32_t * getUfo_lowpitchData() {
+	return ufo_lowpitch;
+}

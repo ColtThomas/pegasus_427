@@ -30,7 +30,9 @@ static uint32_t alienBlockFrontLine;
 static int8_t alienBlockRowCount;
 static int8_t numberOfDeadAliens;
 static uint32_t * currentSoundData; // Takes the next 256 samples ready to put into the FIFO
-static bool soundStatus;
+static bool soundStatus; // Determines if you can write new data
+static uint32_t currentSoundFrames; // Frames in the stored sound
+static uint32_t currentFrameIndex; // Used to track which frame we are on
 //initializes globals arrays and structs
 void globals_init() {
 	numberOfDeadAliens = 0;
@@ -44,6 +46,7 @@ void globals_init() {
 	saucerPosition = GLOBALS_NULL_LOCATION;
 	saucerSpawned = false;
 	gameOver = false;
+	soundStatus = false;
 	int32_t i,j;
 	for(i = 0; i < GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
 		alienBulletPositions[i].x = GLOBALS_NULL_LOCATION;
@@ -192,3 +195,23 @@ bool globals_getSoundStatus() {
 void globals_setSoundStatus(bool status){
 	soundStatus = status;
 }
+
+void globals_setCurrentSoundFrames(uint32_t frames) {
+	currentSoundFrames = frames;
+}
+
+uint32_t globals_getCurrentSoundFrames() {
+	return currentSoundFrames;
+}
+
+void globals_setCurrentFrameIndex(uint32_t indx) {
+	currentFrameIndex = indx;
+}
+
+void globals_incrementCurrentFrameIndex() {
+	currentFrameIndex++;
+}
+uint32_t globals_getCurrentFrameIndex() {
+	return currentFrameIndex;
+}
+

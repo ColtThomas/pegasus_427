@@ -233,3 +233,15 @@ uint32_t ufo_highpitch[] = {
 164,238,223,202,174,112,96,78,
 0,34,54,99,143,160,166,183
 };
+
+uint32_t getUfo_highpitchRate() {
+	return ufo_highpitchRate;
+}
+
+uint32_t getUfo_highpitchFrames(){
+	return ufo_highpitchFrames;
+}
+
+uint32_t * getUfo_highpitchData() {
+	return ufo_highpitch;
+}

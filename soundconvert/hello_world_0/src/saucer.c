@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
-
+#include "sound.h"
 #define packword16(b15,b14,b13,b12,b11,b10,b9,b8,b7,b6,b5,b4,b3,b2,b1,b0) \
 		((b15 << 15) |(b14 << 14) |(b13 << 13) |(b12 << 12) |(b11 << 11) | (b10 << 10) | (b9  << 9 ) | (b8  << 8 ) |						  \
 				(b7  << 7 ) | (b6  << 6 ) | (b5  << 5 ) | (b4  << 4 ) | (b3  << 3 ) | (b2  << 2 ) | (b1  << 1 ) | (b0  << 0 ) )
@@ -115,11 +115,14 @@ void saucer_update() {
 		// see which side it spawned from
 
 		if(globals_getSaucerPosition()>=0 && globals_getSaucerPosition()<=SAUCER_RIGHT_X-SAUCER_MOVEMENT && leftBound==SAUCER_LEFT) { // MOVE RIGHT
+			sound_playSaucer();
 
 			globals_setSaucerPosition(globals_getSaucerPosition()+SAUCER_MOVEMENT);
 			saucer_redraw(leftBound);
 		}
 		else if(globals_getSaucerPosition()>=SAUCER_MOVEMENT && globals_getSaucerPosition()<=SAUCER_RIGHT_X && leftBound==SAUCER_RIGHT) { // MOVE LEFT
+			sound_playSaucer();
+
 			globals_setSaucerPosition(globals_getSaucerPosition()-SAUCER_MOVEMENT);
 			saucer_redraw(leftBound);
 		}
@@ -161,6 +164,8 @@ bool saucer_check_hit(point_t pos){
 		if((pos.x>=globals_getSaucerPosition()) && (pos.x<=globals_getSaucerPosition()+SAUCER_WIDTH)){
 			// erase the alien
 			saucer_erase();
+			//play sound
+			sound_playAlienExplode();
 			// print score
 			uint32_t score = saucerPoints[saucer_randMod3()];
 						// add random score

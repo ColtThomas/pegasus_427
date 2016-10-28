@@ -92,6 +92,14 @@ bool globals_saucerSpawned() ;
 // Global functions using for setting the next sound samples
 void globals_setNextSoundSamples(uint32_t * data);
 uint32_t * globals_getNextSoundSamples();
+
 bool globals_getSoundStatus(); // indicates whether the FIFO is ready to receive sound
 void globals_setSoundStatus(bool status); // set by the interrupt controller for sound
+
+void globals_setCurrentSoundFrames(uint32_t frames);
+uint32_t globals_getCurrentSoundFrames();
+
+void globals_setCurrentFrameIndex(uint32_t indx);
+void globals_incrementCurrentFrameIndex();
+uint32_t globals_getCurrentFrameIndex();
 #endif /* GLOBALS_H_ */

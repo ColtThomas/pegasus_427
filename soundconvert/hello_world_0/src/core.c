@@ -22,6 +22,7 @@
 #include "saucer.h"
 #include <stdlib.h>
 #include "xac97_l.h"
+#include "sound.h"
 #define TIMER_SEC 100 // timer period is 10ms, so 100 periods is one second
 #define NUMBER_OF_BUTTONS 5
 
@@ -68,6 +69,13 @@ bool volume_button_pressed() {
 	return (buttonStateReg & BTN_MASKS[BTN_UP]) || (buttonStateReg & BTN_MASKS[BTN_DOWN]);
 }
 
+bool up_button_pressed() {
+	return(buttonStateReg & BTN_MASKS[BTN_UP]);
+}
+
+bool down_button_pressed() {
+	return(buttonStateReg & BTN_MASKS[BTN_DOWN]);
+}
 // This function is used to distinguish the hour, minute and second buttons from the rest
 bool game_button_pressed() {
 	return (buttonStateReg & BTN_MASKS[BTN_LEFT]) || (buttonStateReg & BTN_MASKS[BTN_FIRE]) || (buttonStateReg & BTN_MASKS[BTN_RIGHT]);
@@ -175,6 +183,14 @@ void timer_interrupt_handler() {
 			}
 		}
 
+		// volume control
+		if(volume_button_pressed()) {
+			if(down_button_pressed()) {
+				sound_VolumeDown();
+			} else {
+				sound_VolumeUp();
+			}
+		}
 	//	xil_printf("%d\r\n",frame_count);
 		frame_count++;
 		//xil_printf("interrupt!");
@@ -201,7 +217,8 @@ void ac97_interrupt_handler() {
 
 			if(globals_getCurrentFrameIndex()>=globals_getCurrentSoundFrames()) {
 				globals_setSoundStatus(false);
-				xil_printf("\r\nSound Done");
+				XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
+//				xil_printf("\r\nSound Done");
 				break;
 			} else {
 				XAC97_mSetInFifoData(XPAR_AXI_AC97_0_BASEADDR, data[globals_getCurrentFrameIndex()]);
@@ -260,6 +277,8 @@ int32_t core_init (void) {
 	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR,AC97_PCM_DAC_Rate,AC97_RATE_DEFAULT );
 	// Set the volume - base address, master volume address, volume level
 	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR,AC97_MasterVol, AC97_VOL_MAX);
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_AuxOutVol, AC97_VOL_MAX);
+	XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_MasterVolMono, AC97_VOL_MAX);
 	//clear FIFO
 	XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
 	// set control bit to cause the IN_FIFO interrupts
@@ -318,6 +337,8 @@ void core_run() {
 
 void core_end_game() {
 	game_started = false;
+	// Turn off the sound so it doesn't awkwardly sputter
+	XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
 	// disable interrupts to prevent any further control or motion, thus completely ending the game.
 	XIntc_MasterDisable(XPAR_INTC_0_BASEADDR);
 }

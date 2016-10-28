@@ -284,7 +284,7 @@ void aliens_update_position() {
 	move_left_border(COLUMN_0, &left_border); // adjust left boundary if needed
 	move_right_border(COLUMN_10, &right_border); // adjust left boundary if needed
 
-	sound_playMarch();
+	sound_playMarch(); // Sound goes off every movement
 
 	if ((blockposition.x <= left_border && moving_left) || (blockposition.x >= right_border && !moving_left)) { // on side, needs to move down;
 		//move down
@@ -684,6 +684,7 @@ void aliens_update_frontline() {
 
 // kill and blank the given alien
 void aliens_kill_alien(uint8_t alien) {
+	sound_playAlienExplode(); // Sound for the kill
 	// set up for animation
 	is_dying = true;
 	dying_alien = alien;

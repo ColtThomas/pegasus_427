@@ -10,22 +10,34 @@
 #include "sound/fastinvader2.h"
 #include "sound/fastinvader3.h"
 #include "sound/fastinvader4.h"
+#include "sound/ufo_lowpitch.h"
+#include "sound/ufo_highpitch.h"
+#include "sound/invaderkilled.h"
 #include "xac97_l.h"
 #include "xparameters.h"
 #include "globals.h"
 #define ENABLE 1
 #define DISABLE 0
 #define AC97_MAX_SAMPLES 256
+#define AC97_VOL_INC_VAL AC97_LEFT_VOL_ATTN_1_5_DB
+
 // Plays the given .wav file.
 
 static uint32_t indexExplosion;
 static uint32_t indexShoot;
 static uint8_t stateMarch;
-
+static uint32_t indexSaucer = 0;
+static uint32_t indexInvader = 0;
+static uint32_t indexKill = 0;
+static uint32_t currentVolume;
 void sound_init() {
 	indexExplosion = 0;
 	indexShoot = 0;
 	stateMarch = 0;
+	indexSaucer = 0;
+	indexInvader = 0;
+	indexKill = 0;
+	currentVolume = AC97_VOL_MAX;
 }
 void sound_play() {
 	// For now, we will try to load the explosion.c file
@@ -117,15 +129,41 @@ void sound_playMarch() {
 	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
 		globals_setNextSoundSamples(data);
 		globals_setCurrentSoundFrames(frames);
-		globals_setCurrentFrameIndex(indexExplosion); // Reset the index
+		globals_setCurrentFrameIndex(indexInvader); // Reset the index
 		globals_setSoundStatus(true); // Call dibs on the AC97
 	}
 }
 void sound_playSaucer() {
+	uint32_t * data;
+	uint32_t rate;
+	uint32_t frames;
+	rate = getUfo_lowpitchRate();
+	frames = getUfo_lowpitchFrames();
+	data = getUfo_lowpitchData();
 
+	// Set the globals for the sound
+	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+		globals_setNextSoundSamples(data);
+		globals_setCurrentSoundFrames(frames);
+		globals_setCurrentFrameIndex(indexSaucer); // Reset the index
+		globals_setSoundStatus(true); // Call dibs on the AC97
+	}
 }
 void sound_playAlienExplode(){
+	uint32_t * data;
+	uint32_t rate;
+	uint32_t frames;
+	rate = getInvaderkilledRate();
+	frames = getInvaderkilledFrames();
+	data = getInvaderkilledData();
 
+	// Set the globals for the sound
+	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+		globals_setNextSoundSamples(data);
+		globals_setCurrentSoundFrames(frames);
+		globals_setCurrentFrameIndex(indexKill); // Reset the index
+		globals_setSoundStatus(true); // Call dibs on the AC97
+	}
 }
 void sound_playTankExplode() {
 	uint32_t * data;
@@ -161,5 +199,56 @@ void sound_playShoot() {
 	}
 }
 void sound_playSaucerExplode(){
+	uint32_t * data;
+	uint32_t rate;
+	uint32_t frames;
+	rate = getUfo_highpitchRate();
+	frames = getUfo_highpitchFrames();
+	data = getUfo_highpitchData();
 
+	// Set the globals for the sound
+	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+		globals_setNextSoundSamples(data);
+		globals_setCurrentSoundFrames(frames);
+		globals_setCurrentFrameIndex(indexSaucer); // Reset the index
+		globals_setSoundStatus(true); // Call dibs on the AC97
+	}
+}
+//AC97_VOL_MIN
+//AC97_VOL_MAX
+void sound_VolumeUp() {
+	//AC97_VOL_INC_VAL
+	if(currentVolume>AC97_VOL_MAX && currentVolume<=AC97_VOL_MIN) {
+		xil_printf("\r\nvolume: %d",currentVolume);
+
+		if(currentVolume<AC97_VOL_INC_VAL) {
+			currentVolume=AC97_VOL_MAX; // in case of overflow
+		} else {
+			currentVolume = currentVolume-AC97_VOL_INC_VAL;
+		}
+
+		xil_printf("\r\nvolume: %d",currentVolume);
+
+		XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR,AC97_MasterVol, currentVolume);
+		XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_AuxOutVol, currentVolume);
+		XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_MasterVolMono, currentVolume);
+
+	} else {
+		currentVolume=AC97_VOL_MAX;
+	}
+}
+
+void sound_VolumeDown() {
+	if(currentVolume>=AC97_VOL_MAX && currentVolume<AC97_VOL_MIN) {
+		xil_printf("\r\nvolume: %d",currentVolume);
+
+		currentVolume = currentVolume+AC97_VOL_INC_VAL;
+		xil_printf("\r\nvolume: %d",currentVolume);
+
+		XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR,AC97_MasterVol, currentVolume);
+		XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_AuxOutVol, currentVolume);
+		XAC97_WriteReg(XPAR_AXI_AC97_0_BASEADDR, AC97_MasterVolMono, currentVolume);
+	} else {
+		currentVolume=AC97_VOL_MIN;
+	}
 }

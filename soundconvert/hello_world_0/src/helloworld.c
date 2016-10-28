@@ -26,6 +26,7 @@
 #include "screen.h"
 #include "globals.h"
 #include "core.h"
+#include "sound.h"
 
 int main()
 {
@@ -33,6 +34,7 @@ int main()
 	// calls initializer functions, then runs game core
 	init_platform();
 	screen_init();
+	sound_init();
 	globals_init();
 	screen_clear();
 	core_init();

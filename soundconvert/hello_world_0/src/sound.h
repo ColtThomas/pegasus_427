@@ -17,5 +17,6 @@ void sound_playTankExplode();
 void sound_playShoot();
 void sound_playSaucerExplode();
 
-
+void sound_VolumeUp();
+void sound_VolumeDown();
 #endif /* SOUND_H_ */
