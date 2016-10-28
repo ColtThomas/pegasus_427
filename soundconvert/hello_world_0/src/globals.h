@@ -31,6 +31,8 @@
 #define GLOBALS_NULL_LOCATION -1
 #define GLOBALS_ALIEN_BULLET_Y_MAX SCREEN_HEIGHT - 20
 
+enum globals_sound_priority_t {no_sound, alien_march, saucer_move, saucer_explode, alien_explode, bullet_shoot, tank_explode};
+
 // struct to hold x and y coordinates.
 // All globals functions that return point_t, it represents the top-left corner of the item.
 typedef struct {int16_t x; int16_t y;} point_t;
@@ -93,8 +95,8 @@ bool globals_saucerSpawned() ;
 void globals_setNextSoundSamples(uint32_t * data);
 uint32_t * globals_getNextSoundSamples();
 
-bool globals_getSoundStatus(); // indicates whether the FIFO is ready to receive sound
-void globals_setSoundStatus(bool status); // set by the interrupt controller for sound
+enum globals_sound_priority_t globals_getSoundStatus(); // indicates whether the FIFO is ready to receive sound
+void globals_setSoundStatus(enum globals_sound_priority_t status); // set by the interrupt controller for sound
 
 void globals_setCurrentSoundFrames(uint32_t frames);
 uint32_t globals_getCurrentSoundFrames();

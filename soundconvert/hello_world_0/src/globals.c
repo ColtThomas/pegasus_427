@@ -30,7 +30,7 @@ static uint32_t alienBlockFrontLine;
 static int8_t alienBlockRowCount;
 static int8_t numberOfDeadAliens;
 static uint32_t * currentSoundData; // Takes the next 256 samples ready to put into the FIFO
-static bool soundStatus; // Determines if you can write new data
+static enum globals_sound_priority_t soundStatus; // Determines if you can write new data
 static uint32_t currentSoundFrames; // Frames in the stored sound
 static uint32_t currentFrameIndex; // Used to track which frame we are on
 //initializes globals arrays and structs
@@ -189,10 +189,10 @@ uint32_t * globals_getNextSoundSamples() {
 	return currentSoundData;
 }
 
-bool globals_getSoundStatus() {
+enum globals_sound_priority_t globals_getSoundStatus() {
 	return soundStatus;
 }
-void globals_setSoundStatus(bool status){
+void globals_setSoundStatus(enum globals_sound_priority_t status){
 	soundStatus = status;
 }
 

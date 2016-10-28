@@ -41,8 +41,8 @@
 #define NEW_BULLET_SPACING 5 // ensures that new bullets are at least this many frames apart
 #define NEW_BULLET_TIME (rand() % NEW_BULLET_MAX_RAND + 1)*NEW_BULLET_SPACING
 
-#define NEW_SAUCER_MAX_RAND 8 // create a new saucer at a max of this many spaces
-#define NEW_SAUCER_SPACING 60 // ensures that new saucer are at least this many frames apart
+#define NEW_SAUCER_MAX_RAND 20 // create a new saucer at a max of this many spaces
+#define NEW_SAUCER_SPACING 100 // ensures that new saucer are at least this many frames apart
 #define NEW_SAUCER_TIME (rand() % NEW_SAUCER_MAX_RAND + 1)*NEW_SAUCER_SPACING
 
 // Masks used to identify the push buttons
@@ -216,7 +216,7 @@ void ac97_interrupt_handler() {
 		for(i=0;i<AC97_MAX_SAMPLES;i++){
 
 			if(globals_getCurrentFrameIndex()>=globals_getCurrentSoundFrames()) {
-				globals_setSoundStatus(false);
+				globals_setSoundStatus(no_sound);
 				XAC97_ClearFifos(XPAR_AXI_AC97_0_BASEADDR);
 //				xil_printf("\r\nSound Done");
 				break;

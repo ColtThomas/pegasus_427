@@ -8,6 +8,7 @@
 #ifndef SOUND_H_
 #define SOUND_H_
 void sound_play();
+void sound_init();
 void run_sound_test();
 
 void sound_playMarch();

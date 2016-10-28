@@ -16,6 +16,8 @@
 #include "xac97_l.h"
 #include "xparameters.h"
 #include "globals.h"
+#include <stdio.h>
+
 #define ENABLE 1
 #define DISABLE 0
 #define AC97_MAX_SAMPLES 256
@@ -23,9 +25,10 @@
 
 // Plays the given .wav file.
 
+enum stateMarch_t {march_state_one, march_state_two, march_state_three, march_state_four } stateMarch;
+
 static uint32_t indexExplosion;
 static uint32_t indexShoot;
-static uint8_t stateMarch;
 static uint32_t indexSaucer = 0;
 static uint32_t indexInvader = 0;
 static uint32_t indexKill = 0;
@@ -95,29 +98,29 @@ void sound_playMarch() {
 	uint32_t frames;
 
 	switch(stateMarch) {
-	case 0:
+	case march_state_one:
 		rate = getFastinvader1Rate();
 		frames = getFastinvader1Frames();
 		data = getFastinvader1Data();
 		stateMarch++;
 		break;
-	case 1:
+	case march_state_two:
 		rate = getFastinvader2Rate();
 		frames = getFastinvader2Frames();
 		data = getFastinvader2Data();
 		stateMarch++;
 		break;
-	case 2:
+	case march_state_three:
 		rate = getFastinvader3Rate();
 		frames = getFastinvader3Frames();
 		data = getFastinvader3Data();
 		stateMarch++;
 		break;
-	case 3:
+	case march_state_four:
 		rate = getFastinvader4Rate();
 		frames = getFastinvader4Frames();
 		data = getFastinvader4Data();
-		stateMarch=0;
+		stateMarch=march_state_one;
 		break;
 	default:
 		break;
@@ -126,11 +129,11 @@ void sound_playMarch() {
 
 
 	// Set the globals for the sound
-	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+	if(globals_getSoundStatus() < alien_march){ // Should freeze things... waiting for the sound
 		globals_setNextSoundSamples(data);
 		globals_setCurrentSoundFrames(frames);
 		globals_setCurrentFrameIndex(indexInvader); // Reset the index
-		globals_setSoundStatus(true); // Call dibs on the AC97
+		globals_setSoundStatus(alien_march); // Call dibs on the AC97
 	}
 }
 void sound_playSaucer() {
@@ -142,11 +145,11 @@ void sound_playSaucer() {
 	data = getUfo_lowpitchData();
 
 	// Set the globals for the sound
-	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+	if(globals_getSoundStatus() < saucer_move){ // Should freeze things... waiting for the sound
 		globals_setNextSoundSamples(data);
 		globals_setCurrentSoundFrames(frames);
 		globals_setCurrentFrameIndex(indexSaucer); // Reset the index
-		globals_setSoundStatus(true); // Call dibs on the AC97
+		globals_setSoundStatus(saucer_move); // Call dibs on the AC97
 	}
 }
 void sound_playAlienExplode(){
@@ -158,11 +161,11 @@ void sound_playAlienExplode(){
 	data = getInvaderkilledData();
 
 	// Set the globals for the sound
-	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+	if(globals_getSoundStatus() < alien_explode){ // Should freeze things... waiting for the sound
 		globals_setNextSoundSamples(data);
 		globals_setCurrentSoundFrames(frames);
 		globals_setCurrentFrameIndex(indexKill); // Reset the index
-		globals_setSoundStatus(true); // Call dibs on the AC97
+		globals_setSoundStatus(alien_explode); // Call dibs on the AC97
 	}
 }
 void sound_playTankExplode() {
@@ -174,11 +177,11 @@ void sound_playTankExplode() {
 	data = getExplosionData();
 
 	// Set the globals for the sound
-	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+	if(globals_getSoundStatus() < tank_explode){ // Should freeze things... waiting for the sound
 		globals_setNextSoundSamples(data);
 		globals_setCurrentSoundFrames(frames);
 		globals_setCurrentFrameIndex(indexExplosion); // Reset the index
-		globals_setSoundStatus(true); // Call dibs on the AC97
+		globals_setSoundStatus(tank_explode); // Call dibs on the AC97
 	}
 }
 
@@ -191,11 +194,11 @@ void sound_playShoot() {
 	data = getShootData();
 
 	// Set the globals for the sound
-	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+	if(globals_getSoundStatus() < bullet_shoot){ // Should freeze things... waiting for the sound
 		globals_setNextSoundSamples(data);
 		globals_setCurrentSoundFrames(frames);
 		globals_setCurrentFrameIndex(indexShoot); // Reset the index
-		globals_setSoundStatus(true); // Call dibs on the AC97
+		globals_setSoundStatus(bullet_shoot); // Call dibs on the AC97
 	}
 }
 void sound_playSaucerExplode(){
@@ -207,11 +210,11 @@ void sound_playSaucerExplode(){
 	data = getUfo_highpitchData();
 
 	// Set the globals for the sound
-	if(!globals_getSoundStatus()){ // Should freeze things... waiting for the sound
+	if(globals_getSoundStatus() < saucer_explode){ // Should freeze things... waiting for the sound
 		globals_setNextSoundSamples(data);
 		globals_setCurrentSoundFrames(frames);
 		globals_setCurrentFrameIndex(indexSaucer); // Reset the index
-		globals_setSoundStatus(true); // Call dibs on the AC97
+		globals_setSoundStatus(saucer_explode); // Call dibs on the AC97
 	}
 }
 //AC97_VOL_MIN

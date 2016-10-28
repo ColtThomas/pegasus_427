@@ -30,7 +30,7 @@
 
 int main()
 {
-	int64_t idle_count;
+	//int64_t idle_count;
 	// calls initializer functions, then runs game core
 	init_platform();
 	screen_init();
