@@ -135,10 +135,10 @@ architecture IMP of user_logic is
 ------------------------------------------
   -- User Defined a la Colt
   ------------------------------------------
-  signal r_reg: unsigned(31 downto 0) := (others=>'1'); -- default value is FFFFFFFFin 1's
-  signal r_next: unsigned(31 downto 0) := (others=>'1');
-  signal r_reg_delay: unsigned(31 downto 0) := (others=>'0');
-  signal r_next_delay: unsigned(31 downto 0) := (others=>'0');
+  signal r_reg: unsigned(C_SLV_DWIDTH-1 downto 0) := (others=>'1'); -- default value is FFFFFFFFin 1's
+  signal r_next: unsigned(C_SLV_DWIDTH-1 downto 0) := (others=>'1');
+  signal r_reg_delay: unsigned(C_SLV_DWIDTH-1 downto 0) := (others=>'0');
+  signal r_next_delay: unsigned(C_SLV_DWIDTH-1 downto 0) := (others=>'0');
   constant WIDTH 						  : natural 			 := 32; -- this will be the default width
   ------------------------------------------
   -- End a la Colt

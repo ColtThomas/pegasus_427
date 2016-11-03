@@ -1,3 +1,11 @@
 INST "axi4lite_0/*clock_conv*/*_resync*" TNM = FFS "axi4lite_0_reset_resync";
 TIMEGRP "axi4lite_0_reset_source" = FFS PADS CPUS;
 TIMESPEC "TS_axi4lite_0_reset_resync" = FROM "axi4lite_0_reset_source" TO "axi4lite_0_reset_resync" TIG;
+INST "axi4lite_0/*_converter_bank/*clock_conv_inst/*asyncfifo_*mem/*dout_i_?" TNM = "axi4lite_0_async_clock_conv_FFDEST";
+INST "axi4lite_0/*_converter_bank/*clock_conv_inst/*asyncfifo_*mem/*dout_i_??" TNM = "axi4lite_0_async_clock_conv_FFDEST";
+INST "axi4lite_0/*_converter_bank/*clock_conv_inst/*asyncfifo_*mem/*dout_i_???" TNM = "axi4lite_0_async_clock_conv_FFDEST";
+INST "axi4lite_0/*_converter_bank/*clock_conv_inst/*asyncfifo_*mem/*dout_i_????" TNM = "axi4lite_0_async_clock_conv_FFDEST";
+TIMESPEC "TS_axi4lite_0_async_clock_conv" = FROM RAMS TO "axi4lite_0_async_clock_conv_FFDEST" 10000 PS DATAPATHONLY;
+NET "axi4lite_0/*_converter_bank/*clock_conv_inst/*asyncfifo_*/wr_pntr_*" TIG;
+NET "axi4lite_0/*_converter_bank/*clock_conv_inst/*asyncfifo_*/rd_pntr_*" TIG;
+NET "axi4lite_0/*_converter_bank/*clock_conv_inst/*async_conv_reset" TIG;

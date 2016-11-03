@@ -34,7 +34,7 @@ WARNING:EDK:3605 - Use of the repository located at
 
 Overriding IP level properties ...
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
-   PARAMETER C_NUM_INTR_INPUTS value to 4 -
+   PARAMETER C_NUM_INTR_INPUTS value to 5 -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\dat
    a\axi_intc_v2_1_0.mpd line 80 
 INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
@@ -65,6 +65,10 @@ INFO:EDK:740 - Cannot determine the input clock associated with port :
 INFO:EDK:740 - Cannot determine the input clock associated with port :
    microblaze_0_d_bram_ctrl:BRAM_Clk_A. Clock DRCs will not be performed on this
    core and cores connected to it. 
+INFO:EDK:3715 - IPNAME: pitiful, INSTANCE: pitiful_0 - Tools are unable to
+   determine the clock frequency of the bus interface S_AXI by tracing the clock
+   ports. Tools are updating the value of the parameter
+   C_INTERCONNECT_S_AXI_IS_ACLK_ASYNC to '1'. 
 
 Performing IP level DRCs on properties...
 
@@ -78,10 +82,7 @@ Address Map for Processor microblaze_0
   (0x40600000-0x4060ffff) RS232_Uart_1	axi4lite_0
   (0x41200000-0x4120ffff) microblaze_0_intc	axi4lite_0
   (0x41400000-0x4140ffff) debug_module	axi4lite_0
-
-
-WARNING:EDK:2137 - Peripheral pitiful_0 is not accessible from any processor in
-   the system. Check Bus Interface connections and address parameters. 
+  (0x7c600000-0x7c60ffff) pitiful_0	axi4lite_0
 INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:microblaze_0_ilmb - tool is overriding
    PARAMETER C_LMB_NUM_SLAVES value to 1 -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
@@ -100,7 +101,7 @@ Checking platform address map ...
 Checking platform configuration ...
 IPNAME: lmb_v10, INSTANCE: microblaze_0_ilmb - 1 master(s) : 1 slave(s) 
 IPNAME: lmb_v10, INSTANCE: microblaze_0_dlmb - 1 master(s) : 1 slave(s) 
-IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 6 slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 7 slave(s) 
 
 Checking port drivers...
 WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
@@ -141,7 +142,7 @@ Performing Reset DRCs...
 
 Overriding system level properties...
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
-   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111110010 -
+   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111100101 -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\dat
    a\axi_intc_v2_1_0.mpd line 81 
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
@@ -218,7 +219,8 @@ implementation/microblaze_0_wrapper/microblaze_0_wrapper.ucf.
 It can be overridden by constraints placed in the system.ucf file.
 
 INFO: No synchronous clock conversions in axi_interconnect axi4lite_0.
-INFO: No asynchronous clock conversions in axi_interconnect axi4lite_0.
+INFO: Generating core-level timing constraints for asynchronous clock
+conversions in axi_interconnect axi4lite_0.
 
 Modify defaults ...
 
@@ -256,23 +258,20 @@ cache implementation netlist
 IPNAME:mdm INSTANCE:debug_module -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 129 - Copying
 cache implementation netlist
-IPNAME:axi_interconnect INSTANCE:axi4lite_0 -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 155 - Copying
-cache implementation netlist
 IPNAME:axi_uartlite INSTANCE:rs232_uart_1 -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 163 - Copying
 cache implementation netlist
 IPNAME:axi_gpio INSTANCE:push_buttons_5bits -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 178 - Copying
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 179 - Copying
 cache implementation netlist
 IPNAME:axi_gpio INSTANCE:leds_8bits -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 193 - Copying
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 194 - Copying
 cache implementation netlist
 IPNAME:axi_gpio INSTANCE:dip_switches_8bits -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 207 - Copying
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 208 - Copying
 cache implementation netlist
 IPNAME:fit_timer INSTANCE:fit_timer_0 -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 222 - Copying
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 223 - Copying
 cache implementation netlist
 
 Elaborating instances ...
@@ -291,6 +290,78 @@ Inserting wrapper level ...
 Completion time: 0.00 seconds
 
 Constructing platform-level connectivity ...
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_ARESETN, VALUE: pitiful_0_S_AXI_ARESETN - which is part of the
+   connected BUSIF: S_AXI -
+   C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_AWADDR, VALUE: pitiful_0_S_AXI_AWADDR - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_AWVALID, VALUE: pitiful_0_S_AXI_AWVALID - which is part of the
+   connected BUSIF: S_AXI -
+   C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_WDATA, VALUE: pitiful_0_S_AXI_WDATA - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_WSTRB, VALUE: pitiful_0_S_AXI_WSTRB - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_WVALID, VALUE: pitiful_0_S_AXI_WVALID - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_BREADY, VALUE: pitiful_0_S_AXI_BREADY - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_ARADDR, VALUE: pitiful_0_S_AXI_ARADDR - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_ARVALID, VALUE: pitiful_0_S_AXI_ARVALID - which is part of the
+   connected BUSIF: S_AXI -
+   C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_RREADY, VALUE: pitiful_0_S_AXI_RREADY - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_ARREADY, VALUE: pitiful_0_S_AXI_ARREADY - which is part of the
+   connected BUSIF: S_AXI -
+   C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_RDATA, VALUE: pitiful_0_S_AXI_RDATA - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_RRESP, VALUE: pitiful_0_S_AXI_RRESP - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_RVALID, VALUE: pitiful_0_S_AXI_RVALID - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_WREADY, VALUE: pitiful_0_S_AXI_WREADY - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_BRESP, VALUE: pitiful_0_S_AXI_BRESP - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_BVALID, VALUE: pitiful_0_S_AXI_BVALID - which is part of the connected
+   BUSIF: S_AXI - C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs
+   line 231
+WARNING:EDK:4059 - INSTANCE: pitiful_0, Overriding connection of PORT:
+   S_AXI_AWREADY, VALUE: pitiful_0_S_AXI_AWREADY - which is part of the
+   connected BUSIF: S_AXI -
+   C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231
 Completion time: 0.00 seconds
 
 Writing (top-level) BMM ...
@@ -310,8 +381,11 @@ XST synthesis
 INSTANCE:clock_generator_0 -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 142 - Running
 XST synthesis
+INSTANCE:axi4lite_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 155 - Running
+XST synthesis
 INSTANCE:pitiful_0 -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 230 - Running
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231 - Running
 XST synthesis
 ERROR:EDK:546 - Aborting XST flow execution!
 INFO:EDK:2246 - Refer to
@@ -321,6 +395,9 @@ INFO:EDK:2246 - Refer to
 Running NGCBUILD ...
 IPNAME:clock_generator_0_wrapper INSTANCE:clock_generator_0 -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 142 - Running
+NGCBUILD
+IPNAME:axi4lite_0_wrapper INSTANCE:axi4lite_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 155 - Running
 NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying

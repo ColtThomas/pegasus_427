@@ -60,7 +60,7 @@ BEGIN axi_intc
  BUS_INTERFACE S_AXI = axi4lite_0
  PORT IRQ = microblaze_0_interrupt
  PORT S_AXI_ACLK = clk_100_0000MHz
- PORT INTR = DIP_Switches_8Bits_IP2INTC_Irpt & Push_Buttons_5Bits_IP2INTC_Irpt & fit_timer_0_Interrupt & pitiful_0_interrupt
+ PORT INTR = DIP_Switches_8Bits_IP2INTC_Irpt & Push_Buttons_5Bits_IP2INTC_Irpt & fit_timer_0_Interrupt & pitiful_0_interrupt & RS232_Uart_1_Interrupt
 END
 
 BEGIN lmb_v10
@@ -173,6 +173,7 @@ BEGIN axi_uartlite
  PORT S_AXI_ACLK = clk_100_0000MHz
  PORT TX = RS232_Uart_1_sout
  PORT RX = RS232_Uart_1_sin
+ PORT Interrupt = RS232_Uart_1_Interrupt
 END
 
 BEGIN axi_gpio
@@ -232,6 +233,7 @@ BEGIN pitiful
  PARAMETER HW_VER = 1.00.a
  PARAMETER C_BASEADDR = 0x7C600000
  PARAMETER C_HIGHADDR = 0x7C60FFFF
+ BUS_INTERFACE S_AXI = axi4lite_0
  PORT S_AXI_ACLK = pitiful_0_S_AXI_ACLK
  PORT S_AXI_ARESETN = pitiful_0_S_AXI_ARESETN
  PORT S_AXI_AWADDR = pitiful_0_S_AXI_AWADDR
