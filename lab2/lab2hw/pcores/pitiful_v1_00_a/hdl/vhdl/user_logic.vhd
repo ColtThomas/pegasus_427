@@ -98,6 +98,7 @@ entity user_logic is
   (
     -- ADD USER PORTS BELOW THIS LINE ------------------
     --USER ports added here
+	interrupt : out  STD_LOGIC := '0';
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -130,12 +131,24 @@ end entity user_logic;
 architecture IMP of user_logic is
 
   --USER signal declarations added here, as needed for user logic
-
+  
+------------------------------------------
+  -- User Defined a la Colt
+  ------------------------------------------
+  signal r_reg: unsigned(31 downto 0) := (others=>'1'); -- default value is FFFFFFFFin 1's
+  signal r_next: unsigned(31 downto 0) := (others=>'1');
+  signal r_reg_delay: unsigned(31 downto 0) := (others=>'0');
+  signal r_next_delay: unsigned(31 downto 0) := (others=>'0');
+  constant WIDTH 						  : natural 			 := 32; -- this will be the default width
+  ------------------------------------------
+  -- End a la Colt
+  ------------------------------------------
+  
   ------------------------------------------
   -- Signals for user logic slave model s/w accessible register example
   ------------------------------------------
-  signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); --control register
+  signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); -- delay register
   signal slv_reg_write_sel              : std_logic_vector(1 downto 0);
   signal slv_reg_read_sel               : std_logic_vector(1 downto 0);
   signal slv_ip2bus_data                : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
@@ -145,7 +158,40 @@ architecture IMP of user_logic is
 begin
 
   --USER logic implementation added here
+ ------------------------------------------
+  -- User Defined a la Colt
+  ------------------------------------------
+	
+	-- register
+	process(Bus2IP_Clk  ,slv_reg0)
+	begin
+		if(slv_reg0(3)='1') then -- asynchronous clock reset
+			r_reg <= r_reg_delay-1; -- not 0's because of requirements to start from value 
+			r_reg_delay <= (others=>'1'); -- reset to FFFFFF
+		elsif(Bus2IP_Clk'event and Bus2IP_Clk='1') then
+			r_reg <= r_next;
+			r_reg_delay <= r_next_delay;
+		end if;
+	end process;
 
+	--next state logic (priority based)
+	r_next <= 	r_reg - 1 when (slv_reg0(0)='1' and r_reg > 0) else
+					r_reg_delay when (slv_reg0(0)='1' and r_reg <= 0) else
+					r_reg_delay when (slv_reg0(2)='1') else								-- Redundant, but keeps priority
+					r_reg;
+
+	r_next_delay <= unsigned(slv_reg1)-1 when (slv_reg0(2)='1') else
+							r_reg_delay;
+	-- output logic
+	interrupt <= '1' when (r_reg=0 and slv_reg0(1)='1')else
+				'0';
+	slv_reg1 <= std_logic_vector(r_reg_delay);
+  
+  ------------------------------------------
+  -- End a la Colt
+  ------------------------------------------
+  
+  
   ------------------------------------------
   -- Example code to read/write user logic slave model s/w accessible registers
   -- 

@@ -138,6 +138,7 @@ entity pitiful is
   (
     -- ADD USER PORTS BELOW THIS LINE ------------------
     --USER ports added here
+	interrupt : out  STD_LOGIC;
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -178,6 +179,7 @@ end entity pitiful;
 
 architecture IMP of pitiful is
 
+  
   constant USER_SLV_DWIDTH                : integer              := C_S_AXI_DATA_WIDTH;
 
   constant IPIF_SLV_DWIDTH                : integer              := C_S_AXI_DATA_WIDTH;
@@ -233,7 +235,7 @@ architecture IMP of pitiful is
   signal user_IP2Bus_Error              : std_logic;
 
 begin
-
+  
   ------------------------------------------
   -- instantiate axi_lite_ipif
   ------------------------------------------
@@ -302,6 +304,7 @@ begin
     (
       -- MAP USER PORTS BELOW THIS LINE ------------------
       --USER ports mapped here
+	interrupt => interrupt,
       -- MAP USER PORTS ABOVE THIS LINE ------------------
 
       Bus2IP_Clk                     => ipif_Bus2IP_Clk,
