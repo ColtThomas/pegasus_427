@@ -1,0 +1,10 @@
+##############################################################################
+## Filename:          C:/Users/superman/Desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/data/pitiful_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Thu Nov 03 09:19:57 2016 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all 
+lib pitiful_v1_00_a user_logic vhdl
+lib pitiful_v1_00_a pitiful vhdl

@@ -1,0 +1,8 @@
+-batch 
+-create pitiful 
+-ver 1.00.a 
+-dir "C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw" 
+-lang vhdl 
+-bus axi4lite s 
+-reg 2 
+-xps 
