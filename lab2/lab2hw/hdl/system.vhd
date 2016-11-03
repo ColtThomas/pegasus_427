@@ -15,7 +15,26 @@ entity system is
     Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4);
     LEDs_8Bits_TRI_O : out std_logic_vector(7 downto 0);
     GCLK : in std_logic;
-    DIP_Switches_8Bits_TRI_I : in std_logic_vector(7 downto 0)
+    DIP_Switches_8Bits_TRI_I : in std_logic_vector(7 downto 0);
+    pitiful_0_S_AXI_ACLK_pin : in std_logic;
+    pitiful_0_S_AXI_ARESETN_pin : in std_logic;
+    pitiful_0_S_AXI_AWADDR_pin : in std_logic_vector(31 downto 0);
+    pitiful_0_S_AXI_AWVALID_pin : in std_logic;
+    pitiful_0_S_AXI_WDATA_pin : in std_logic_vector(31 downto 0);
+    pitiful_0_S_AXI_WSTRB_pin : in std_logic_vector(3 downto 0);
+    pitiful_0_S_AXI_WVALID_pin : in std_logic;
+    pitiful_0_S_AXI_BREADY_pin : in std_logic;
+    pitiful_0_S_AXI_ARADDR_pin : in std_logic_vector(31 downto 0);
+    pitiful_0_S_AXI_ARVALID_pin : in std_logic;
+    pitiful_0_S_AXI_RREADY_pin : in std_logic;
+    pitiful_0_S_AXI_ARREADY_pin : out std_logic;
+    pitiful_0_S_AXI_RDATA_pin : out std_logic_vector(31 downto 0);
+    pitiful_0_S_AXI_RRESP_pin : out std_logic_vector(1 downto 0);
+    pitiful_0_S_AXI_RVALID_pin : out std_logic;
+    pitiful_0_S_AXI_WREADY_pin : out std_logic;
+    pitiful_0_S_AXI_BRESP_pin : out std_logic_vector(1 downto 0);
+    pitiful_0_S_AXI_BVALID_pin : out std_logic;
+    pitiful_0_S_AXI_AWREADY_pin : out std_logic
   );
 end system;
 
@@ -69,7 +88,7 @@ architecture STRUCTURE of system is
       S_AXI_RRESP : out std_logic_vector(1 downto 0);
       S_AXI_RVALID : out std_logic;
       S_AXI_RREADY : in std_logic;
-      Intr : in std_logic_vector(2 downto 0);
+      Intr : in std_logic_vector(3 downto 0);
       Irq : out std_logic
     );
   end component;
@@ -1440,6 +1459,31 @@ architecture STRUCTURE of system is
     );
   end component;
 
+  component pitiful_0_wrapper is
+    port (
+      interrupt : out std_logic;
+      S_AXI_ACLK : in std_logic;
+      S_AXI_ARESETN : in std_logic;
+      S_AXI_AWADDR : in std_logic_vector(31 downto 0);
+      S_AXI_AWVALID : in std_logic;
+      S_AXI_WDATA : in std_logic_vector(31 downto 0);
+      S_AXI_WSTRB : in std_logic_vector(3 downto 0);
+      S_AXI_WVALID : in std_logic;
+      S_AXI_BREADY : in std_logic;
+      S_AXI_ARADDR : in std_logic_vector(31 downto 0);
+      S_AXI_ARVALID : in std_logic;
+      S_AXI_RREADY : in std_logic;
+      S_AXI_ARREADY : out std_logic;
+      S_AXI_RDATA : out std_logic_vector(31 downto 0);
+      S_AXI_RRESP : out std_logic_vector(1 downto 0);
+      S_AXI_RVALID : out std_logic;
+      S_AXI_WREADY : out std_logic;
+      S_AXI_BRESP : out std_logic_vector(1 downto 0);
+      S_AXI_BVALID : out std_logic;
+      S_AXI_AWREADY : out std_logic
+    );
+  end component;
+
   -- Internal signals
 
   signal DIP_Switches_8Bits_IP2INTC_Irpt : std_logic;
@@ -1580,8 +1624,28 @@ architecture STRUCTURE of system is
   signal net_gnd32 : std_logic_vector(0 to 31);
   signal net_gnd4096 : std_logic_vector(0 to 4095);
   signal net_vcc0 : std_logic;
-  signal pgassign1 : std_logic_vector(2 downto 0);
+  signal pgassign1 : std_logic_vector(3 downto 0);
   signal pgassign2 : std_logic_vector(5 downto 0);
+  signal pitiful_0_S_AXI_ACLK : std_logic;
+  signal pitiful_0_S_AXI_ARADDR : std_logic_vector(31 downto 0);
+  signal pitiful_0_S_AXI_ARESETN : std_logic;
+  signal pitiful_0_S_AXI_ARREADY : std_logic;
+  signal pitiful_0_S_AXI_ARVALID : std_logic;
+  signal pitiful_0_S_AXI_AWADDR : std_logic_vector(31 downto 0);
+  signal pitiful_0_S_AXI_AWREADY : std_logic;
+  signal pitiful_0_S_AXI_AWVALID : std_logic;
+  signal pitiful_0_S_AXI_BREADY : std_logic;
+  signal pitiful_0_S_AXI_BRESP : std_logic_vector(1 downto 0);
+  signal pitiful_0_S_AXI_BVALID : std_logic;
+  signal pitiful_0_S_AXI_RDATA : std_logic_vector(31 downto 0);
+  signal pitiful_0_S_AXI_RREADY : std_logic;
+  signal pitiful_0_S_AXI_RRESP : std_logic_vector(1 downto 0);
+  signal pitiful_0_S_AXI_RVALID : std_logic;
+  signal pitiful_0_S_AXI_WDATA : std_logic_vector(31 downto 0);
+  signal pitiful_0_S_AXI_WREADY : std_logic;
+  signal pitiful_0_S_AXI_WSTRB : std_logic_vector(3 downto 0);
+  signal pitiful_0_S_AXI_WVALID : std_logic;
+  signal pitiful_0_interrupt : std_logic;
   signal proc_sys_reset_0_BUS_STRUCT_RESET : std_logic_vector(0 to 0);
   signal proc_sys_reset_0_Dcm_locked : std_logic;
   signal proc_sys_reset_0_Interconnect_aresetn : std_logic_vector(0 to 0);
@@ -1605,14 +1669,35 @@ architecture STRUCTURE of system is
   attribute BOX_TYPE of leds_8bits_wrapper : component is "user_black_box";
   attribute BOX_TYPE of dip_switches_8bits_wrapper : component is "user_black_box";
   attribute BOX_TYPE of fit_timer_0_wrapper : component is "user_black_box";
+  attribute BOX_TYPE of pitiful_0_wrapper : component is "user_black_box";
 
 begin
 
   -- Internal assignments
 
-  pgassign1(2) <= DIP_Switches_8Bits_IP2INTC_Irpt;
-  pgassign1(1) <= Push_Buttons_5Bits_IP2INTC_Irpt;
-  pgassign1(0) <= fit_timer_0_Interrupt;
+  pitiful_0_S_AXI_ACLK <= pitiful_0_S_AXI_ACLK_pin;
+  pitiful_0_S_AXI_ARESETN <= pitiful_0_S_AXI_ARESETN_pin;
+  pitiful_0_S_AXI_AWADDR <= pitiful_0_S_AXI_AWADDR_pin;
+  pitiful_0_S_AXI_AWVALID <= pitiful_0_S_AXI_AWVALID_pin;
+  pitiful_0_S_AXI_WDATA <= pitiful_0_S_AXI_WDATA_pin;
+  pitiful_0_S_AXI_WSTRB <= pitiful_0_S_AXI_WSTRB_pin;
+  pitiful_0_S_AXI_WVALID <= pitiful_0_S_AXI_WVALID_pin;
+  pitiful_0_S_AXI_BREADY <= pitiful_0_S_AXI_BREADY_pin;
+  pitiful_0_S_AXI_ARADDR <= pitiful_0_S_AXI_ARADDR_pin;
+  pitiful_0_S_AXI_ARVALID <= pitiful_0_S_AXI_ARVALID_pin;
+  pitiful_0_S_AXI_RREADY <= pitiful_0_S_AXI_RREADY_pin;
+  pitiful_0_S_AXI_ARREADY_pin <= pitiful_0_S_AXI_ARREADY;
+  pitiful_0_S_AXI_RDATA_pin <= pitiful_0_S_AXI_RDATA;
+  pitiful_0_S_AXI_RRESP_pin <= pitiful_0_S_AXI_RRESP;
+  pitiful_0_S_AXI_RVALID_pin <= pitiful_0_S_AXI_RVALID;
+  pitiful_0_S_AXI_WREADY_pin <= pitiful_0_S_AXI_WREADY;
+  pitiful_0_S_AXI_BRESP_pin <= pitiful_0_S_AXI_BRESP;
+  pitiful_0_S_AXI_BVALID_pin <= pitiful_0_S_AXI_BVALID;
+  pitiful_0_S_AXI_AWREADY_pin <= pitiful_0_S_AXI_AWREADY;
+  pgassign1(3) <= DIP_Switches_8Bits_IP2INTC_Irpt;
+  pgassign1(2) <= Push_Buttons_5Bits_IP2INTC_Irpt;
+  pgassign1(1) <= fit_timer_0_Interrupt;
+  pgassign1(0) <= pitiful_0_interrupt;
   pgassign2(5 downto 5) <= clk_100_0000MHz(0 to 0);
   pgassign2(4 downto 4) <= clk_100_0000MHz(0 to 0);
   pgassign2(3 downto 3) <= clk_100_0000MHz(0 to 0);
@@ -3032,6 +3117,30 @@ begin
       Clk => pgassign2(5),
       Rst => net_gnd0,
       Interrupt => fit_timer_0_Interrupt
+    );
+
+  pitiful_0 : pitiful_0_wrapper
+    port map (
+      interrupt => pitiful_0_interrupt,
+      S_AXI_ACLK => pitiful_0_S_AXI_ACLK,
+      S_AXI_ARESETN => pitiful_0_S_AXI_ARESETN,
+      S_AXI_AWADDR => pitiful_0_S_AXI_AWADDR,
+      S_AXI_AWVALID => pitiful_0_S_AXI_AWVALID,
+      S_AXI_WDATA => pitiful_0_S_AXI_WDATA,
+      S_AXI_WSTRB => pitiful_0_S_AXI_WSTRB,
+      S_AXI_WVALID => pitiful_0_S_AXI_WVALID,
+      S_AXI_BREADY => pitiful_0_S_AXI_BREADY,
+      S_AXI_ARADDR => pitiful_0_S_AXI_ARADDR,
+      S_AXI_ARVALID => pitiful_0_S_AXI_ARVALID,
+      S_AXI_RREADY => pitiful_0_S_AXI_RREADY,
+      S_AXI_ARREADY => pitiful_0_S_AXI_ARREADY,
+      S_AXI_RDATA => pitiful_0_S_AXI_RDATA,
+      S_AXI_RRESP => pitiful_0_S_AXI_RRESP,
+      S_AXI_RVALID => pitiful_0_S_AXI_RVALID,
+      S_AXI_WREADY => pitiful_0_S_AXI_WREADY,
+      S_AXI_BRESP => pitiful_0_S_AXI_BRESP,
+      S_AXI_BVALID => pitiful_0_S_AXI_BVALID,
+      S_AXI_AWREADY => pitiful_0_S_AXI_AWREADY
     );
 
 end architecture STRUCTURE;

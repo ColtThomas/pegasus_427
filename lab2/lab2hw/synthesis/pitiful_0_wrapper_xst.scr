@@ -3,10 +3,10 @@ run
 -netlist_hierarchy as_optimized
 -opt_level 1
 -p xc6slx45csg324-3
--top leds_8bits_wrapper
+-top pitiful_0_wrapper
 -ifmt MIXED
--ifn leds_8bits_wrapper_xst.prj
--ofn ../implementation/leds_8bits_wrapper.ngc
+-ifn pitiful_0_wrapper_xst.prj
+-ofn ../implementation/pitiful_0_wrapper.ngc
 -hierarchy_separator /
 -iobuf NO
 -sd {../implementation}

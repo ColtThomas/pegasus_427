@@ -23,7 +23,7 @@ WARNING:EDK - INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable
    qualify for Xilinx software updates or new releases.
 
 
-Parse E:/EE427/lab2/system.mhs ...
+Parse C:/Users/superman/Desktop/pegasus_427/lab2/lab2hw/system.mhs ...
 
 Read MPD definitions ...
 WARNING:EDK:3605 - Use of the repository located at
@@ -34,7 +34,7 @@ WARNING:EDK:3605 - Use of the repository located at
 
 Overriding IP level properties ...
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
-   PARAMETER C_NUM_INTR_INPUTS value to 3 -
+   PARAMETER C_NUM_INTR_INPUTS value to 4 -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\dat
    a\axi_intc_v2_1_0.mpd line 80 
 INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
@@ -55,6 +55,10 @@ INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi4lite_0 - tcl is
    05_a\data\axi_interconnect_v2_1_0.mpd line 78 
 
 Computing clock values...
+INFO:EDK:1432 - Frequency for Top-Level Input Clock 'pitiful_0_S_AXI_ACLK_pin'
+   is not specified. Clock DRCs will not be performed for IPs connected to that
+   clock port, unless they are connected through the clock generator IP. 
+
 INFO:EDK:740 - Cannot determine the input clock associated with port :
    microblaze_0_i_bram_ctrl:BRAM_Clk_A. Clock DRCs will not be performed on this
    core and cores connected to it. 
@@ -74,6 +78,10 @@ Address Map for Processor microblaze_0
   (0x40600000-0x4060ffff) RS232_Uart_1	axi4lite_0
   (0x41200000-0x4120ffff) microblaze_0_intc	axi4lite_0
   (0x41400000-0x4140ffff) debug_module	axi4lite_0
+
+
+WARNING:EDK:2137 - Peripheral pitiful_0 is not accessible from any processor in
+   the system. Check Bus Interface connections and address parameters. 
 INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:microblaze_0_ilmb - tool is overriding
    PARAMETER C_LMB_NUM_SLAVES value to 1 -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
@@ -133,7 +141,7 @@ Performing Reset DRCs...
 
 Overriding system level properties...
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
-   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111111001 -
+   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111110010 -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\dat
    a\axi_intc_v2_1_0.mpd line 81 
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
@@ -224,19 +232,63 @@ Creating hardware output directories ...
 Managing hardware (BBD-specified) netlist files ...
 
 Managing cache ...
+IPNAME:proc_sys_reset INSTANCE:proc_sys_reset_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 42 - Copying
+cache implementation netlist
+IPNAME:lmb_v10 INSTANCE:microblaze_0_ilmb -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 66 - Copying
+cache implementation netlist
+IPNAME:lmb_bram_if_cntlr INSTANCE:microblaze_0_i_bram_ctrl -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 73 - Copying
+cache implementation netlist
+IPNAME:lmb_v10 INSTANCE:microblaze_0_dlmb -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 82 - Copying
+cache implementation netlist
+IPNAME:lmb_bram_if_cntlr INSTANCE:microblaze_0_d_bram_ctrl -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 89 - Copying
+cache implementation netlist
+IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 98 - Copying
+cache implementation netlist
+IPNAME:microblaze INSTANCE:microblaze_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 105 - Copying
+cache implementation netlist
+IPNAME:mdm INSTANCE:debug_module -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 129 - Copying
+cache implementation netlist
+IPNAME:axi_interconnect INSTANCE:axi4lite_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 155 - Copying
+cache implementation netlist
+IPNAME:axi_uartlite INSTANCE:rs232_uart_1 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 163 - Copying
+cache implementation netlist
+IPNAME:axi_gpio INSTANCE:push_buttons_5bits -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 178 - Copying
+cache implementation netlist
+IPNAME:axi_gpio INSTANCE:leds_8bits -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 193 - Copying
+cache implementation netlist
+IPNAME:axi_gpio INSTANCE:dip_switches_8bits -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 207 - Copying
+cache implementation netlist
+IPNAME:fit_timer INSTANCE:fit_timer_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 222 - Copying
+cache implementation netlist
 
 Elaborating instances ...
-IPNAME:bram_block INSTANCE:microblaze_0_bram_block - E:\EE427\lab2\system.mhs
-line 79 - elaborating IP
-IPNAME:clock_generator INSTANCE:clock_generator_0 - E:\EE427\lab2\system.mhs
-line 123 - elaborating IP
+IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 98 -
+elaborating IP
+IPNAME:clock_generator INSTANCE:clock_generator_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 142 -
+elaborating IP
 ClkGen elaborate status: PASSED
 ----------------------------------------
 
 Writing HDL for elaborated instances ...
 
 Inserting wrapper level ...
-Completion time: 1.00 seconds
+Completion time: 0.00 seconds
 
 Constructing platform-level connectivity ...
 Completion time: 0.00 seconds
@@ -252,50 +304,27 @@ Running XST synthesis ...
 INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
    IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
    synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
-INSTANCE:proc_sys_reset_0 - E:\EE427\lab2\system.mhs line 23 - Running XST
-synthesis
-INSTANCE:microblaze_0_intc - E:\EE427\lab2\system.mhs line 36 - Running XST
-synthesis
-INSTANCE:microblaze_0_ilmb - E:\EE427\lab2\system.mhs line 47 - Running XST
-synthesis
-INSTANCE:microblaze_0_i_bram_ctrl - E:\EE427\lab2\system.mhs line 54 - Running
+INSTANCE:microblaze_0_intc -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 55 - Running
 XST synthesis
-INSTANCE:microblaze_0_dlmb - E:\EE427\lab2\system.mhs line 63 - Running XST
-synthesis
-INSTANCE:microblaze_0_d_bram_ctrl - E:\EE427\lab2\system.mhs line 70 - Running
+INSTANCE:clock_generator_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 142 - Running
 XST synthesis
-INSTANCE:microblaze_0_bram_block - E:\EE427\lab2\system.mhs line 79 - Running
+INSTANCE:pitiful_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 230 - Running
 XST synthesis
-INSTANCE:microblaze_0 - E:\EE427\lab2\system.mhs line 86 - Running XST synthesis
-INSTANCE:debug_module - E:\EE427\lab2\system.mhs line 110 - Running XST
-synthesis
-INSTANCE:clock_generator_0 - E:\EE427\lab2\system.mhs line 123 - Running XST
-synthesis
-INSTANCE:axi4lite_0 - E:\EE427\lab2\system.mhs line 136 - Running XST synthesis
-INSTANCE:rs232_uart_1 - E:\EE427\lab2\system.mhs line 144 - Running XST
-synthesis
-INSTANCE:push_buttons_5bits - E:\EE427\lab2\system.mhs line 159 - Running XST
-synthesis
-INSTANCE:leds_8bits - E:\EE427\lab2\system.mhs line 174 - Running XST synthesis
-INSTANCE:dip_switches_8bits - E:\EE427\lab2\system.mhs line 188 - Running XST
-synthesis
-INSTANCE:fit_timer_0 - E:\EE427\lab2\system.mhs line 203 - Running XST synthesis
+ERROR:EDK:546 - Aborting XST flow execution!
+INFO:EDK:2246 - Refer to
+   C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\synthesis\pitiful_0_wrapper
+   _xst.srp for details
 
 Running NGCBUILD ...
-IPNAME:microblaze_0_ilmb_wrapper INSTANCE:microblaze_0_ilmb -
-E:\EE427\lab2\system.mhs line 47 - Running NGCBUILD
-IPNAME:microblaze_0_dlmb_wrapper INSTANCE:microblaze_0_dlmb -
-E:\EE427\lab2\system.mhs line 63 - Running NGCBUILD
-IPNAME:microblaze_0_wrapper INSTANCE:microblaze_0 - E:\EE427\lab2\system.mhs
-line 86 - Running NGCBUILD
 IPNAME:clock_generator_0_wrapper INSTANCE:clock_generator_0 -
-E:\EE427\lab2\system.mhs line 123 - Running NGCBUILD
-IPNAME:axi4lite_0_wrapper INSTANCE:axi4lite_0 - E:\EE427\lab2\system.mhs line
-136 - Running NGCBUILD
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 142 - Running
+NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying
    the data/system.ucf file.
 
 Rebuilding cache ...
-
-Total run time: 395.00 seconds
+ERROR:EDK:440 - platgen failed with errors!

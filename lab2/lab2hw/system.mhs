@@ -18,6 +18,25 @@
  PORT LEDs_8Bits_TRI_O = LEDs_8Bits_TRI_O, DIR = O, VEC = [7:0]
  PORT GCLK = GCLK, DIR = I, SIGIS = CLK, CLK_FREQ = 100000000
  PORT DIP_Switches_8Bits_TRI_I = DIP_Switches_8Bits_TRI_I, DIR = I, VEC = [7:0]
+ PORT pitiful_0_S_AXI_ACLK_pin = pitiful_0_S_AXI_ACLK, DIR = I, SIGIS = CLK
+ PORT pitiful_0_S_AXI_ARESETN_pin = pitiful_0_S_AXI_ARESETN, DIR = I, SIGIS = RST
+ PORT pitiful_0_S_AXI_AWADDR_pin = pitiful_0_S_AXI_AWADDR, DIR = I, VEC = [31:0]
+ PORT pitiful_0_S_AXI_AWVALID_pin = pitiful_0_S_AXI_AWVALID, DIR = I
+ PORT pitiful_0_S_AXI_WDATA_pin = pitiful_0_S_AXI_WDATA, DIR = I, VEC = [31:0]
+ PORT pitiful_0_S_AXI_WSTRB_pin = pitiful_0_S_AXI_WSTRB, DIR = I, VEC = [3:0]
+ PORT pitiful_0_S_AXI_WVALID_pin = pitiful_0_S_AXI_WVALID, DIR = I
+ PORT pitiful_0_S_AXI_BREADY_pin = pitiful_0_S_AXI_BREADY, DIR = I
+ PORT pitiful_0_S_AXI_ARADDR_pin = pitiful_0_S_AXI_ARADDR, DIR = I, VEC = [31:0]
+ PORT pitiful_0_S_AXI_ARVALID_pin = pitiful_0_S_AXI_ARVALID, DIR = I
+ PORT pitiful_0_S_AXI_RREADY_pin = pitiful_0_S_AXI_RREADY, DIR = I
+ PORT pitiful_0_S_AXI_ARREADY_pin = pitiful_0_S_AXI_ARREADY, DIR = O
+ PORT pitiful_0_S_AXI_RDATA_pin = pitiful_0_S_AXI_RDATA, DIR = O, VEC = [31:0]
+ PORT pitiful_0_S_AXI_RRESP_pin = pitiful_0_S_AXI_RRESP, DIR = O, VEC = [1:0]
+ PORT pitiful_0_S_AXI_RVALID_pin = pitiful_0_S_AXI_RVALID, DIR = O
+ PORT pitiful_0_S_AXI_WREADY_pin = pitiful_0_S_AXI_WREADY, DIR = O
+ PORT pitiful_0_S_AXI_BRESP_pin = pitiful_0_S_AXI_BRESP, DIR = O, VEC = [1:0]
+ PORT pitiful_0_S_AXI_BVALID_pin = pitiful_0_S_AXI_BVALID, DIR = O
+ PORT pitiful_0_S_AXI_AWREADY_pin = pitiful_0_S_AXI_AWREADY, DIR = O
 
 
 BEGIN proc_sys_reset
@@ -41,7 +60,7 @@ BEGIN axi_intc
  BUS_INTERFACE S_AXI = axi4lite_0
  PORT IRQ = microblaze_0_interrupt
  PORT S_AXI_ACLK = clk_100_0000MHz
- PORT INTR = DIP_Switches_8Bits_IP2INTC_Irpt & Push_Buttons_5Bits_IP2INTC_Irpt & fit_timer_0_Interrupt
+ PORT INTR = DIP_Switches_8Bits_IP2INTC_Irpt & Push_Buttons_5Bits_IP2INTC_Irpt & fit_timer_0_Interrupt & pitiful_0_interrupt
 END
 
 BEGIN lmb_v10
@@ -206,5 +225,32 @@ BEGIN fit_timer
  PARAMETER C_NO_CLOCKS = 1000000
  PORT Clk = clk_100_0000MHz
  PORT Interrupt = fit_timer_0_Interrupt
+END
+
+BEGIN pitiful
+ PARAMETER INSTANCE = pitiful_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x7C600000
+ PARAMETER C_HIGHADDR = 0x7C60FFFF
+ PORT S_AXI_ACLK = pitiful_0_S_AXI_ACLK
+ PORT S_AXI_ARESETN = pitiful_0_S_AXI_ARESETN
+ PORT S_AXI_AWADDR = pitiful_0_S_AXI_AWADDR
+ PORT S_AXI_AWVALID = pitiful_0_S_AXI_AWVALID
+ PORT S_AXI_WDATA = pitiful_0_S_AXI_WDATA
+ PORT S_AXI_WSTRB = pitiful_0_S_AXI_WSTRB
+ PORT S_AXI_WVALID = pitiful_0_S_AXI_WVALID
+ PORT S_AXI_BREADY = pitiful_0_S_AXI_BREADY
+ PORT S_AXI_ARADDR = pitiful_0_S_AXI_ARADDR
+ PORT S_AXI_ARVALID = pitiful_0_S_AXI_ARVALID
+ PORT S_AXI_RREADY = pitiful_0_S_AXI_RREADY
+ PORT S_AXI_ARREADY = pitiful_0_S_AXI_ARREADY
+ PORT S_AXI_RDATA = pitiful_0_S_AXI_RDATA
+ PORT S_AXI_RRESP = pitiful_0_S_AXI_RRESP
+ PORT S_AXI_RVALID = pitiful_0_S_AXI_RVALID
+ PORT S_AXI_WREADY = pitiful_0_S_AXI_WREADY
+ PORT S_AXI_BRESP = pitiful_0_S_AXI_BRESP
+ PORT S_AXI_BVALID = pitiful_0_S_AXI_BVALID
+ PORT S_AXI_AWREADY = pitiful_0_S_AXI_AWREADY
+ PORT interrupt = pitiful_0_interrupt
 END
 
