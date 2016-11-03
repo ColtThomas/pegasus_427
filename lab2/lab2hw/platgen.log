@@ -237,6 +237,9 @@ Managing cache ...
 IPNAME:proc_sys_reset INSTANCE:proc_sys_reset_0 -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 42 - Copying
 cache implementation netlist
+IPNAME:axi_intc INSTANCE:microblaze_0_intc -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 55 - Copying
+cache implementation netlist
 IPNAME:lmb_v10 INSTANCE:microblaze_0_ilmb -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 66 - Copying
 cache implementation netlist
@@ -257,6 +260,9 @@ C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 105 - Copying
 cache implementation netlist
 IPNAME:mdm INSTANCE:debug_module -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 129 - Copying
+cache implementation netlist
+IPNAME:axi_interconnect INSTANCE:axi4lite_0 -
+C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 155 - Copying
 cache implementation netlist
 IPNAME:axi_uartlite INSTANCE:rs232_uart_1 -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 163 - Copying
@@ -375,33 +381,21 @@ Running XST synthesis ...
 INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
    IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
    synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
-INSTANCE:microblaze_0_intc -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 55 - Running
-XST synthesis
 INSTANCE:clock_generator_0 -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 142 - Running
-XST synthesis
-INSTANCE:axi4lite_0 -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 155 - Running
 XST synthesis
 INSTANCE:pitiful_0 -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231 - Running
 XST synthesis
-ERROR:EDK:546 - Aborting XST flow execution!
-INFO:EDK:2246 - Refer to
-   C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\synthesis\pitiful_0_wrapper
-   _xst.srp for details
 
 Running NGCBUILD ...
 IPNAME:clock_generator_0_wrapper INSTANCE:clock_generator_0 -
 C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 142 - Running
-NGCBUILD
-IPNAME:axi4lite_0_wrapper INSTANCE:axi4lite_0 -
-C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 155 - Running
 NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying
    the data/system.ucf file.
 
 Rebuilding cache ...
-ERROR:EDK:440 - platgen failed with errors!
+
+Total run time: 22.00 seconds

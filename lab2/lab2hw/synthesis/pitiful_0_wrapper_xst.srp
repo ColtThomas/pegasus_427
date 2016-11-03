@@ -453,15 +453,1636 @@ INFO:HDLCompiler:679 - "C:/Xilinx/13.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores
 
 Elaborating entity <user_logic> (architecture <IMP>) with generics from library <pitiful_v1_00_a>.
 WARNING:HDLCompiler:92 - "C:/Users/superman/Desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/user_logic.vhd" Line 169: r_reg_delay should be on the sensitivity list of the process
-ERROR:HDLCompiler:1401 - "C:/Users/superman/Desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/user_logic.vhd" Line 188: Signal slv_reg1[31] in unit user_logic(2,32) is connected to following multiple drivers:
-ERROR:HDLCompiler:1379 - "C:/Users/superman/Desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/user_logic.vhd" Line 222: Driver 0: output signal slv_reg1[31] of instance Flip-flop
-ERROR:HDLCompiler:1379 - "C:/Users/superman/Desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/user_logic.vhd" Line 188: Driver 1: output signal r_reg_delay[31] of instance Flip-flop
-Netlist pitiful(32,32,"00000000000000000000000111111111",0,8,"01111100011000000000000000000000","01111100011000001111111111111111","spartan6",1,1,32,32)(0,31,0,31,0,31,1,8)(IMP) remains a blackbox, due to errors in its contents
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <pitiful_0_wrapper>.
+    Related source file is "c:/users/superman/desktop/pegasus_427/lab2/lab2hw/hdl/pitiful_0_wrapper.vhd".
+    Summary:
+	no macro.
+Unit <pitiful_0_wrapper> synthesized.
+
+Synthesizing Unit <pitiful>.
+    Related source file is "c:/users/superman/desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/pitiful.vhd".
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+        C_S_AXI_DATA_WIDTH = 32
+        C_S_AXI_ADDR_WIDTH = 32
+        C_S_AXI_MIN_SIZE = "00000000000000000000000111111111"
+        C_USE_WSTRB = 0
+        C_DPHASE_TIMEOUT = 8
+        C_BASEADDR = "01111100011000000000000000000000"
+        C_HIGHADDR = "01111100011000001111111111111111"
+        C_FAMILY = "spartan6"
+        C_NUM_REG = 1
+        C_NUM_MEM = 1
+        C_SLV_AWIDTH = 32
+        C_SLV_DWIDTH = 32
+    Set property "MAX_FANOUT = 10000" for signal <S_AXI_ACLK>.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+    Set property "MAX_FANOUT = 10000" for signal <S_AXI_ARESETN>.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+INFO:Xst:3210 - "c:/users/superman/desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/pitiful.vhd" line 242: Output port <Bus2IP_Addr> of the instance <AXI_LITE_IPIF_I> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "c:/users/superman/desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/pitiful.vhd" line 242: Output port <Bus2IP_CS> of the instance <AXI_LITE_IPIF_I> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "c:/users/superman/desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/pitiful.vhd" line 242: Output port <Bus2IP_RNW> of the instance <AXI_LITE_IPIF_I> is unconnected or connected to loadless signal.
+    Summary:
+	no macro.
+Unit <pitiful> synthesized.
+
+Synthesizing Unit <axi_lite_ipif>.
+    Related source file is "c:/xilinx/13.4/ise_ds/edk/hw/xilinxprocessoriplib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd".
+        C_S_AXI_DATA_WIDTH = 32
+        C_S_AXI_ADDR_WIDTH = 32
+        C_S_AXI_MIN_SIZE = "00000000000000000000000111111111"
+        C_USE_WSTRB = 0
+        C_DPHASE_TIMEOUT = 8
+        C_ARD_ADDR_RANGE_ARRAY = ("0000000000000000000000000000000001111100011000000000000000000000","0000000000000000000000000000000001111100011000001111111111111111")
+        C_ARD_NUM_CE_ARRAY = (2)
+        C_FAMILY = "spartan6"
+    Summary:
+	no macro.
+Unit <axi_lite_ipif> synthesized.
+
+Synthesizing Unit <slave_attachment>.
+    Related source file is "c:/xilinx/13.4/ise_ds/edk/hw/xilinxprocessoriplib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd".
+        C_ARD_ADDR_RANGE_ARRAY = ("0000000000000000000000000000000001111100011000000000000000000000","0000000000000000000000000000000001111100011000001111111111111111")
+        C_ARD_NUM_CE_ARRAY = (2)
+        C_IPIF_ABUS_WIDTH = 32
+        C_IPIF_DBUS_WIDTH = 32
+        C_S_AXI_MIN_SIZE = "00000000000000000000000111111111"
+        C_USE_WSTRB = 0
+        C_DPHASE_TIMEOUT = 8
+        C_FAMILY = "spartan6"
+WARNING:Xst:647 - Input <S_AXI_AWADDR<31:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <S_AXI_WSTRB<3:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <S_AXI_ARADDR<31:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+INFO:Xst:3210 - "c:/xilinx/13.4/ise_ds/edk/hw/xilinxprocessoriplib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd" line 336: Output port <CS_for_gaps> of the instance <I_DECODER> is unconnected or connected to loadless signal.
+    Found 2-bit register for signal <state>.
+    Found 2-bit register for signal <s_axi_rresp_i>.
+    Found 32-bit register for signal <s_axi_rdata_i>.
+    Found 1-bit register for signal <s_axi_rvalid_i>.
+    Found 2-bit register for signal <s_axi_bresp_i>.
+    Found 1-bit register for signal <s_axi_bvalid_i>.
+    Found 4-bit register for signal <INCLUDE_DPHASE_TIMER.dpto_cnt>.
+    Found 1-bit register for signal <rst>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 10                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 4                                              |
+    | Clock              | S_AXI_ACLK (rising_edge)                       |
+    | Reset              | rst (positive)                                 |
+    | Reset type         | synchronous                                    |
+    | Reset State        | sm_idle                                        |
+    | Power Up State     | sm_idle                                        |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 4-bit adder for signal <INCLUDE_DPHASE_TIMER.dpto_cnt[3]_GND_14_o_add_31_OUT> created at line 502.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  43 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <slave_attachment> synthesized.
+
+Synthesizing Unit <address_decoder>.
+    Related source file is "c:/xilinx/13.4/ise_ds/edk/hw/xilinxprocessoriplib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd".
+        C_BUS_AWIDTH = 9
+        C_S_AXI_MIN_SIZE = "00000000000000000000000111111111"
+        C_ARD_ADDR_RANGE_ARRAY = ("0000000000000000000000000000000001111100011000000000000000000000","0000000000000000000000000000000001111100011000001111111111111111")
+        C_ARD_NUM_CE_ARRAY = (2)
+        C_FAMILY = "nofamily"
+WARNING:Xst:647 - Input <Address_In_Erly<0:5>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus_RNW> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <Bus_RNW_reg>.
+    Found 1-bit register for signal <ce_out_i<0>>.
+    Found 1-bit register for signal <ce_out_i<1>>.
+    Found 1-bit register for signal <cs_out_i>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+Unit <address_decoder> synthesized.
+
+Synthesizing Unit <pselect_f_1>.
+    Related source file is "c:/xilinx/13.4/ise_ds/edk/hw/xilinxprocessoriplib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 1
+        C_AW = 1
+        C_BAR = "0"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_1> synthesized.
+
+Synthesizing Unit <pselect_f_2>.
+    Related source file is "c:/xilinx/13.4/ise_ds/edk/hw/xilinxprocessoriplib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 1
+        C_AW = 1
+        C_BAR = "1"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_2> synthesized.
+
+Synthesizing Unit <user_logic>.
+    Related source file is "c:/users/superman/desktop/pegasus_427/lab2/lab2hw/pcores/pitiful_v1_00_a/hdl/vhdl/user_logic.vhd".
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+        C_NUM_REG = 2
+        C_SLV_DWIDTH = 32
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+    Found 32-bit register for signal <r_reg_delay>.
+    Found 32-bit register for signal <slv_reg0>.
+    Found 32-bit register for signal <slv_reg1>.
+    Found 1-bit register for signal <r_reg<31>>.
+    Found 1-bit register for signal <r_reg<30>>.
+    Found 1-bit register for signal <r_reg<29>>.
+    Found 1-bit register for signal <r_reg<28>>.
+    Found 1-bit register for signal <r_reg<27>>.
+    Found 1-bit register for signal <r_reg<26>>.
+    Found 1-bit register for signal <r_reg<25>>.
+    Found 1-bit register for signal <r_reg<24>>.
+    Found 1-bit register for signal <r_reg<23>>.
+    Found 1-bit register for signal <r_reg<22>>.
+    Found 1-bit register for signal <r_reg<21>>.
+    Found 1-bit register for signal <r_reg<20>>.
+    Found 1-bit register for signal <r_reg<19>>.
+    Found 1-bit register for signal <r_reg<18>>.
+    Found 1-bit register for signal <r_reg<17>>.
+    Found 1-bit register for signal <r_reg<16>>.
+    Found 1-bit register for signal <r_reg<15>>.
+    Found 1-bit register for signal <r_reg<14>>.
+    Found 1-bit register for signal <r_reg<13>>.
+    Found 1-bit register for signal <r_reg<12>>.
+    Found 1-bit register for signal <r_reg<11>>.
+    Found 1-bit register for signal <r_reg<10>>.
+    Found 1-bit register for signal <r_reg<9>>.
+    Found 1-bit register for signal <r_reg<8>>.
+    Found 1-bit register for signal <r_reg<7>>.
+    Found 1-bit register for signal <r_reg<6>>.
+    Found 1-bit register for signal <r_reg<5>>.
+    Found 1-bit register for signal <r_reg<4>>.
+    Found 1-bit register for signal <r_reg<3>>.
+    Found 1-bit register for signal <r_reg<2>>.
+    Found 1-bit register for signal <r_reg<1>>.
+    Found 1-bit register for signal <r_reg<0>>.
+    Found 32-bit subtractor for signal <GND_18_o_GND_18_o_sub_1_OUT<31:0>> created at line 169.
+    Found 32-bit subtractor for signal <GND_18_o_GND_18_o_sub_8_OUT<31:0>> created at line 178.
+    Found 32-bit subtractor for signal <GND_18_o_GND_18_o_sub_10_OUT<31:0>> created at line 183.
+    Found 32-bit 4-to-1 multiplexer for signal <slv_ip2bus_data> created at line 250.
+    Found 32-bit comparator greater for signal <GND_18_o_r_reg[31]_LessThan_4_o> created at line 178
+    Summary:
+	inferred   3 Adder/Subtractor(s).
+	inferred 128 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred  69 Multiplexer(s).
+Unit <user_logic> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 4
+ 32-bit subtractor                                     : 3
+ 4-bit adder                                           : 1
+# Registers                                            : 46
+ 1-bit register                                        : 39
+ 2-bit register                                        : 2
+ 32-bit register                                       : 4
+ 4-bit register                                        : 1
+# Comparators                                          : 1
+ 32-bit comparator greater                             : 1
+# Multiplexers                                         : 73
+ 1-bit 2-to-1 multiplexer                              : 67
+ 32-bit 2-to-1 multiplexer                             : 5
+ 32-bit 4-to-1 multiplexer                             : 1
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <slave_attachment>.
+The following registers are absorbed into counter <INCLUDE_DPHASE_TIMER.dpto_cnt>: 1 register on signal <INCLUDE_DPHASE_TIMER.dpto_cnt>.
+Unit <slave_attachment> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 3
+ 32-bit subtractor                                     : 3
+# Counters                                             : 1
+ 4-bit up counter                                      : 1
+# Registers                                            : 171
+ Flip-Flops                                            : 171
+# Comparators                                          : 1
+ 32-bit comparator greater                             : 1
+# Multiplexers                                         : 71
+ 1-bit 2-to-1 multiplexer                              : 65
+ 32-bit 2-to-1 multiplexer                             : 5
+ 32-bit 4-to-1 multiplexer                             : 1
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1293 - FF/Latch <s_axi_rresp_i_0> has a constant value of 0 in block <slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <s_axi_bresp_i_0> has a constant value of 0 in block <slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <pitiful_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_0> on signal <state[1:2]> with user encoding.
+----------------------
+ State    | Encoding
+----------------------
+ sm_idle  | 00
+ sm_read  | 01
+ sm_write | 10
+ sm_resp  | 11
+----------------------
+WARNING:Xst:3002 - This design contains one or more registers/latches that are directly
+   incompatible with the Spartan6 architecture. The two primary causes of this is
+   either a register or latch described with both an asynchronous set and
+   asynchronous reset, or a register or latch described with an asynchronous
+   set or reset which however has an initialization value of the opposite 
+   polarity (i.e. asynchronous reset with an initialization value of 1).
+    While this circuit can be built, it creates a sub-optimal implementation
+   in terms of area, power and performance. For a more optimal implementation
+   Xilinx highly recommends one of the following:
+
+          1) Remove either the set or reset from all registers and latches
+             if not needed for required functionality
+          2) Modify the code in order to produce a synchronous set
+             and/or reset (both is preferred)
+          3) Ensure all registers have the same initialization value as the
+             described asynchronous set or reset polarity
+          4) Use the -async_to_sync option to transform the asynchronous
+             set/reset to synchronous operation
+             (timing simulation highly recommended when using this option)
+
+  Please refer to http://www.xilinx.com search string "Spartan6 asynchronous set/reset" for more details.
+
+  List of register instances with asynchronous set and reset:
+    r_reg_31 in unit <user_logic>
+    r_reg_0 in unit <user_logic>
+    r_reg_1 in unit <user_logic>
+    r_reg_2 in unit <user_logic>
+    r_reg_3 in unit <user_logic>
+    r_reg_4 in unit <user_logic>
+    r_reg_6 in unit <user_logic>
+    r_reg_7 in unit <user_logic>
+    r_reg_5 in unit <user_logic>
+    r_reg_9 in unit <user_logic>
+    r_reg_10 in unit <user_logic>
+    r_reg_8 in unit <user_logic>
+    r_reg_12 in unit <user_logic>
+    r_reg_13 in unit <user_logic>
+    r_reg_11 in unit <user_logic>
+    r_reg_14 in unit <user_logic>
+    r_reg_15 in unit <user_logic>
+    r_reg_16 in unit <user_logic>
+    r_reg_17 in unit <user_logic>
+    r_reg_19 in unit <user_logic>
+    r_reg_20 in unit <user_logic>
+    r_reg_18 in unit <user_logic>
+    r_reg_21 in unit <user_logic>
+    r_reg_22 in unit <user_logic>
+    r_reg_23 in unit <user_logic>
+    r_reg_24 in unit <user_logic>
+    r_reg_26 in unit <user_logic>
+    r_reg_27 in unit <user_logic>
+    r_reg_25 in unit <user_logic>
+    r_reg_28 in unit <user_logic>
+    r_reg_29 in unit <user_logic>
+    r_reg_30 in unit <user_logic>
+
+
+  List of register instances with asynchronous set or reset and opposite initialization value:
+    r_reg_delay_31 in unit <user_logic>
+    r_reg_delay_30 in unit <user_logic>
+    r_reg_delay_29 in unit <user_logic>
+    r_reg_delay_28 in unit <user_logic>
+    r_reg_delay_27 in unit <user_logic>
+    r_reg_delay_26 in unit <user_logic>
+    r_reg_delay_25 in unit <user_logic>
+    r_reg_delay_24 in unit <user_logic>
+    r_reg_delay_23 in unit <user_logic>
+    r_reg_delay_22 in unit <user_logic>
+    r_reg_delay_21 in unit <user_logic>
+    r_reg_delay_20 in unit <user_logic>
+    r_reg_delay_19 in unit <user_logic>
+    r_reg_delay_18 in unit <user_logic>
+    r_reg_delay_17 in unit <user_logic>
+    r_reg_delay_16 in unit <user_logic>
+    r_reg_delay_15 in unit <user_logic>
+    r_reg_delay_14 in unit <user_logic>
+    r_reg_delay_13 in unit <user_logic>
+    r_reg_delay_12 in unit <user_logic>
+    r_reg_delay_11 in unit <user_logic>
+    r_reg_delay_10 in unit <user_logic>
+    r_reg_delay_9 in unit <user_logic>
+    r_reg_delay_8 in unit <user_logic>
+    r_reg_delay_7 in unit <user_logic>
+    r_reg_delay_6 in unit <user_logic>
+    r_reg_delay_5 in unit <user_logic>
+    r_reg_delay_4 in unit <user_logic>
+    r_reg_delay_3 in unit <user_logic>
+    r_reg_delay_2 in unit <user_logic>
+    r_reg_delay_1 in unit <user_logic>
+    r_reg_delay_0 in unit <user_logic>
+
+
+Optimizing unit <pitiful_0_wrapper> ...
+
+Optimizing unit <slave_attachment> ...
+
+Optimizing unit <address_decoder> ...
+
+Optimizing unit <user_logic> ...
+WARNING:Xst:1293 - FF/Latch <pitiful_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bresp_i_1> has a constant value of 0 in block <pitiful_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <pitiful_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i_1> has a constant value of 0 in block <pitiful_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <pitiful_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0> of sequential type is unconnected in block <pitiful_0_wrapper>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 0) on block pitiful_0_wrapper, actual ratio is 1.
+WARNING:Xst:1426 - The value init of the FF/Latch pitiful_0/USER_LOGIC_I/r_reg_delay_31_LD hinder the constant cleaning in the block pitiful_0_wrapper.
+   You should achieve better results by setting this init to 1.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 236
+ Flip-Flops                                            : 236
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : pitiful_0_wrapper.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 524
+#      GND                         : 1
+#      INV                         : 33
+#      LUT1                        : 3
+#      LUT2                        : 67
+#      LUT3                        : 130
+#      LUT4                        : 5
+#      LUT5                        : 46
+#      LUT6                        : 42
+#      MUXCY                       : 100
+#      VCC                         : 1
+#      XORCY                       : 96
+# FlipFlops/Latches                : 269
+#      FD                          : 2
+#      FDC                         : 32
+#      FDE                         : 32
+#      FDP                         : 32
+#      FDPE                        : 32
+#      FDR                         : 8
+#      FDRE                        : 98
+#      LD                          : 1
+#      LDP                         : 32
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx45csg324-3 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             269  out of  54576     0%  
+ Number of Slice LUTs:                  326  out of  27288     1%  
+    Number used as Logic:               326  out of  27288     1%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    455
+   Number with an unused Flip Flop:     186  out of    455    40%  
+   Number with an unused LUT:           129  out of    455    28%  
+   Number of fully used LUT-FF pairs:   140  out of    455    30%  
+   Number of unique control sets:       106
+
+IO Utilization: 
+ Number of IOs:                         149
+ Number of bonded IOBs:                   0  out of    218     0%  
+
+Specific Feature Utilization:
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------+-------+
+Clock Signal                                                                                                 | Clock buffer(FF name)                                            | Load  |
+-------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------+-------+
+S_AXI_ACLK                                                                                                   | NONE(pitiful_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1)| 236   |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_15_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_15_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_31_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0_3                                                                            | NONE(pitiful_0/USER_LOGIC_I/r_reg_delay_31_LD)                   | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_77_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_77_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_0_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_75_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_75_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_1_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_73_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_73_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_2_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_71_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_71_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_3_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_69_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_69_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_4_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_65_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_65_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_6_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_63_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_63_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_7_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_67_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_67_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_5_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_59_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_59_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_9_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_57_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_57_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_10_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_61_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_61_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_8_LDC1)                     | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_53_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_53_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_12_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_51_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_51_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_13_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_55_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_55_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_11_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_49_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_49_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_14_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_47_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_47_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_15_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_45_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_45_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_16_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_43_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_43_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_17_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_39_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_39_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_19_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_37_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_37_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_20_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_41_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_41_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_18_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_35_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_35_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_21_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_33_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_33_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_22_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_31_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_31_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_23_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_29_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_29_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_24_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_25_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_25_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_26_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_23_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_23_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_27_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_27_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_27_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_25_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_21_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_21_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_28_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_19_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_19_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_29_LDC1)                    | 1     |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_17_o(pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_17_o1:O)| NONE(*)(pitiful_0/USER_LOGIC_I/r_reg_30_LDC1)                    | 1     |
+-------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------+-------+
+(*) These 32 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -3
+
+   Minimum period: 4.947ns (Maximum Frequency: 202.159MHz)
+   Minimum input arrival time before clock: 2.282ns
+   Maximum output required time after clock: 3.908ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
+  Clock period: 4.947ns (frequency: 202.159MHz)
+  Total number of paths / destination ports: 10440 / 471
+-------------------------------------------------------------------------
+Delay:               4.947ns (Levels of Logic = 35)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_delay_0_C_0 (FF)
+  Destination:       pitiful_0/USER_LOGIC_I/r_reg_31_C_31 (FF)
+  Source Clock:      S_AXI_ACLK rising
+  Destination Clock: S_AXI_ACLK rising
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_delay_0_C_0 to pitiful_0/USER_LOGIC_I/r_reg_31_C_31
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              1   0.447   0.684  pitiful_0/USER_LOGIC_I/r_reg_delay_0_C_0 (pitiful_0/USER_LOGIC_I/r_reg_delay_0_C_0)
+     LUT3:I1->O            2   0.203   0.617  pitiful_0/USER_LOGIC_I/r_reg_delay_01 (pitiful_0/USER_LOGIC_I/r_reg_delay_0)
+     LUT1:I0->O            1   0.205   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<0>_rt (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<0>_rt)
+     MUXCY:S->O            1   0.172   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<0> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<0>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<1> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<1>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<2> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<2>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<3> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<3>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<4> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<4>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<5> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<5>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<6> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<6>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<7> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<7>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<8> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<8>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<9> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<9>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<10> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<10>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<11> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<11>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<12> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<12>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<13> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<13>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<14> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<14>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<15> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<15>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<16> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<16>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<17> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<17>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<18> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<18>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<19> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<19>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<20> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<20>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<21> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<21>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<22> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<22>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<23> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<23>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<24> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<24>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<25> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<25>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<26> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<26>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<27> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<27>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<28> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<28>)
+     MUXCY:CI->O           1   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<29> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<29>)
+     MUXCY:CI->O           0   0.019   0.000  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<30> (pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_cy<30>)
+     XORCY:CI->O           2   0.180   0.617  pitiful_0/USER_LOGIC_I/Msub_GND_18_o_GND_18_o_sub_1_OUT<31:0>_xor<31> (pitiful_0/USER_LOGIC_I/GND_18_o_GND_18_o_sub_1_OUT<31>)
+     LUT2:I1->O            2   0.205   0.616  pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_15_o1 (pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_15_o)
+     FDC:CLR                   0.430          pitiful_0/USER_LOGIC_I/r_reg_31_C_31
+    ----------------------------------------
+    Total                      4.947ns (2.412ns logic, 2.535ns route)
+                                       (48.8% logic, 51.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
+  Total number of paths / destination ports: 162 / 140
+-------------------------------------------------------------------------
+Offset:              2.282ns (Levels of Logic = 1)
+  Source:            S_AXI_ARESETN (PAD)
+  Destination:       pitiful_0/USER_LOGIC_I/slv_reg1_31 (FF)
+  Destination Clock: S_AXI_ACLK rising
+
+  Data Path: S_AXI_ARESETN to pitiful_0/USER_LOGIC_I/slv_reg1_31
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     INV:I->O             65   0.206   1.646  pitiful_0/USER_LOGIC_I/Bus2IP_Resetn_inv1_INV_0 (pitiful_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_rstpot)
+     FDRE:R                    0.430          pitiful_0/USER_LOGIC_I/slv_reg0_0
+    ----------------------------------------
+    Total                      2.282ns (0.636ns logic, 1.646ns route)
+                                       (27.9% logic, 72.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'S_AXI_ACLK'
+  Total number of paths / destination ports: 111 / 38
+-------------------------------------------------------------------------
+Offset:              3.731ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_0_C_0 (FF)
+  Destination:       interrupt (PAD)
+  Source Clock:      S_AXI_ACLK rising
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_0_C_0 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              1   0.447   0.684  pitiful_0/USER_LOGIC_I/r_reg_0_C_0 (pitiful_0/USER_LOGIC_I/r_reg_0_C_0)
+     LUT3:I1->O            4   0.203   1.048  pitiful_0/USER_LOGIC_I/r_reg_01 (pitiful_0/USER_LOGIC_I/r_reg_0)
+     LUT6:I0->O            1   0.203   0.944  pitiful_0/USER_LOGIC_I/interrupt1 (pitiful_0/USER_LOGIC_I/interrupt)
+     LUT6:I0->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.731ns (1.056ns logic, 2.675ns route)
+                                       (28.3% logic, 71.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_77_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.908ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_0_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_77_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_0_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              1   0.498   0.808  pitiful_0/USER_LOGIC_I/r_reg_0_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_0_LDC1)
+     LUT3:I0->O            4   0.205   1.048  pitiful_0/USER_LOGIC_I/r_reg_01 (pitiful_0/USER_LOGIC_I/r_reg_0)
+     LUT6:I0->O            1   0.203   0.944  pitiful_0/USER_LOGIC_I/interrupt1 (pitiful_0/USER_LOGIC_I/interrupt)
+     LUT6:I0->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.908ns (1.109ns logic, 2.799ns route)
+                                       (28.4% logic, 71.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_75_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.893ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_1_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_75_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_1_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_1_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_1_LDC1)
+     LUT3:I0->O            3   0.205   0.995  pitiful_0/USER_LOGIC_I/r_reg_110 (pitiful_0/USER_LOGIC_I/r_reg_1)
+     LUT6:I1->O            1   0.203   0.944  pitiful_0/USER_LOGIC_I/interrupt1 (pitiful_0/USER_LOGIC_I/interrupt)
+     LUT6:I0->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.893ns (1.109ns logic, 2.784ns route)
+                                       (28.5% logic, 71.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_73_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.796ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_2_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_73_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_2_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_2_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_2_LDC1)
+     LUT3:I0->O            3   0.205   0.898  pitiful_0/USER_LOGIC_I/r_reg_210 (pitiful_0/USER_LOGIC_I/r_reg_2)
+     LUT6:I2->O            1   0.203   0.944  pitiful_0/USER_LOGIC_I/interrupt1 (pitiful_0/USER_LOGIC_I/interrupt)
+     LUT6:I0->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.796ns (1.109ns logic, 2.687ns route)
+                                       (29.2% logic, 70.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_71_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.779ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_3_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_71_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_3_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_3_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_3_LDC1)
+     LUT3:I0->O            3   0.205   0.879  pitiful_0/USER_LOGIC_I/r_reg_31 (pitiful_0/USER_LOGIC_I/r_reg_3)
+     LUT6:I3->O            1   0.205   0.944  pitiful_0/USER_LOGIC_I/interrupt1 (pitiful_0/USER_LOGIC_I/interrupt)
+     LUT6:I0->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.779ns (1.111ns logic, 2.668ns route)
+                                       (29.4% logic, 70.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_69_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.551ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_4_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_69_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_4_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_4_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_4_LDC1)
+     LUT3:I0->O            3   0.205   0.651  pitiful_0/USER_LOGIC_I/r_reg_41 (pitiful_0/USER_LOGIC_I/r_reg_4)
+     LUT6:I5->O            1   0.205   0.944  pitiful_0/USER_LOGIC_I/interrupt1 (pitiful_0/USER_LOGIC_I/interrupt)
+     LUT6:I0->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.551ns (1.111ns logic, 2.440ns route)
+                                       (31.3% logic, 68.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_65_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.893ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_6_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_65_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_6_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_6_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_6_LDC1)
+     LUT3:I0->O            3   0.205   1.015  pitiful_0/USER_LOGIC_I/r_reg_61 (pitiful_0/USER_LOGIC_I/r_reg_6)
+     LUT6:I0->O            1   0.203   0.924  pitiful_0/USER_LOGIC_I/interrupt2 (pitiful_0/USER_LOGIC_I/interrupt1)
+     LUT6:I1->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.893ns (1.109ns logic, 2.784ns route)
+                                       (28.5% logic, 71.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_67_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.873ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_5_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_67_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_5_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_5_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_5_LDC1)
+     LUT3:I0->O            3   0.205   0.995  pitiful_0/USER_LOGIC_I/r_reg_51 (pitiful_0/USER_LOGIC_I/r_reg_5)
+     LUT6:I1->O            1   0.203   0.924  pitiful_0/USER_LOGIC_I/interrupt2 (pitiful_0/USER_LOGIC_I/interrupt1)
+     LUT6:I1->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.873ns (1.109ns logic, 2.764ns route)
+                                       (28.6% logic, 71.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_63_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.776ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_7_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_63_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_7_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_7_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_7_LDC1)
+     LUT3:I0->O            3   0.205   0.898  pitiful_0/USER_LOGIC_I/r_reg_71 (pitiful_0/USER_LOGIC_I/r_reg_7)
+     LUT6:I2->O            1   0.203   0.924  pitiful_0/USER_LOGIC_I/interrupt2 (pitiful_0/USER_LOGIC_I/interrupt1)
+     LUT6:I1->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.776ns (1.109ns logic, 2.667ns route)
+                                       (29.4% logic, 70.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_61_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.759ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_8_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_61_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_8_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_8_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_8_LDC1)
+     LUT3:I0->O            3   0.205   0.879  pitiful_0/USER_LOGIC_I/r_reg_81 (pitiful_0/USER_LOGIC_I/r_reg_8)
+     LUT6:I3->O            1   0.205   0.924  pitiful_0/USER_LOGIC_I/interrupt2 (pitiful_0/USER_LOGIC_I/interrupt1)
+     LUT6:I1->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.759ns (1.111ns logic, 2.648ns route)
+                                       (29.6% logic, 70.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_59_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.633ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_9_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_59_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_9_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_9_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_9_LDC1)
+     LUT3:I0->O            3   0.205   0.755  pitiful_0/USER_LOGIC_I/r_reg_91 (pitiful_0/USER_LOGIC_I/r_reg_9)
+     LUT6:I4->O            1   0.203   0.924  pitiful_0/USER_LOGIC_I/interrupt2 (pitiful_0/USER_LOGIC_I/interrupt1)
+     LUT6:I1->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.633ns (1.109ns logic, 2.524ns route)
+                                       (30.5% logic, 69.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_57_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.531ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_10_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_57_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_10_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_10_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_10_LDC1)
+     LUT3:I0->O            3   0.205   0.651  pitiful_0/USER_LOGIC_I/r_reg_101 (pitiful_0/USER_LOGIC_I/r_reg_10)
+     LUT6:I5->O            1   0.205   0.924  pitiful_0/USER_LOGIC_I/interrupt2 (pitiful_0/USER_LOGIC_I/interrupt1)
+     LUT6:I1->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.531ns (1.111ns logic, 2.420ns route)
+                                       (31.5% logic, 68.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_53_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.796ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_12_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_53_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_12_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_12_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_12_LDC1)
+     LUT3:I0->O            3   0.205   1.015  pitiful_0/USER_LOGIC_I/r_reg_121 (pitiful_0/USER_LOGIC_I/r_reg_12)
+     LUT6:I0->O            1   0.203   0.827  pitiful_0/USER_LOGIC_I/interrupt3 (pitiful_0/USER_LOGIC_I/interrupt2)
+     LUT6:I2->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.796ns (1.109ns logic, 2.687ns route)
+                                       (29.2% logic, 70.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_55_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.776ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_11_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_55_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_11_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_11_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_11_LDC1)
+     LUT3:I0->O            3   0.205   0.995  pitiful_0/USER_LOGIC_I/r_reg_111 (pitiful_0/USER_LOGIC_I/r_reg_11)
+     LUT6:I1->O            1   0.203   0.827  pitiful_0/USER_LOGIC_I/interrupt3 (pitiful_0/USER_LOGIC_I/interrupt2)
+     LUT6:I2->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.776ns (1.109ns logic, 2.667ns route)
+                                       (29.4% logic, 70.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_51_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.679ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_13_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_51_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_13_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_13_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_13_LDC1)
+     LUT3:I0->O            3   0.205   0.898  pitiful_0/USER_LOGIC_I/r_reg_131 (pitiful_0/USER_LOGIC_I/r_reg_13)
+     LUT6:I2->O            1   0.203   0.827  pitiful_0/USER_LOGIC_I/interrupt3 (pitiful_0/USER_LOGIC_I/interrupt2)
+     LUT6:I2->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.679ns (1.109ns logic, 2.570ns route)
+                                       (30.1% logic, 69.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_49_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.662ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_14_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_49_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_14_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_14_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_14_LDC1)
+     LUT3:I0->O            3   0.205   0.879  pitiful_0/USER_LOGIC_I/r_reg_141 (pitiful_0/USER_LOGIC_I/r_reg_14)
+     LUT6:I3->O            1   0.205   0.827  pitiful_0/USER_LOGIC_I/interrupt3 (pitiful_0/USER_LOGIC_I/interrupt2)
+     LUT6:I2->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.662ns (1.111ns logic, 2.551ns route)
+                                       (30.3% logic, 69.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_47_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.536ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_15_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_47_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_15_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_15_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_15_LDC1)
+     LUT3:I0->O            3   0.205   0.755  pitiful_0/USER_LOGIC_I/r_reg_151 (pitiful_0/USER_LOGIC_I/r_reg_15)
+     LUT6:I4->O            1   0.203   0.827  pitiful_0/USER_LOGIC_I/interrupt3 (pitiful_0/USER_LOGIC_I/interrupt2)
+     LUT6:I2->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.536ns (1.109ns logic, 2.427ns route)
+                                       (31.4% logic, 68.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_45_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.434ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_16_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_45_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_16_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_16_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_16_LDC1)
+     LUT3:I0->O            3   0.205   0.651  pitiful_0/USER_LOGIC_I/r_reg_161 (pitiful_0/USER_LOGIC_I/r_reg_16)
+     LUT6:I5->O            1   0.205   0.827  pitiful_0/USER_LOGIC_I/interrupt3 (pitiful_0/USER_LOGIC_I/interrupt2)
+     LUT6:I2->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.434ns (1.111ns logic, 2.323ns route)
+                                       (32.3% logic, 67.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_41_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.779ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_18_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_41_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_18_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_18_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_18_LDC1)
+     LUT3:I0->O            3   0.205   1.015  pitiful_0/USER_LOGIC_I/r_reg_181 (pitiful_0/USER_LOGIC_I/r_reg_18)
+     LUT6:I0->O            1   0.203   0.808  pitiful_0/USER_LOGIC_I/interrupt4 (pitiful_0/USER_LOGIC_I/interrupt3)
+     LUT6:I3->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.779ns (1.111ns logic, 2.668ns route)
+                                       (29.4% logic, 70.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_43_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.759ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_17_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_43_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_17_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_17_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_17_LDC1)
+     LUT3:I0->O            3   0.205   0.995  pitiful_0/USER_LOGIC_I/r_reg_171 (pitiful_0/USER_LOGIC_I/r_reg_17)
+     LUT6:I1->O            1   0.203   0.808  pitiful_0/USER_LOGIC_I/interrupt4 (pitiful_0/USER_LOGIC_I/interrupt3)
+     LUT6:I3->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.759ns (1.111ns logic, 2.648ns route)
+                                       (29.6% logic, 70.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_39_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.662ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_19_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_39_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_19_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_19_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_19_LDC1)
+     LUT3:I0->O            3   0.205   0.898  pitiful_0/USER_LOGIC_I/r_reg_191 (pitiful_0/USER_LOGIC_I/r_reg_19)
+     LUT6:I2->O            1   0.203   0.808  pitiful_0/USER_LOGIC_I/interrupt4 (pitiful_0/USER_LOGIC_I/interrupt3)
+     LUT6:I3->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.662ns (1.111ns logic, 2.551ns route)
+                                       (30.3% logic, 69.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_37_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.645ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_20_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_37_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_20_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_20_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_20_LDC1)
+     LUT3:I0->O            3   0.205   0.879  pitiful_0/USER_LOGIC_I/r_reg_201 (pitiful_0/USER_LOGIC_I/r_reg_20)
+     LUT6:I3->O            1   0.205   0.808  pitiful_0/USER_LOGIC_I/interrupt4 (pitiful_0/USER_LOGIC_I/interrupt3)
+     LUT6:I3->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.645ns (1.113ns logic, 2.532ns route)
+                                       (30.5% logic, 69.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_35_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.519ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_21_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_35_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_21_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_21_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_21_LDC1)
+     LUT3:I0->O            3   0.205   0.755  pitiful_0/USER_LOGIC_I/r_reg_211 (pitiful_0/USER_LOGIC_I/r_reg_21)
+     LUT6:I4->O            1   0.203   0.808  pitiful_0/USER_LOGIC_I/interrupt4 (pitiful_0/USER_LOGIC_I/interrupt3)
+     LUT6:I3->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.519ns (1.111ns logic, 2.408ns route)
+                                       (31.6% logic, 68.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_33_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.417ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_22_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_33_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_22_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_22_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_22_LDC1)
+     LUT3:I0->O            3   0.205   0.651  pitiful_0/USER_LOGIC_I/r_reg_221 (pitiful_0/USER_LOGIC_I/r_reg_22)
+     LUT6:I5->O            1   0.205   0.808  pitiful_0/USER_LOGIC_I/interrupt4 (pitiful_0/USER_LOGIC_I/interrupt3)
+     LUT6:I3->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.417ns (1.113ns logic, 2.304ns route)
+                                       (32.6% logic, 67.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_29_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.653ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_24_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_29_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_24_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_24_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_24_LDC1)
+     LUT3:I0->O            3   0.205   1.015  pitiful_0/USER_LOGIC_I/r_reg_241 (pitiful_0/USER_LOGIC_I/r_reg_24)
+     LUT6:I0->O            1   0.203   0.684  pitiful_0/USER_LOGIC_I/interrupt5 (pitiful_0/USER_LOGIC_I/interrupt4)
+     LUT6:I4->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.653ns (1.109ns logic, 2.544ns route)
+                                       (30.4% logic, 69.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_31_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.633ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_23_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_31_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_23_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_23_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_23_LDC1)
+     LUT3:I0->O            3   0.205   0.995  pitiful_0/USER_LOGIC_I/r_reg_231 (pitiful_0/USER_LOGIC_I/r_reg_23)
+     LUT6:I1->O            1   0.203   0.684  pitiful_0/USER_LOGIC_I/interrupt5 (pitiful_0/USER_LOGIC_I/interrupt4)
+     LUT6:I4->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.633ns (1.109ns logic, 2.524ns route)
+                                       (30.5% logic, 69.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_27_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.536ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_25_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_27_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_25_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_25_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_25_LDC1)
+     LUT3:I0->O            3   0.205   0.898  pitiful_0/USER_LOGIC_I/r_reg_251 (pitiful_0/USER_LOGIC_I/r_reg_25)
+     LUT6:I2->O            1   0.203   0.684  pitiful_0/USER_LOGIC_I/interrupt5 (pitiful_0/USER_LOGIC_I/interrupt4)
+     LUT6:I4->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.536ns (1.109ns logic, 2.427ns route)
+                                       (31.4% logic, 68.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_25_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.519ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_26_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_25_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_26_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_26_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_26_LDC1)
+     LUT3:I0->O            3   0.205   0.879  pitiful_0/USER_LOGIC_I/r_reg_261 (pitiful_0/USER_LOGIC_I/r_reg_26)
+     LUT6:I3->O            1   0.205   0.684  pitiful_0/USER_LOGIC_I/interrupt5 (pitiful_0/USER_LOGIC_I/interrupt4)
+     LUT6:I4->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.519ns (1.111ns logic, 2.408ns route)
+                                       (31.6% logic, 68.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_23_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.393ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_27_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_23_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_27_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_27_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_27_LDC1)
+     LUT3:I0->O            3   0.205   0.755  pitiful_0/USER_LOGIC_I/r_reg_271 (pitiful_0/USER_LOGIC_I/r_reg_27)
+     LUT6:I4->O            1   0.203   0.684  pitiful_0/USER_LOGIC_I/interrupt5 (pitiful_0/USER_LOGIC_I/interrupt4)
+     LUT6:I4->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.393ns (1.109ns logic, 2.284ns route)
+                                       (32.7% logic, 67.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_21_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.291ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_28_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_21_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_28_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_28_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_28_LDC1)
+     LUT3:I0->O            3   0.205   0.651  pitiful_0/USER_LOGIC_I/r_reg_281 (pitiful_0/USER_LOGIC_I/r_reg_28)
+     LUT6:I5->O            1   0.205   0.684  pitiful_0/USER_LOGIC_I/interrupt5 (pitiful_0/USER_LOGIC_I/interrupt4)
+     LUT6:I4->O            0   0.203   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.291ns (1.111ns logic, 2.180ns route)
+                                       (33.8% logic, 66.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_19_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.531ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_29_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_19_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_29_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              2   0.498   0.845  pitiful_0/USER_LOGIC_I/r_reg_29_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_29_LDC1)
+     LUT3:I0->O            3   0.205   0.995  pitiful_0/USER_LOGIC_I/r_reg_291 (pitiful_0/USER_LOGIC_I/r_reg_29)
+     LUT5:I0->O            1   0.203   0.580  pitiful_0/USER_LOGIC_I/interrupt6 (pitiful_0/USER_LOGIC_I/interrupt5)
+     LUT6:I5->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.531ns (1.111ns logic, 2.420ns route)
+                                       (31.5% logic, 68.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_15_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.434ns (Levels of Logic = 3)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_31_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_15_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_31_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              3   0.498   0.879  pitiful_0/USER_LOGIC_I/r_reg_31_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_31_LDC1)
+     LUT3:I0->O            2   0.205   0.864  pitiful_0/USER_LOGIC_I/r_reg_311 (pitiful_0/USER_LOGIC_I/r_reg_31)
+     LUT5:I1->O            1   0.203   0.580  pitiful_0/USER_LOGIC_I/interrupt6 (pitiful_0/USER_LOGIC_I/interrupt5)
+     LUT6:I5->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      3.434ns (1.111ns logic, 2.323ns route)
+                                       (32.3% logic, 67.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_17_o'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              2.399ns (Levels of Logic = 2)
+  Source:            pitiful_0/USER_LOGIC_I/r_reg_30_LDC1 (LATCH)
+  Destination:       interrupt (PAD)
+  Source Clock:      pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_17_o falling
+
+  Data Path: pitiful_0/USER_LOGIC_I/r_reg_30_LDC1 to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDP:G->Q              4   0.498   0.912  pitiful_0/USER_LOGIC_I/r_reg_30_LDC1 (pitiful_0/USER_LOGIC_I/r_reg_30_LDC1)
+     LUT5:I2->O            1   0.205   0.580  pitiful_0/USER_LOGIC_I/interrupt6 (pitiful_0/USER_LOGIC_I/interrupt5)
+     LUT6:I5->O            0   0.205   0.000  pitiful_0/USER_LOGIC_I/interrupt7 (interrupt)
+    ----------------------------------------
+    Total                      2.399ns (0.908ns logic, 1.491ns route)
+                                       (37.8% logic, 62.2% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock S_AXI_ACLK
+----------------------------------------------------+---------+---------+---------+---------+
+                                                    | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                                        |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+----------------------------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                                          |    4.947|         |         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_15_o|         |    3.661|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_17_o|         |    3.580|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_19_o|         |    4.389|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_21_o|         |    4.491|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_23_o|         |    4.617|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_25_o|         |    4.634|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_27_o|         |    4.731|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_29_o|         |    4.408|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_31_o|         |    4.510|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_33_o|         |    4.636|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_35_o|         |    4.653|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_37_o|         |    4.750|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_39_o|         |    4.427|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_41_o|         |    4.529|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_43_o|         |    4.655|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_45_o|         |    4.672|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_47_o|         |    4.769|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_49_o|         |    4.446|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_51_o|         |    4.548|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_53_o|         |    4.674|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_55_o|         |    4.691|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_57_o|         |    4.788|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_59_o|         |    4.465|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_61_o|         |    4.567|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_63_o|         |    4.693|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_65_o|         |    4.710|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_67_o|         |    4.807|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_69_o|         |    4.484|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_71_o|         |    4.586|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_73_o|         |    4.712|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_75_o|         |    4.729|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_77_o|         |    4.821|         |         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3                   |         |    6.177|         |         |
+----------------------------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_15_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.947|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.177|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_17_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.928|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.158|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_19_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.909|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.139|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_21_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.890|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.120|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_23_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.871|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.101|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_25_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.852|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.082|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_27_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.833|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.063|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_29_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.814|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.044|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_31_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.795|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.025|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_33_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.776|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    6.006|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_35_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.757|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.987|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_37_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.738|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.968|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_39_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.719|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.949|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_41_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.700|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.930|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_43_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.681|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.911|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_45_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.662|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.892|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_47_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.643|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.873|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_49_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.624|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.854|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_51_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.605|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.835|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_53_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.586|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.816|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_55_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.567|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.797|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_57_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.548|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.778|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_59_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.529|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.759|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_61_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.510|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.740|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_63_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.491|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.721|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_65_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.472|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.702|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_67_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.453|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.683|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_69_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.434|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.664|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_71_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.415|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.645|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_73_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.396|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.626|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_75_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.377|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.607|         |
+---------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0/USER_LOGIC_I/slv_reg0[3]_GND_18_o_AND_77_o
+---------------------------------+---------+---------+---------+---------+
+                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                       |         |         |    4.161|         |
+pitiful_0/USER_LOGIC_I/slv_reg0_3|         |         |    5.391|         |
+---------------------------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.29 secs
+ 
 --> 
 
-Total memory usage is 230680 kilobytes
+Total memory usage is 284040 kilobytes
 
-Number of errors   :    3 (   0 filtered)
-Number of warnings :    1 (   0 filtered)
-Number of infos    :    1 (   0 filtered)
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   21 (   0 filtered)
+Number of infos    :    6 (   0 filtered)
 

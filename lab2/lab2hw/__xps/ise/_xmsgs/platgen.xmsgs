@@ -23,7 +23,7 @@ WARNING:Security:42 - Your software subscription period has lapsed. Your current
 It is recommended that you use Global SearchPath preference to specify search paths that apply to all the projects.
 </msg>
 
-<msg type="info" file="EDK" num="4130" delta="new" >IPNAME: <arg fmt="%s" index="1">axi_intc</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_intc</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_NUM_INTR_INPUTS</arg> value to <arg fmt="%s" index="6">5</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\data\axi_intc_v2_1_0.mpd line 80</arg> 
+<msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">axi_intc</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_intc</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_NUM_INTR_INPUTS</arg> value to <arg fmt="%s" index="6">5</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\data\axi_intc_v2_1_0.mpd line 80</arg> 
 </msg>
 
 <msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">microblaze</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_ENDIANNESS</arg> value to <arg fmt="%s" index="6">1</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\data\microblaze_v2_1_0.mpd line 195</arg> 
@@ -48,7 +48,7 @@ It is recommended that you use Global SearchPath preference to specify search pa
 <msg type="info" file="EDK" num="740" delta="old" >Cannot determine the input clock associated with port : <arg fmt="%s" index="1">microblaze_0_d_bram_ctrl</arg>:<arg fmt="%s" index="2">BRAM_Clk_A</arg>. Clock DRCs will not be performed on this core and cores connected to it. 
 </msg>
 
-<msg type="info" file="EDK" num="3715" delta="new" >IPNAME: <arg fmt="%s" index="1">pitiful</arg>, INSTANCE: <arg fmt="%s" index="2">pitiful_0</arg> - Tools are unable to determine the clock frequency of the bus interface <arg fmt="%s" index="3">S_AXI</arg> by tracing the clock ports. Tools are updating the value of the parameter <arg fmt="%s" index="4">C_INTERCONNECT_S_AXI_IS_ACLK_ASYNC</arg> to &apos;1&apos;. 
+<msg type="info" file="EDK" num="3715" delta="old" >IPNAME: <arg fmt="%s" index="1">pitiful</arg>, INSTANCE: <arg fmt="%s" index="2">pitiful_0</arg> - Tools are unable to determine the clock frequency of the bus interface <arg fmt="%s" index="3">S_AXI</arg> by tracing the clock ports. Tools are updating the value of the parameter <arg fmt="%s" index="4">C_INTERCONNECT_S_AXI_IS_ACLK_ASYNC</arg> to &apos;1&apos;. 
 </msg>
 
 <msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">lmb_v10</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_ilmb</arg> - <arg fmt="%s" index="3">tool</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_LMB_NUM_SLAVES</arg> value to <arg fmt="%s" index="6">1</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data\lmb_v10_v2_1_0.mpd line 80</arg> 
@@ -84,7 +84,7 @@ It is recommended that you use Global SearchPath preference to specify search pa
 <msg type="warning" file="EDK" num="4181" delta="old" >PORT: <arg fmt="%s" index="1">bscan_drck1</arg>, CONNECTOR: <arg fmt="%s" index="2">bscan_drck1</arg> - floating connection - <arg fmt="%s" index="3">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm_v2_1_0.mpd line 238</arg> 
 </msg>
 
-<msg type="info" file="EDK" num="4130" delta="new" >IPNAME: <arg fmt="%s" index="1">axi_intc</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_intc</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_KIND_OF_INTR</arg> value to <arg fmt="%s" index="6">0b11111111111111111111111111100101</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\data\axi_intc_v2_1_0.mpd line 81</arg> 
+<msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">axi_intc</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_intc</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_KIND_OF_INTR</arg> value to <arg fmt="%s" index="6">0b11111111111111111111111111100101</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\data\axi_intc_v2_1_0.mpd line 81</arg> 
 </msg>
 
 <msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">axi_intc</arg>, INSTANCE:<arg fmt="%s" index="2">microblaze_0_intc</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_KIND_OF_EDGE</arg> value to <arg fmt="%s" index="6">0b11111111111111111111111111111111</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\data\axi_intc_v2_1_0.mpd line 82</arg> 
@@ -120,74 +120,65 @@ It is recommended that you use Global SearchPath preference to specify search pa
 <msg type="info" file="EDK" num="4130" delta="old" >IPNAME: <arg fmt="%s" index="1">axi_interconnect</arg>, INSTANCE:<arg fmt="%s" index="2">axi4lite_0</arg> - <arg fmt="%s" index="3">tcl</arg> is overriding <arg fmt="%s" index="4">PARAMETER</arg> <arg fmt="%s" index="5">C_RANGE_CHECK</arg> value to <arg fmt="%s" index="6">1</arg> - <arg fmt="%s" index="7">C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_interconnect_v1_05_a\data\axi_interconnect_v2_1_0.mpd line 146</arg> 
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_ARESETN</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_ARESETN</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_ARESETN</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_ARESETN</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_AWADDR</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_AWADDR</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_AWADDR</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_AWADDR</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_AWVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_AWVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_AWVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_AWVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_WDATA</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_WDATA</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_WDATA</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_WDATA</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_WSTRB</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_WSTRB</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_WSTRB</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_WSTRB</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_WVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_WVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_WVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_WVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_BREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_BREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_BREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_BREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_ARADDR</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_ARADDR</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_ARADDR</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_ARADDR</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_ARVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_ARVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_ARVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_ARVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_RREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_RREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_RREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_RREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_ARREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_ARREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_ARREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_ARREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_RDATA</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_RDATA</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_RDATA</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_RDATA</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_RRESP</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_RRESP</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_RRESP</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_RRESP</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_RVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_RVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_RVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_RVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_WREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_WREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_WREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_WREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_BRESP</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_BRESP</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_BRESP</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_BRESP</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_BVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_BVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_BVALID</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_BVALID</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
-<msg type="warning" file="EDK" num="4059" delta="new" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_AWREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_AWREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
+<msg type="warning" file="EDK" num="4059" delta="old" >INSTANCE: <arg fmt="%s" index="1">pitiful_0</arg>, Overriding connection of PORT: <arg fmt="%s" index="2">S_AXI_AWREADY</arg>, VALUE: <arg fmt="%s" index="3">pitiful_0_S_AXI_AWREADY</arg> - which is part of the connected BUSIF: <arg fmt="%s" index="4">S_AXI</arg> - <arg fmt="%s" index="5">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\system.mhs line 231</arg>
 </msg>
 
 <msg type="info" file="EDK" num="4211" delta="old" >The following instances are synthesized with <arg fmt="%s" index="1">XST</arg>. The MPD option IMP_NETLIST=TRUE indicates that a NGC file is to be produced using <arg fmt="%s" index="2">XST</arg> synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
 </msg>
 
-<msg type="error" file="EDK" num="546" delta="old" >Aborting XST flow execution!
-</msg>
-
-<msg type="info" file="EDK" num="2246" delta="old" >Refer to <arg fmt="%s" index="1">C:\Users\superman\Desktop\pegasus_427\lab2\lab2hw\synthesis\pitiful_0_wrapper_xst.srp</arg> for details
-</msg>
-
 <msg type="info" file="EDK" num="3509" delta="old" >NCF files should not be modified as they will be regenerated.
 If any constraint needs to be overridden, this should be done by modifying the data/<arg fmt="%s" index="1">system</arg>.ucf file.
-</msg>
-
-<msg type="error" file="EDK" num="440" delta="old" ><arg fmt="%s" index="1">platgen</arg> failed with errors!
 </msg>
 
 </messages>

@@ -2,32 +2,14 @@
 **** Build of configuration Debug for project lab2_0 ****
 
 make all 
-Building file: ../src/main.c
+Building file: ../src/clockControl.c
 Invoking: MicroBlaze gcc compiler
-mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab2_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/main.d" -MT"src/main.d" -o"src/main.o" "../src/main.c"
-Finished building: ../src/main.c
-' '
-Building target: lab2_0.elf
-Invoking: MicroBlaze gcc linker
-mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab2_bsp_0/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"lab2_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
-Finished building target: lab2_0.elf
-' '
-Invoking: MicroBlaze Print Size
-mb-size lab2_0.elf  |tee "lab2_0.elf.size"
-   text	   data	    bss	    dec	    hex	filename
-   9278	    392	   2170	  11840	   2e40	lab2_0.elf
-Finished building: lab2_0.elf.size
-' '
-Invoking: Xilinx ELF Check
-elfcheck lab2_0.elf -hw ../../lab2_hw_platform/system.xml -pe microblaze_0  |tee "lab2_0.elf.elfcheck"
-elfcheck
-Xilinx EDK 13.4 Build EDK_O.87xd
-Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
-
-Command Line: elfcheck -hw ../../lab2_hw_platform/system.xml -pe microblaze_0
-lab2_0.elf 
-
-ELF file	: lab2_0.elf
-elfcheck passed.
-Finished building: lab2_0.elf.elfcheck
-' '
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab2_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/clockControl.d" -MT"src/clockControl.d" -o"src/clockControl.o" "../src/clockControl.c"
+../src/clockControl.c:10:34: error: supportFiles/display.h: No such file or directory
+../src/clockControl.c:11:26: error: clockDisplay.h: No such file or directory
+../src/clockControl.c: In function 'clockControl_tick':
+../src/clockControl.c:62: warning: implicit declaration of function 'clockDisplay_advanceTimeOneSecond'
+../src/clockControl.c:75: warning: implicit declaration of function 'display_isTouched'
+../src/clockControl.c:76: warning: implicit declaration of function 'display_clearOldTouchData'
+../src/clockControl.c:92: warning: implicit declaration of function 'clockDisplay_performIncDec'
+make: *** [src/clockControl.o] Error 1

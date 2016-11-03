@@ -44,8 +44,19 @@ Timing constraint: PATH "TS_TIG_microblaze_0_Interrupt_path" TIG;
 ================================================================================
 Timing constraint: PATH "TS_axi4lite_0_reset_resync_path" TIG;
 
- 8 paths analyzed, 8 endpoints analyzed, 0 failing endpoints
+ 24 paths analyzed, 24 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors)
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_axi4lite_0_async_clock_conv = MAXDELAY FROM TIMEGRP 
+"RAMS" TO TIMEGRP         "axi4lite_0_async_clock_conv_FFDEST" 10 ns 
+DATAPATHONLY;
+For more information, see From:To (Multicycle) Analysis in the Timing Closure User Guide (UG612).
+
+ 35 paths analyzed, 35 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Maximum delay is   2.057ns.
 --------------------------------------------------------------------------------
 
 ================================================================================
@@ -78,9 +89,9 @@ PERIOD TIMEGRP         "clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT0"
 TS_sys_clk_pin         HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 268465 paths analyzed, 9662 endpoints analyzed, 0 failing endpoints
+ 271898 paths analyzed, 10712 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   9.116ns.
+ Minimum period is   9.281ns.
 --------------------------------------------------------------------------------
 
 
@@ -91,8 +102,8 @@ Derived Constraints for TS_sys_clk_pin
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|TS_sys_clk_pin                 |     10.000ns|      3.334ns|      9.116ns|            0|            0|            0|       268465|
-| TS_clock_generator_0_clock_gen|     10.000ns|      9.116ns|          N/A|            0|            0|       268465|            0|
+|TS_sys_clk_pin                 |     10.000ns|      3.334ns|      9.281ns|            0|            0|            0|       271898|
+| TS_clock_generator_0_clock_gen|     10.000ns|      9.281ns|          N/A|            0|            0|       271898|            0|
 | erator_0_SIG_PLL0_CLKOUT0     |             |             |             |             |             |             |             |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
@@ -104,12 +115,22 @@ Data Sheet report:
 All values displayed in nanoseconds (ns)
 
 Clock to Setup on destination clock GCLK
----------------+---------+---------+---------+---------+
-               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
----------------+---------+---------+---------+---------+
-GCLK           |    9.116|         |         |         |
----------------+---------+---------+---------+---------+
+------------------------+---------+---------+---------+---------+
+                        | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock            |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+------------------------+---------+---------+---------+---------+
+GCLK                    |    9.281|         |         |         |
+pitiful_0_S_AXI_ACLK_pin|    2.057|         |         |         |
+------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock pitiful_0_S_AXI_ACLK_pin
+------------------------+---------+---------+---------+---------+
+                        | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock            |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+------------------------+---------+---------+---------+---------+
+GCLK                    |    5.073|         |         |         |
+pitiful_0_S_AXI_ACLK_pin|    1.305|         |         |         |
+------------------------+---------+---------+---------+---------+
 
 
 Timing summary:
@@ -117,20 +138,21 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 268479 paths, 0 nets, and 12179 connections
+Constraints cover 271963 paths, 0 nets, and 13260 connections
 
 Design statistics:
-   Minimum period:   9.116ns   (Maximum frequency: 109.697MHz)
+   Minimum period:   9.281ns   (Maximum frequency: 107.747MHz)
+   Maximum path delay from/to any node:   2.057ns
 
 
-Analysis completed Thu Sep 08 09:11:17 2016 
+Analysis completed Thu Nov 03 15:36:57 2016 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 318 MB
+Peak Memory Usage: 337 MB
 
 
 

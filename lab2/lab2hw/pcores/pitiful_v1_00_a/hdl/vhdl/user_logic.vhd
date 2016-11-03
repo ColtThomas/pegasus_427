@@ -185,7 +185,6 @@ begin
 	-- output logic
 	interrupt <= '1' when (r_reg=0 and slv_reg0(1)='1')else
 				'0';
-	slv_reg1 <= std_logic_vector(r_reg_delay);
   
   ------------------------------------------
   -- End a la Colt
