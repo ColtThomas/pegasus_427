@@ -19,7 +19,7 @@
 #include "alienHandler.h"
 #include "saucer.h"
 
-#define FRAME_BUFFER_0_ADDR 0xC6000000  // Starting location in DDR where we will store the images that we display.
+#define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
 #define MAX_SILLY_TIMER 10000000;
 
 

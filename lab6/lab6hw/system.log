@@ -13263,3 +13263,22 @@ Xilinx Software Development Kit
 Xilinx EDK 13.4 Build EDK_O.87xd
 Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
 Done!
+
+********************************************************************************
+At Local date and time: Fri Nov 04 15:27:03 2016
+ make -f system.make exporttosdk started...
+make: Nothing to be done for `exporttosdk'.
+Done!
+
+********************************************************************************
+At Local date and time: Fri Nov 04 15:27:03 2016
+ xsdk.exe -hwspec C:\Users\superman\Desktop\Ford\pegasus_427\derp\lab6hw\SDK\SDK_Export\hw\system.xml started...
+Xilinx Software Development Kit
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+Done!
+Writing filter settings....
+Done writing filter settings to:
+	C:\Users\superman\Desktop\Ford\pegasus_427\derp\lab6hw\etc\system.filters
+Done writing Tab View settings to:
+	C:\Users\superman\Desktop\Ford\pegasus_427\derp\lab6hw\etc\system.gui

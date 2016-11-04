@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="19" version="2.0">
+<workbench progressCount="20" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="512" y="-21">
 <fastViewData fastViewLocation="1024"/>
@@ -32,6 +32,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
@@ -39,9 +40,13 @@
 <editor id="com.xilinx.sdk.hw.ui.HwSpecXMLEditor" name="system.xml" partName="system.xml" path="C:/Users/superman/Desktop/Ford/pegasus_427/derp/lab6code/lab6hw_hw_platform/system.xml" title="system.xml" tooltip="lab6hw_hw_platform/system.xml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/lab6hw_hw_platform/system.xml"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" partName="helloworld.c" path="C:/Users/superman/Desktop/Ford/pegasus_427/derp/lab6code/hello_world_0/src/helloworld.c" title="helloworld.c" tooltip="hello_world_0/src/helloworld.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" partName="helloworld.c" path="C:/Users/superman/Desktop/Ford/pegasus_427/derp/lab6code/hello_world_0/src/helloworld.c" title="helloworld.c" tooltip="hello_world_0/src/helloworld.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/helloworld.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1108" selectionTopPixel="125"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" partName="core.c" path="C:/Users/superman/Desktop/Ford/pegasus_427/derp/lab6code/hello_world_0/src/core.c" title="core.c" tooltip="hello_world_0/src/core.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/core.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2164" selectionTopPixel="714"/>
 </editor>
 </editors>
 <views>
@@ -168,7 +173,7 @@
 </folder>
 </info>
 <info folder="true" part="topRight" ratio="0.7493333" ratioLeft="562" ratioRight="188" relationship="2" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.make.ui.views.MakeView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
@@ -183,10 +188,59 @@
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xilinx.sdk.hw.ui.HwSpecXMLEditor" path="/lab6hw_hw_platform/system.xml"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/sound.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/core.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/core.c"/>
 </editors>
 <item historyLabel="system.xml" index="0"/>
-<item active="true" historyLabel="helloworld.c" index="1">
+<item historyLabel="helloworld.c" index="1">
 <position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="sound.c" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="1">
+<position info="not_deleted" x="1218" y="0"/>
+</item>
+<item historyLabel="core.c" index="3">
+<position info="not_deleted" x="11641" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="1">
+<position info="not_deleted" x="1220" y="0"/>
+</item>
+<item historyLabel="core.c" index="3">
+<position info="not_deleted" x="11342" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="1">
+<position info="not_deleted" x="1084" y="0"/>
+</item>
+<item historyLabel="core.c" index="3">
+<position info="not_deleted" x="2441" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="1">
+<position info="not_deleted" x="1065" y="0"/>
+</item>
+<item historyLabel="core.c" index="3">
+<position info="not_deleted" x="747" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="1">
+<position info="not_deleted" x="1108" y="0"/>
+</item>
+<item historyLabel="core.c" index="3">
+<position info="not_deleted" x="2165" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="1">
+<position info="not_deleted" x="1108" y="0"/>
+</item>
+<item historyLabel="core.c" index="3">
+<position info="not_deleted" x="2165" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="4">
+<position info="not_deleted" x="1108" y="0"/>
+</item>
+<item active="true" historyLabel="core.c" index="5">
+<position info="not_deleted" x="2541" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -208,6 +262,12 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="hello_world_0/src/core.c">
+<persistable path="/hello_world_0/src/core.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sound.c" tooltip="hello_world_0/src/sound.c">
+<persistable path="/hello_world_0/src/sound.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" tooltip="hello_world_0/src/helloworld.c">
 <persistable path="/hello_world_0/src/helloworld.c"/>
 </file>

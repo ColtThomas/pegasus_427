@@ -12,7 +12,6 @@
 #include <stdbool.h>
 #include<stdio.h>
 #include<stdint.h>
-#include "sound.h"
 
 #define packword12(b11,b10,b9,b8,b7,b6,b5,b4,b3,b2,b1,b0) \
 		((b11 << 11) | (b10 << 10) | (b9  << 9 ) | (b8  << 8 ) |						  \

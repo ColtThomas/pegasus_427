@@ -27,27 +27,20 @@
 #include "globals.h"
 #include "core.h"
 #include "sound.h"
-#include "xparameters.h"
-
 
 int main()
 {
-
 	//int64_t idle_count;
 	// calls initializer functions, then runs game core
 	init_platform();
 	screen_init();
-	screen_clear();
-
-
 	sound_init();
 	globals_init();
+	screen_clear();
 	core_init();
 	core_draw_initial();//run_test();
 	core_run();
-	xil_printf("Inits completed.\r\n");
 	while(1) {
-
 //		xil_printf("\r\n%d",idle_count++);
 	}
 	cleanup_platform();
