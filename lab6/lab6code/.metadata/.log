@@ -1,0 +1,50 @@
+!SESSION 2016-11-04 15:06:23.556 -----------------------------------------------
+eclipse.buildId=Release 13.4 Build SDK_O.87xd
+java.version=1.6.0_21
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-11-04 15:07:00.165
+!MESSAGE Indexed 'hello_world_bsp_0' (61 sources, 50 headers) in 1.04 sec: 1,921 declarations; 9,148 references; 18 unresolved inclusions; 0 syntax errors; 81 unresolved names (0.73%)
+!SESSION 2016-11-04 15:10:43.483 -----------------------------------------------
+eclipse.buildId=Release 13.4 Build SDK_O.87xd
+java.version=1.6.0_21
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-11-04 15:11:04.419
+!MESSAGE Indexed 'hello_world_0' (15 sources, 75 headers) in 0.97 sec: 2,903 declarations; 7,409 references; 3 unresolved inclusions; 0 syntax errors; 1 unresolved names (0.01%)
+
+!ENTRY org.eclipse.cdt.core 4 0 2016-11-04 15:11:47.848
+!MESSAGE Could not write file: C:\Users\superman\Desktop\Ford\pegasus_427\derp\lab6code\hello_world_0\.cproject.
+** Error occured because of file status <hidden>.
+** This status is disabled now, to allow writing.
+!SESSION 2016-11-04 15:12:15.054 -----------------------------------------------
+eclipse.buildId=Release 13.4 Build SDK_O.87xd
+java.version=1.6.0_21
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.cdt.ui 4 0 2016-11-04 15:13:48.851
+!MESSAGE Error in CDT UI during reconcile
+!STACK 1
+C Model Exception: C Model Status [Element core.c does not exist.]
+	at org.eclipse.cdt.internal.core.model.CElement.newNotPresentException(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(Unknown Source)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:77)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(Unknown Source)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:206)
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2016-11-04 15:13:48.851
+!MESSAGE Element core.c does not exist.
