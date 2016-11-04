@@ -1,0 +1,95 @@
+/*
+ * Copyright (c) 2009 Xilinx, Inc.  All rights reserved.
+ *
+ * Xilinx, Inc.
+ * XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS" AS A
+ * COURTESY TO YOU.  BY PROVIDING THIS DESIGN, CODE, OR INFORMATION AS
+ * ONE POSSIBLE   IMPLEMENTATION OF THIS FEATURE, APPLICATION OR
+ * STANDARD, XILINX IS MAKING NO REPRESENTATION THAT THIS IMPLEMENTATION
+ * IS FREE FROM ANY CLAIMS OF INFRINGEMENT, AND YOU ARE RESPONSIBLE
+ * FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE FOR YOUR IMPLEMENTATION.
+ * XILINX EXPRESSLY DISCLAIMS ANY WARRANTY WHATSOEVER WITH RESPECT TO
+ * THE ADEQUACY OF THE IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO
+ * ANY WARRANTIES OR REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE
+ * FROM CLAIMS OF INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ */
+
+/*
+ * helloworld.c: simple test application
+ */
+
+#include <stdio.h>
+#include "platform.h"
+#include "unistd.h"
+#include "screen.h"
+#include "globals.h"
+#include "core.h"
+#include "sound.h"
+
+int main()
+{
+	//int64_t idle_count;
+	// calls initializer functions, then runs game core
+	init_platform();
+	screen_init();
+	sound_init();
+	globals_init();
+	screen_clear();
+	core_init();
+	core_draw_initial();//run_test();
+	core_run();
+	while(1) {
+		input = getchar();
+
+				switch(input) {
+				// Tick handler
+
+				case '1': //debug
+					break;
+				case '2':
+
+		//			input = getchar();
+					input -= CHAR_TO_INT; // turns the character digit into the value of digit
+		//			input_number = times_ten(input); // puts first input into high-order digit of two-digit number
+		//			input = getchar();
+		//			input -= CHAR_TO_INT;
+		//			input_number += input; // adds in low-order digit
+		//			aliens_kill_alien(input_number);
+					break;
+				case FIRE_A_BULLET: // fire random alien missile
+					bullets_fire_aliens();
+					break;
+				case FIRE_T_BULLET: // fire tank bullet
+					bullets_fire_tank();
+					break;
+				case MOVE_T_LEFT: // move tank left
+					tank_move_left();
+					break;
+				case MOVE_T_RIGHT:// move tank right
+					tank_move_right();
+					break;
+				case ERODE_BUNKER: // erode bunker
+		//			input = getchar();
+		//			input -= CHAR_TO_INT;
+		//			for(i=0;i<GLOBALS_NUMBER_OF_BLOCKS_PER_BUNKER;i++){
+		//				bunker_damage(input,i);
+		//			}
+		//			bunkers_update();
+					break;
+				case UPDATE_ALIENS: // update alien position
+					alienHandler_tick();
+
+					break;
+				case UPDATE_BULLETS: // update all bullets
+					bulletHandler_tick();
+					break;
+				}
+				if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex,  XAXIVDMA_READ)) {
+					xil_printf("vdma parking failed\n\r");
+				}	}
+	cleanup_platform();
+
+	return 0;
+}

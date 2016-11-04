@@ -27,7 +27,10 @@
 #include "globals.h"
 #include "core.h"
 #include "sound.h"
+#include<stdint.h>
 
+#define CHAR_TO_INT '0'
+#define times_ten(x) (x)*10
 int main()
 {
 	//int64_t idle_count;
@@ -40,8 +43,22 @@ int main()
 	core_init();
 	core_draw_initial();//run_test();
 	core_run();
+
+	char input;
+
+
 	while(1) {
-//		xil_printf("\r\n%d",idle_count++);
+//		xil_printf("\r\nwhoa");
+
+		input = getchar();
+//		switch(input) {
+//		case '1':
+//			xil_printf("\r\nderp");
+//			break;
+//		}
+		xil_printf("\r\nwhoa");
+		xil_printf(input);
+
 	}
 	cleanup_platform();
 
