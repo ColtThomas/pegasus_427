@@ -35,11 +35,11 @@ bool pitiful_interrupt_enable(pitiful_t *p) {
 	if(p == NULL) {
 		return 0;
 	}
-	xil_printf("enable interrupt %x\r\n",p->BaseAddress);
+//	xil_printf("enable interrupt %x\r\n",p->BaseAddress);
 	//uint32_t temp = Xil_In32(p->BaseAddress);
-	xil_printf("read correct\r\n");
+//	xil_printf("read correct\r\n");
 	Xil_Out32(p->BaseAddress, Xil_In32(p->BaseAddress)|PITIFUL_INTERRUPT_ENABLE);
-	xil_printf("enabled.\r\n");
+//	xil_printf("enabled.\r\n");
 	return 1;
 }
 bool pitiful_interrupt_disable(pitiful_t *p) {
@@ -69,7 +69,7 @@ bool pitiful_set_delay(pitiful_t *p, uint32_t delay) {
 		return 0;
 	}
 	Xil_Out32(p->BaseAddress+4, delay);
-	if(Xil_In32(p->BaseAddress+4) == delay) xil_printf("delay verified: %x\r\n",Xil_In32(p->BaseAddress+4));
+//	if(Xil_In32(p->BaseAddress+4) == delay) xil_printf("delay verified: %x\r\n",Xil_In32(p->BaseAddress+4));
 	return 1;
 }
 

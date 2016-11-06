@@ -30,6 +30,7 @@
 #define GLOBALS_ALIEN_COLUMNS 11
 #define GLOBALS_NULL_LOCATION -1
 #define GLOBALS_ALIEN_BULLET_Y_MAX SCREEN_HEIGHT - 20
+#define GLOBALS_INIT_DELAY 1000000
 
 enum globals_sound_priority_t {no_sound, alien_march, saucer_move, saucer_explode, alien_explode, bullet_shoot, tank_explode};
 
@@ -104,4 +105,7 @@ uint32_t globals_getCurrentSoundFrames();
 void globals_setCurrentFrameIndex(uint32_t indx);
 void globals_incrementCurrentFrameIndex();
 uint32_t globals_getCurrentFrameIndex();
+
+uint32_t globals_getDelayValue();
+void globals_setDelayValue(uint32_t delay);
 #endif /* GLOBALS_H_ */

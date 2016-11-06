@@ -57,7 +57,7 @@ const uint8_t BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 
 #define BOTTOM_LINE_Y SCREEN_HEIGHT - 10
 
-#define INIT_DELAY 100000
+#define INIT_DELAY 1000000
 
 #define AC97_MAX_SAMPLES 256
 #define AC97_RATE_DEFAULT 11025
@@ -107,6 +107,9 @@ void timer_interrupt_handler() {
 	static int32_t bullet_time = -1;
 	static int32_t saucer_time = -1;
 	static int32_t saucer_score_timer = 0;
+
+	pitiful_set_delay(&thePit, globals_getDelayValue()); // update timer value
+
 	//xil_printf("saucer_time %d\r\n",saucer_time);
 	if(bullet_time == -1) {
 		bullet_time = NEW_BULLET_TIME; // the next bullet will come in NEW_BULLET_TIME frames
@@ -308,11 +311,10 @@ int32_t core_init (void) {
 	// Enable all interrupts in the push button peripheral.
 	XGpio_InterruptEnable(&gpPB, 0xFFFFFFFF);
 
-	uint32_t delay_value = INIT_DELAY;
 	pitiful_initialize(&thePit, XPAR_PITIFUL_0_BASEADDR);
 
 		pitiful_interrupt_enable(&thePit);
-		pitiful_set_delay(&thePit, delay_value);
+		pitiful_set_delay(&thePit, globals_getDelayValue());
 		pitiful_counter_reload_enable(&thePit);
 		pitiful_counter_enable(&thePit);
 		xil_printf("int: %d reload: %d enable: %d delay: %d\r\n",pitiful_interrupt_enabled(&thePit),pitiful_counter_reloading(&thePit),pitiful_counter_enabled(&thePit),pitiful_get_delay(&thePit));

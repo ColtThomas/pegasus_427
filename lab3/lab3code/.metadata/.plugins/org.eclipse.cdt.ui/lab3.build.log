@@ -2,6 +2,26 @@
 **** Build of configuration Debug for project lab3 ****
 
 make all 
+Building file: ../src/aliens.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/aliens.d" -MT"src/aliens.d" -o"src/aliens.o" "../src/aliens.c"
+Finished building: ../src/aliens.c
+' '
+Building file: ../src/bullets.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/bullets.d" -MT"src/bullets.d" -o"src/bullets.o" "../src/bullets.c"
+Finished building: ../src/bullets.c
+' '
+Building file: ../src/bunkers.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/bunkers.d" -MT"src/bunkers.d" -o"src/bunkers.o" "../src/bunkers.c"
+Finished building: ../src/bunkers.c
+' '
+Building file: ../src/globals.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/globals.d" -MT"src/globals.d" -o"src/globals.o" "../src/globals.c"
+Finished building: ../src/globals.c
+' '
 Building file: ../src/helloworld.c
 Invoking: MicroBlaze gcc compiler
 mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o"src/helloworld.o" "../src/helloworld.c"
@@ -12,15 +32,30 @@ Invoking: MicroBlaze gcc compiler
 mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/platform.d" -MT"src/platform.d" -o"src/platform.o" "../src/platform.c"
 Finished building: ../src/platform.c
 ' '
+Building file: ../src/screen.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/screen.d" -MT"src/screen.d" -o"src/screen.o" "../src/screen.c"
+Finished building: ../src/screen.c
+' '
+Building file: ../src/tank.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/tank.d" -MT"src/tank.d" -o"src/tank.o" "../src/tank.c"
+Finished building: ../src/tank.c
+' '
+Building file: ../src/text.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab3_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/text.d" -MT"src/text.d" -o"src/text.o" "../src/text.c"
+Finished building: ../src/text.c
+' '
 Building target: lab3.elf
 Invoking: MicroBlaze gcc linker
-mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab3_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"lab3.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab3_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"lab3.elf"  ./src/aliens.o ./src/bullets.o ./src/bunkers.o ./src/globals.o ./src/helloworld.o ./src/platform.o ./src/screen.o ./src/tank.o ./src/text.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
 Finished building target: lab3.elf
 ' '
 Invoking: MicroBlaze Print Size
 mb-size lab3.elf  |tee "lab3.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  12650	    380	   2102	  15132	   3b1c	lab3.elf
+  46052	   1564	   4660	  52276	   cc34	lab3.elf
 Finished building: lab3.elf.size
 ' '
 Invoking: Xilinx ELF Check

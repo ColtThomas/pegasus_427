@@ -11,7 +11,8 @@ src/helloworld.d src/helloworld.o: ../src/helloworld.c ../src/platform.h \
   ../../lab3_bsp/microblaze_0/include/xdebug.h \
   ../../lab3_bsp/microblaze_0/include/xstatus.h \
   ../../lab3_bsp/microblaze_0/include/xil_assert.h \
-  ../../lab3_bsp/microblaze_0/include/xio.h
+  ../../lab3_bsp/microblaze_0/include/xio.h ../src/screen.h \
+  ../src/globals.h ../src/tank.h
 
 ../src/platform.h:
 
@@ -40,3 +41,9 @@ src/helloworld.d src/helloworld.o: ../src/helloworld.c ../src/platform.h \
 ../../lab3_bsp/microblaze_0/include/xil_assert.h:
 
 ../../lab3_bsp/microblaze_0/include/xio.h:
+
+../src/screen.h:
+
+../src/globals.h:
+
+../src/tank.h:

@@ -45,19 +45,31 @@ int main()
 	core_run();
 
 	char input;
-
+	uint32_t delay_time = 0;
+	setvbuf(stdout, NULL, _IONBF, NULL);
+	setvbuf(stdin, NULL, _IONBF, NULL);
 
 	while(1) {
-//		xil_printf("\r\nwhoa");
+		//xil_printf("\r\nwhoa");
 
 		input = getchar();
-//		switch(input) {
-//		case '1':
-//			xil_printf("\r\nderp");
-//			break;
-//		}
-		xil_printf("\r\nwhoa");
-		xil_printf(input);
+		if(input == '\n' || input == '\r') {
+			xil_printf("\r\n");
+			xil_printf("Delay: %d\r\n",delay_time);
+			globals_setDelayValue(delay_time);
+			delay_time = 0;
+		}
+		else if(input <= '9' && input >= '0') {
+			xil_printf("%c",input);
+			uint32_t temp = input - '0';
+			delay_time *= 10;
+			delay_time += temp;
+		}
+		else {
+		//	xil_printf("%c",input);
+		}
+		//xil_printf("\r\nwhoa");
+		//xil_printf(input);
 
 	}
 	cleanup_platform();

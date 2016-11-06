@@ -33,6 +33,7 @@ static uint32_t * currentSoundData; // Takes the next 256 samples ready to put i
 static enum globals_sound_priority_t soundStatus; // Determines if you can write new data
 static uint32_t currentSoundFrames; // Frames in the stored sound
 static uint32_t currentFrameIndex; // Used to track which frame we are on
+static uint32_t delay_value;
 //initializes globals arrays and structs
 void globals_init() {
 	numberOfDeadAliens = 0;
@@ -47,6 +48,7 @@ void globals_init() {
 	saucerSpawned = false;
 	gameOver = false;
 	soundStatus = false;
+	delay_value = GLOBALS_INIT_DELAY;
 	int32_t i,j;
 	for(i = 0; i < GLOBALS_NUMBER_OF_ALIEN_BULLETS; i++) {
 		alienBulletPositions[i].x = GLOBALS_NULL_LOCATION;
@@ -213,5 +215,13 @@ void globals_incrementCurrentFrameIndex() {
 }
 uint32_t globals_getCurrentFrameIndex() {
 	return currentFrameIndex;
+}
+
+uint32_t globals_getDelayValue() {
+	return delay_value;
+}
+
+void globals_setDelayValue(uint32_t delay) {
+	delay_value = delay;
 }
 
