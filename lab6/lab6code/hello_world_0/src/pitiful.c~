@@ -10,13 +10,12 @@
 #include<stdbool.h>
 #include<stdio.h>
 
-// Initialization procedure for new pitiful_t structs
+
 void pitiful_initialize(pitiful_t *p, uint32_t baseAddress) {
 	p->BaseAddress = baseAddress;
 	p->InterruptPresent = true;
 }
 
-// The functions below will set various registers within the PIT and return a bool to indicate whether it was successfully changed or not.
 bool pitiful_counter_enable(pitiful_t *p) {
 	if(p == NULL) {
 		return 0;
@@ -69,8 +68,6 @@ bool pitiful_set_delay(pitiful_t *p, uint32_t delay) {
 	return 1;
 }
 
-
-// Below are the register status functions. When a non-null PIT struct is passed, the function will query the 
 bool pitiful_counter_enabled(pitiful_t *p) {
 	if(p == NULL) {
 			return 0;

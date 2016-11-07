@@ -306,10 +306,16 @@ int32_t core_init (void) {
 			(XPAR_PITIFUL_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
 	XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
 
+	// seed random for bullets
+	//srand((unsigned) time(&t));
+
+	//while(1);  // Program never ends. But at least the lab does.
+
+	// cleanup_platform();
+
 	return 0;
 }
 
-// Figured we would add the bottom line at some point. Here it is.
 void draw_bottom_line() {
 	int32_t x, y;
 	y = BOTTOM_LINE_Y;
@@ -318,7 +324,6 @@ void draw_bottom_line() {
 	}
 }
 
-// Initial draw functions; draw the tank, score, aliens and bunkers
 void core_draw_initial() {
 	tank_draw_initial();
 	tank_draw_lives_initial();
