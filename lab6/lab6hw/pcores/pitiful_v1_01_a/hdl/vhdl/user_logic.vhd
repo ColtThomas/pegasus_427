@@ -98,8 +98,8 @@ entity user_logic is
   (
     -- ADD USER PORTS BELOW THIS LINE ------------------
     --USER ports added here
-				interrupt : out  STD_LOGIC := '0';
-
+	interrupt : out  STD_LOGIC := '0';
+	LEDs:out std_logic_vector(3 downto 0);
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -133,6 +133,7 @@ architecture IMP of user_logic is
 
   --USER signal declarations added here, as needed for user logic
 	signal count : unsigned(C_SLV_DWIDTH-1 downto 0);
+	signal led_out : std_logic_vector(27 downto 0);
 	signal count_next : unsigned(C_SLV_DWIDTH-1 downto 0);
 	signal int_enable : std_logic;
 	signal count_enable : std_logic;
@@ -168,8 +169,11 @@ begin
 	--	if(slv_reg0(3)='1') then -- asynchronous clock reset
 	--		r_reg <= r_reg_delay-1; -- not 0's because of requirements to start from value 
 	--		r_reg_delay <= (others=>'1'); -- reset to FFFFFF
+		--if(Bus2IP_Resetn = '0') then
+			--led_out <= (others => '0');
 		if(Bus2IP_Clk'event and Bus2IP_Clk='1') then
 			count <= count_next;
+			--led_out <= led_out+1;
 		end if;
 	end process;
 
@@ -182,7 +186,8 @@ begin
 	-- output logic
 	interrupt <= '1' when (count=0 and int_enable='1')else
 				'0';
-	
+	 LEDs(3 downto 0) <= (others=>'1');
+
   ------------------------------------------
   -- Example code to read/write user logic slave model s/w accessible registers
   -- 
@@ -304,5 +309,7 @@ begin
   IP2Bus_WrAck <= slv_write_ack;
   IP2Bus_RdAck <= slv_read_ack;
   IP2Bus_Error <= '0';
+
+  
 
 end IMP;

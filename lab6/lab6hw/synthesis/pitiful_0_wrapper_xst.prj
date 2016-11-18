@@ -119,6 +119,6 @@ vhdl proc_common_v3_00_a C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcore
 vhdl axi_lite_ipif_v1_01_a C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd
 vhdl axi_lite_ipif_v1_01_a C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd
 vhdl axi_lite_ipif_v1_01_a C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd
-vhdl pitiful_v1_01_a C:\Users\superman\Desktop\Ford\pegasus_427\derp\lab6hw\pcores\pitiful_v1_01_a/hdl/vhdl/user_logic.vhd
-vhdl pitiful_v1_01_a C:\Users\superman\Desktop\Ford\pegasus_427\derp\lab6hw\pcores\pitiful_v1_01_a/hdl/vhdl/pitiful.vhd
+vhdl pitiful_v1_01_a C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\pcores\pitiful_v1_01_a/hdl/vhdl/user_logic.vhd
+vhdl pitiful_v1_01_a C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\pcores\pitiful_v1_01_a/hdl/vhdl/pitiful.vhd
 vhdl work ../hdl/pitiful_0_wrapper.vhd

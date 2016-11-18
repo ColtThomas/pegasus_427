@@ -138,8 +138,8 @@ entity pitiful is
   (
     -- ADD USER PORTS BELOW THIS LINE ------------------
     --USER ports added here
-			interrupt : out  STD_LOGIC := '0';
-
+	interrupt : out  STD_LOGIC := '0';
+	LEDs: out std_logic_vector (3 downto 0);
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -304,7 +304,8 @@ begin
     (
       -- MAP USER PORTS BELOW THIS LINE ------------------
       --USER ports mapped here
-			interrupt										 => interrupt,
+		interrupt										 => interrupt,
+		LEDs => LEDs,	
       -- MAP USER PORTS ABOVE THIS LINE ------------------
 
       Bus2IP_Clk                     => ipif_Bus2IP_Clk,

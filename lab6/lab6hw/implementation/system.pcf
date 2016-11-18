@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map O.87xd on Fri Nov 04 13:41:18 2016
+// Written by: Map O.87xd on Thu Nov 17 17:57:00 2016
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -52,6 +52,10 @@ COMP "Push_Buttons_5Bits_TRI_I<1>" LOCATE = SITE "P4" LEVEL 1;
 COMP "Push_Buttons_5Bits_TRI_I<2>" LOCATE = SITE "P3" LEVEL 1;
 COMP "Push_Buttons_5Bits_TRI_I<3>" LOCATE = SITE "F6" LEVEL 1;
 COMP "Push_Buttons_5Bits_TRI_I<4>" LOCATE = SITE "F5" LEVEL 1;
+COMP "pitiful_0_LEDs_pin<0>" LOCATE = SITE "U18" LEVEL 1;
+COMP "pitiful_0_LEDs_pin<1>" LOCATE = SITE "M14" LEVEL 1;
+COMP "pitiful_0_LEDs_pin<2>" LOCATE = SITE "N14" LEVEL 1;
+COMP "pitiful_0_LEDs_pin<3>" LOCATE = SITE "L14" LEVEL 1;
 COMP "RS232_Uart_1_sin" LOCATE = SITE "A16" LEVEL 1;
 COMP "mcbx_dram_addr<10>" LOCATE = SITE "F4" LEVEL 1;
 COMP "mcbx_dram_addr<11>" LOCATE = SITE "D3" LEVEL 1;

@@ -1,7 +1,7 @@
 
-<EDKSYSTEM EDKVERSION="13.4" EDWVERSION="1.2" TIMESTAMP="Fri Nov 04 13:37:09 2016">
+<EDKSYSTEM EDKVERSION="13.4" EDWVERSION="1.2" TIMESTAMP="Thu Nov 17 17:45:27 2016">
 
-  <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx45" PACKAGE="csg324" PART="xc6slx45csg324-3" SOURCE="C:/Users/superman/Desktop/Ford/pegasus_427/derp/lab6hw/system.xmp" SPEEDGRADE="-3"/>
+  <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx45" PACKAGE="csg324" PART="xc6slx45csg324-3" SOURCE="C:/Users/superman/Desktop/pegasus_427/lab6/lab6hw/system.xmp" SPEEDGRADE="-3"/>
 
   <EXTERNALPORTS>
     <PORT DIR="IO" MHS_INDEX="0" NAME="zio" SIGNAME="zio">
@@ -251,6 +251,11 @@
     <PORT DIR="I" ENDIAN="BIG" LEFT="0" LSB="4" MHS_INDEX="49" MSB="0" NAME="Push_Buttons_5Bits_TRI_I" RIGHT="4" SIGNAME="Push_Buttons_5Bits_TRI_I">
       <CONNECTIONS>
         <CONNECTION BUSINTERFACE="[gpio_0]" INSTANCE="Push_Buttons_5Bits" PORT="GPIO_IO_I"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" ENDIAN="LITTLE" LEFT="3" LSB="0" MHS_INDEX="50" MSB="3" NAME="pitiful_0_LEDs_pin" RIGHT="0" SIGNAME="pitiful_0_LEDs">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="pitiful_0" PORT="LEDs"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -10441,6 +10446,11 @@
         <PORT DIR="O" IS_INSTANTIATED="TRUE" MHS_INDEX="1" MPD_INDEX="19" NAME="interrupt" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="pitiful_0_interrupt">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_intc_0" PORT="Intr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="3" LSB="0" MHS_INDEX="2" MPD_INDEX="20" MSB="3" NAME="LEDs" RIGHT="0" SIGNAME="pitiful_0_LEDs" VECFORMULA="[3:0]">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External Ports" PORT="pitiful_0_LEDs_pin"/>
           </CONNECTIONS>
         </PORT>
         <PORT BUS="S_AXI" DEF_SIGNAME="axi4lite_0_M_ARESETN" DIR="I" MPD_INDEX="1" NAME="S_AXI_ARESETN" SIGIS="RST" SIGNAME="axi4lite_0_M_ARESETN">

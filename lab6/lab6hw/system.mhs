@@ -61,6 +61,10 @@
  PORT axi_ac97_0_SData_Out_pin = axi_ac97_0_SData_Out, DIR = O
  PORT axi_ac97_0_AC97Reset_n_pin = axi_ac97_0_AC97Reset_n, DIR = O
  PORT Push_Buttons_5Bits_TRI_I = Push_Buttons_5Bits_TRI_I, DIR = I, VEC = [0:4]
+ PORT pitiful_0_LEDs_pin = pitiful_0_LEDs, DIR = O, VEC = [3:0]
+ PORT arduino_0_LEDS_pin = arduino_0_LEDS, DIR = O, VEC = [7:0]
+ PORT arduino_0_JMOD_pin = arduino_0_JMOD, DIR = O, VEC = [7:0]
+ PORT arduino_0_SWITCHES_pin = arduino_0_SWITCHES, DIR = O, VEC = [7:0]
 
 
 BEGIN proc_sys_reset
@@ -74,6 +78,18 @@ BEGIN proc_sys_reset
  PORT Interconnect_aresetn = proc_sys_reset_0_Interconnect_aresetn
  PORT Ext_Reset_In = RESET
  PORT BUS_STRUCT_RESET = proc_sys_reset_0_BUS_STRUCT_RESET
+END
+
+BEGIN pitiful
+ PARAMETER INSTANCE = pitiful_0
+ PARAMETER HW_VER = 1.01.a
+ PARAMETER C_NUM_REG = 8
+ PARAMETER C_BASEADDR = 0x79c00000
+ PARAMETER C_HIGHADDR = 0x79c0ffff
+ BUS_INTERFACE S_AXI = axi4lite_0
+ PORT S_AXI_ACLK = clk_100_0000MHzPLL0
+ PORT interrupt = pitiful_0_interrupt
+ PORT LEDs = pitiful_0_LEDs
 END
 
 BEGIN lmb_v10
@@ -143,6 +159,14 @@ BEGIN microblaze
  PORT INTERRUPT = axi_intc_0_Irq
 END
 
+BEGIN fit_timer
+ PARAMETER INSTANCE = fit_timer_0
+ PARAMETER HW_VER = 1.01.b
+ PARAMETER C_NO_CLOCKS = 1000000
+ PORT Interrupt = fit_timer_0_Interrupt
+ PORT Clk = clk_100_0000MHzPLL0
+END
+
 BEGIN mdm
  PARAMETER INSTANCE = debug_module
  PARAMETER HW_VER = 2.00.b
@@ -198,19 +222,25 @@ BEGIN axi_vdma
  PORT mm2s_fsync_out = axi_vdma_0_mm2s_fsync_out
 END
 
-BEGIN axi_gpio
- PARAMETER INSTANCE = Push_Buttons_5Bits
- PARAMETER HW_VER = 1.01.b
- PARAMETER C_GPIO_WIDTH = 5
- PARAMETER C_ALL_INPUTS = 1
- PARAMETER C_INTERRUPT_PRESENT = 1
- PARAMETER C_IS_DUAL = 0
- PARAMETER C_BASEADDR = 0x40000000
- PARAMETER C_HIGHADDR = 0x4000ffff
+BEGIN axi_timer
+ PARAMETER INSTANCE = axi_timer_0
+ PARAMETER HW_VER = 1.03.a
+ PARAMETER C_BASEADDR = 0x41c00000
+ PARAMETER C_HIGHADDR = 0x41c0ffff
  BUS_INTERFACE S_AXI = axi4lite_0
  PORT S_AXI_ACLK = clk_100_0000MHzPLL0
- PORT GPIO_IO_I = Push_Buttons_5Bits_TRI_I
- PORT IP2INTC_Irpt = Push_Buttons_5Bits_IP2INTC_Irpt
+ PORT Interrupt = axi_timer_0_Interrupt
+END
+
+BEGIN axi_intc
+ PARAMETER INSTANCE = axi_intc_0
+ PARAMETER HW_VER = 1.01.a
+ PARAMETER C_BASEADDR = 0x41200000
+ PARAMETER C_HIGHADDR = 0x4120ffff
+ BUS_INTERFACE S_AXI = axi4lite_0
+ PORT S_AXI_ACLK = clk_100_0000MHzPLL0
+ PORT Intr = axi_ac97_0_Interrupt & axi_timer_0_Interrupt & Push_Buttons_5Bits_IP2INTC_Irpt & fit_timer_0_Interrupt & pitiful_0_interrupt
+ PORT Irq = axi_intc_0_Irq
 END
 
 BEGIN axi_hdmi
@@ -277,6 +307,19 @@ BEGIN axi_interconnect
  PORT INTERCONNECT_ARESETN = proc_sys_reset_0_Interconnect_aresetn
 END
 
+BEGIN arduino
+ PARAMETER INSTANCE = arduino_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x7ee00000
+ PARAMETER C_HIGHADDR = 0x7ee0ffff
+ PARAMETER C_NUM_REG = 8
+ BUS_INTERFACE S_AXI = axi4lite_0
+ PORT S_AXI_ACLK = clk_100_0000MHzPLL0
+ PORT LEDS = arduino_0_LEDS
+ PORT JMOD = arduino_0_JMOD
+ PORT SWITCHES = arduino_0_SWITCHES
+END
+
 BEGIN axi_uartlite
  PARAMETER INSTANCE = RS232_Uart_1
  PARAMETER HW_VER = 1.02.a
@@ -290,6 +333,21 @@ BEGIN axi_uartlite
  PORT S_AXI_ACLK = clk_100_0000MHzPLL0
  PORT TX = RS232_Uart_1_sout
  PORT RX = RS232_Uart_1_sin
+END
+
+BEGIN axi_gpio
+ PARAMETER INSTANCE = Push_Buttons_5Bits
+ PARAMETER HW_VER = 1.01.b
+ PARAMETER C_GPIO_WIDTH = 5
+ PARAMETER C_ALL_INPUTS = 1
+ PARAMETER C_INTERRUPT_PRESENT = 1
+ PARAMETER C_IS_DUAL = 0
+ PARAMETER C_BASEADDR = 0x40000000
+ PARAMETER C_HIGHADDR = 0x4000ffff
+ BUS_INTERFACE S_AXI = axi4lite_0
+ PORT S_AXI_ACLK = clk_100_0000MHzPLL0
+ PORT GPIO_IO_I = Push_Buttons_5Bits_TRI_I
+ PORT IP2INTC_Irpt = Push_Buttons_5Bits_IP2INTC_Irpt
 END
 
 BEGIN axi_s6_ddrx
@@ -350,45 +408,5 @@ BEGIN d_qspi_axi
  PORT C = Digilent_QuadSPI_Cntlr_C
  PORT S = Digilent_QuadSPI_Cntlr_S
  PORT DQ = Digilent_QuadSPI_Cntlr_DQ
-END
-
-BEGIN axi_intc
- PARAMETER INSTANCE = axi_intc_0
- PARAMETER HW_VER = 1.01.a
- PARAMETER C_BASEADDR = 0x41200000
- PARAMETER C_HIGHADDR = 0x4120ffff
- BUS_INTERFACE S_AXI = axi4lite_0
- PORT S_AXI_ACLK = clk_100_0000MHzPLL0
- PORT Intr = axi_ac97_0_Interrupt & axi_timer_0_Interrupt & Push_Buttons_5Bits_IP2INTC_Irpt & fit_timer_0_Interrupt & pitiful_0_interrupt
- PORT Irq = axi_intc_0_Irq
-END
-
-BEGIN axi_timer
- PARAMETER INSTANCE = axi_timer_0
- PARAMETER HW_VER = 1.03.a
- PARAMETER C_BASEADDR = 0x41c00000
- PARAMETER C_HIGHADDR = 0x41c0ffff
- BUS_INTERFACE S_AXI = axi4lite_0
- PORT S_AXI_ACLK = clk_100_0000MHzPLL0
- PORT Interrupt = axi_timer_0_Interrupt
-END
-
-BEGIN fit_timer
- PARAMETER INSTANCE = fit_timer_0
- PARAMETER HW_VER = 1.01.b
- PARAMETER C_NO_CLOCKS = 1000000
- PORT Interrupt = fit_timer_0_Interrupt
- PORT Clk = clk_100_0000MHzPLL0
-END
-
-BEGIN pitiful
- PARAMETER INSTANCE = pitiful_0
- PARAMETER HW_VER = 1.01.a
- PARAMETER C_NUM_REG = 8
- PARAMETER C_BASEADDR = 0x79c00000
- PARAMETER C_HIGHADDR = 0x79c0ffff
- BUS_INTERFACE S_AXI = axi4lite_0
- PORT S_AXI_ACLK = clk_100_0000MHzPLL0
- PORT interrupt = pitiful_0_interrupt
 END
 

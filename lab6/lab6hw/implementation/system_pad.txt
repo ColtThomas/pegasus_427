@@ -1,7 +1,7 @@
 Release 13.4 - par O.87xd (nt64)
 Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
 
-Fri Nov 04 13:42:30 2016
+Thu Nov 17 17:58:18 2016
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -213,7 +213,7 @@ Pinout by Pin Number:
 |L11       |                            |         |GND                          |             |              |              |          |         |           |         |       |          |           |                |
 |L12       |                            |IOBM     |IO_L40P_GCLK11_M1A5_1        |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
 |L13       |axi_ac97_0_Bit_Clk_pin      |IOB      |IO_L40N_GCLK10_M1A6_1        |INPUT        |LVCMOS33      |1             |          |         |           |NONE     |       |LOCATED   |NO         |NONE            |
-|L14       |                            |IOBM     |IO_L61P_1                    |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
+|L14       |pitiful_0_LEDs_pin<3>       |IOB      |IO_L61P_1                    |OUTPUT       |LVCMOS33      |1             |12        |SLOW     |           |         |       |LOCATED   |NO         |NONE            |
 |L15       |GCLK                        |IOB      |IO_L42P_GCLK7_M1UDM_1        |INPUT        |LVCMOS33      |1             |          |         |           |NONE     |       |LOCATED   |NO         |NONE            |
 |L16       |                            |IOBS     |IO_L42N_GCLK6_TRDY1_M1LDM_1  |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
 |L17       |                            |IOBM     |IO_L46P_FCS_B_M1DQ2_1        |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
@@ -231,7 +231,7 @@ Pinout by Pin Number:
 |M11       |                            |IOBM     |IO_L15P_2                    |UNUSED       |              |2             |          |         |           |         |       |          |           |                |
 |M12       |                            |         |VCCINT                       |             |              |              |          |         |           |         |1.2    |          |           |                |
 |M13       |                            |IOBS     |IO_L61N_1                    |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
-|M14       |                            |IOBM     |IO_L53P_1                    |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
+|M14       |pitiful_0_LEDs_pin<1>       |IOB      |IO_L53P_1                    |OUTPUT       |LVCMOS33      |1             |12        |SLOW     |           |         |       |LOCATED   |NO         |NONE            |
 |M15       |                            |         |VCCO_1                       |             |              |1             |          |         |           |         |3.30   |          |           |                |
 |M16       |axi_hdmi_0_TMDS_RX_SCL_pin  |IOB      |IO_L47P_FWE_B_M1DQ0_1        |INPUT        |I2C           |1             |          |         |           |NONE     |       |LOCATED   |YES        |NONE            |
 |M17       |                            |         |GND                          |             |              |              |          |         |           |         |       |          |           |                |
@@ -249,7 +249,7 @@ Pinout by Pin Number:
 |N11       |                            |IOBS     |IO_L15N_2                    |UNUSED       |              |2             |          |         |           |         |       |          |           |                |
 |N12       |                            |IOBM     |IO_L13P_M1_2                 |UNUSED       |              |2             |          |         |           |         |       |          |           |                |
 |N13       |                            |         |GND                          |             |              |              |          |         |           |         |       |          |           |                |
-|N14       |                            |IOBS     |IO_L53N_VREF_1               |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
+|N14       |pitiful_0_LEDs_pin<2>       |IOB      |IO_L53N_VREF_1               |OUTPUT       |LVCMOS33      |1             |12        |SLOW     |           |         |       |LOCATED   |NO         |NONE            |
 |N15       |                            |IOBM     |IO_L50P_M1UDQS_1             |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
 |N16       |axi_ac97_0_SData_Out_pin    |IOB      |IO_L50N_M1UDQSN_1            |OUTPUT       |LVCMOS33      |1             |12        |SLOW     |           |         |       |LOCATED   |YES        |NONE            |
 |N17       |                            |IOBM     |IO_L48P_HDC_M1DQ8_1          |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
@@ -325,7 +325,7 @@ Pinout by Pin Number:
 |U15       |                            |IOBM     |IO_L5P_2                     |UNUSED       |              |2             |          |         |           |         |       |          |           |                |
 |U16       |                            |IOBM     |IO_L2P_CMPCLK_2              |UNUSED       |              |2             |          |         |           |         |       |          |           |                |
 |U17       |axi_ac97_0_Sync_pin         |IOB      |IO_L52P_M1DQ14_1             |OUTPUT       |LVCMOS33      |1             |12        |SLOW     |           |         |       |LOCATED   |NO         |NONE            |
-|U18       |                            |IOBS     |IO_L52N_M1DQ15_1             |UNUSED       |              |1             |          |         |           |         |       |          |           |                |
+|U18       |pitiful_0_LEDs_pin<0>       |IOB      |IO_L52N_M1DQ15_1             |OUTPUT       |LVCMOS33      |1             |12        |SLOW     |           |         |       |LOCATED   |NO         |NONE            |
 |V1        |                            |         |GND                          |             |              |              |          |         |           |         |       |          |           |                |
 |V2        |                            |         |PROGRAM_B_2                  |             |              |              |          |         |           |         |       |          |           |                |
 |V3        |Digilent_QuadSPI_Cntlr_S_pin|IOB      |IO_L65N_CSO_B_2              |OUTPUT       |LVCMOS33      |2             |12        |SLOW     |           |         |       |LOCATED   |NO         |NONE            |

@@ -31,7 +31,8 @@ entity pitiful_0_wrapper is
     S_AXI_BRESP : out std_logic_vector(1 downto 0);
     S_AXI_BVALID : out std_logic;
     S_AXI_AWREADY : out std_logic;
-    interrupt : out std_logic
+    interrupt : out std_logic;
+    LEDs : out std_logic_vector(3 downto 0)
   );
 end pitiful_0_wrapper;
 
@@ -72,7 +73,8 @@ architecture STRUCTURE of pitiful_0_wrapper is
       S_AXI_BRESP : out std_logic_vector(1 downto 0);
       S_AXI_BVALID : out std_logic;
       S_AXI_AWREADY : out std_logic;
-      interrupt : out std_logic
+      interrupt : out std_logic;
+      LEDs : out std_logic_vector(3 downto 0)
     );
   end component;
 
@@ -113,7 +115,8 @@ begin
       S_AXI_BRESP => S_AXI_BRESP,
       S_AXI_BVALID => S_AXI_BVALID,
       S_AXI_AWREADY => S_AXI_AWREADY,
-      interrupt => interrupt
+      interrupt => interrupt,
+      LEDs => LEDs
     );
 
 end architecture STRUCTURE;

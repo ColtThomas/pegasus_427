@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="C:\Users\superman\Desktop\Ford\pegasus_427\derp\lab6code\SpaceInvaderTestHW2_hw_platform\system.bit" key="SpaceInvaderTestHW2_hw_platform-bitFile"/>
-	<item value="C:\Users\superman\Desktop\Ford\pegasus_427\derp\lab6code\SpaceInvaderTestHW2_hw_platform\system_bd.bmm" key="SpaceInvaderTestHW2_hw_platform-bmmFile"/>
+	<item value="C:\Users\superman\Desktop\pegasus_427\lab6\lab6code\SpaceInvaderTestHW2_hw_platform\system.bit" key="SpaceInvaderTestHW2_hw_platform-bitFile"/>
+	<item value="C:\Users\superman\Desktop\pegasus_427\lab6\lab6code\SpaceInvaderTestHW2_hw_platform\system_bd.bmm" key="SpaceInvaderTestHW2_hw_platform-bmmFile"/>
 	<item value="bootloop" key="SpaceInvaderTestHW2_hw_platform-microblaze_0-initElf"/>
 </section>
