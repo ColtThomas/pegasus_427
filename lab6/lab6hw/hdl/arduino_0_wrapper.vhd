@@ -31,6 +31,7 @@ entity arduino_0_wrapper is
     S_AXI_BRESP : out std_logic_vector(1 downto 0);
     S_AXI_BVALID : out std_logic;
     S_AXI_AWREADY : out std_logic;
+    interrupt : out std_logic;
     LEDS : out std_logic_vector(7 downto 0);
     JMOD : in std_logic_vector(7 downto 0);
     SWITCHES : in std_logic_vector(7 downto 0)
@@ -74,6 +75,7 @@ architecture STRUCTURE of arduino_0_wrapper is
       S_AXI_BRESP : out std_logic_vector(1 downto 0);
       S_AXI_BVALID : out std_logic;
       S_AXI_AWREADY : out std_logic;
+      interrupt : out std_logic;
       LEDS : out std_logic_vector(7 downto 0);
       JMOD : in std_logic_vector(7 downto 0);
       SWITCHES : in std_logic_vector(7 downto 0)
@@ -92,7 +94,7 @@ begin
       C_BASEADDR => X"7ee00000",
       C_HIGHADDR => X"7ee0ffff",
       C_FAMILY => "spartan6",
-      C_NUM_REG => 1,
+      C_NUM_REG => 8,
       C_NUM_MEM => 1,
       C_SLV_AWIDTH => 32,
       C_SLV_DWIDTH => 32
@@ -117,6 +119,7 @@ begin
       S_AXI_BRESP => S_AXI_BRESP,
       S_AXI_BVALID => S_AXI_BVALID,
       S_AXI_AWREADY => S_AXI_AWREADY,
+      interrupt => interrupt,
       LEDS => LEDS,
       JMOD => JMOD,
       SWITCHES => SWITCHES

@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map O.87xd on Mon Nov 21 11:20:50 2016
+// Written by: Map O.87xd on Mon Nov 21 12:42:43 2016
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -591,49 +591,47 @@ TIMEGRP m_axi_mm2s_aclk = PIN
         BEL
         "Push_Buttons_5Bits/Push_Buttons_5Bits/ip2Bus_RdAck_intr_reg_hole_d1"
         BEL "Push_Buttons_5Bits/Push_Buttons_5Bits/IP2INTC_Irpt" BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_3"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_3"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_2"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_2"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6_2"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_5"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
-        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_3"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_2"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_3"
-        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_1"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6_1"
         BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
+        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_1"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
         BEL
@@ -641,7 +639,9 @@ TIMEGRP m_axi_mm2s_aclk = PIN
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
         BEL
@@ -728,54 +728,23 @@ TIMEGRP m_axi_mm2s_aclk = PIN
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/INCLUDE_DPHASE_TIMER.dpto_cnt_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1"
-        BEL "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_8" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_9" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_10" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_11" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_12" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_13" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_14" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_15" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_16" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_17" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_18" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_19" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_20" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_21" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_22" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_23" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_24" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_25" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_26" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_27" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_28" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_29" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_30" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_31" BEL
+        BEL "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/interrupt" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_0" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_1" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_2" BEL
@@ -808,6 +777,38 @@ TIMEGRP m_axi_mm2s_aclk = PIN
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_29" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_30" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_31" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_8" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_9" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_10" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_11" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_12" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_13" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_14" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_15" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_16" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_17" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_18" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_19" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_20" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_21" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_22" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_23" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_24" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_25" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_26" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_27" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_28" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_29" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_30" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_31" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_0" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_1" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_2" BEL
@@ -10945,6 +10946,8 @@ TIMEGRP m_axi_mm2s_aclk = PIN
         BEL
         "axi_vdma_0/axi_vdma_0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUFFER.GEN_ASYNC_FIFO.I_LINEBUFFER_FIFO/I_ASYNC_FIFOGEN_FIFO/USE_2N_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/wr_rst_asreg_d2"
         BEL
+        "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
+        BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
         BEL "axi_intc_0/axi_intc_0/INTC_CORE_I/Irq" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_0" BEL
@@ -10952,42 +10955,49 @@ TIMEGRP m_axi_mm2s_aclk = PIN
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_5" BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg"
         BEL "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst" BEL
         "axi_intc_0/axi_intc_0/ip2bus_rdack" BEL
         "axi_intc_0/axi_intc_0/ip2bus_wrack" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/mer_int_1" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_0" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_3" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_1" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_0" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/mer_int_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_4" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_1" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_0" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_2" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_3" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_4" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_2" BEL
@@ -10996,17 +11006,17 @@ TIMEGRP m_axi_mm2s_aclk = PIN
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p1_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p1_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_p1_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_p1_5"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p2_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p2_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_p2_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_p2_5"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_d1_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_d1_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_d1_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_d1_5"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
         BEL
@@ -11033,6 +11043,8 @@ TIMEGRP m_axi_mm2s_aclk = PIN
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_3"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_4"
+        BEL
+        "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_5"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31"
         BEL
@@ -13403,49 +13415,47 @@ TIMEGRP s_axi_lite_aclk = PIN
         BEL
         "Push_Buttons_5Bits/Push_Buttons_5Bits/ip2Bus_RdAck_intr_reg_hole_d1"
         BEL "Push_Buttons_5Bits/Push_Buttons_5Bits/IP2INTC_Irpt" BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_3"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_3"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_2"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_2"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6_2"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_5"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
-        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_3"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_2"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_3"
-        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_1"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6_1"
         BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
+        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_1"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
         BEL
@@ -13453,7 +13463,9 @@ TIMEGRP s_axi_lite_aclk = PIN
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
         BEL
@@ -13540,54 +13552,23 @@ TIMEGRP s_axi_lite_aclk = PIN
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/INCLUDE_DPHASE_TIMER.dpto_cnt_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1"
-        BEL "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_8" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_9" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_10" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_11" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_12" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_13" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_14" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_15" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_16" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_17" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_18" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_19" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_20" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_21" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_22" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_23" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_24" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_25" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_26" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_27" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_28" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_29" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_30" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_31" BEL
+        BEL "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/interrupt" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_0" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_1" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_2" BEL
@@ -13620,6 +13601,38 @@ TIMEGRP s_axi_lite_aclk = PIN
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_29" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_30" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_31" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_8" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_9" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_10" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_11" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_12" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_13" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_14" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_15" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_16" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_17" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_18" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_19" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_20" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_21" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_22" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_23" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_24" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_25" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_26" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_27" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_28" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_29" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_30" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_31" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_0" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_1" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_2" BEL
@@ -23757,6 +23770,8 @@ TIMEGRP s_axi_lite_aclk = PIN
         BEL
         "axi_vdma_0/axi_vdma_0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUFFER.GEN_ASYNC_FIFO.I_LINEBUFFER_FIFO/I_ASYNC_FIFOGEN_FIFO/USE_2N_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/wr_rst_asreg_d2"
         BEL
+        "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
+        BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
         BEL "axi_intc_0/axi_intc_0/INTC_CORE_I/Irq" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_0" BEL
@@ -23764,42 +23779,49 @@ TIMEGRP s_axi_lite_aclk = PIN
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_5" BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg"
         BEL "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst" BEL
         "axi_intc_0/axi_intc_0/ip2bus_rdack" BEL
         "axi_intc_0/axi_intc_0/ip2bus_wrack" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/mer_int_1" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_0" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_3" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_1" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_0" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/mer_int_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_4" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_1" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_0" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_2" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_3" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_4" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_2" BEL
@@ -23808,17 +23830,17 @@ TIMEGRP s_axi_lite_aclk = PIN
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p1_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p1_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_p1_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_p1_5"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p2_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p2_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_p2_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_p2_5"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_d1_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_d1_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_d1_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_d1_5"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
         BEL
@@ -23845,6 +23867,8 @@ TIMEGRP s_axi_lite_aclk = PIN
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_3"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_4"
+        BEL
+        "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_5"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31"
         BEL
@@ -26215,49 +26239,47 @@ TIMEGRP globclk = PIN
         BEL
         "Push_Buttons_5Bits/Push_Buttons_5Bits/ip2Bus_RdAck_intr_reg_hole_d1"
         BEL "Push_Buttons_5Bits/Push_Buttons_5Bits/IP2INTC_Irpt" BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_3"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_3"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_2"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_2"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6_2"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_5"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
-        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_3"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_2"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_3"
-        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_1"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6_1"
         BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
+        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_1"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
         BEL
@@ -26265,7 +26287,9 @@ TIMEGRP globclk = PIN
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
         BEL
@@ -26352,54 +26376,23 @@ TIMEGRP globclk = PIN
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/INCLUDE_DPHASE_TIMER.dpto_cnt_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1"
-        BEL "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_8" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_9" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_10" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_11" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_12" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_13" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_14" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_15" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_16" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_17" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_18" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_19" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_20" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_21" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_22" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_23" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_24" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_25" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_26" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_27" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_28" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_29" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_30" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_31" BEL
+        BEL "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/interrupt" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_0" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_1" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_2" BEL
@@ -26432,6 +26425,38 @@ TIMEGRP globclk = PIN
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_29" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_30" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_31" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_8" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_9" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_10" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_11" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_12" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_13" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_14" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_15" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_16" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_17" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_18" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_19" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_20" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_21" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_22" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_23" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_24" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_25" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_26" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_27" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_28" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_29" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_30" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_31" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_0" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_1" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_2" BEL
@@ -36570,6 +36595,8 @@ TIMEGRP globclk = PIN
         BEL
         "axi_vdma_0/axi_vdma_0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUFFER.GEN_ASYNC_FIFO.I_LINEBUFFER_FIFO/I_ASYNC_FIFOGEN_FIFO/USE_2N_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/wr_rst_asreg_d2"
         BEL
+        "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
+        BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
         BEL "axi_intc_0/axi_intc_0/INTC_CORE_I/Irq" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_0" BEL
@@ -36577,42 +36604,49 @@ TIMEGRP globclk = PIN
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_5" BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg"
         BEL "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst" BEL
         "axi_intc_0/axi_intc_0/ip2bus_rdack" BEL
         "axi_intc_0/axi_intc_0/ip2bus_wrack" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/mer_int_1" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_0" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_3" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_1" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_0" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/mer_int_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_4" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_1" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_0" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_2" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_3" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_4" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_2" BEL
@@ -36621,17 +36655,17 @@ TIMEGRP globclk = PIN
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p1_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p1_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_p1_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_p1_5"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p2_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p2_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_p2_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_p2_5"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_d1_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_d1_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_d1_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_d1_5"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
         BEL
@@ -36658,6 +36692,8 @@ TIMEGRP globclk = PIN
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_3"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_4"
+        BEL
+        "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_5"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31"
         BEL
@@ -39038,49 +39074,47 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         BEL
         "Push_Buttons_5Bits/Push_Buttons_5Bits/ip2Bus_RdAck_intr_reg_hole_d1"
         BEL "Push_Buttons_5Bits/Push_Buttons_5Bits/IP2INTC_Irpt" BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_3"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_3"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_2"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_2"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_2"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6_2"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_5"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
-        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_3"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_2"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_3"
-        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_1"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_2"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6_1"
         BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
+        BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7_1"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4"
-        BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5_1"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
         BEL
@@ -39088,7 +39122,9 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
         BEL
-        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4"
+        BEL
+        "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
         BEL
@@ -39175,54 +39211,23 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/INCLUDE_DPHASE_TIMER.dpto_cnt_3"
         BEL
         "arduino_0/arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1"
-        BEL "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/pmod_value_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/switch_value_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_0" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_1" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_2" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_3" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_4" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_5" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_6" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_7" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_8" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_9" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_10" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_11" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_12" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_13" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_14" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_15" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_16" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_17" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_18" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_19" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_20" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_21" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_22" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_23" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_24" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_25" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_26" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_27" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_28" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_29" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_30" BEL
-        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_31" BEL
+        BEL "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_pmod_value_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/reg_switch_value_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/interrupt" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_0" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_1" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_2" BEL
@@ -39255,6 +39260,38 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_29" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_30" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg3_31" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_0" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_1" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_2" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_3" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_4" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_5" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_6" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_7" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_8" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_9" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_10" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_11" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_12" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_13" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_14" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_15" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_16" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_17" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_18" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_19" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_20" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_21" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_22" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_23" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_24" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_25" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_26" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_27" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_28" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_29" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_30" BEL
+        "arduino_0/arduino_0/USER_LOGIC_I/slv_reg2_31" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_0" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_1" BEL
         "arduino_0/arduino_0/USER_LOGIC_I/slv_reg6_2" BEL
@@ -49401,6 +49438,8 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         BEL
         "axi_vdma_0/axi_vdma_0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUFFER.GEN_ASYNC_FIFO.I_LINEBUFFER_FIFO/I_ASYNC_FIFOGEN_FIFO/USE_2N_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/wr_rst_asreg_d2"
         BEL
+        "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
+        BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
         BEL "axi_intc_0/axi_intc_0/INTC_CORE_I/Irq" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_0" BEL
@@ -49408,42 +49447,49 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/sie_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ipr_5" BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg"
         BEL "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst" BEL
         "axi_intc_0/axi_intc_0/ip2bus_rdack" BEL
         "axi_intc_0/axi_intc_0/ip2bus_wrack" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/mer_int_1" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_0" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_3" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_1" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/cie_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_0" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/iar_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/mer_int_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/isr_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_2" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_3" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_4" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_1" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/hw_intr_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_0" BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_4" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_2" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_5" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_3" BEL
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/ier_4" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_0" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_1" BEL
         "axi_intc_0/axi_intc_0/INTC_CORE_I/ivr_2" BEL
@@ -49452,17 +49498,17 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p1_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p1_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_p1_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_p1_5"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p2_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p2_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_p2_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_p2_5"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_d1_1"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_d1_2"
         BEL
-        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<4>.EDGE_DETECT_GEN.intr_d1_4"
+        "axi_intc_0/axi_intc_0/INTC_CORE_I/INTR_DETECT_GEN<5>.EDGE_DETECT_GEN.intr_d1_5"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
         BEL
@@ -49489,6 +49535,8 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_3"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_4"
+        BEL
+        "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_5"
         BEL
         "axi_intc_0/axi_intc_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31"
         BEL

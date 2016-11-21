@@ -1309,7 +1309,7 @@ architecture STRUCTURE of system is
       S_AXI_RRESP : out std_logic_vector(1 downto 0);
       S_AXI_RVALID : out std_logic;
       S_AXI_RREADY : in std_logic;
-      Intr : in std_logic_vector(4 downto 0);
+      Intr : in std_logic_vector(5 downto 0);
       Irq : out std_logic
     );
   end component;
@@ -2203,6 +2203,7 @@ architecture STRUCTURE of system is
       S_AXI_BRESP : out std_logic_vector(1 downto 0);
       S_AXI_BVALID : out std_logic;
       S_AXI_AWREADY : out std_logic;
+      interrupt : out std_logic;
       LEDS : out std_logic_vector(7 downto 0);
       JMOD : in std_logic_vector(7 downto 0);
       SWITCHES : in std_logic_vector(7 downto 0)
@@ -2230,6 +2231,7 @@ architecture STRUCTURE of system is
   signal Push_Buttons_5Bits_IP2INTC_Irpt : std_logic;
   signal S_AXIS_MM2S_ACLK_int : std_logic;
   signal arduino_0_LEDS : std_logic_vector(7 downto 0);
+  signal arduino_0_interrupt : std_logic;
   signal axi4_0_M_ARADDR : std_logic_vector(31 downto 0);
   signal axi4_0_M_ARBURST : std_logic_vector(1 downto 0);
   signal axi4_0_M_ARCACHE : std_logic_vector(3 downto 0);
@@ -2484,7 +2486,7 @@ architecture STRUCTURE of system is
   signal net_gnd4096 : std_logic_vector(0 to 4095);
   signal net_vcc0 : std_logic;
   signal net_vcc4 : std_logic_vector(3 downto 0);
-  signal pgassign1 : std_logic_vector(4 downto 0);
+  signal pgassign1 : std_logic_vector(5 downto 0);
   signal pgassign2 : std_logic_vector(10 downto 0);
   signal pgassign3 : std_logic_vector(2 downto 0);
   signal pitiful_0_interrupt : std_logic;
@@ -2571,11 +2573,12 @@ begin
   axi4_0_S_ARLOCK(5 downto 4) <= B"00";
   axi4_0_S_ARQOS(11 downto 8) <= B"0000";
   axi4_0_S_ARUSER(14 downto 10) <= B"00000";
-  pgassign1(4) <= axi_ac97_0_Interrupt;
-  pgassign1(3) <= axi_timer_0_Interrupt;
-  pgassign1(2) <= Push_Buttons_5Bits_IP2INTC_Irpt;
-  pgassign1(1) <= fit_timer_0_Interrupt;
-  pgassign1(0) <= pitiful_0_interrupt;
+  pgassign1(5) <= axi_ac97_0_Interrupt;
+  pgassign1(4) <= axi_timer_0_Interrupt;
+  pgassign1(3) <= Push_Buttons_5Bits_IP2INTC_Irpt;
+  pgassign1(2) <= fit_timer_0_Interrupt;
+  pgassign1(1) <= pitiful_0_interrupt;
+  pgassign1(0) <= arduino_0_interrupt;
   pgassign2(10 downto 10) <= clk_100_0000MHzPLL0(0 to 0);
   pgassign2(9 downto 9) <= clk_100_0000MHzPLL0(0 to 0);
   pgassign2(8 downto 8) <= clk_100_0000MHzPLL0(0 to 0);
@@ -4718,6 +4721,7 @@ begin
       S_AXI_BRESP => axi4lite_0_M_BRESP(21 downto 20),
       S_AXI_BVALID => axi4lite_0_M_BVALID(10),
       S_AXI_AWREADY => axi4lite_0_M_AWREADY(10),
+      interrupt => arduino_0_interrupt,
       LEDS => arduino_0_LEDS,
       JMOD => net_arduino_0_JMOD_pin,
       SWITCHES => net_arduino_0_SWITCHES_pin

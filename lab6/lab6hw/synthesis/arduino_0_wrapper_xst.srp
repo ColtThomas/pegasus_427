@@ -487,7 +487,7 @@ WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/p
         C_BASEADDR = "01111110111000000000000000000000"
         C_HIGHADDR = "01111110111000001111111111111111"
         C_FAMILY = "spartan6"
-        C_NUM_REG = 1
+        C_NUM_REG = 8
         C_NUM_MEM = 1
         C_SLV_AWIDTH = 32
         C_SLV_DWIDTH = 32
@@ -671,16 +671,20 @@ WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/p
         C_SLV_DWIDTH = 32
 WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
 WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
-    Found 8-bit register for signal <switch_value>.
+    Found 8-bit register for signal <reg_pmod_value>.
+    Found 8-bit register for signal <reg_switch_value>.
     Found 32-bit register for signal <slv_reg2>.
     Found 32-bit register for signal <slv_reg3>.
     Found 32-bit register for signal <slv_reg4>.
     Found 32-bit register for signal <slv_reg5>.
     Found 32-bit register for signal <slv_reg6>.
     Found 32-bit register for signal <slv_reg7>.
-    Found 8-bit register for signal <pmod_value>.
+    Found 1-bit register for signal <interrupt>.
+    Found 8-bit comparator not equal for signal <n0000> created at line 167
+    Found 8-bit comparator not equal for signal <n0002> created at line 167
     Summary:
-	inferred 208 D-type flip-flop(s).
+	inferred 209 D-type flip-flop(s).
+	inferred   2 Comparator(s).
 	inferred 193 Multiplexer(s).
 Unit <user_logic> synthesized.
 
@@ -690,12 +694,14 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  4-bit adder                                           : 1
-# Registers                                            : 25
- 1-bit register                                        : 13
+# Registers                                            : 26
+ 1-bit register                                        : 14
  2-bit register                                        : 2
  32-bit register                                       : 7
  4-bit register                                        : 1
  8-bit register                                        : 2
+# Comparators                                          : 2
+ 8-bit comparator not equal                            : 2
 # Multiplexers                                         : 203
  1-bit 2-to-1 multiplexer                              : 201
  32-bit 2-to-1 multiplexer                             : 2
@@ -718,8 +724,10 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # Counters                                             : 1
  4-bit up counter                                      : 1
-# Registers                                            : 257
- Flip-Flops                                            : 257
+# Registers                                            : 258
+ Flip-Flops                                            : 258
+# Comparators                                          : 2
+ 8-bit comparator not equal                            : 2
 # Multiplexers                                         : 195
  1-bit 2-to-1 multiplexer                              : 193
  32-bit 2-to-1 multiplexer                             : 2
@@ -757,14 +765,14 @@ WARNING:Xst:2677 - Node <arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 0) on block arduino_0_wrapper, actual ratio is 1.
-FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg has been replicated 5 time(s)
-FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1 has been replicated 2 time(s)
-FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 has been replicated 2 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg has been replicated 4 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1 has been replicated 1 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 has been replicated 3 time(s)
 FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3 has been replicated 2 time(s)
-FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 has been replicated 2 time(s)
-FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5 has been replicated 2 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 has been replicated 3 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5 has been replicated 3 time(s)
 FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 has been replicated 2 time(s)
-FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7 has been replicated 3 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7 has been replicated 2 time(s)
 
 Final Macro Processing ...
 
@@ -772,8 +780,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 278
- Flip-Flops                                            : 278
+# Registers                                            : 279
+ Flip-Flops                                            : 279
 
 =========================================================================
 
@@ -796,18 +804,18 @@ Top Level Output File Name         : arduino_0_wrapper.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 380
+# BELS                             : 390
 #      GND                         : 1
 #      INV                         : 2
-#      LUT2                        : 13
+#      LUT2                        : 16
 #      LUT3                        : 7
 #      LUT4                        : 26
-#      LUT5                        : 203
-#      LUT6                        : 125
-#      MUXF7                       : 2
+#      LUT5                        : 205
+#      LUT6                        : 131
+#      MUXF7                       : 1
 #      VCC                         : 1
-# FlipFlops/Latches                : 278
-#      FD                          : 46
+# FlipFlops/Latches                : 279
+#      FD                          : 47
 #      FDR                         : 8
 #      FDRE                        : 224
 
@@ -818,19 +826,19 @@ Selected Device : 6slx45csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             278  out of  54576     0%  
- Number of Slice LUTs:                  376  out of  27288     1%  
-    Number used as Logic:               376  out of  27288     1%  
+ Number of Slice Registers:             279  out of  54576     0%  
+ Number of Slice LUTs:                  387  out of  27288     1%  
+    Number used as Logic:               387  out of  27288     1%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    397
-   Number with an unused Flip Flop:     119  out of    397    29%  
-   Number with an unused LUT:            21  out of    397     5%  
-   Number of fully used LUT-FF pairs:   257  out of    397    64%  
+ Number of LUT Flip Flop pairs used:    410
+   Number with an unused Flip Flop:     131  out of    410    31%  
+   Number with an unused LUT:            23  out of    410     5%  
+   Number of fully used LUT-FF pairs:   256  out of    410    62%  
    Number of unique control sets:         7
 
 IO Utilization: 
- Number of IOs:                         172
+ Number of IOs:                         173
  Number of bonded IOBs:                   0  out of    218     0%  
 
 Specific Feature Utilization:
@@ -856,7 +864,7 @@ Clock Information:
 -----------------------------------+-----------------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)                   | Load  |
 -----------------------------------+-----------------------------------------+-------+
-S_AXI_ACLK                         | NONE(arduino_0/USER_LOGIC_I/slv_reg7_31)| 278   |
+S_AXI_ACLK                         | NONE(arduino_0/USER_LOGIC_I/slv_reg7_31)| 279   |
 -----------------------------------+-----------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -868,8 +876,8 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 4.844ns (Maximum Frequency: 206.437MHz)
-   Minimum input arrival time before clock: 2.873ns
+   Minimum period: 4.867ns (Maximum Frequency: 205.464MHz)
+   Minimum input arrival time before clock: 2.851ns
    Maximum output required time after clock: 3.500ns
    Maximum combinational path delay: No path found
 
@@ -879,10 +887,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
-  Clock period: 4.844ns (frequency: 206.437MHz)
-  Total number of paths / destination ports: 5132 / 525
+  Clock period: 4.867ns (frequency: 205.464MHz)
+  Total number of paths / destination ports: 5181 / 526
 -------------------------------------------------------------------------
-Delay:               4.844ns (Levels of Logic = 2)
+Delay:               4.867ns (Levels of Logic = 2)
   Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 (FF)
   Destination:       arduino_0/USER_LOGIC_I/slv_reg7_31 (FF)
   Source Clock:      S_AXI_ACLK rising
@@ -892,19 +900,19 @@ Delay:               4.844ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              15   0.447   1.346  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4)
-     LUT6:I0->O            1   0.203   0.684  arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_12_o<7>11_F (N98)
-     LUT3:I1->O           64   0.203   1.639  arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_12_o<7>111 (arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_12_o<7>1)
+     FD:C->Q              16   0.447   1.369  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4)
+     LUT6:I0->O            1   0.203   0.684  arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_16_o<7>11_F (N100)
+     LUT3:I1->O           64   0.203   1.639  arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_16_o<7>111 (arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_16_o<7>1)
      FDRE:CE                   0.322          arduino_0/USER_LOGIC_I/slv_reg4_0
     ----------------------------------------
-    Total                      4.844ns (1.175ns logic, 3.669ns route)
-                                       (24.3% logic, 75.7% route)
+    Total                      4.867ns (1.175ns logic, 3.692ns route)
+                                       (24.1% logic, 75.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 797 / 434
+  Total number of paths / destination ports: 831 / 435
 -------------------------------------------------------------------------
-Offset:              2.873ns (Levels of Logic = 3)
+Offset:              2.851ns (Levels of Logic = 3)
   Source:            S_AXI_ARVALID (PAD)
   Destination:       arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7 (FF)
   Destination Clock: S_AXI_ACLK rising
@@ -913,28 +921,28 @@ Offset:              2.873ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     LUT5:I0->O           20   0.203   1.093  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Mmux_start11 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start)
-     LUT6:I5->O            2   0.205   0.721  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<4>1 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<4>)
-     LUT4:I2->O            2   0.203   0.000  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_rstpot (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_rstpot)
-     FD:D                      0.102          arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4
+     LUT5:I0->O           19   0.203   1.072  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Mmux_start11 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start)
+     LUT6:I5->O            2   0.205   0.721  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<3>1 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<3>)
+     LUT4:I2->O            2   0.203   0.000  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_rstpot (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_rstpot)
+     FD:D                      0.102          arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3
     ----------------------------------------
-    Total                      2.873ns (1.058ns logic, 1.815ns route)
-                                       (36.8% logic, 63.2% route)
+    Total                      2.851ns (1.058ns logic, 1.793ns route)
+                                       (37.1% logic, 62.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 86 / 45
+  Total number of paths / destination ports: 91 / 46
 -------------------------------------------------------------------------
 Offset:              3.500ns (Levels of Logic = 2)
-  Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 (FF)
+  Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 (FF)
   Destination:       S_AXI_ARREADY (PAD)
   Source Clock:      S_AXI_ACLK rising
 
-  Data Path: arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 to S_AXI_ARREADY
+  Data Path: arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 to S_AXI_ARREADY
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              91   0.447   2.065  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4)
+     FD:C->Q              91   0.447   2.065  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6)
      LUT5:I1->O            1   0.203   0.580  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rd_done1_SW1 (N96)
      LUT6:I5->O            2   0.205   0.000  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rd_done1 (S_AXI_ARREADY)
     ----------------------------------------
@@ -951,14 +959,14 @@ Clock to Setup on destination clock S_AXI_ACLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-S_AXI_ACLK     |    4.844|         |         |         |
+S_AXI_ACLK     |    4.867|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 7.81 secs
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 7.85 secs
  
 --> 
 

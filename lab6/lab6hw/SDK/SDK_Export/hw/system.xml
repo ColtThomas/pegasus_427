@@ -1,5 +1,5 @@
 
-<EDKSYSTEM EDKVERSION="13.4" EDWVERSION="1.2" TIMESTAMP="Mon Nov 21 10:42:56 2016">
+<EDKSYSTEM EDKVERSION="13.4" EDWVERSION="1.2" TIMESTAMP="Mon Nov 21 12:21:30 2016">
 
   <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx45" PACKAGE="csg324" PART="xc6slx45csg324-3" SOURCE="C:/Users/superman/Desktop/pegasus_427/lab6/lab6hw/system.xmp" SPEEDGRADE="-3"/>
 
@@ -6349,10 +6349,10 @@
         <PARAMETER MPD_INDEX="4" NAME="C_S_AXI_DATA_WIDTH" TYPE="INTEGER" VALUE="32">
           <DESCRIPTION>AXI Data Width</DESCRIPTION>
         </PARAMETER>
-        <PARAMETER CHANGEDBY="SYSTEM" MPD_INDEX="5" NAME="C_NUM_INTR_INPUTS" TYPE="INTEGER" VALUE="5">
+        <PARAMETER CHANGEDBY="SYSTEM" MPD_INDEX="5" NAME="C_NUM_INTR_INPUTS" TYPE="INTEGER" VALUE="6">
           <DESCRIPTION>Number of Interrupt Inputs </DESCRIPTION>
         </PARAMETER>
-        <PARAMETER CHANGEDBY="SYSTEM" MPD_INDEX="6" NAME="C_KIND_OF_INTR" TYPE="std_logic_vector" VALUE="0b11111111111111111111111111110010">
+        <PARAMETER CHANGEDBY="SYSTEM" MPD_INDEX="6" NAME="C_KIND_OF_INTR" TYPE="std_logic_vector" VALUE="0b11111111111111111111111111100100">
           <DESCRIPTION>Type of Interrupt for Each Input </DESCRIPTION>
         </PARAMETER>
         <PARAMETER CHANGEDBY="SYSTEM" MPD_INDEX="7" NAME="C_KIND_OF_EDGE" TYPE="std_logic_vector" VALUE="0b11111111111111111111111111111111">
@@ -6389,17 +6389,18 @@
             <CONNECTION INSTANCE="clock_generator_0" PORT="CLKOUT2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="4" LSB="0" MHS_INDEX="1" MPD_INDEX="19" MSB="4" NAME="Intr" RIGHT="0" SENSITIVITY="EDGE_RISING" SIGIS="INTERRUPT" SIGNAME="axi_ac97_0_Interrupt &amp; axi_timer_0_Interrupt &amp; Push_Buttons_5Bits_IP2INTC_Irpt &amp; fit_timer_0_Interrupt &amp; pitiful_0_interrupt" VECFORMULA="[(C_NUM_INTR_INPUTS-1):0]">
+        <PORT DIR="I" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="5" LSB="0" MHS_INDEX="1" MPD_INDEX="19" MSB="5" NAME="Intr" RIGHT="0" SENSITIVITY="EDGE_RISING" SIGIS="INTERRUPT" SIGNAME="axi_ac97_0_Interrupt &amp; axi_timer_0_Interrupt &amp; Push_Buttons_5Bits_IP2INTC_Irpt &amp; fit_timer_0_Interrupt &amp; pitiful_0_interrupt &amp; arduino_0_interrupt" VECFORMULA="[(C_NUM_INTR_INPUTS-1):0]">
           <SIGNALS>
             <SIGNAL NAME="axi_ac97_0_Interrupt"/>
             <SIGNAL NAME="axi_timer_0_Interrupt"/>
             <SIGNAL NAME="Push_Buttons_5Bits_IP2INTC_Irpt"/>
             <SIGNAL NAME="fit_timer_0_Interrupt"/>
             <SIGNAL NAME="pitiful_0_interrupt"/>
+            <SIGNAL NAME="arduino_0_interrupt"/>
           </SIGNALS>
           <DESCRIPTION>Interrupt Inputs</DESCRIPTION>
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_ac97_0_Interrupt &amp; axi_timer_0_Interrupt &amp; Push_Buttons_5Bits_IP2INTC_Irpt &amp; fit_timer_0_Interrupt &amp; pitiful_0_interrupt"/>
+            <CONNECTION INSTANCE="axi_ac97_0_Interrupt &amp; axi_timer_0_Interrupt &amp; Push_Buttons_5Bits_IP2INTC_Irpt &amp; fit_timer_0_Interrupt &amp; pitiful_0_interrupt &amp; arduino_0_interrupt"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" IS_INSTANTIATED="TRUE" MHS_INDEX="2" MPD_INDEX="20" NAME="Irq" SENSITIVITY="EDGE_RISING" SIGIS="INTERRUPT" SIGNAME="axi_intc_0_Irq">
@@ -6537,6 +6538,7 @@
         <SOURCE INSTANCE="Push_Buttons_5Bits" PRIORITY="2" SIGNAME="Push_Buttons_5Bits_IP2INTC_Irpt"/>
         <SOURCE INSTANCE="fit_timer_0" PRIORITY="3" SIGNAME="fit_timer_0_Interrupt"/>
         <SOURCE INSTANCE="pitiful_0" PRIORITY="4" SIGNAME="pitiful_0_interrupt"/>
+        <SOURCE INSTANCE="arduino_0" PRIORITY="5" SIGNAME="arduino_0_interrupt"/>
         <TARGET INSTANCE="microblaze_0"/>
       </INTERRUPTINFO>
     </MODULE>
@@ -10624,7 +10626,7 @@
         <PARAMETER ADDRESS="BASE" ADDR_TYPE="REGISTER" CHANGEDBY="USER" IS_INSTANTIATED="TRUE" MHS_INDEX="2" MPD_INDEX="5" NAME="C_BASEADDR" TYPE="std_logic_vector" VALUE="0x7ee00000"/>
         <PARAMETER ADDRESS="HIGH" ADDR_TYPE="REGISTER" CHANGEDBY="USER" IS_INSTANTIATED="TRUE" MHS_INDEX="3" MPD_INDEX="6" NAME="C_HIGHADDR" TYPE="std_logic_vector" VALUE="0x7ee0ffff"/>
         <PARAMETER CHANGEDBY="SYSTEM" MPD_INDEX="7" NAME="C_FAMILY" TYPE="STRING" VALUE="spartan6"/>
-        <PARAMETER MPD_INDEX="8" NAME="C_NUM_REG" TYPE="INTEGER" VALUE="1"/>
+        <PARAMETER CHANGEDBY="USER" IS_INSTANTIATED="TRUE" MHS_INDEX="4" MPD_INDEX="8" NAME="C_NUM_REG" TYPE="INTEGER" VALUE="8"/>
         <PARAMETER MPD_INDEX="9" NAME="C_NUM_MEM" TYPE="INTEGER" VALUE="1"/>
         <PARAMETER MPD_INDEX="10" NAME="C_SLV_AWIDTH" TYPE="INTEGER" VALUE="32"/>
         <PARAMETER MPD_INDEX="11" NAME="C_SLV_DWIDTH" TYPE="INTEGER" VALUE="32"/>
@@ -10636,17 +10638,22 @@
             <CONNECTION INSTANCE="clock_generator_0" PORT="CLKOUT2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="7" LSB="0" MHS_INDEX="1" MPD_INDEX="19" MSB="7" NAME="LEDS" RIGHT="0" SIGNAME="arduino_0_LEDS" VECFORMULA="[7:0]">
+        <PORT DIR="O" IS_INSTANTIATED="TRUE" MHS_INDEX="1" MPD_INDEX="19" NAME="interrupt" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="arduino_0_interrupt">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_intc_0" PORT="Intr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="7" LSB="0" MHS_INDEX="2" MPD_INDEX="20" MSB="7" NAME="LEDS" RIGHT="0" SIGNAME="arduino_0_LEDS" VECFORMULA="[7:0]">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External Ports" PORT="arduino_0_LEDS_pin"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="7" LSB="0" MHS_INDEX="2" MPD_INDEX="20" MSB="7" NAME="JMOD" RIGHT="0" SIGNAME="net_arduino_0_JMOD_pin" VECFORMULA="[7:0]">
+        <PORT DIR="I" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="7" LSB="0" MHS_INDEX="3" MPD_INDEX="21" MSB="7" NAME="JMOD" RIGHT="0" SIGNAME="net_arduino_0_JMOD_pin" VECFORMULA="[7:0]">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External Ports" PORT="arduino_0_JMOD_pin"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="7" LSB="0" MHS_INDEX="3" MPD_INDEX="21" MSB="7" NAME="SWITCHES" RIGHT="0" SIGNAME="net_arduino_0_SWITCHES_pin" VECFORMULA="[7:0]">
+        <PORT DIR="I" ENDIAN="LITTLE" IS_INSTANTIATED="TRUE" LEFT="7" LSB="0" MHS_INDEX="4" MPD_INDEX="22" MSB="7" NAME="SWITCHES" RIGHT="0" SIGNAME="net_arduino_0_SWITCHES_pin" VECFORMULA="[7:0]">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External Ports" PORT="arduino_0_SWITCHES_pin"/>
           </CONNECTIONS>
@@ -10774,6 +10781,9 @@
           </SLAVES>
         </MEMRANGE>
       </MEMORYMAP>
+      <INTERRUPTINFO TYPE="SOURCE">
+        <TARGET INSTANCE="axi_intc_0" INTC_INDEX="0" PRIORITY="5"/>
+      </INTERRUPTINFO>
     </MODULE>
   </MODULES>
 

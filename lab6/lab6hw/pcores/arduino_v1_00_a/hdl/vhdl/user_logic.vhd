@@ -101,6 +101,7 @@ entity user_logic is
 		JMOD: in std_logic_vector(7 downto 0);
 		SWITCHES: in std_logic_vector(7 downto 0);
 		LEDS: out std_logic_vector(7 downto 0);
+		interrupt : out  STD_LOGIC;
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -133,9 +134,12 @@ end entity user_logic;
 architecture IMP of user_logic is
 
   --USER signal declarations added here, as needed for user logic
-	signal pmod_value: std_logic_vector(7 downto 0);
-	signal led_value: std_logic_vector(7 downto 0);
-	signal switch_value: std_logic_vector(7 downto 0);
+	signal reg_pmod_value: std_logic_vector(7 downto 0);
+	signal reg_led_value: std_logic_vector(7 downto 0);
+	signal reg_switch_value: std_logic_vector(7 downto 0);
+	signal next_pmod_value: std_logic_vector(7 downto 0);
+	signal next_led_value: std_logic_vector(7 downto 0);
+	signal next_switch_value: std_logic_vector(7 downto 0);
   ------------------------------------------
   -- Signals for user logic slave model s/w accessible register example
   ------------------------------------------
@@ -160,18 +164,28 @@ begin
 	process(Bus2IP_Clk)
 	begin
 		if(Bus2IP_Clk'event and Bus2IP_Clk='1') then		
-			pmod_value <= JMOD;
-			switch_value <= SWITCHES;
+			if((reg_switch_value /= next_switch_value) or (reg_pmod_value /= next_pmod_value)) then
+				interrupt <= '1';
+			else
+				interrupt <= '0';
+			end if;
+				
+			reg_pmod_value <= next_pmod_value;
+			reg_switch_value <= next_switch_value;
+			
 			
 		end if;
 	end process;
-
+	-- next state logic
+	next_pmod_value <= JMOD;
+	next_switch_value <= SWITCHES;
+	
 	-- Output logic
-	LEDS <= pmod_value or switch_value;
+	LEDS <= reg_pmod_value or reg_switch_value;
 	slv_reg0(C_SLV_DWIDTH-1 downto 8) <= (others=>'0');
 	slv_reg1(C_SLV_DWIDTH-1 downto 8) <= (others=>'0');
-	slv_reg0(7 downto 0)<=  pmod_value;
-	slv_reg1(7 downto 0)<=  switch_value;
+	slv_reg0(7 downto 0)<=  reg_pmod_value;
+	slv_reg1(7 downto 0)<=  reg_switch_value;
   ------------------------------------------
   -- Example code to read/write user logic slave model s/w accessible registers
   -- 

@@ -106,7 +106,6 @@
     </HEADERS>
     <SPLITTERS COLLAPSIBLE="1" HANDLEWIDTH="4" MARKER="255" ORIENTATION="1" RESIZE="1" SIZES="62,630,200" VERSION="0"/>
     <SET ID="pitiful_0" IS_EXPANDED="TRUE"/>
-    <SET ID="arduino_0" IS_EXPANDED="TRUE"/>
     <STATUS>
       <SELECTIONS/>
     </STATUS>
@@ -134,7 +133,7 @@
       <VARIABLE ID="Push_Buttons_5Bits" ROW_INDEX="14"/>
       <VARIABLE ID="MCB_DDR2" ROW_INDEX="9"/>
       <VARIABLE ID="Digilent_QuadSPI_Cntlr" ROW_INDEX="19"/>
-      <VARIABLE ID="arduino_0" IS_EXPANDED="TRUE" ROW_INDEX="12"/>
+      <VARIABLE ID="arduino_0" ROW_INDEX="12"/>
     </SEQUENCES>
   </SET>
 

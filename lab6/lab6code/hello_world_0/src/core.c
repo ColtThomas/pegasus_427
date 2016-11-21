@@ -24,6 +24,7 @@
 #include "xac97_l.h"
 #include "sound.h"
 #include "pitiful.h"
+#include "arduino.h"
 
 #define TIMER_SEC 100 // timer period is 10ms, so 100 periods is one second
 #define NUMBER_OF_BUTTONS 5
@@ -62,11 +63,12 @@ const uint8_t BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
 #define AC97_MAX_SAMPLES 256
 #define AC97_RATE_DEFAULT 11025
 u32 buttonStateReg; // Read the button values with this variable
-
+uint32_t switchStateReg; // Read the switch values with this variable
+uint32_t pmodStateReg; // Read the pmod values with this variable
 XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 pitiful_t thePit;
-
+arduino_t arduino;
 
 bool game_started = false;
 
@@ -200,7 +202,11 @@ void timer_interrupt_handler() {
 		frame_count++;
 	}
 }
+void arduino_interrupt_handler() {
 
+
+
+}
 void ac97_interrupt_handler() {
 	// Consider making this more dynamic and having a variable rate
 
@@ -240,11 +246,21 @@ void ac97_interrupt_handler() {
 void interrupt_handler_dispatcher(void* ptr) {
 	uint32_t intc_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR);
 	buttonStateReg = XGpio_DiscreteRead(&gpPB, 1); // read buttons
+	switchStateReg = arduino_get_switches(&arduino);
 	// Check the PIT interrupt first.
 	if (intc_status & XPAR_PITIFUL_0_INTERRUPT_MASK){
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_PITIFUL_0_INTERRUPT_MASK);
 			timer_interrupt_handler();
 		}
+	// arduino stuff... maybe you need an interrupt
+	// * arduino interrupt handling here*
+	if (intc_status & XPAR_ARDUINO_0_INTERRUPT_MASK){
+	XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_ARDUINO_0_INTERRUPT_MASK);
+		xil_printf("\r\nderp");
+		xil_printf("\r\nswitch values: %d",switchStateReg);
+	}
+
+
 	// Check the push buttons
 	if (intc_status & XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK){
 		XGpio_InterruptClear(&gpPB, 0xFFFFFFFF); // ack this interrupt, but we do nothing with it.
@@ -293,6 +309,7 @@ int32_t core_init (void) {
 	// Enable all interrupts in the push button peripheral.
 	XGpio_InterruptEnable(&gpPB, 0xFFFFFFFF);
 
+	// Pit timer init stuff
 	pitiful_initialize(&thePit, XPAR_PITIFUL_0_BASEADDR);
 
 	pitiful_interrupt_enable(&thePit);
@@ -300,10 +317,13 @@ int32_t core_init (void) {
 	pitiful_counter_reload_enable(&thePit);
 	pitiful_counter_enable(&thePit);
 
+	// Arduino init stuff
+	arduino_initialize(&arduino, XPAR_ARDUINO_0_BASEADDR);
+
 	microblaze_register_handler(interrupt_handler_dispatcher, NULL);
 	// Enable the FIT, the GPIO and the AC97
 	XIntc_EnableIntr(XPAR_INTC_0_BASEADDR,
-			(XPAR_PITIFUL_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
+			(XPAR_ARDUINO_0_BASEADDR | XPAR_PITIFUL_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
 	XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
 
 	return 0;

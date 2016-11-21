@@ -141,7 +141,7 @@ entity arduino is
 		JMOD: in std_logic_vector(7 downto 0);
 		SWITCHES: in std_logic_vector(7 downto 0);
 		LEDS: out std_logic_vector(7 downto 0);
-		
+		interrupt : out  STD_LOGIC;
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -309,6 +309,7 @@ begin
 			JMOD =>JMOD,
 			SWITCHES=>SWITCHES,
 			LEDS=>LEDS,
+			interrupt=>interrupt,
       -- MAP USER PORTS ABOVE THIS LINE ------------------
 
       Bus2IP_Clk                     => ipif_Bus2IP_Clk,
