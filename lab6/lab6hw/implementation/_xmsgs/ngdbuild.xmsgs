@@ -17,18 +17,6 @@
 <msg type="warning" file="ConstraintSystem" num="58" delta="old" >Constraint <arg fmt="%s" index="1">&lt;TIMEGRP axi4_0_reset_source = FFS PADS CPUS;&gt;</arg>: <arg fmt="%s" index="2">CPUS &quot;*&quot;</arg> does not match any design objects.
 </msg>
 
-<msg type="error" file="ConstraintSystem" num="58" delta="new" >Constraint <arg fmt="%s" index="1">&lt;INST &quot;DDR2_SDRAM_16Mx32/DDR2_SDRAM_16Mx32/u_ddr2_top/u_idelay_ctrl/gen_idelayctrls.gen_idelayctrl[*].u_idelayctrl&quot; IODELAY_GROUP=IODELAY_MIG;&gt; [system.ucf(106)]</arg>: <arg fmt="%s" index="2">INST &quot;DDR2_SDRAM_16Mx32/DDR2_SDRAM_16Mx32/u_ddr2_top/u_idelay_ctrl/gen_idelayctrls.gen_idelayctrl[*].u_idelayctrl&quot;</arg> does not match any design objects.
-</msg>
-
-<msg type="error" file="ConstraintSystem" num="58" delta="new" >Constraint <arg fmt="%s" index="1">&lt;INST &quot;*/u_idelay_dqs&quot; IODELAY_GROUP=IODELAY_MIG;&gt; [system.ucf(107)]</arg>: <arg fmt="%s" index="2">INST &quot;*/u_idelay_dqs&quot;</arg> does not match any design objects.
-</msg>
-
-<msg type="error" file="ConstraintSystem" num="58" delta="new" >Constraint <arg fmt="%s" index="1">&lt;INST &quot;*/u_iodelay_dq_ce&quot; IODELAY_GROUP=IODELAY_MIG;&gt; [system.ucf(108)]</arg>: <arg fmt="%s" index="2">INST &quot;*/u_iodelay_dq_ce&quot;</arg> does not match any design objects.
-</msg>
-
-<msg type="error" file="ConstraintSystem" num="58" delta="new" >Constraint <arg fmt="%s" index="1">&lt;INST &quot;*/u_idelay_dq&quot; IODELAY_GROUP=IODELAY_MIG;&gt; [system.ucf(109)]</arg>: <arg fmt="%s" index="2">INST &quot;*/u_idelay_dq&quot;</arg> does not match any design objects.
-</msg>
-
 <msg type="warning" file="ConstraintSystem" num="0" >TNM : m_axi_mm2s_aclk was distributed to a DCM but new TNM constraints were not derived. This TNM is used in the following user groups or specifications:
 &lt;TIMESPEC TS_axi_vdma_0_from_s_axi_lite_aclk_to_m_axi_mm2s_aclk = FROM &quot;s_axi_lite_aclk&quot; TO &quot;m_axi_mm2s_aclk&quot; TIG;&gt;
 &lt;TIMESPEC TS_axi_vdma_0_from_m_axi_mm2s_aclk_to_s_axi_lite_aclk = FROM &quot;m_axi_mm2s_aclk&quot; TO &quot;s_axi_lite_aclk&quot; TIG;&gt;

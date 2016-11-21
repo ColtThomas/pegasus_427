@@ -18,6 +18,11 @@
 /******************************************************************/
 
 
+/* Definitions for peripheral ARDUINO_0 */
+#define XPAR_ARDUINO_0_BASEADDR 0x7EE00000
+#define XPAR_ARDUINO_0_HIGHADDR 0x7EE0FFFF
+
+
 /* Definitions for peripheral AXI_AC97_0 */
 #define XPAR_AXI_AC97_0_BASEADDR 0x7E240000
 #define XPAR_AXI_AC97_0_HIGHADDR 0x7E24FFFF

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="19" version="2.0">
+<workbench progressCount="20" version="2.0">
 <workbenchAdvisor/>
 <window height="1160" maximized="true" width="960" x="485" y="-18">
 <fastViewData fastViewLocation="1024"/>
@@ -44,7 +44,7 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" partName="helloworld.c" path="C:/Users/superman/Desktop/pegasus_427/lab6/lab6code/hello_world_0/src/helloworld.c" title="helloworld.c" tooltip="hello_world_0/src/helloworld.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/helloworld.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1495" selectionTopPixel="265"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="pitiful.c" partName="pitiful.c" path="C:/Users/superman/Desktop/Ford/pegasus_427/derp/lab6code/hello_world_0/src/pitiful.c" title="pitiful.c" tooltip="hello_world_0/src/pitiful.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/pitiful.c"/>
@@ -328,8 +328,11 @@
 <item historyLabel="core.c" index="5">
 <position info="not_deleted" x="2167" y="0"/>
 </item>
-<item active="true" historyLabel="helloworld.c" index="7">
+<item historyLabel="helloworld.c" index="7">
 <position info="not_deleted" x="1492" y="0"/>
+</item>
+<item active="true" historyLabel="helloworld.c" index="7">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>

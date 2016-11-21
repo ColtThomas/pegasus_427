@@ -2334,122 +2334,88 @@
 <msg type="info" file="Map" num="215" delta="old" >The Interim Design Summary has been generated in the MAP Report (.mrp).
 </msg>
 
-<msg type="info" file="Place" num="834" delta="new" >Only a subset of IOs are locked. Out of <arg fmt="%d" index="1">105</arg> IOs, <arg fmt="%d" index="2">93</arg> are locked and <arg fmt="%d" index="3">12</arg> are not locked. <arg fmt="%s" index="4">If you would like to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1.</arg> 
+<msg type="info" file="Pack" num="1650" delta="old" >Map created a placed design.
 </msg>
 
-<msg type="error" file="Place" num="864" delta="old" >Incompatible IOB&apos;s are locked to the same bank <arg fmt="%d" index="1">3</arg>
-Conflicting IO Standards are:
-IO Standard 1: <arg fmt="%s" index="2">Name = LVCMOS18_JEDEC, VREF = NR, VCCO = 1.80, TERM = NONE, DIR = BIDIR, DRIVE_STR = 12
-</arg><arg fmt="%s" index="3">List of locked IOB&apos;s:
-	zio
-	rzq
-
-</arg>IO Standard 2: <arg fmt="%s" index="4">Name = LVCMOS33, VREF = NR, VCCO = 3.30, TERM = NONE, DIR = OUTPUT, DRIVE_STR = 12
-</arg><arg fmt="%s" index="5">List of locked IOB&apos;s:
-	arduino_0_SWITCHES_pin&lt;7&gt;
-
-</arg>These IO Standards are incompatible due to <arg fmt="%s" index="6">VCCO mismatch.
-</arg>
+<msg type="warning" file="PhysDesignRules" num="372" delta="old" >Gated clock. Clock net <arg fmt="%s" index="1">axi_ac97_0/axi_ac97_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_rstpot</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
 </msg>
 
-<msg type="error" file="Place" num="864" delta="old" >Incompatible IOB&apos;s are locked to the same bank <arg fmt="%d" index="1">3</arg>
-Conflicting IO Standards are:
-IO Standard 1: <arg fmt="%s" index="2">Name = SSTL18_II, VREF = 0.90, VCCO = 1.80, TERM = NONE, DIR = BIDIR, DRIVE_STR = NR
-</arg><arg fmt="%s" index="3">List of locked IOB&apos;s:
-	mcbx_dram_dq&lt;10&gt;
-	mcbx_dram_dq&lt;11&gt;
-	mcbx_dram_dq&lt;12&gt;
-	mcbx_dram_dq&lt;13&gt;
-	mcbx_dram_dq&lt;14&gt;
-	mcbx_dram_dq&lt;15&gt;
-	mcbx_dram_dq&lt;0&gt;
-	mcbx_dram_dq&lt;1&gt;
-	mcbx_dram_dq&lt;2&gt;
-	mcbx_dram_dq&lt;3&gt;
-	mcbx_dram_dq&lt;4&gt;
-	mcbx_dram_dq&lt;5&gt;
-	mcbx_dram_dq&lt;6&gt;
-	mcbx_dram_dq&lt;7&gt;
-	mcbx_dram_dq&lt;8&gt;
-	mcbx_dram_dq&lt;9&gt;
-
-</arg>IO Standard 2: <arg fmt="%s" index="4">Name = LVCMOS33, VREF = NR, VCCO = 3.30, TERM = NONE, DIR = OUTPUT, DRIVE_STR = 12
-</arg><arg fmt="%s" index="5">List of locked IOB&apos;s:
-	arduino_0_SWITCHES_pin&lt;7&gt;
-
-</arg>These IO Standards are incompatible due to <arg fmt="%s" index="6">VCCO mismatch.
-</arg>
+<msg type="warning" file="PhysDesignRules" num="372" delta="old" >Gated clock. Clock net <arg fmt="%s" index="1">axi_ac97_0_Interrupt</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
 </msg>
 
-<msg type="error" file="Place" num="864" delta="old" >Incompatible IOB&apos;s are locked to the same bank <arg fmt="%d" index="1">3</arg>
-Conflicting IO Standards are:
-IO Standard 1: <arg fmt="%s" index="2">Name = DIFF_SSTL18_II, VREF = NR, VCCO = 1.80, TERM = NONE, DIR = BIDIR, DRIVE_STR = NR
-</arg><arg fmt="%s" index="3">List of locked IOB&apos;s:
-	mcbx_dram_udqs_n
-	mcbx_dram_dqs
-	mcbx_dram_udqs
-	mcbx_dram_dqs_n
-
-</arg>IO Standard 2: <arg fmt="%s" index="4">Name = LVCMOS33, VREF = NR, VCCO = 3.30, TERM = NONE, DIR = OUTPUT, DRIVE_STR = 12
-</arg><arg fmt="%s" index="5">List of locked IOB&apos;s:
-	arduino_0_SWITCHES_pin&lt;7&gt;
-
-</arg>These IO Standards are incompatible due to <arg fmt="%s" index="6">VCCO mismatch.
-</arg>
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy5_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
 </msg>
 
-<msg type="error" file="Place" num="864" delta="old" >Incompatible IOB&apos;s are locked to the same bank <arg fmt="%d" index="1">3</arg>
-Conflicting IO Standards are:
-IO Standard 1: <arg fmt="%s" index="2">Name = SSTL18_II, VREF = NR, VCCO = 1.80, TERM = NONE, DIR = OUTPUT, DRIVE_STR = NR
-</arg><arg fmt="%s" index="3">List of locked IOB&apos;s:
-	mcbx_dram_addr&lt;5&gt;
-	mcbx_dram_addr&lt;6&gt;
-	mcbx_dram_addr&lt;7&gt;
-	mcbx_dram_addr&lt;8&gt;
-	mcbx_dram_addr&lt;9&gt;
-	mcbx_dram_cke
-	mcbx_dram_ldm
-	mcbx_dram_odt
-	mcbx_dram_udm
-	mcbx_dram_we_n
-	mcbx_dram_ba&lt;0&gt;
-	mcbx_dram_ba&lt;1&gt;
-	mcbx_dram_ba&lt;2&gt;
-	mcbx_dram_cas_n
-	mcbx_dram_ras_n
-	mcbx_dram_addr&lt;10&gt;
-	mcbx_dram_addr&lt;11&gt;
-	mcbx_dram_addr&lt;12&gt;
-	mcbx_dram_addr&lt;0&gt;
-	mcbx_dram_addr&lt;1&gt;
-	mcbx_dram_addr&lt;2&gt;
-	mcbx_dram_addr&lt;3&gt;
-	mcbx_dram_addr&lt;4&gt;
-
-</arg>IO Standard 2: <arg fmt="%s" index="4">Name = LVCMOS33, VREF = NR, VCCO = 3.30, TERM = NONE, DIR = OUTPUT, DRIVE_STR = 12
-</arg><arg fmt="%s" index="5">List of locked IOB&apos;s:
-	arduino_0_SWITCHES_pin&lt;7&gt;
-
-</arg>These IO Standards are incompatible due to <arg fmt="%s" index="6">VCCO mismatch.
-</arg>
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy1_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
 </msg>
 
-<msg type="error" file="Place" num="864" delta="old" >Incompatible IOB&apos;s are locked to the same bank <arg fmt="%d" index="1">3</arg>
-Conflicting IO Standards are:
-IO Standard 1: <arg fmt="%s" index="2">Name = DIFF_SSTL18_II, VREF = NR, VCCO = 1.80, TERM = NONE, DIR = OUTPUT, DRIVE_STR = NR
-</arg><arg fmt="%s" index="3">List of locked IOB&apos;s:
-	mcbx_dram_clk
-	mcbx_dram_clk_n
-
-</arg>IO Standard 2: <arg fmt="%s" index="4">Name = LVCMOS33, VREF = NR, VCCO = 3.30, TERM = NONE, DIR = OUTPUT, DRIVE_STR = 12
-</arg><arg fmt="%s" index="5">List of locked IOB&apos;s:
-	arduino_0_SWITCHES_pin&lt;7&gt;
-
-</arg>These IO Standards are incompatible due to <arg fmt="%s" index="6">VCCO mismatch.
-</arg>
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy4_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
 </msg>
 
-<msg type="error" file="Pack" num="1654" delta="old" >The timing-driven placement phase encountered an error.
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy2_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy3_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[15].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[7].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[6].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[4].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[5].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[2].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;31&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;30&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[8].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[11].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[12].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[9].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[3].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[13].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[14].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[1].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[10].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[0].ram32m_i_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="781" delta="old" ><arg fmt="%s" index="1">PULLUP</arg> on an active net. <arg fmt="%s" index="2">PULLUP</arg> of comp <arg fmt="%s" index="3">Digilent_QuadSPI_Cntlr_C_pin_PULLUP</arg> is set but the tri state is not configured. 
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="2410" delta="old" >This design is using one or more 9K Block RAMs (RAMB8BWER).  9K Block RAM initialization data, both user defined and default, may be incorrect and should not be used.  For more information, please reference Xilinx Answer Record 39999.
 </msg>
 
 </messages>

@@ -32,8 +32,8 @@ entity arduino_0_wrapper is
     S_AXI_BVALID : out std_logic;
     S_AXI_AWREADY : out std_logic;
     LEDS : out std_logic_vector(7 downto 0);
-    JMOD : out std_logic_vector(7 downto 0);
-    SWITCHES : out std_logic_vector(7 downto 0)
+    JMOD : in std_logic_vector(7 downto 0);
+    SWITCHES : in std_logic_vector(7 downto 0)
   );
 end arduino_0_wrapper;
 
@@ -75,8 +75,8 @@ architecture STRUCTURE of arduino_0_wrapper is
       S_AXI_BVALID : out std_logic;
       S_AXI_AWREADY : out std_logic;
       LEDS : out std_logic_vector(7 downto 0);
-      JMOD : out std_logic_vector(7 downto 0);
-      SWITCHES : out std_logic_vector(7 downto 0)
+      JMOD : in std_logic_vector(7 downto 0);
+      SWITCHES : in std_logic_vector(7 downto 0)
     );
   end component;
 

@@ -37,8 +37,6 @@
 
   <RENDERIMG RASNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\axi4_0.jpg" SVGNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\axi4_0.svg" TMPSVGFN="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\__xps\.dswkshop\axi4_0.svg"/>
 
-  <RENDERIMG RASNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\arduino_0.jpg" SVGNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\arduino_0.svg" TMPSVGFN="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\__xps\.dswkshop\arduino_0.svg"/>
-
   <RENDERIMG RASNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\RS232_Uart_1.jpg" SVGNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\RS232_Uart_1.svg" TMPSVGFN="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\__xps\.dswkshop\RS232_Uart_1.svg"/>
 
   <RENDERIMG RASNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\Push_Buttons_5Bits.jpg" SVGNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\Push_Buttons_5Bits.svg" TMPSVGFN="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\__xps\.dswkshop\Push_Buttons_5Bits.svg"/>
@@ -46,6 +44,8 @@
   <RENDERIMG RASNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\MCB_DDR2.jpg" SVGNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\MCB_DDR2.svg" TMPSVGFN="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\__xps\.dswkshop\MCB_DDR2.svg"/>
 
   <RENDERIMG RASNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\Digilent_QuadSPI_Cntlr.jpg" SVGNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\Digilent_QuadSPI_Cntlr.svg" TMPSVGFN="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\__xps\.dswkshop\Digilent_QuadSPI_Cntlr.svg"/>
+
+  <RENDERIMG RASNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\arduino_0.jpg" SVGNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\arduino_0.svg" TMPSVGFN="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\__xps\.dswkshop\arduino_0.svg"/>
 
   <RENDERIMG RASNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\system_blkd.jpg" SVGNAME="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\SDK\SDK_Export\hw\imgs\system_blkd.svg" TMPSVGFN="C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\__xps\.dswkshop\system_blkd.svg"/>
 

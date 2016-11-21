@@ -153,11 +153,11 @@ implementation/axi_hdmi_0_wrapper.ngc \
 implementation/axi_ac97_0_wrapper.ngc \
 implementation/axi4lite_0_wrapper.ngc \
 implementation/axi4_0_wrapper.ngc \
-implementation/arduino_0_wrapper.ngc \
 implementation/rs232_uart_1_wrapper.ngc \
 implementation/push_buttons_5bits_wrapper.ngc \
 implementation/mcb_ddr2_wrapper.ngc \
-implementation/digilent_quadspi_cntlr_wrapper.ngc
+implementation/digilent_quadspi_cntlr_wrapper.ngc \
+implementation/arduino_0_wrapper.ngc
 
 POSTSYN_NETLIST = implementation/$(SYSTEM).ngc
 

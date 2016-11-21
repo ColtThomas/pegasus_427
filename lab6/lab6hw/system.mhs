@@ -61,10 +61,9 @@
  PORT axi_ac97_0_SData_Out_pin = axi_ac97_0_SData_Out, DIR = O
  PORT axi_ac97_0_AC97Reset_n_pin = axi_ac97_0_AC97Reset_n, DIR = O
  PORT Push_Buttons_5Bits_TRI_I = Push_Buttons_5Bits_TRI_I, DIR = I, VEC = [0:4]
- PORT pitiful_0_LEDs_pin = pitiful_0_LEDs, DIR = O, VEC = [3:0]
  PORT arduino_0_LEDS_pin = arduino_0_LEDS, DIR = O, VEC = [7:0]
- PORT arduino_0_JMOD_pin = arduino_0_JMOD, DIR = O, VEC = [7:0]
- PORT arduino_0_SWITCHES_pin = arduino_0_SWITCHES, DIR = O, VEC = [7:0]
+ PORT arduino_0_JMOD_pin = net_arduino_0_JMOD_pin, DIR = I, VEC = [7:0]
+ PORT arduino_0_SWITCHES_pin = net_arduino_0_SWITCHES_pin, DIR = I, VEC = [7:0]
 
 
 BEGIN proc_sys_reset
@@ -89,7 +88,6 @@ BEGIN pitiful
  BUS_INTERFACE S_AXI = axi4lite_0
  PORT S_AXI_ACLK = clk_100_0000MHzPLL0
  PORT interrupt = pitiful_0_interrupt
- PORT LEDs = pitiful_0_LEDs
 END
 
 BEGIN lmb_v10
@@ -307,19 +305,6 @@ BEGIN axi_interconnect
  PORT INTERCONNECT_ARESETN = proc_sys_reset_0_Interconnect_aresetn
 END
 
-BEGIN arduino
- PARAMETER INSTANCE = arduino_0
- PARAMETER HW_VER = 1.00.a
- PARAMETER C_BASEADDR = 0x7ee00000
- PARAMETER C_HIGHADDR = 0x7ee0ffff
- PARAMETER C_NUM_REG = 8
- BUS_INTERFACE S_AXI = axi4lite_0
- PORT S_AXI_ACLK = clk_100_0000MHzPLL0
- PORT LEDS = arduino_0_LEDS
- PORT JMOD = arduino_0_JMOD
- PORT SWITCHES = arduino_0_SWITCHES
-END
-
 BEGIN axi_uartlite
  PARAMETER INSTANCE = RS232_Uart_1
  PARAMETER HW_VER = 1.02.a
@@ -408,5 +393,17 @@ BEGIN d_qspi_axi
  PORT C = Digilent_QuadSPI_Cntlr_C
  PORT S = Digilent_QuadSPI_Cntlr_S
  PORT DQ = Digilent_QuadSPI_Cntlr_DQ
+END
+
+BEGIN arduino
+ PARAMETER INSTANCE = arduino_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x7ee00000
+ PARAMETER C_HIGHADDR = 0x7ee0ffff
+ BUS_INTERFACE S_AXI = axi4lite_0
+ PORT S_AXI_ACLK = clk_100_0000MHzPLL0
+ PORT LEDS = arduino_0_LEDS
+ PORT JMOD = net_arduino_0_JMOD_pin
+ PORT SWITCHES = net_arduino_0_SWITCHES_pin
 END
 

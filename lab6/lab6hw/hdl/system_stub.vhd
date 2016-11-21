@@ -59,10 +59,9 @@ entity system_stub is
     axi_ac97_0_SData_Out_pin : out std_logic;
     axi_ac97_0_AC97Reset_n_pin : out std_logic;
     Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4);
-    pitiful_0_LEDs_pin : out std_logic_vector(3 downto 0);
     arduino_0_LEDS_pin : out std_logic_vector(7 downto 0);
-    arduino_0_JMOD_pin : out std_logic_vector(7 downto 0);
-    arduino_0_SWITCHES_pin : out std_logic_vector(7 downto 0)
+    arduino_0_JMOD_pin : in std_logic_vector(7 downto 0);
+    arduino_0_SWITCHES_pin : in std_logic_vector(7 downto 0)
   );
 end system_stub;
 
@@ -120,10 +119,9 @@ architecture STRUCTURE of system_stub is
       axi_ac97_0_SData_Out_pin : out std_logic;
       axi_ac97_0_AC97Reset_n_pin : out std_logic;
       Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4);
-      pitiful_0_LEDs_pin : out std_logic_vector(3 downto 0);
       arduino_0_LEDS_pin : out std_logic_vector(7 downto 0);
-      arduino_0_JMOD_pin : out std_logic_vector(7 downto 0);
-      arduino_0_SWITCHES_pin : out std_logic_vector(7 downto 0)
+      arduino_0_JMOD_pin : in std_logic_vector(7 downto 0);
+      arduino_0_SWITCHES_pin : in std_logic_vector(7 downto 0)
     );
   end component;
 
@@ -184,7 +182,6 @@ begin
       axi_ac97_0_SData_Out_pin => axi_ac97_0_SData_Out_pin,
       axi_ac97_0_AC97Reset_n_pin => axi_ac97_0_AC97Reset_n_pin,
       Push_Buttons_5Bits_TRI_I => Push_Buttons_5Bits_TRI_I,
-      pitiful_0_LEDs_pin => pitiful_0_LEDs_pin,
       arduino_0_LEDS_pin => arduino_0_LEDS_pin,
       arduino_0_JMOD_pin => arduino_0_JMOD_pin,
       arduino_0_SWITCHES_pin => arduino_0_SWITCHES_pin

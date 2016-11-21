@@ -437,10 +437,6 @@ Parsing architecture <STRUCTURE> of entity <arduino_0_wrapper>.
 =========================================================================
 
 Elaborating entity <arduino_0_wrapper> (architecture <STRUCTURE>) from library <work>.
-WARNING:HDLCompiler:439 - "C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\hdl\arduino_0_wrapper.vhd" Line 78: Formal port jmod of mode in cannot be associated with actual port jmod of mode out
-INFO:HDLCompiler:1408 - "C:/Users/superman/Desktop/pegasus_427/lab6/lab6hw/pcores/arduino_v1_00_a/hdl/vhdl/arduino.vhd" Line 141. jmod is declared here
-WARNING:HDLCompiler:439 - "C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\hdl\arduino_0_wrapper.vhd" Line 79: Formal port switches of mode in cannot be associated with actual port switches of mode out
-INFO:HDLCompiler:1408 - "C:/Users/superman/Desktop/pegasus_427/lab6/lab6hw/pcores/arduino_v1_00_a/hdl/vhdl/arduino.vhd" Line 142. switches is declared here
 
 Elaborating entity <arduino> (architecture <IMP>) with generics from library <arduino_v1_00_a>.
 
@@ -468,8 +464,6 @@ Elaborating entity <pselect_f> (architecture <imp>) with generics from library <
 INFO:HDLCompiler:679 - "C:/Xilinx/13.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd" Line 412. Case statement is complete. others clause is never selected
 
 Elaborating entity <user_logic> (architecture <IMP>) with generics from library <arduino_v1_00_a>.
-INFO:HDLCompiler:1408 - "C:/Users/superman/Desktop/pegasus_427/lab6/lab6hw/pcores/arduino_v1_00_a/hdl/vhdl/arduino.vhd" Line 141. jmod is declared here
-INFO:HDLCompiler:1408 - "C:/Users/superman/Desktop/pegasus_427/lab6/lab6hw/pcores/arduino_v1_00_a/hdl/vhdl/arduino.vhd" Line 142. switches is declared here
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -477,8 +471,6 @@ INFO:HDLCompiler:1408 - "C:/Users/superman/Desktop/pegasus_427/lab6/lab6hw/pcore
 
 Synthesizing Unit <arduino_0_wrapper>.
     Related source file is "c:/users/superman/desktop/pegasus_427/lab6/lab6hw/hdl/arduino_0_wrapper.vhd".
-WARNING:Xst:653 - Signal <JMOD> is used but never assigned. This sourceless signal will be automatically connected to value GND.
-WARNING:Xst:653 - Signal <SWITCHES> is used but never assigned. This sourceless signal will be automatically connected to value GND.
     Summary:
 	no macro.
 Unit <arduino_0_wrapper> synthesized.
@@ -679,19 +671,17 @@ WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/p
         C_SLV_DWIDTH = 32
 WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
 WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
-    Found 32-bit register for signal <slv_reg0>.
-    Found 32-bit register for signal <slv_reg1>.
+    Found 8-bit register for signal <switch_value>.
     Found 32-bit register for signal <slv_reg2>.
     Found 32-bit register for signal <slv_reg3>.
     Found 32-bit register for signal <slv_reg4>.
     Found 32-bit register for signal <slv_reg5>.
     Found 32-bit register for signal <slv_reg6>.
     Found 32-bit register for signal <slv_reg7>.
-    WARNING:Xst:2404 -  FFs/Latches <switch_value<7:0>> (without init value) have a constant value of 0 in block <user_logic>.
-    WARNING:Xst:2404 -  FFs/Latches <pmod_value<7:0>> (without init value) have a constant value of 0 in block <user_logic>.
+    Found 8-bit register for signal <pmod_value>.
     Summary:
-	inferred 256 D-type flip-flop(s).
-	inferred 257 Multiplexer(s).
+	inferred 208 D-type flip-flop(s).
+	inferred 193 Multiplexer(s).
 Unit <user_logic> synthesized.
 
 =========================================================================
@@ -703,10 +693,11 @@ Macro Statistics
 # Registers                                            : 25
  1-bit register                                        : 13
  2-bit register                                        : 2
- 32-bit register                                       : 9
+ 32-bit register                                       : 7
  4-bit register                                        : 1
-# Multiplexers                                         : 267
- 1-bit 2-to-1 multiplexer                              : 265
+ 8-bit register                                        : 2
+# Multiplexers                                         : 203
+ 1-bit 2-to-1 multiplexer                              : 201
  32-bit 2-to-1 multiplexer                             : 2
 # FSMs                                                 : 1
 
@@ -727,10 +718,10 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # Counters                                             : 1
  4-bit up counter                                      : 1
-# Registers                                            : 305
- Flip-Flops                                            : 305
-# Multiplexers                                         : 259
- 1-bit 2-to-1 multiplexer                              : 257
+# Registers                                            : 257
+ Flip-Flops                                            : 257
+# Multiplexers                                         : 195
+ 1-bit 2-to-1 multiplexer                              : 193
  32-bit 2-to-1 multiplexer                             : 2
 # FSMs                                                 : 1
 
@@ -754,11 +745,11 @@ Optimizing FSM <arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_0> on signal <s
 
 Optimizing unit <arduino_0_wrapper> ...
 
+Optimizing unit <user_logic> ...
+
 Optimizing unit <slave_attachment> ...
 
 Optimizing unit <address_decoder> ...
-
-Optimizing unit <user_logic> ...
 WARNING:Xst:1293 - FF/Latch <arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bresp_i_1> has a constant value of 0 in block <arduino_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i_1> has a constant value of 0 in block <arduino_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0> of sequential type is unconnected in block <arduino_0_wrapper>.
@@ -766,9 +757,14 @@ WARNING:Xst:2677 - Node <arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 0) on block arduino_0_wrapper, actual ratio is 1.
-FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg has been replicated 4 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg has been replicated 5 time(s)
 FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1 has been replicated 2 time(s)
-FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 has been replicated 1 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 has been replicated 2 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3 has been replicated 2 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 has been replicated 2 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_5 has been replicated 2 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 has been replicated 2 time(s)
+FlipFlop arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7 has been replicated 3 time(s)
 
 Final Macro Processing ...
 
@@ -776,8 +772,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 313
- Flip-Flops                                            : 313
+# Registers                                            : 278
+ Flip-Flops                                            : 278
 
 =========================================================================
 
@@ -800,20 +796,20 @@ Top Level Output File Name         : arduino_0_wrapper.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 204
+# BELS                             : 380
 #      GND                         : 1
 #      INV                         : 2
-#      LUT2                        : 8
-#      LUT3                        : 4
-#      LUT4                        : 48
-#      LUT5                        : 11
-#      LUT6                        : 128
-#      MUXF7                       : 1
+#      LUT2                        : 13
+#      LUT3                        : 7
+#      LUT4                        : 26
+#      LUT5                        : 203
+#      LUT6                        : 125
+#      MUXF7                       : 2
 #      VCC                         : 1
-# FlipFlops/Latches                : 313
-#      FD                          : 17
+# FlipFlops/Latches                : 278
+#      FD                          : 46
 #      FDR                         : 8
-#      FDRE                        : 288
+#      FDRE                        : 224
 
 Device utilization summary:
 ---------------------------
@@ -822,16 +818,16 @@ Selected Device : 6slx45csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             313  out of  54576     0%  
- Number of Slice LUTs:                  201  out of  27288     0%  
-    Number used as Logic:               201  out of  27288     0%  
+ Number of Slice Registers:             278  out of  54576     0%  
+ Number of Slice LUTs:                  376  out of  27288     1%  
+    Number used as Logic:               376  out of  27288     1%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    459
-   Number with an unused Flip Flop:     146  out of    459    31%  
-   Number with an unused LUT:           258  out of    459    56%  
-   Number of fully used LUT-FF pairs:    55  out of    459    11%  
-   Number of unique control sets:        12
+ Number of LUT Flip Flop pairs used:    397
+   Number with an unused Flip Flop:     119  out of    397    29%  
+   Number with an unused LUT:            21  out of    397     5%  
+   Number of fully used LUT-FF pairs:   257  out of    397    64%  
+   Number of unique control sets:         7
 
 IO Utilization: 
  Number of IOs:                         172
@@ -857,11 +853,11 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+------------------------------------------------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)                                            | Load  |
------------------------------------+------------------------------------------------------------------+-------+
-S_AXI_ACLK                         | NONE(arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1)| 313   |
------------------------------------+------------------------------------------------------------------+-------+
+-----------------------------------+-----------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                   | Load  |
+-----------------------------------+-----------------------------------------+-------+
+S_AXI_ACLK                         | NONE(arduino_0/USER_LOGIC_I/slv_reg7_31)| 278   |
+-----------------------------------+-----------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
@@ -872,9 +868,9 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 5.255ns (Maximum Frequency: 190.288MHz)
-   Minimum input arrival time before clock: 2.829ns
-   Maximum output required time after clock: 3.130ns
+   Minimum period: 4.844ns (Maximum Frequency: 206.437MHz)
+   Minimum input arrival time before clock: 2.873ns
+   Maximum output required time after clock: 3.500ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -883,69 +879,67 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
-  Clock period: 5.255ns (frequency: 190.288MHz)
-  Total number of paths / destination ports: 5798 / 384
+  Clock period: 4.844ns (frequency: 206.437MHz)
+  Total number of paths / destination ports: 5132 / 525
 -------------------------------------------------------------------------
-Delay:               5.255ns (Levels of Logic = 4)
-  Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 (FF)
-  Destination:       arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31 (FF)
+Delay:               4.844ns (Levels of Logic = 2)
+  Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 (FF)
+  Destination:       arduino_0/USER_LOGIC_I/slv_reg7_31 (FF)
   Source Clock:      S_AXI_ACLK rising
   Destination Clock: S_AXI_ACLK rising
 
-  Data Path: arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 to arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31
+  Data Path: arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 to arduino_0/USER_LOGIC_I/slv_reg7_31
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              18   0.447   1.297  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6)
-     LUT5:I1->O            2   0.203   0.617  arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_read_sel[7]_equal_40_o<7>11 (arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_read_sel[7]_equal_40_o<7>1)
-     LUT6:I5->O           32   0.205   1.292  arduino_0/USER_LOGIC_I/PWR_24_o_slv_reg_read_sel[7]_equal_39_o<7>1 (arduino_0/USER_LOGIC_I/PWR_24_o_slv_reg_read_sel[7]_equal_39_o)
-     LUT6:I5->O            1   0.205   0.684  arduino_0/USER_LOGIC_I/Mmux_IP2Bus_Data110 (arduino_0/USER_LOGIC_I/Mmux_IP2Bus_Data1)
-     LUT4:I2->O            1   0.203   0.000  arduino_0/USER_LOGIC_I/Mmux_IP2Bus_Data113 (arduino_0/user_IP2Bus_Data<0>)
-     FDRE:D                    0.102          arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_0
+     FD:C->Q              15   0.447   1.346  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4)
+     LUT6:I0->O            1   0.203   0.684  arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_12_o<7>11_F (N98)
+     LUT3:I1->O           64   0.203   1.639  arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_12_o<7>111 (arduino_0/USER_LOGIC_I/GND_24_o_slv_reg_write_sel[7]_equal_12_o<7>1)
+     FDRE:CE                   0.322          arduino_0/USER_LOGIC_I/slv_reg4_0
     ----------------------------------------
-    Total                      5.255ns (1.365ns logic, 3.890ns route)
-                                       (26.0% logic, 74.0% route)
+    Total                      4.844ns (1.175ns logic, 3.669ns route)
+                                       (24.3% logic, 75.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 714 / 533
+  Total number of paths / destination ports: 797 / 434
 -------------------------------------------------------------------------
-Offset:              2.829ns (Levels of Logic = 3)
+Offset:              2.873ns (Levels of Logic = 3)
   Source:            S_AXI_ARVALID (PAD)
-  Destination:       arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 (FF)
+  Destination:       arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7 (FF)
   Destination Clock: S_AXI_ACLK rising
 
-  Data Path: S_AXI_ARVALID to arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2
+  Data Path: S_AXI_ARVALID to arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     LUT5:I0->O           18   0.203   1.050  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Mmux_start11 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start)
-     LUT6:I5->O            2   0.205   0.721  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<1>1 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<1>)
-     LUT4:I2->O            2   0.203   0.000  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_rstpot (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_rstpot)
-     FD:D                      0.102          arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1
+     LUT5:I0->O           20   0.203   1.093  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Mmux_start11 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start)
+     LUT6:I5->O            2   0.205   0.721  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<4>1 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<4>)
+     LUT4:I2->O            2   0.203   0.000  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_rstpot (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4_rstpot)
+     FD:D                      0.102          arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4
     ----------------------------------------
-    Total                      2.829ns (1.058ns logic, 1.771ns route)
-                                       (37.4% logic, 62.6% route)
+    Total                      2.873ns (1.058ns logic, 1.815ns route)
+                                       (36.8% logic, 63.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 74 / 37
+  Total number of paths / destination ports: 86 / 45
 -------------------------------------------------------------------------
-Offset:              3.130ns (Levels of Logic = 2)
-  Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 (FF)
-  Destination:       S_AXI_WREADY (PAD)
+Offset:              3.500ns (Levels of Logic = 2)
+  Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 (FF)
+  Destination:       S_AXI_ARREADY (PAD)
   Source Clock:      S_AXI_ACLK rising
 
-  Data Path: arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 to S_AXI_WREADY
+  Data Path: arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 to S_AXI_ARREADY
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              43   0.447   1.449  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2)
-     LUT2:I1->O            1   0.205   0.827  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/wrce_out_i<2>1 (arduino_0/ipif_Bus2IP_WrCE<5>)
-     LUT6:I2->O            2   0.203   0.000  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/wr_done1 (S_AXI_AWREADY)
+     FD:C->Q              91   0.447   2.065  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4 (arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_4)
+     LUT5:I1->O            1   0.203   0.580  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rd_done1_SW1 (N96)
+     LUT6:I5->O            2   0.205   0.000  arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rd_done1 (S_AXI_ARREADY)
     ----------------------------------------
-    Total                      3.130ns (0.855ns logic, 2.275ns route)
-                                       (27.3% logic, 72.7% route)
+    Total                      3.500ns (0.855ns logic, 2.645ns route)
+                                       (24.4% logic, 75.6% route)
 
 =========================================================================
 
@@ -957,20 +951,20 @@ Clock to Setup on destination clock S_AXI_ACLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-S_AXI_ACLK     |    5.255|         |         |         |
+S_AXI_ACLK     |    4.844|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 7.93 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.81 secs
  
 --> 
 
-Total memory usage is 285064 kilobytes
+Total memory usage is 284040 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   24 (   0 filtered)
+Number of warnings :   18 (   0 filtered)
 Number of infos    :    6 (   0 filtered)
 

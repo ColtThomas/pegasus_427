@@ -839,7 +839,7 @@ Slice Logic Distribution:
    Number of unique control sets:        13
 
 IO Utilization: 
- Number of IOs:                         153
+ Number of IOs:                         149
  Number of bonded IOBs:                   0  out of    218     0%  
 
 Specific Feature Utilization:
@@ -904,7 +904,7 @@ Delay:               5.228ns (Levels of Logic = 3)
      FDE:C->Q              3   0.447   1.015  pitiful_0/USER_LOGIC_I/count_25 (pitiful_0/USER_LOGIC_I/count_25)
      LUT6:I0->O            2   0.203   0.961  pitiful_0/USER_LOGIC_I/GND_24_o_GND_24_o_equal_11_o<31>5 (pitiful_0/USER_LOGIC_I/GND_24_o_GND_24_o_equal_11_o<31>4)
      LUT6:I1->O            1   0.203   0.580  pitiful_0/USER_LOGIC_I/GND_24_o_GND_24_o_equal_11_o<31>7_1 (pitiful_0/USER_LOGIC_I/GND_24_o_GND_24_o_equal_11_o<31>7)
-     LUT3:I2->O           32   0.205   1.291  pitiful_0/USER_LOGIC_I/_n0412_inv1_cy1_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy (pitiful_0/USER_LOGIC_I/_n0412_inv)
+     LUT3:I2->O           32   0.205   1.291  pitiful_0/USER_LOGIC_I/_n0410_inv1_cy1_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy_cy (pitiful_0/USER_LOGIC_I/_n0410_inv)
      FDE:CE                    0.322          pitiful_0/USER_LOGIC_I/count_0
     ----------------------------------------
     Total                      5.228ns (1.380ns logic, 3.848ns route)

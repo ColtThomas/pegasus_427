@@ -99,7 +99,7 @@ entity user_logic is
     -- ADD USER PORTS BELOW THIS LINE ------------------
     --USER ports added here
 	interrupt : out  STD_LOGIC := '0';
-	LEDs:out std_logic_vector(3 downto 0);
+	--LEDs:out std_logic_vector(3 downto 0);
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -133,7 +133,7 @@ architecture IMP of user_logic is
 
   --USER signal declarations added here, as needed for user logic
 	signal count : unsigned(C_SLV_DWIDTH-1 downto 0);
-	signal led_out : std_logic_vector(27 downto 0);
+	--signal led_out : std_logic_vector(27 downto 0);
 	signal count_next : unsigned(C_SLV_DWIDTH-1 downto 0);
 	signal int_enable : std_logic;
 	signal count_enable : std_logic;
@@ -142,8 +142,8 @@ architecture IMP of user_logic is
   ------------------------------------------
   -- Signals for user logic slave model s/w accessible register example
   ------------------------------------------
-  signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);	
+  signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);	
   signal slv_reg2                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
   signal slv_reg3                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
   signal slv_reg4                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
@@ -186,7 +186,7 @@ begin
 	-- output logic
 	interrupt <= '1' when (count=0 and int_enable='1')else
 				'0';
-	 LEDs(3 downto 0) <= (others=>'1');
+	 --LEDs(3 downto 0) <= (others=>'1');
 
   ------------------------------------------
   -- Example code to read/write user logic slave model s/w accessible registers

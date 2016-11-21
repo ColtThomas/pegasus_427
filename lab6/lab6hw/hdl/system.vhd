@@ -59,10 +59,9 @@ entity system is
     axi_ac97_0_SData_Out_pin : out std_logic;
     axi_ac97_0_AC97Reset_n_pin : out std_logic;
     Push_Buttons_5Bits_TRI_I : in std_logic_vector(0 to 4);
-    pitiful_0_LEDs_pin : out std_logic_vector(3 downto 0);
     arduino_0_LEDS_pin : out std_logic_vector(7 downto 0);
-    arduino_0_JMOD_pin : out std_logic_vector(7 downto 0);
-    arduino_0_SWITCHES_pin : out std_logic_vector(7 downto 0)
+    arduino_0_JMOD_pin : in std_logic_vector(7 downto 0);
+    arduino_0_SWITCHES_pin : in std_logic_vector(7 downto 0)
   );
 end system;
 
@@ -116,8 +115,7 @@ architecture STRUCTURE of system is
       S_AXI_BRESP : out std_logic_vector(1 downto 0);
       S_AXI_BVALID : out std_logic;
       S_AXI_AWREADY : out std_logic;
-      interrupt : out std_logic;
-      LEDs : out std_logic_vector(3 downto 0)
+      interrupt : out std_logic
     );
   end component;
 
@@ -1826,33 +1824,6 @@ architecture STRUCTURE of system is
     );
   end component;
 
-  component arduino_0_wrapper is
-    port (
-      S_AXI_ACLK : in std_logic;
-      S_AXI_ARESETN : in std_logic;
-      S_AXI_AWADDR : in std_logic_vector(31 downto 0);
-      S_AXI_AWVALID : in std_logic;
-      S_AXI_WDATA : in std_logic_vector(31 downto 0);
-      S_AXI_WSTRB : in std_logic_vector(3 downto 0);
-      S_AXI_WVALID : in std_logic;
-      S_AXI_BREADY : in std_logic;
-      S_AXI_ARADDR : in std_logic_vector(31 downto 0);
-      S_AXI_ARVALID : in std_logic;
-      S_AXI_RREADY : in std_logic;
-      S_AXI_ARREADY : out std_logic;
-      S_AXI_RDATA : out std_logic_vector(31 downto 0);
-      S_AXI_RRESP : out std_logic_vector(1 downto 0);
-      S_AXI_RVALID : out std_logic;
-      S_AXI_WREADY : out std_logic;
-      S_AXI_BRESP : out std_logic_vector(1 downto 0);
-      S_AXI_BVALID : out std_logic;
-      S_AXI_AWREADY : out std_logic;
-      LEDS : out std_logic_vector(7 downto 0);
-      JMOD : out std_logic_vector(7 downto 0);
-      SWITCHES : out std_logic_vector(7 downto 0)
-    );
-  end component;
-
   component rs232_uart_1_wrapper is
     port (
       S_AXI_ACLK : in std_logic;
@@ -2211,6 +2182,33 @@ architecture STRUCTURE of system is
     );
   end component;
 
+  component arduino_0_wrapper is
+    port (
+      S_AXI_ACLK : in std_logic;
+      S_AXI_ARESETN : in std_logic;
+      S_AXI_AWADDR : in std_logic_vector(31 downto 0);
+      S_AXI_AWVALID : in std_logic;
+      S_AXI_WDATA : in std_logic_vector(31 downto 0);
+      S_AXI_WSTRB : in std_logic_vector(3 downto 0);
+      S_AXI_WVALID : in std_logic;
+      S_AXI_BREADY : in std_logic;
+      S_AXI_ARADDR : in std_logic_vector(31 downto 0);
+      S_AXI_ARVALID : in std_logic;
+      S_AXI_RREADY : in std_logic;
+      S_AXI_ARREADY : out std_logic;
+      S_AXI_RDATA : out std_logic_vector(31 downto 0);
+      S_AXI_RRESP : out std_logic_vector(1 downto 0);
+      S_AXI_RVALID : out std_logic;
+      S_AXI_WREADY : out std_logic;
+      S_AXI_BRESP : out std_logic_vector(1 downto 0);
+      S_AXI_BVALID : out std_logic;
+      S_AXI_AWREADY : out std_logic;
+      LEDS : out std_logic_vector(7 downto 0);
+      JMOD : in std_logic_vector(7 downto 0);
+      SWITCHES : in std_logic_vector(7 downto 0)
+    );
+  end component;
+
   component IOBUF is
     port (
       I : in std_logic;
@@ -2231,9 +2229,7 @@ architecture STRUCTURE of system is
   signal Ext_NM_BRK : std_logic;
   signal Push_Buttons_5Bits_IP2INTC_Irpt : std_logic;
   signal S_AXIS_MM2S_ACLK_int : std_logic;
-  signal arduino_0_JMOD : std_logic_vector(7 downto 0);
   signal arduino_0_LEDS : std_logic_vector(7 downto 0);
-  signal arduino_0_SWITCHES : std_logic_vector(7 downto 0);
   signal axi4_0_M_ARADDR : std_logic_vector(31 downto 0);
   signal axi4_0_M_ARBURST : std_logic_vector(1 downto 0);
   signal axi4_0_M_ARCACHE : std_logic_vector(3 downto 0);
@@ -2473,6 +2469,8 @@ architecture STRUCTURE of system is
   signal microblaze_0_ilmb_Sl_Ready : std_logic_vector(0 to 0);
   signal microblaze_0_ilmb_Sl_UE : std_logic_vector(0 to 0);
   signal microblaze_0_ilmb_Sl_Wait : std_logic_vector(0 to 0);
+  signal net_arduino_0_JMOD_pin : std_logic_vector(7 downto 0);
+  signal net_arduino_0_SWITCHES_pin : std_logic_vector(7 downto 0);
   signal net_gnd0 : std_logic;
   signal net_gnd1 : std_logic_vector(0 to 0);
   signal net_gnd2 : std_logic_vector(0 to 1);
@@ -2489,7 +2487,6 @@ architecture STRUCTURE of system is
   signal pgassign1 : std_logic_vector(4 downto 0);
   signal pgassign2 : std_logic_vector(10 downto 0);
   signal pgassign3 : std_logic_vector(2 downto 0);
-  signal pitiful_0_LEDs : std_logic_vector(3 downto 0);
   signal pitiful_0_interrupt : std_logic;
   signal proc_sys_reset_0_BUS_STRUCT_RESET : std_logic_vector(0 to 0);
   signal proc_sys_reset_0_Dcm_locked : std_logic;
@@ -2516,11 +2513,11 @@ architecture STRUCTURE of system is
   attribute BOX_TYPE of axi_ac97_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of axi4lite_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of axi4_0_wrapper : component is "user_black_box";
-  attribute BOX_TYPE of arduino_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of rs232_uart_1_wrapper : component is "user_black_box";
   attribute BOX_TYPE of push_buttons_5bits_wrapper : component is "user_black_box";
   attribute BOX_TYPE of mcb_ddr2_wrapper : component is "user_black_box";
   attribute BOX_TYPE of digilent_quadspi_cntlr_wrapper : component is "user_black_box";
+  attribute BOX_TYPE of arduino_0_wrapper : component is "user_black_box";
 
 begin
 
@@ -2550,10 +2547,9 @@ begin
   axi_ac97_0_Sync_pin <= axi_ac97_0_Sync;
   axi_ac97_0_SData_Out_pin <= axi_ac97_0_SData_Out;
   axi_ac97_0_AC97Reset_n_pin <= axi_ac97_0_AC97Reset_n;
-  pitiful_0_LEDs_pin <= pitiful_0_LEDs;
   arduino_0_LEDS_pin <= arduino_0_LEDS;
-  arduino_0_JMOD_pin <= arduino_0_JMOD;
-  arduino_0_SWITCHES_pin <= arduino_0_SWITCHES;
+  net_arduino_0_JMOD_pin <= arduino_0_JMOD_pin;
+  net_arduino_0_SWITCHES_pin <= arduino_0_SWITCHES_pin;
   axi4_0_S_AWID(5 downto 4) <= B"00";
   axi4_0_S_AWADDR(95 downto 64) <= B"00000000000000000000000000000000";
   axi4_0_S_AWLEN(23 downto 16) <= B"00000000";
@@ -2655,8 +2651,7 @@ begin
       S_AXI_BRESP => axi4lite_0_M_BRESP(1 downto 0),
       S_AXI_BVALID => axi4lite_0_M_BVALID(0),
       S_AXI_AWREADY => axi4lite_0_M_AWREADY(0),
-      interrupt => pitiful_0_interrupt,
-      LEDs => pitiful_0_LEDs
+      interrupt => pitiful_0_interrupt
     );
 
   microblaze_0_ilmb : microblaze_0_ilmb_wrapper
@@ -4348,37 +4343,36 @@ begin
       DEBUG_MP_MR_WDATACONTROL => open
     );
 
-  arduino_0 : arduino_0_wrapper
+  RS232_Uart_1 : rs232_uart_1_wrapper
     port map (
       S_AXI_ACLK => pgassign2(10),
       S_AXI_ARESETN => axi4lite_0_M_ARESETN(7),
+      Interrupt => open,
       S_AXI_AWADDR => axi4lite_0_M_AWADDR(255 downto 224),
       S_AXI_AWVALID => axi4lite_0_M_AWVALID(7),
+      S_AXI_AWREADY => axi4lite_0_M_AWREADY(7),
       S_AXI_WDATA => axi4lite_0_M_WDATA(255 downto 224),
       S_AXI_WSTRB => axi4lite_0_M_WSTRB(31 downto 28),
       S_AXI_WVALID => axi4lite_0_M_WVALID(7),
+      S_AXI_WREADY => axi4lite_0_M_WREADY(7),
+      S_AXI_BRESP => axi4lite_0_M_BRESP(15 downto 14),
+      S_AXI_BVALID => axi4lite_0_M_BVALID(7),
       S_AXI_BREADY => axi4lite_0_M_BREADY(7),
       S_AXI_ARADDR => axi4lite_0_M_ARADDR(255 downto 224),
       S_AXI_ARVALID => axi4lite_0_M_ARVALID(7),
-      S_AXI_RREADY => axi4lite_0_M_RREADY(7),
       S_AXI_ARREADY => axi4lite_0_M_ARREADY(7),
       S_AXI_RDATA => axi4lite_0_M_RDATA(255 downto 224),
       S_AXI_RRESP => axi4lite_0_M_RRESP(15 downto 14),
       S_AXI_RVALID => axi4lite_0_M_RVALID(7),
-      S_AXI_WREADY => axi4lite_0_M_WREADY(7),
-      S_AXI_BRESP => axi4lite_0_M_BRESP(15 downto 14),
-      S_AXI_BVALID => axi4lite_0_M_BVALID(7),
-      S_AXI_AWREADY => axi4lite_0_M_AWREADY(7),
-      LEDS => arduino_0_LEDS,
-      JMOD => arduino_0_JMOD,
-      SWITCHES => arduino_0_SWITCHES
+      S_AXI_RREADY => axi4lite_0_M_RREADY(7),
+      RX => RS232_Uart_1_sin,
+      TX => RS232_Uart_1_sout
     );
 
-  RS232_Uart_1 : rs232_uart_1_wrapper
+  Push_Buttons_5Bits : push_buttons_5bits_wrapper
     port map (
       S_AXI_ACLK => pgassign2(10),
       S_AXI_ARESETN => axi4lite_0_M_ARESETN(8),
-      Interrupt => open,
       S_AXI_AWADDR => axi4lite_0_M_AWADDR(287 downto 256),
       S_AXI_AWVALID => axi4lite_0_M_AWVALID(8),
       S_AXI_AWREADY => axi4lite_0_M_AWREADY(8),
@@ -4396,31 +4390,6 @@ begin
       S_AXI_RRESP => axi4lite_0_M_RRESP(17 downto 16),
       S_AXI_RVALID => axi4lite_0_M_RVALID(8),
       S_AXI_RREADY => axi4lite_0_M_RREADY(8),
-      RX => RS232_Uart_1_sin,
-      TX => RS232_Uart_1_sout
-    );
-
-  Push_Buttons_5Bits : push_buttons_5bits_wrapper
-    port map (
-      S_AXI_ACLK => pgassign2(10),
-      S_AXI_ARESETN => axi4lite_0_M_ARESETN(9),
-      S_AXI_AWADDR => axi4lite_0_M_AWADDR(319 downto 288),
-      S_AXI_AWVALID => axi4lite_0_M_AWVALID(9),
-      S_AXI_AWREADY => axi4lite_0_M_AWREADY(9),
-      S_AXI_WDATA => axi4lite_0_M_WDATA(319 downto 288),
-      S_AXI_WSTRB => axi4lite_0_M_WSTRB(39 downto 36),
-      S_AXI_WVALID => axi4lite_0_M_WVALID(9),
-      S_AXI_WREADY => axi4lite_0_M_WREADY(9),
-      S_AXI_BRESP => axi4lite_0_M_BRESP(19 downto 18),
-      S_AXI_BVALID => axi4lite_0_M_BVALID(9),
-      S_AXI_BREADY => axi4lite_0_M_BREADY(9),
-      S_AXI_ARADDR => axi4lite_0_M_ARADDR(319 downto 288),
-      S_AXI_ARVALID => axi4lite_0_M_ARVALID(9),
-      S_AXI_ARREADY => axi4lite_0_M_ARREADY(9),
-      S_AXI_RDATA => axi4lite_0_M_RDATA(319 downto 288),
-      S_AXI_RRESP => axi4lite_0_M_RRESP(19 downto 18),
-      S_AXI_RVALID => axi4lite_0_M_RVALID(9),
-      S_AXI_RREADY => axi4lite_0_M_RREADY(9),
       IP2INTC_Irpt => Push_Buttons_5Bits_IP2INTC_Irpt,
       GPIO_IO_I => Push_Buttons_5Bits_TRI_I(0 to 4),
       GPIO_IO_O => open,
@@ -4708,6 +4677,29 @@ begin
       DQ_T => Digilent_QuadSPI_Cntlr_DQ_T,
       DQ_I => Digilent_QuadSPI_Cntlr_DQ_I,
       S_AXI_ACLK => pgassign2(10),
+      S_AXI_ARESETN => axi4lite_0_M_ARESETN(9),
+      S_AXI_AWADDR => axi4lite_0_M_AWADDR(319 downto 288),
+      S_AXI_AWVALID => axi4lite_0_M_AWVALID(9),
+      S_AXI_WDATA => axi4lite_0_M_WDATA(319 downto 288),
+      S_AXI_WSTRB => axi4lite_0_M_WSTRB(39 downto 36),
+      S_AXI_WVALID => axi4lite_0_M_WVALID(9),
+      S_AXI_BREADY => axi4lite_0_M_BREADY(9),
+      S_AXI_ARADDR => axi4lite_0_M_ARADDR(319 downto 288),
+      S_AXI_ARVALID => axi4lite_0_M_ARVALID(9),
+      S_AXI_RREADY => axi4lite_0_M_RREADY(9),
+      S_AXI_ARREADY => axi4lite_0_M_ARREADY(9),
+      S_AXI_RDATA => axi4lite_0_M_RDATA(319 downto 288),
+      S_AXI_RRESP => axi4lite_0_M_RRESP(19 downto 18),
+      S_AXI_RVALID => axi4lite_0_M_RVALID(9),
+      S_AXI_WREADY => axi4lite_0_M_WREADY(9),
+      S_AXI_BRESP => axi4lite_0_M_BRESP(19 downto 18),
+      S_AXI_BVALID => axi4lite_0_M_BVALID(9),
+      S_AXI_AWREADY => axi4lite_0_M_AWREADY(9)
+    );
+
+  arduino_0 : arduino_0_wrapper
+    port map (
+      S_AXI_ACLK => pgassign2(10),
       S_AXI_ARESETN => axi4lite_0_M_ARESETN(10),
       S_AXI_AWADDR => axi4lite_0_M_AWADDR(351 downto 320),
       S_AXI_AWVALID => axi4lite_0_M_AWVALID(10),
@@ -4725,7 +4717,10 @@ begin
       S_AXI_WREADY => axi4lite_0_M_WREADY(10),
       S_AXI_BRESP => axi4lite_0_M_BRESP(21 downto 20),
       S_AXI_BVALID => axi4lite_0_M_BVALID(10),
-      S_AXI_AWREADY => axi4lite_0_M_AWREADY(10)
+      S_AXI_AWREADY => axi4lite_0_M_AWREADY(10),
+      LEDS => arduino_0_LEDS,
+      JMOD => net_arduino_0_JMOD_pin,
+      SWITCHES => net_arduino_0_SWITCHES_pin
     );
 
   iobuf_0 : IOBUF

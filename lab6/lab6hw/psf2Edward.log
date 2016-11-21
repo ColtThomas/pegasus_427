@@ -37,6 +37,40 @@ WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
    Please make sure that the directory specified exists.
 WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
    Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
+WARNING:EDK:1687 - Invalid path specified for ModuleSearchPath in XMP file.
+   Please make sure that the directory specified exists.
 
 Checking platform configuration ...
 IPNAME: lmb_v10, INSTANCE: microblaze_0_ilmb - 1 master(s) : 1 slave(s) 
@@ -45,18 +79,6 @@ IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 11 slave(s)
 IPNAME: axi_interconnect, INSTANCE: axi4_0 - 3 master(s) : 1 slave(s) 
 
 Checking port drivers...
-WARNING:EDK:4180 - PORT: arduino_0_JMOD_pin, CONNECTOR: arduino_0_JMOD - No
-   driver found. Port will be driven to GND -
-   C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\system.mhs line 66 
-WARNING:EDK:4180 - PORT: JMOD, CONNECTOR: arduino_0_JMOD - No driver found. Port
-   will be driven to GND -
-   C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\system.mhs line 319 
-WARNING:EDK:4180 - PORT: arduino_0_SWITCHES_pin, CONNECTOR: arduino_0_SWITCHES -
-   No driver found. Port will be driven to GND -
-   C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\system.mhs line 67 
-WARNING:EDK:4180 - PORT: SWITCHES, CONNECTOR: arduino_0_SWITCHES - No driver
-   found. Port will be driven to GND -
-   C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\system.mhs line 320 
 WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
    Port will be driven to GND -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
@@ -105,7 +127,7 @@ WARNING:EDK:4181 - PORT: s2mm_prmry_reset_out_n, CONNECTOR: S2MM_RESET_OUT_N -
    a\axi_vdma_v2_1_0.mpd line 224 
 WARNING:EDK:4181 - PORT: M_AXIS_S2MM_ACLK, CONNECTOR: M_AXIS_S2MM_ACLK_int -
    floating connection -
-   C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\system.mhs line 276 
+   C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw\system.mhs line 274 
 
 Performing Clock DRCs...
 
