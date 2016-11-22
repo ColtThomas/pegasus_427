@@ -50,6 +50,8 @@
 
 // Masks used to identify the push buttons
 const uint8_t BTN_MASKS[] = {0x01,0x02,0x04,0x08,0x10};
+const uint8_t SWITCH_MASKS[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
+const uint8_t PMOD_MASKS[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
 #define BTN_LEFT 3
 #define BTN_FIRE 0
 #define BTN_RIGHT 1
@@ -74,31 +76,32 @@ bool game_started = false;
 
 // This function is used to distinguish the up and down buttons from the rest
 bool volume_button_pressed() {
-	return (buttonStateReg & BTN_MASKS[BTN_UP]) || (buttonStateReg & BTN_MASKS[BTN_DOWN]);
+	return (buttonStateReg & BTN_MASKS[BTN_UP]) || (buttonStateReg & BTN_MASKS[BTN_DOWN]) || (((switchStateReg |  pmodStateReg) & SWITCH_MASKS[BTN_UP]) || ((switchStateReg |  pmodStateReg) & SWITCH_MASKS[BTN_DOWN]));
 }
 
 bool up_button_pressed() {
-	return(buttonStateReg & BTN_MASKS[BTN_UP]);
+	return(buttonStateReg & BTN_MASKS[BTN_UP]) | ((switchStateReg |  pmodStateReg) & SWITCH_MASKS[BTN_UP]);
 }
 
 bool down_button_pressed() {
-	return(buttonStateReg & BTN_MASKS[BTN_DOWN]);
+	return(buttonStateReg & BTN_MASKS[BTN_DOWN]) | ((switchStateReg |  pmodStateReg) & SWITCH_MASKS[BTN_DOWN]);
 }
 // This function is used to distinguish the hour, minute and second buttons from the rest
 bool game_button_pressed() {
-	return (buttonStateReg & BTN_MASKS[BTN_LEFT]) || (buttonStateReg & BTN_MASKS[BTN_FIRE]) || (buttonStateReg & BTN_MASKS[BTN_RIGHT]);
+	return (buttonStateReg & BTN_MASKS[BTN_LEFT]) || (buttonStateReg & BTN_MASKS[BTN_FIRE]) || (buttonStateReg & BTN_MASKS[BTN_RIGHT]) || (pmodStateReg & PMOD_MASKS[BTN_LEFT]) || (pmodStateReg & PMOD_MASKS[BTN_FIRE]) || (pmodStateReg & PMOD_MASKS[BTN_RIGHT]);
 }
 
 bool left_button_pressed() {
-	return buttonStateReg & BTN_MASKS[BTN_LEFT];
+	return (buttonStateReg & BTN_MASKS[BTN_LEFT]) | ((switchStateReg |  pmodStateReg) & SWITCH_MASKS[BTN_LEFT]);
 }
 
 bool right_button_pressed() {
-	return buttonStateReg & BTN_MASKS[BTN_RIGHT];
+	return (buttonStateReg & BTN_MASKS[BTN_RIGHT]) | ((switchStateReg |  pmodStateReg) & SWITCH_MASKS[BTN_RIGHT]);
 }
 
 bool fire_button_pressed() {
-	return buttonStateReg & BTN_MASKS[BTN_FIRE];
+//	xil_printf("\r\nswitch values: %d",(switchStateReg |  pmodStateReg));
+	return (buttonStateReg & BTN_MASKS[BTN_FIRE]) | ((switchStateReg |  pmodStateReg) & SWITCH_MASKS[0]);
 }
 
 // This is invoked in response to a timer interrupt.
@@ -247,6 +250,8 @@ void interrupt_handler_dispatcher(void* ptr) {
 	uint32_t intc_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR);
 	buttonStateReg = XGpio_DiscreteRead(&gpPB, 1); // read buttons
 	switchStateReg = arduino_get_switches(&arduino);
+	pmodStateReg = arduino_get_pmod(&arduino);
+//	xil_printf("\r\nswitch values: %d",switchStateReg);
 	// Check the PIT interrupt first.
 	if (intc_status & XPAR_PITIFUL_0_INTERRUPT_MASK){
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_PITIFUL_0_INTERRUPT_MASK);
@@ -255,7 +260,7 @@ void interrupt_handler_dispatcher(void* ptr) {
 	// arduino stuff... maybe you need an interrupt
 	// * arduino interrupt handling here*
 	if (intc_status & XPAR_ARDUINO_0_INTERRUPT_MASK){
-	XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_ARDUINO_0_INTERRUPT_MASK);
+		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_ARDUINO_0_INTERRUPT_MASK);
 		xil_printf("\r\nderp");
 		xil_printf("\r\nswitch values: %d",switchStateReg);
 	}
@@ -265,6 +270,8 @@ void interrupt_handler_dispatcher(void* ptr) {
 	if (intc_status & XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK){
 		XGpio_InterruptClear(&gpPB, 0xFFFFFFFF); // ack this interrupt, but we do nothing with it.
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK);
+		xil_printf("\r\nswitch values: %d",switchStateReg);
+
 	}
 	// Check the AC97 interrupts
 	if (intc_status & XPAR_AXI_AC97_0_INTERRUPT_MASK){

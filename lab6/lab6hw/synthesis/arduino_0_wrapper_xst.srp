@@ -671,7 +671,6 @@ WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/p
         C_SLV_DWIDTH = 32
 WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
 WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
-    Found 8-bit register for signal <reg_pmod_value>.
     Found 8-bit register for signal <reg_switch_value>.
     Found 32-bit register for signal <slv_reg2>.
     Found 32-bit register for signal <slv_reg3>.
@@ -679,11 +678,11 @@ WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/p
     Found 32-bit register for signal <slv_reg5>.
     Found 32-bit register for signal <slv_reg6>.
     Found 32-bit register for signal <slv_reg7>.
-    Found 1-bit register for signal <interrupt>.
-    Found 8-bit comparator not equal for signal <n0000> created at line 167
-    Found 8-bit comparator not equal for signal <n0002> created at line 167
+    Found 8-bit register for signal <reg_pmod_value>.
+    Found 8-bit comparator not equal for signal <n0008> created at line 182
+    Found 8-bit comparator not equal for signal <n0010> created at line 182
     Summary:
-	inferred 209 D-type flip-flop(s).
+	inferred 208 D-type flip-flop(s).
 	inferred   2 Comparator(s).
 	inferred 193 Multiplexer(s).
 Unit <user_logic> synthesized.
@@ -694,8 +693,8 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  4-bit adder                                           : 1
-# Registers                                            : 26
- 1-bit register                                        : 14
+# Registers                                            : 25
+ 1-bit register                                        : 13
  2-bit register                                        : 2
  32-bit register                                       : 7
  4-bit register                                        : 1
@@ -724,8 +723,8 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # Counters                                             : 1
  4-bit up counter                                      : 1
-# Registers                                            : 258
- Flip-Flops                                            : 258
+# Registers                                            : 257
+ Flip-Flops                                            : 257
 # Comparators                                          : 2
  8-bit comparator not equal                            : 2
 # Multiplexers                                         : 195
@@ -780,8 +779,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 279
- Flip-Flops                                            : 279
+# Registers                                            : 278
+ Flip-Flops                                            : 278
 
 =========================================================================
 
@@ -814,8 +813,8 @@ Primitive and Black Box Usage:
 #      LUT6                        : 131
 #      MUXF7                       : 1
 #      VCC                         : 1
-# FlipFlops/Latches                : 279
-#      FD                          : 47
+# FlipFlops/Latches                : 278
+#      FD                          : 46
 #      FDR                         : 8
 #      FDRE                        : 224
 
@@ -826,15 +825,15 @@ Selected Device : 6slx45csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             279  out of  54576     0%  
+ Number of Slice Registers:             278  out of  54576     0%  
  Number of Slice LUTs:                  387  out of  27288     1%  
     Number used as Logic:               387  out of  27288     1%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    410
-   Number with an unused Flip Flop:     131  out of    410    31%  
-   Number with an unused LUT:            23  out of    410     5%  
-   Number of fully used LUT-FF pairs:   256  out of    410    62%  
+ Number of LUT Flip Flop pairs used:    404
+   Number with an unused Flip Flop:     126  out of    404    31%  
+   Number with an unused LUT:            17  out of    404     4%  
+   Number of fully used LUT-FF pairs:   261  out of    404    64%  
    Number of unique control sets:         7
 
 IO Utilization: 
@@ -864,7 +863,7 @@ Clock Information:
 -----------------------------------+-----------------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)                   | Load  |
 -----------------------------------+-----------------------------------------+-------+
-S_AXI_ACLK                         | NONE(arduino_0/USER_LOGIC_I/slv_reg7_31)| 279   |
+S_AXI_ACLK                         | NONE(arduino_0/USER_LOGIC_I/slv_reg6_31)| 278   |
 -----------------------------------+-----------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -879,7 +878,7 @@ Speed Grade: -3
    Minimum period: 4.867ns (Maximum Frequency: 205.464MHz)
    Minimum input arrival time before clock: 2.851ns
    Maximum output required time after clock: 3.500ns
-   Maximum combinational path delay: No path found
+   Maximum combinational path delay: 2.240ns
 
 Timing Details:
 ---------------
@@ -888,15 +887,15 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
   Clock period: 4.867ns (frequency: 205.464MHz)
-  Total number of paths / destination ports: 5181 / 526
+  Total number of paths / destination ports: 5160 / 525
 -------------------------------------------------------------------------
 Delay:               4.867ns (Levels of Logic = 2)
   Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 (FF)
-  Destination:       arduino_0/USER_LOGIC_I/slv_reg7_31 (FF)
+  Destination:       arduino_0/USER_LOGIC_I/slv_reg6_31 (FF)
   Source Clock:      S_AXI_ACLK rising
   Destination Clock: S_AXI_ACLK rising
 
-  Data Path: arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 to arduino_0/USER_LOGIC_I/slv_reg7_31
+  Data Path: arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_4 to arduino_0/USER_LOGIC_I/slv_reg6_31
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
@@ -910,7 +909,7 @@ Delay:               4.867ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 831 / 435
+  Total number of paths / destination ports: 810 / 434
 -------------------------------------------------------------------------
 Offset:              2.851ns (Levels of Logic = 3)
   Source:            S_AXI_ARVALID (PAD)
@@ -931,7 +930,7 @@ Offset:              2.851ns (Levels of Logic = 3)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 91 / 46
+  Total number of paths / destination ports: 111 / 46
 -------------------------------------------------------------------------
 Offset:              3.500ns (Levels of Logic = 2)
   Source:            arduino_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_6 (FF)
@@ -950,6 +949,25 @@ Offset:              3.500ns (Levels of Logic = 2)
                                        (24.4% logic, 75.6% route)
 
 =========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 21 / 1
+-------------------------------------------------------------------------
+Delay:               2.240ns (Levels of Logic = 3)
+  Source:            SWITCHES<7> (PAD)
+  Destination:       interrupt (PAD)
+
+  Data Path: SWITCHES<7> to interrupt
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LUT6:I0->O            1   0.203   0.580  arduino_0/USER_LOGIC_I/interrupt7_SW0 (N98)
+     LUT5:I4->O            1   0.205   0.684  arduino_0/USER_LOGIC_I/interrupt7 (arduino_0/USER_LOGIC_I/interrupt6)
+     LUT6:I4->O            0   0.203   0.000  arduino_0/USER_LOGIC_I/interrupt10 (interrupt)
+    ----------------------------------------
+    Total                      2.240ns (0.976ns logic, 1.264ns route)
+                                       (43.6% logic, 56.4% route)
+
+=========================================================================
 
 Cross Clock Domains Report:
 --------------------------
@@ -966,11 +984,11 @@ S_AXI_ACLK     |    4.867|         |         |         |
 
 
 Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 7.85 secs
+Total CPU time to Xst completion: 8.17 secs
  
 --> 
 
-Total memory usage is 284040 kilobytes
+Total memory usage is 284052 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   18 (   0 filtered)
