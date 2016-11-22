@@ -164,16 +164,8 @@ begin
 	process(Bus2IP_Clk)
 	begin
 		if(Bus2IP_Clk'event and Bus2IP_Clk='1') then		
-			if((reg_switch_value /= next_switch_value) or (reg_pmod_value /= next_pmod_value)) then
-				interrupt <= '1';
-			else
-				interrupt <= '0';
-			end if;
-				
 			reg_pmod_value <= next_pmod_value;
 			reg_switch_value <= next_switch_value;
-			
-			
 		end if;
 	end process;
 	-- next state logic
@@ -186,6 +178,9 @@ begin
 	slv_reg1(C_SLV_DWIDTH-1 downto 8) <= (others=>'0');
 	slv_reg0(7 downto 0)<=  reg_pmod_value;
 	slv_reg1(7 downto 0)<=  reg_switch_value;
+	
+	interrupt <= '1' when ((reg_switch_value /= next_switch_value) or (reg_pmod_value /= next_pmod_value)) else 
+								'0';
   ------------------------------------------
   -- Example code to read/write user logic slave model s/w accessible registers
   -- 
