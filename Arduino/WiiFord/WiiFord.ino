@@ -21,11 +21,12 @@ USB Usb;
 #define RIGHT_PIN 4
 #define VOL_DOWN_PIN 5
 #define VOL_UP_PIN 6
+//#define POWER_PIN 9
 
 BTD Btd(&Usb); // You have to create the Bluetooth Dongle instance like so
 /* You can create the instance of the class in two ways */
-WII Wii(&Btd,PAIR); // This will start an inquiry and then pair with your Wiimote - you only have to do this once
-//WII Wii(&Btd); // After that you can simply create the instance like so and then press any button on the Wiimote
+//WII Wii(&Btd,PAIR); // This will start an inquiry and then pair with your Wiimote - you only have to do this once
+WII Wii(&Btd); // After that you can simply create the instance like so and then press any button on the Wiimote
 
 bool printAngle;
 
@@ -35,6 +36,8 @@ void setup() {
   pinMode(RIGHT_PIN, OUTPUT);
   pinMode(VOL_UP_PIN, OUTPUT);
   pinMode(VOL_DOWN_PIN, OUTPUT);
+//  pinMode(POWER_PIN, OUTPUT);
+  
   Serial.begin(115200);
 #if !defined(__MIPSEL__)
   while (!Serial); // Wait for serial port to connect - used on Leonardo, Teensy and other boards with built-in USB CDC serial connection
@@ -47,12 +50,13 @@ delay(100);
   Serial.print(F("\r\nWiimote Bluetooth Library Started"));
 }
 void loop() {
-  static unsigned long count = 0;
-  Serial.print("\r\nCount ");
-  Serial.print(count++);
-  Serial.print(" to ");
+//  static unsigned long count = 0;
+//  Serial.print("\r\nCount ");
+//  Serial.print(count++);
+//  Serial.print(" to ");
   Usb.Task();
-  Serial.print(count);
+ // digitalWrite(POWER_PIN, HIGH);
+//  Serial.print(count);
   
   if (Wii.wiimoteConnected) {
 //    if (Wii.getButtonClick(HOME)) { // You can use getButtonPress to see if the button is held down
@@ -93,14 +97,14 @@ void loop() {
         Serial.print(F("\r\nUp"));
       }
 
-      if (Wii.getButtonClick(PLUS)) {
+      if (Wii.getButtonPress(PLUS)) {
         Serial.print(F("\r\nPlus"));
         digitalWrite(VOL_UP_PIN, HIGH);
       }
       else {
         digitalWrite(VOL_UP_PIN, LOW);
       }
-      if (Wii.getButtonClick(MINUS)) {
+      if (Wii.getButtonPress(MINUS)) {
         Serial.print(F("\r\nMinus"));
         digitalWrite(VOL_DOWN_PIN, HIGH);
       }
