@@ -29,9 +29,9 @@
 #define GLOBALS_ALIEN_ROWS 5
 #define GLOBALS_ALIEN_COLUMNS 11
 #define GLOBALS_NULL_LOCATION -1
-#define GLOBALS_ALIEN_BULLET_Y_MAX SCREEN_HEIGHT - 20
+#define GLOBALS_ALIEN_BULLET_Y_MAX SCREEN_HEIGHT - 18
 #define GLOBALS_INIT_DELAY 1000000
-
+#define GLOBALS_ROTATE_COUNTER_START 50
 enum globals_sound_priority_t {no_sound, alien_march, saucer_move, saucer_explode, alien_explode, bullet_shoot, tank_explode};
 
 // struct to hold x and y coordinates.
@@ -108,4 +108,6 @@ uint32_t globals_getCurrentFrameIndex();
 
 uint32_t globals_getDelayValue();
 void globals_setDelayValue(uint32_t delay);
+
+bool globals_rotateBullet();
 #endif /* GLOBALS_H_ */

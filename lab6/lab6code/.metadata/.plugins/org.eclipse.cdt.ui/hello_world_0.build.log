@@ -2,4 +2,32 @@
 **** Build of configuration Debug for project hello_world_0 ****
 
 make all 
-make: Nothing to be done for `all'.
+Building file: ../src/aliens.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -MMD -MP -MF"src/aliens.d" -MT"src/aliens.d" -o"src/aliens.o" "../src/aliens.c"
+Finished building: ../src/aliens.c
+' '
+Building target: hello_world_0.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp_0/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.20.b -mno-xl-soft-mul -o"hello_world_0.elf"  ./src/alienHandler.o ./src/aliens.o ./src/arduino.o ./src/bulletHandler.o ./src/bullets.o ./src/bunkers.o ./src/core.o ./src/globals.o ./src/helloworld.o ./src/pitiful.o ./src/platform.o ./src/saucer.o ./src/screen.o ./src/sound.o ./src/tank.o ./src/text.o ./src/xac97_l.o  ./src/sound/explosion.o ./src/sound/fastinvader1.o ./src/sound/fastinvader2.o ./src/sound/fastinvader3.o ./src/sound/fastinvader4.o ./src/sound/invaderkilled.o ./src/sound/shoot.o ./src/sound/ufo_highpitch.o ./src/sound/ufo_lowpitch.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: hello_world_0.elf
+' '
+Invoking: MicroBlaze Print Size
+mb-size hello_world_0.elf  |tee "hello_world_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  74432	 193548	  11028	 279008	  441e0	hello_world_0.elf
+Finished building: hello_world_0.elf.size
+' '
+Invoking: Xilinx ELF Check
+elfcheck hello_world_0.elf -hw ../../SpaceInvaderTestHW2_hw_platform/system.xml -pe microblaze_0  |tee "hello_world_0.elf.elfcheck"
+elfcheck
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../SpaceInvaderTestHW2_hw_platform/system.xml -pe
+microblaze_0 hello_world_0.elf 
+
+ELF file	: hello_world_0.elf
+elfcheck passed.
+Finished building: hello_world_0.elf.elfcheck
+' '

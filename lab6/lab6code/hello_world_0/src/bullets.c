@@ -181,7 +181,10 @@ void bullets_erase_tank_bullet() {
 			if( (tank_bullet_3x5[y]) & (BIT_MASK << x) ) {
 				xOffset = x + tankBulletPos.x;
 				yOffset = y + tankBulletPos.y;
-				screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+				// Only erase things that are pink
+				if(screen_double_color_pixel(xOffset,yOffset)==SCREEN_HOTPINK) {
+					screen_draw_double_pixel(xOffset,yOffset,SCREEN_BLACK);
+				}
 			}
 
 		}
@@ -401,23 +404,24 @@ void bullets_remove_alien_bullet(uint8_t bullet) {
 void bullets_rotate() {
 	uint32_t i;
 	for(i=0;i<BULLET_VARIATIONS;i++){
-
-		bullets_erase_alien_bullet(i,alien_bullet_type[i]);
-		// The arrows are types 0 and 1, lightningbolts 2 and 3
-		switch(alien_bullet_type[i]){
-		case TYPE_0:
-			alien_bullet_type[i] = TYPE_1;
-			break;
-		case TYPE_1:
-			alien_bullet_type[i] = TYPE_0;
-			break;
-		case TYPE_2:
-			alien_bullet_type[i] = TYPE_3;
-			break;
-		default:
-			alien_bullet_type[i] = TYPE_2;
-			break;
+		if(globals_getAlienBulletStatus(i)){
+			bullets_erase_alien_bullet(i,alien_bullet_type[i]);
+			// The arrows are types 0 and 1, lightningbolts 2 and 3
+			switch(alien_bullet_type[i]){
+			case TYPE_0:
+				alien_bullet_type[i] = TYPE_1;
+				break;
+			case TYPE_1:
+				alien_bullet_type[i] = TYPE_0;
+				break;
+			case TYPE_2:
+				alien_bullet_type[i] = TYPE_3;
+				break;
+			default:
+				alien_bullet_type[i] = TYPE_2;
+				break;
+			}
+			bullets_draw_alien_bullet(i,alien_bullet_type[i]);
 		}
-		bullets_draw_alien_bullet(i,alien_bullet_type[i]);
 	}
 }

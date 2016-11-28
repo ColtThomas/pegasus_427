@@ -70,5 +70,7 @@ uint8_t hitType;
 
 // Update the bullets
 	bullets_update_position();
-
+	if(globals_rotateBullet()) {
+		bullets_rotate();
+	}
 }

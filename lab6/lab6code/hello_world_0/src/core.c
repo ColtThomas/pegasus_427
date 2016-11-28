@@ -58,7 +58,7 @@ const uint8_t PMOD_MASKS[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
 #define BTN_DOWN 2
 #define BTN_UP 4
 
-#define BOTTOM_LINE_Y SCREEN_HEIGHT - 10
+#define BOTTOM_LINE_Y SCREEN_HEIGHT - 8
 
 #define INIT_DELAY 1000000
 
@@ -261,8 +261,8 @@ void interrupt_handler_dispatcher(void* ptr) {
 	// * arduino interrupt handling here*
 	if (intc_status & XPAR_ARDUINO_0_INTERRUPT_MASK){
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_ARDUINO_0_INTERRUPT_MASK);
-		xil_printf("\r\nderp");
-		xil_printf("\r\nswitch values: %d",switchStateReg);
+//		xil_printf("\r\nderp");
+//		xil_printf("\r\nswitch values: %d",switchStateReg);
 	}
 
 
@@ -270,7 +270,7 @@ void interrupt_handler_dispatcher(void* ptr) {
 	if (intc_status & XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK){
 		XGpio_InterruptClear(&gpPB, 0xFFFFFFFF); // ack this interrupt, but we do nothing with it.
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK);
-		xil_printf("\r\nswitch values: %d",switchStateReg);
+//		xil_printf("\r\nswitch values: %d",switchStateReg);
 
 	}
 	// Check the AC97 interrupts

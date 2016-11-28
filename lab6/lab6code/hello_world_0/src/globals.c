@@ -15,7 +15,7 @@
 #define INITIAL_ALIEN_X 10
 #define INITIAL_ALIEN_Y 40
 
-
+static uint32_t bulletRotateCounter;
 static uint16_t tankPosition;
 static point_t tankBulletPosition;
 static point_t alienBlockPosition;
@@ -37,6 +37,7 @@ static uint32_t delay_value;
 //initializes globals arrays and structs
 void globals_init() {
 	numberOfDeadAliens = 0;
+	bulletRotateCounter = GLOBALS_ROTATE_COUNTER_START;
 	tankPosition = INITIAL_TANK_POS;
 	tankBulletPosition.x = GLOBALS_NULL_LOCATION;
 	tankBulletPosition.y = GLOBALS_NULL_LOCATION;
@@ -225,3 +226,12 @@ void globals_setDelayValue(uint32_t delay) {
 	delay_value = delay;
 }
 
+bool globals_rotateBullet() {
+	if(bulletRotateCounter<=0) {
+		return true;
+	}
+	else {
+		bulletRotateCounter--;
+		return false;
+	}
+}

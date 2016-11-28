@@ -5,6 +5,7 @@
  *      Author: superman
  */
 #include "aliens.h"
+#include "sound.h"
 #include "screen.h"
 #include "bunkers.h"
 #include "bullets.h"
