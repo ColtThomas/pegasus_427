@@ -753,7 +753,7 @@ bool aliens_get_alien_select(point_t currentPos) { // change uint8_t
 
 bool aliens_check_hit(point_t pos){
 	point_t alienPos = globals_getAlienBlockPosition();
-	if((pos.x>=alienPos.x-1) && (pos.x<=alienPos.x+GLOBALS_ALIEN_BLOCK_WIDTH-1)) {
+	if((pos.x>=alienPos.x) && (pos.x<=alienPos.x+GLOBALS_ALIEN_BLOCK_WIDTH)) {
 		if((pos.y>=alienPos.y) && (pos.y<=alienPos.y+GLOBALS_ALIEN_BLOCK_HEIGHT)) {
 
 			// Figure which alien box it is in

@@ -148,15 +148,16 @@ void timer_interrupt_handler() {
 			saucer_update();
 		}
 
+		//update all bullet positions
+		if(frame_count % BULLET_FRAME_COUNT == 0 && game_started && !tank_is_dying()) {
+			bulletHandler_tick();
+		}
+
 		//move aliens and saucer
 		if(frame_count % ALIEN_FRAME_COUNT == 0 && game_started && !tank_is_dying()) { //pause the aliens while the death animation goes on
 			alienHandler_tick();
 		}
 
-		//update all bullet positions
-		if(frame_count % BULLET_FRAME_COUNT == 0 && game_started && !tank_is_dying()) {
-			bulletHandler_tick();
-		}
 
 		//check buttons
 		// don't start the game until a button is pressed
