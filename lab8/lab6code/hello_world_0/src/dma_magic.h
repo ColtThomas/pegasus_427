@@ -13,7 +13,8 @@
 #include "xbasic_types.h"
 #include "xstatus.h"
 #include "xil_io.h"
-
+#include<stdint.h>
+#include<stdbool.h>
 /************************** Constant Definitions ***************************/
 
 
@@ -221,6 +222,7 @@
  * @note    None.
  *
  */
+
 void DMA_MAGIC_MasterSendWord(Xuint32 BaseAddress, Xuint32 DstAddress);
 void DMA_MAGIC_MasterRecvWord(Xuint32 BaseAddress, Xuint32 SrcAddress);
 

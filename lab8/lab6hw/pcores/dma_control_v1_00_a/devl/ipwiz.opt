@@ -1,0 +1,9 @@
+-batch 
+-create dma_control 
+-ver 1.00.a 
+-dir "C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw" 
+-lang verilog 
+-bus axi4lite ms 
+-reg 8 
+-xps 
+-driver 

@@ -79,6 +79,9 @@ Loading design module
 "C:/Users/superman/Desktop/pegasus_427/lab8/lab6hw/implementation/dma_magic_0_wr
 apper.ngc"...
 Loading design module
+"C:/Users/superman/Desktop/pegasus_427/lab8/lab6hw/implementation/dma_control_0_
+wrapper.ngc"...
+Loading design module
 "C:/Users/superman/Desktop/pegasus_427/lab8/lab6hw/implementation/microblaze_0_b
 ram_block_wrapper.ngc"...
 Applying constraints in
@@ -291,6 +294,16 @@ WARNING:NgdBuild:452 - logical net 'N53' has no driver
 WARNING:NgdBuild:452 - logical net 'N54' has no driver
 WARNING:NgdBuild:478 - clock net debug_module/bscan_drck1 with clock driver
    debug_module/debug_module/BUFG_DRCK1 drives no clock pins
+WARNING:NgdBuild:452 - logical net 'axi4_0/axi4_0/sf_cb_aruser<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'axi4_0/axi4_0/sf_cb_aruser<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'axi4_0/axi4_0/sf_cb_aruser<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'axi4_0/axi4_0/sf_cb_aruser<11>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'axi4_0/axi4_0/sf_cb_aruser<10>' has no
+   driver
 
 Partition Implementation Status
 -------------------------------
@@ -301,12 +314,12 @@ Partition Implementation Status
 
 NGDBUILD Design Results Summary:
   Number of errors:     0
-  Number of warnings:  37
+  Number of warnings:  42
 
-Total memory usage is 310892 kilobytes
+Total memory usage is 318252 kilobytes
 
 Writing NGD file "system.ngd" ...
-Total REAL time to NGDBUILD completion:  46 sec
-Total CPU time to NGDBUILD completion:   46 sec
+Total REAL time to NGDBUILD completion:  48 sec
+Total CPU time to NGDBUILD completion:   48 sec
 
 Writing NGDBUILD log file "system.bld"...

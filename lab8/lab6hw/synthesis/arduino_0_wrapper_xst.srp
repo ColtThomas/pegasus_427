@@ -52,7 +52,6 @@ Cores Search Directories           : {../implementation}
 
 =========================================================================
 
-WARNING:UtilitiesC:240 - The message file "C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\synthesis/_xmsgs/xst.xmsgs" is corrupt, therefore all message will be marked as new.
 INFO:Xst - Part-select index evaluated to out of bound value may lead to incorrect synthesis results; it is recommended not to use them in RTL
 
 =========================================================================
@@ -985,13 +984,13 @@ S_AXI_ACLK     |    4.867|         |         |         |
 
 
 Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 7.67 secs
+Total CPU time to Xst completion: 7.63 secs
  
 --> 
 
-Total memory usage is 285192 kilobytes
+Total memory usage is 284040 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   19 (   0 filtered)
+Number of warnings :   18 (   0 filtered)
 Number of infos    :    6 (   0 filtered)
 

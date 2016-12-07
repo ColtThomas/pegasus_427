@@ -209,7 +209,7 @@ architecture IMP of user_logic is
   signal mst_ip2bus_be                  : std_logic_vector(15 downto 0);
   signal mst_go                         : std_logic;
   -- signals for master model command interface state machine
-  type CMD_CNTL_SM_TYPE is (CMD_IDLE, CMD_RUN, CMD_WAIT_FOR_DATA, CMD_DONE);
+  type CMD_CNTL_SM_TYPE is (CMD_IDLE, CMD_RUN_READ, CMD_RUN_WRITE,CMD_WAIT_FOR_READ_DATA, CMD_WAIT_FOR_WRITE_DATA, CMD_DONE);
   signal mst_cmd_sm_state               : CMD_CNTL_SM_TYPE;
   signal mst_cmd_sm_set_done            : std_logic;
   signal mst_cmd_sm_set_error           : std_logic;
@@ -225,6 +225,8 @@ architecture IMP of user_logic is
   signal mst_fifo_valid_write_xfer      : std_logic;
   signal mst_fifo_valid_read_xfer       : std_logic;
   signal Bus2IP_Reset                   : std_logic;
+  signal dma_length							 : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal current_length 					 : unsigned(C_SLV_DWIDTH-1 downto 0);
 attribute SIGIS of Bus2IP_Reset   : signal is "RST";
 begin
 
@@ -531,7 +533,8 @@ begin
   IP2Bus_Mst_BE     <= mst_cmd_sm_ip2bus_be;
   IP2Bus_Mst_Lock   <= mst_cmd_sm_bus_lock;
   IP2Bus_Mst_Reset  <= mst_cmd_sm_reset;
-
+	dma_length 			<= slv_reg0;
+	
   --implement master command interface state machine
   MASTER_CMD_SM_PROC : process( Bus2IP_Clk ) is
   begin
@@ -552,7 +555,8 @@ begin
         mst_cmd_sm_set_error      <= '0';
         mst_cmd_sm_set_timeout    <= '0';
         mst_cmd_sm_busy           <= '0';
-                
+        current_length            <= (others =>'0');
+		  interrupt <='0';
       else
 
         -- default condition
@@ -567,24 +571,27 @@ begin
         mst_cmd_sm_set_error      <= '0';
         mst_cmd_sm_set_timeout    <= '0';
         mst_cmd_sm_busy           <= '1';
-                
+        current_length            <= (others =>'0'); 
+		  interrupt <='0';		  
         -- state transition
         case mst_cmd_sm_state is
 
           when CMD_IDLE =>
+				interrupt <='0';
             if ( mst_go = '1' ) then
-              mst_cmd_sm_state  <= CMD_RUN;
+              mst_cmd_sm_state  <= CMD_RUN_READ;
               mst_cmd_sm_clr_go <= '1';
             else
               mst_cmd_sm_state  <= CMD_IDLE;
               mst_cmd_sm_busy   <= '0';
+				  current_length            <= unsigned(dma_length);
             end if;
 
-          when CMD_RUN =>
+          when CMD_RUN_WRITE =>
             if ( Bus2IP_Mst_CmdAck = '1' and Bus2IP_Mst_Cmplt = '0' ) then
-              mst_cmd_sm_state <= CMD_WAIT_FOR_DATA;
+              mst_cmd_sm_state <= CMD_RUN_WRITE;
             elsif ( Bus2IP_Mst_Cmplt = '1' ) then
-              mst_cmd_sm_state <= CMD_DONE;
+              mst_cmd_sm_state <= CMD_RUN_READ;
               if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then
                 -- AXI4LITE address phase timeout
                 mst_cmd_sm_set_error   <= '1';
@@ -594,17 +601,23 @@ begin
                 mst_cmd_sm_set_error   <= '1';
               end if;
             else
-              mst_cmd_sm_state       <= CMD_RUN;
-              mst_cmd_sm_rd_req      <= mst_cntl_rd_req;
-              mst_cmd_sm_wr_req      <= mst_cntl_wr_req;
+					if(current_length<=0) then
+						mst_cmd_sm_state <= CMD_RUN_WRITE;
+					else
+						current_length <= current_length-1;
+					end if;
+              mst_cmd_sm_rd_req      <= '0';--mst_cntl_rd_req;
+              mst_cmd_sm_wr_req      <= '1';--mst_cntl_wr_req;
               mst_cmd_sm_ip2bus_addr <= mst_ip2bus_addr;
               mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
             end if;
 
-          when CMD_WAIT_FOR_DATA =>
-            if ( Bus2IP_Mst_Cmplt = '1' ) then
-              mst_cmd_sm_state <= CMD_DONE;
+          when CMD_RUN_READ =>
+            if ( Bus2IP_Mst_CmdAck = '1' and Bus2IP_Mst_Cmplt = '0' ) then
+              mst_cmd_sm_state <= CMD_RUN_WRITE;
+            elsif ( Bus2IP_Mst_Cmplt = '1' ) then
+              mst_cmd_sm_state <= CMD_RUN_WRITE;
               if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then
                 -- AXI4LITE address phase timeout
                 mst_cmd_sm_set_error   <= '1';
@@ -614,14 +627,25 @@ begin
                 mst_cmd_sm_set_error   <= '1';
               end if;
             else
-              mst_cmd_sm_state <= CMD_WAIT_FOR_DATA;
+              mst_cmd_sm_state       <= CMD_RUN_READ;
+              mst_cmd_sm_rd_req      <= mst_cntl_rd_req;
+              --mst_cmd_sm_wr_req      <= mst_cntl_wr_req;
+              mst_cmd_sm_ip2bus_addr <= mst_ip2bus_addr;
+              mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
+              mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
             end if;
+				
+				
 
           when CMD_DONE =>
-            mst_cmd_sm_state    <= CMD_IDLE;
-            mst_cmd_sm_set_done <= '1';
-            mst_cmd_sm_busy     <= '0';
-
+				if(dma_length <=0) then
+					mst_cmd_sm_state    <= CMD_IDLE;
+					mst_cmd_sm_set_done <= '1';
+					mst_cmd_sm_busy     <= '0';
+					interrupt <='1';
+				else
+					mst_cmd_sm_state    <= CMD_RUN_READ;
+				end if;
           when others =>
             mst_cmd_sm_state    <= CMD_IDLE;
             mst_cmd_sm_busy     <= '0';

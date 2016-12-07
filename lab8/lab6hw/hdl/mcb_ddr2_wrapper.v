@@ -306,7 +306,7 @@ module mcb_ddr2_wrapper
   output uo_done_cal;
   input s0_axi_aclk;
   input s0_axi_aresetn;
-  input [1:0] s0_axi_awid;
+  input [2:0] s0_axi_awid;
   input [31:0] s0_axi_awaddr;
   input [7:0] s0_axi_awlen;
   input [2:0] s0_axi_awsize;
@@ -322,11 +322,11 @@ module mcb_ddr2_wrapper
   input s0_axi_wlast;
   input s0_axi_wvalid;
   output s0_axi_wready;
-  output [1:0] s0_axi_bid;
+  output [2:0] s0_axi_bid;
   output [1:0] s0_axi_bresp;
   output s0_axi_bvalid;
   input s0_axi_bready;
-  input [1:0] s0_axi_arid;
+  input [2:0] s0_axi_arid;
   input [31:0] s0_axi_araddr;
   input [7:0] s0_axi_arlen;
   input [2:0] s0_axi_arsize;
@@ -337,7 +337,7 @@ module mcb_ddr2_wrapper
   input [3:0] s0_axi_arqos;
   input s0_axi_arvalid;
   output s0_axi_arready;
-  output [1:0] s0_axi_rid;
+  output [2:0] s0_axi_rid;
   output [31:0] s0_axi_rdata;
   output [1:0] s0_axi_rresp;
   output s0_axi_rlast;
@@ -600,7 +600,7 @@ module mcb_ddr2_wrapper
       .C_ARB_TIME_SLOT_10 ( 18'b000000010011000001 ),
       .C_ARB_TIME_SLOT_11 ( 18'b000000011000001010 ),
       .C_S0_AXI_ENABLE ( 1 ),
-      .C_S0_AXI_ID_WIDTH ( 2 ),
+      .C_S0_AXI_ID_WIDTH ( 3 ),
       .C_S0_AXI_ADDR_WIDTH ( 32 ),
       .C_S0_AXI_DATA_WIDTH ( 32 ),
       .C_S0_AXI_SUPPORTS_READ ( 1 ),

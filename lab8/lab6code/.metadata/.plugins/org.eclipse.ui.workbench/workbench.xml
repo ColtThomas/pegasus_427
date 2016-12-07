@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="20" version="2.0">
+<workbench progressCount="19" version="2.0">
 <workbenchAdvisor/>
 <window height="1160" maximized="true" width="960" x="616" y="-15">
 <fastViewData fastViewLocation="1024"/>
@@ -26,39 +26,54 @@
 </coolbarLayout>
 <page aggregateWorkingSetId="Aggregate for window 1478293591839" focus="true" label="Workspace - C/C++">
 <editors>
-<editorArea activeWorkbook="DefaultEditorWorkbook">
+<editorArea activeWorkbook="org.eclipse.ui.internal.EditorStack@287f8baf">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.internal.EditorStack@287f8baf" ratio="0.5" ratioLeft="804" ratioRight="804" relationship="2" relative="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
 <part id="1"/>
+<part id="0"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" partName="helloworld.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/helloworld.c" title="helloworld.c" tooltip="hello_world_0/src/helloworld.c" workbook="DefaultEditorWorkbook">
+<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" partName="helloworld.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/helloworld.c" title="helloworld.c" tooltip="hello_world_0/src/helloworld.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/helloworld.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1063" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="696" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="platform.h" partName="platform.h" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/platform.h" title="platform.h" tooltip="hello_world_0/src/platform.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/platform.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" partName="core.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/core.c" title="core.c" tooltip="hello_world_0/src/core.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/core.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="234" selectionOffset="249" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="pitiful.c" partName="pitiful.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/pitiful.c" title="pitiful.c" tooltip="hello_world_0/src/pitiful.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/pitiful.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="760" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="pitiful.h" partName="pitiful.h" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/pitiful.h" title="pitiful.h" tooltip="hello_world_0/src/pitiful.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/pitiful.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="695" selectionTopPixel="159"/>
+</editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="dma_magic.h" partName="dma_magic.h" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/dma_magic.h" title="dma_magic.h" tooltip="hello_world_0/src/dma_magic.h" workbook="org.eclipse.ui.internal.EditorStack@287f8baf">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/dma_magic.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10174" selectionTopPixel="3468"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3335" selectionTopPixel="663"/>
 </editor>
-<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="dma_magic.c" partName="dma_magic.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/dma_magic.c" title="dma_magic.c" tooltip="hello_world_0/src/dma_magic.c" workbook="org.eclipse.ui.internal.EditorStack@287f8baf">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="dma_magic.c" partName="dma_magic.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/dma_magic.c" title="dma_magic.c" tooltip="hello_world_0/src/dma_magic.c" workbook="org.eclipse.ui.internal.EditorStack@287f8baf">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/dma_magic.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1234" selectionTopPixel="153"/>
+<editorState selectionHorizontalPixel="0" selectionLength="66" selectionOffset="1329" selectionTopPixel="255"/>
 </editor>
 </editors>
 <views>
@@ -72,9 +87,8 @@
 <view id="org.eclipse.tm.terminal.view.TerminalView" partName="Terminal"/>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
+<expanded>&#x0A;<category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
-<category IMemento.internal.id="Warnings"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -202,171 +216,164 @@
 <workingSets/>
 <navigationHistory>
 <editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/pitiful.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/pitiful.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/arduino.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/arduino.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/core.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/core.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/sound.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/platform.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/platform.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
 </editors>
-<item historyLabel="core.c" index="5">
-<position info="not_deleted" x="8348" y="29"/>
+<item historyLabel="pitiful.h" index="3">
+<position info="not_deleted" x="695" y="0"/>
 </item>
-<item historyLabel="xparameters.h" index="4">
-<position info="not_deleted" x="624" y="7"/>
-</item>
-<item historyLabel="core.c" index="5">
-<position info="not_deleted" x="8348" y="29"/>
-</item>
-<item historyLabel="core.c" index="5">
-<position info="not_deleted" x="6723" y="0"/>
-</item>
-<item historyLabel="arduino.h" index="3">
-<position info="not_deleted" x="496" y="31"/>
-</item>
-<item historyLabel="core.c" index="5">
+<item historyLabel="dma_magic.c" index="1">
 <position/>
 </item>
-<item historyLabel="arduino.c" index="2">
-<position info="not_deleted" x="160" y="59"/>
-</item>
-<item historyLabel="arduino.h" index="3">
-<position info="not_deleted" x="449" y="0"/>
-</item>
-<item historyLabel="arduino.c" index="2">
-<position info="not_deleted" x="286" y="0"/>
-</item>
-<item historyLabel="core.c" index="5">
-<position info="not_deleted" x="8291" y="0"/>
-</item>
-<item historyLabel="arduino.c" index="2">
-<position info="not_deleted" x="299" y="34"/>
-</item>
-<item historyLabel="core.c" index="5">
-<position info="not_deleted" x="8291" y="0"/>
-</item>
-<item historyLabel="arduino.h" index="3">
-<position info="not_deleted" x="577" y="0"/>
-</item>
-<item historyLabel="arduino.c" index="2">
-<position info="not_deleted" x="282" y="0"/>
-</item>
-<item historyLabel="core.c" index="5">
-<position info="not_deleted" x="8257" y="0"/>
-</item>
-<item historyLabel="core.c" index="5">
-<position info="not_deleted" x="11264" y="29"/>
-</item>
-<item historyLabel="pitiful.c" index="0">
-<position info="not_deleted" x="331" y="0"/>
-</item>
-<item historyLabel="xparameters.h" index="6">
-<position info="not_deleted" x="580" y="7"/>
-</item>
-<item historyLabel="pitiful.c" index="0">
-<position info="not_deleted" x="2240" y="0"/>
-</item>
-<item historyLabel="pitiful.h" index="1">
-<position info="not_deleted" x="1228" y="79"/>
-</item>
-<item historyLabel="pitiful.c" index="0">
-<position info="not_deleted" x="2240" y="0"/>
-</item>
-<item historyLabel="xparameters.h" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="core.c" index="7">
-<position info="not_deleted" x="11264" y="29"/>
-</item>
-<item historyLabel="sound.c" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="353" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="461" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="10">
-<position info="not_deleted" x="3234" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="10">
-<position info="not_deleted" x="3234" y="0"/>
-</item>
-<item historyLabel="platform.c" index="12">
-<position info="not_deleted" x="1396" y="16"/>
-</item>
-<item historyLabel="helloworld.c" index="9">
+<item historyLabel="dma_magic.c" index="1">
 <position/>
 </item>
-<item historyLabel="platform.h" index="13">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="dma_magic.c" index="1">
+<position info="not_deleted" x="1172" y="0"/>
 </item>
-<item historyLabel="platform.c" index="12">
-<position info="not_deleted" x="1396" y="14"/>
+<item historyLabel="pitiful.c" index="2">
+<position info="not_deleted" x="2534" y="34"/>
 </item>
-<item historyLabel="platform.h" index="13">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="dma_magic.c" index="1">
+<position info="not_deleted" x="1499" y="0"/>
 </item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="341" y="0"/>
+<item historyLabel="pitiful.c" index="2">
+<position info="not_deleted" x="1177" y="0"/>
 </item>
-<item historyLabel="dma_magic.h" index="10">
-<position info="not_deleted" x="10174" y="0"/>
+<item historyLabel="dma_magic.c" index="1">
+<position/>
 </item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="518" y="0"/>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="325" y="0"/>
 </item>
-<item historyLabel="dma_magic.h" index="10">
-<position info="not_deleted" x="10174" y="0"/>
+<item historyLabel="dma_magic.c" index="1">
+<position info="not_deleted" x="1174" y="0"/>
 </item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="680" y="0"/>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="10220" y="0"/>
 </item>
-<item historyLabel="xparameters.h" index="14">
-<position info="not_deleted" x="1241" y="0"/>
+<item historyLabel="dma_magic.c" index="1">
+<position/>
 </item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="483" y="24"/>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="10220" y="0"/>
 </item>
-<item historyLabel="dma_magic.c" index="11">
-<position info="not_deleted" x="1891" y="24"/>
+<item historyLabel="dma_magic.c" index="1">
+<position info="not_deleted" x="551" y="0"/>
 </item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="508" y="25"/>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="678" y="0"/>
 </item>
-<item historyLabel="xparameters.h" index="14">
-<position info="not_deleted" x="1237" y="0"/>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1323" y="0"/>
 </item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="321" y="16"/>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="1294" y="25"/>
 </item>
-<item historyLabel="platform.c" index="12">
-<position info="not_deleted" x="2057" y="16"/>
+<item historyLabel="pitiful.c" index="2">
+<position info="not_deleted" x="1177" y="0"/>
 </item>
-<item historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="603" y="0"/>
+<item historyLabel="dma_magic.c" index="1">
+<position/>
 </item>
-<item historyLabel="dma_magic.c" index="11">
-<position info="not_deleted" x="1234" y="0"/>
+<item historyLabel="pitiful.c" index="2">
+<position info="not_deleted" x="760" y="0"/>
 </item>
-<item active="true" historyLabel="helloworld.c" index="9">
-<position info="not_deleted" x="1063" y="0"/>
+<item historyLabel="dma_magic.c" index="1">
+<position/>
+</item>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="6208" y="56"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1110" y="0"/>
+</item>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="1294" y="25"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1323" y="0"/>
+</item>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="7474" y="24"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1424" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1147" y="0"/>
+</item>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="10220" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="1">
+<position info="not_deleted" x="1174" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1426" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="1">
+<position info="not_deleted" x="1421" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="1760" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="1">
+<position info="not_deleted" x="1557" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="574" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="1">
+<position info="not_deleted" x="1486" y="0"/>
+</item>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="10167" y="0"/>
+</item>
+<item historyLabel="pitiful.c" index="2">
+<position info="not_deleted" x="760" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="12130" y="223"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="763" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="249" y="234"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="763" y="0"/>
+</item>
+<item historyLabel="dma_magic.h" index="6">
+<position info="not_deleted" x="4596" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="7">
+<position info="not_deleted" x="1352" y="29"/>
+</item>
+<item historyLabel="dma_magic.h" index="6">
+<position info="not_deleted" x="2470" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="7">
+<position info="not_deleted" x="1721" y="0"/>
+</item>
+<item historyLabel="dma_magic.h" index="6">
+<position info="not_deleted" x="2470" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="0">
+<position info="not_deleted" x="696" y="0"/>
+</item>
+<item historyLabel="dma_magic.h" index="6">
+<position info="not_deleted" x="3335" y="0"/>
+</item>
+<item active="true" historyLabel="dma_magic.c" index="7">
+<position info="not_deleted" x="1721" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -388,6 +395,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pitiful.h" tooltip="hello_world_0/src/pitiful.h">
+<persistable path="/hello_world_0/src/pitiful.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pitiful.c" tooltip="hello_world_0/src/pitiful.c">
+<persistable path="/hello_world_0/src/pitiful.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="hello_world_0/src/core.c">
+<persistable path="/hello_world_0/src/core.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" tooltip="hello_world_bsp_0/microblaze_0/include/xparameters.h">
 <persistable path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
 </file>
@@ -421,17 +437,8 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="arduino.c" tooltip="hello_world_0/src/arduino.c">
 <persistable path="/hello_world_0/src/arduino.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pitiful.h" tooltip="hello_world_0/src/pitiful.h">
-<persistable path="/hello_world_0/src/pitiful.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pitiful.c" tooltip="hello_world_0/src/pitiful.c">
-<persistable path="/hello_world_0/src/pitiful.c"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" tooltip="hello_world_0/src/helloworld.c">
 <persistable path="/hello_world_0/src/helloworld.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="hello_world_0/src/core.c">
-<persistable path="/hello_world_0/src/core.c"/>
 </file>
 </mruList>
 </workbench>

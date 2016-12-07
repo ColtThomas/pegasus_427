@@ -138,7 +138,9 @@ C:/Xilinx/13.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_master_lite_v1_00_a
 C:/Xilinx/13.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_master_lite_v1_00_a/hdl/vhdl/axi_master_lite_cntlr.vhd \
 C:/Xilinx/13.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_master_lite_v1_00_a/hdl/vhdl/axi_master_lite.vhd \
 pcores/dma_magic_v1_00_a/hdl/vhdl/user_logic.vhd \
-pcores/dma_magic_v1_00_a/hdl/vhdl/dma_magic.vhd
+pcores/dma_magic_v1_00_a/hdl/vhdl/dma_magic.vhd \
+pcores/dma_control_v1_00_a/hdl/verilog/user_logic.v \
+pcores/dma_control_v1_00_a/hdl/vhdl/dma_control.vhd
 
 WRAPPER_NGC_FILES = implementation/proc_sys_reset_0_wrapper.ngc \
 implementation/pitiful_0_wrapper.ngc \
@@ -163,7 +165,8 @@ implementation/push_buttons_5bits_wrapper.ngc \
 implementation/mcb_ddr2_wrapper.ngc \
 implementation/digilent_quadspi_cntlr_wrapper.ngc \
 implementation/arduino_0_wrapper.ngc \
-implementation/dma_magic_0_wrapper.ngc
+implementation/dma_magic_0_wrapper.ngc \
+implementation/dma_control_0_wrapper.ngc
 
 POSTSYN_NETLIST = implementation/$(SYSTEM).ngc
 

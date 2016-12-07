@@ -1,0 +1,11 @@
+##############################################################################
+## Filename:          C:/Users/superman/Desktop/pegasus_427/lab8/lab6hw/pcores/dma_control_v1_00_a/data/dma_control_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Wed Dec 07 10:03:15 2016 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all 
+lib axi_master_lite_v1_00_a  all 
+lib dma_control_v1_00_a user_logic verilog
+lib dma_control_v1_00_a dma_control vhdl

@@ -154,5 +154,20 @@
 <msg type="warning" file="NgdBuild" num="478" delta="old" >clock net <arg fmt="%s" index="1">debug_module/bscan_drck1</arg> with clock driver <arg fmt="%s" index="2">debug_module/debug_module/BUFG_DRCK1</arg> drives no clock pins
 </msg>
 
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">axi4_0/axi4_0/sf_cb_aruser&lt;14&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">axi4_0/axi4_0/sf_cb_aruser&lt;13&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">axi4_0/axi4_0/sf_cb_aruser&lt;12&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">axi4_0/axi4_0/sf_cb_aruser&lt;11&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">axi4_0/axi4_0/sf_cb_aruser&lt;10&gt;</arg>&apos; has no driver
+</msg>
+
 </messages>
 

@@ -27,6 +27,8 @@
  * @note    None.
  *
  */
+
+
 void DMA_MAGIC_MasterSendWord(Xuint32 BaseAddress, Xuint32 DstAddress)
 {
   /*

@@ -1,0 +1,15 @@
+##############################################################################
+## Filename:          C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw/drivers/dma_control_v1_00_a/data/dma_control_v2_1_0.mdd
+## Description:       Microprocessor Driver Definition
+## Date:              Wed Dec 07 10:03:15 2016 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+OPTION psf_version = 2.1.0;
+
+BEGIN DRIVER dma_control
+
+  OPTION supported_peripherals = (dma_control);
+  OPTION depends = (common_v1_00_a);
+  OPTION copyfiles = all;
+
+END DRIVER
