@@ -1,0 +1,8 @@
+-batch 
+-create blink 
+-ver 1.00.a 
+-dir "C:\Users\superman\Desktop\pegasus_427\lab6\lab6hw" 
+-lang vhdl 
+-bus axi4lite s 
+-reg 8 
+-xps 

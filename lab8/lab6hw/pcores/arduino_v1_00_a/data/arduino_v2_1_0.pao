@@ -1,0 +1,10 @@
+##############################################################################
+## Filename:          C:/Users/superman/Desktop/pegasus_427/lab6/lab6hw/pcores/arduino_v1_00_a/data/arduino_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Thu Nov 17 20:38:38 2016 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all 
+lib arduino_v1_00_a user_logic vhdl
+lib arduino_v1_00_a arduino vhdl

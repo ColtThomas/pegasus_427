@@ -1,0 +1,9 @@
+-batch 
+-create dma_magic 
+-ver 1.00.a 
+-dir "C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw" 
+-lang vhdl 
+-bus axi4lite ms 
+-reg 8 
+-xps 
+-driver 

@@ -1,0 +1,11 @@
+##############################################################################
+## Filename:          C:/Users/superman/Desktop/pegasus_427/lab8/lab6hw/pcores/dma_magic_v1_00_a/data/dma_magic_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Tue Dec 06 17:42:58 2016 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all 
+lib axi_master_lite_v1_00_a  all 
+lib dma_magic_v1_00_a user_logic vhdl
+lib dma_magic_v1_00_a dma_magic vhdl
