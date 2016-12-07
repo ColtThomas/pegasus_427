@@ -1,0 +1,14 @@
+#Tue Dec 06 17:39:17 MST 2016
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:Stack-size=4092
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sdata2=DDR3_SDRAM_S_AXI_BASEADDR
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.text=DDR3_SDRAM_S_AXI_BASEADDR
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.rodata=DDR3_SDRAM_S_AXI_BASEADDR
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sbss2=DDR3_SDRAM_S_AXI_BASEADDR
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:Heap-size=1024
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.bss=DDR3_SDRAM_S_AXI_BASEADDR
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sdata=DDR3_SDRAM_S_AXI_BASEADDR
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.sbss=DDR3_SDRAM_S_AXI_BASEADDR
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:Heap=DDR3_SDRAM_S_AXI_BASEADDR
+eclipse.preferences.version=1
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:.data=DDR3_SDRAM_S_AXI_BASEADDR
+com.xilinx.sdk.linkgen.prefs.hello_world_0\:Stack=DDR3_SDRAM_S_AXI_BASEADDR

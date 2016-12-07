@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="bootloop" key="dmahw_hw_platform-microblaze_0-initElf"/>
+	<item value="C:\Users\superman\Desktop\pegasus_427\dma\dmacode\dmahw_hw_platform\system_bd.bmm" key="dmahw_hw_platform-bmmFile"/>
+	<item value="C:\Users\superman\Desktop\pegasus_427\dma\dmacode\dmahw_hw_platform\system.bit" key="dmahw_hw_platform-bitFile"/>
+</section>

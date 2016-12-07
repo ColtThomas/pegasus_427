@@ -1,0 +1,7 @@
+INFILE=C:\Users\superman\Desktop\pegasus_427\dma\dmahw\implementation\system.ncd
+OUTFILE=C:\Users\superman\Desktop\pegasus_427\dma\dmahw\implementation\system.bit
+FAMILY=Virtex6
+PART=xc6vlx240t-1ff1156
+WORKINGDIR=C:\Users\superman\Desktop\pegasus_427\dma\dmahw\implementation
+LICENSE=ISE
+USER_INFO=174672765_1777505556_210596263_102
