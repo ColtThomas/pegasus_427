@@ -75,3 +75,13 @@ void DMA_MAGIC_MasterRecvWord(Xuint32 BaseAddress, Xuint32 SrcAddress)
   Xil_Out8(BaseAddress+DMA_MAGIC_MST_GO_PORT_OFFSET, MST_START);
 }
 
+void DMA_MAGIC_MasterFill(Xuint32 BaseAddress, Xuint32 DstAddress, Xuint32 FinalAddress, uint32_t Length) {
+	 /*
+	   * Set user logic master control register for write transfer.
+	   */
+	  Xil_Out8(BaseAddress+DMA_MAGIC_MST_CNTL_REG_OFFSET, MST_SGWR);
+	  /*
+	   * Set user logic master control register for read transfer.
+	   */
+	  Xil_Out8(BaseAddress+DMA_MAGIC_MST_CNTL_REG_OFFSET, MST_SGRD);
+}

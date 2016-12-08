@@ -380,12 +380,6 @@ cache implementation netlist
 IPNAME:arduino INSTANCE:arduino_0 -
 C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 398 - Copying
 cache implementation netlist
-IPNAME:dma_magic INSTANCE:dma_magic_0 -
-C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 412 - Copying
-cache implementation netlist
-IPNAME:dma_control INSTANCE:dma_control_0 -
-C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 423 - Copying
-cache implementation netlist
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
@@ -400,10 +394,10 @@ ClkGen elaborate status: PASSED
 Writing HDL for elaborated instances ...
 
 Inserting wrapper level ...
-Completion time: 1.00 seconds
+Completion time: 0.00 seconds
 
 Constructing platform-level connectivity ...
-Completion time: 0.00 seconds
+Completion time: 1.00 seconds
 
 Writing (top-level) BMM ...
 
@@ -445,4 +439,4 @@ INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
 
 Rebuilding cache ...
 
-Total run time: 68.00 seconds
+Total run time: 69.00 seconds
