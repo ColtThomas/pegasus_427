@@ -121,6 +121,15 @@ void screen_shot() {
 	xil_printf("Done.\r\n");
 }
 
+void screen_shot_dma() {
+	xil_printf("Taking DMA Screenshot....");
+
+	// insert DMA function here with size = SCREEN_PIXELS_ACROSS*SCREEN_PIXELS_DOWN (bytes!),
+	// 		source address = framePointer, dest address = screenshotFramePointer
+	xil_printf("Done.\r\n");
+
+}
+
 void screen_display_screenshot() {
 	if (XST_FAILURE == XAxiVdma_StartParking(&videoDMAController, frameIndex + 1,  XAXIVDMA_READ)) {
 			xil_printf("vdma parking failed\n\r");

@@ -78,6 +78,7 @@ arduino_t arduino;
 bool game_started = false;
 bool game_paused = false;
 bool screenshot_taken = false;
+bool dma_screenshot_taken = false;
 
 // This function is used to distinguish the up and down buttons from the rest
 bool volume_button_pressed() {
@@ -115,6 +116,10 @@ bool display_switched() {
 
 bool taking_screenshot() {
 	return switchStateReg & SWITCH_MASKS[SW_SCREENSHOT];
+}
+
+bool dma_screenshot() {
+	return switchStateReg & SWITCH_MASKS[SW_DMA];
 }
 
 // This is invoked in response to a timer interrupt.
@@ -235,6 +240,15 @@ void timer_interrupt_handler() {
 	else {
 		screenshot_taken = false;
 	}
+	if(dma_screenshot()) {
+		if(!dma_screenshot_taken) {
+			screen_shot_dma();
+			dma_screenshot_taken = true;
+		}
+	}
+	else {
+		dma_screenshot_taken = false;
+	}
 }
 //void switch_interrupt_handler() {
 //
@@ -282,6 +296,9 @@ void interrupt_handler_dispatcher(void* ptr) {
 	buttonStateReg = XGpio_DiscreteRead(&gpPB, 1); // read buttons
 //	xil_printf("Buttons:%x\r\n",buttonStateReg);
 	switchStateReg = arduino_get_switches(&arduino);
+//	if(switchStateReg & SWITCH_MASKS[SW_DMA]) {
+//		xil_printf("fdsa\r\n");
+//	}
 //	xil_printf("Switches:%x\r\n",switchStateReg);
 	pmodStateReg = arduino_get_pmod(&arduino);
 //	xil_printf("PMOD:%x\r\n",pmodStateReg);

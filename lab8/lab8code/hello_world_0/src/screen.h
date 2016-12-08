@@ -49,8 +49,11 @@ int32_t screen_double_color_pixel(int32_t x, int32_t y);
 // uses a busy loop; replaced by core.h functions for FIT timer game implementation.
 void screen_run_test();
 
-// takes a screenshot
+// takes a screenshot using software
 void screen_shot();
+
+// takes a screenshot using hardware
+void screen_shot_dma();
 
 // displays the last saved screenshot instead of the active screen
 void screen_display_screenshot();
