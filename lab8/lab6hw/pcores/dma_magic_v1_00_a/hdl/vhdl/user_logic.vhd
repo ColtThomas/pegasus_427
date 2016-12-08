@@ -603,8 +603,8 @@ begin
               end if;
             else
               mst_cmd_sm_state       <= CMD_RUN_WRITE;
-              mst_cmd_sm_rd_req      <= mst_cntl_rd_req;
-              --mst_cmd_sm_wr_req      <= mst_cntl_wr_req;
+              mst_cmd_sm_rd_req      <= '1'; -- we are in the write state
+              mst_cmd_sm_wr_req      <= '0';
               mst_cmd_sm_ip2bus_addr <= mst_ip2bus_addr;
               mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
@@ -640,8 +640,8 @@ begin
               end if;
             else
               mst_cmd_sm_state       <= CMD_RUN_READ;
-              mst_cmd_sm_rd_req      <= mst_cntl_rd_req;
-              --mst_cmd_sm_wr_req      <= mst_cntl_wr_req;
+              mst_cmd_sm_rd_req      <= '0';
+              mst_cmd_sm_wr_req      <= '1'; -- in the write state
               mst_cmd_sm_ip2bus_addr <= mst_ip2bus_addr;
               mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
