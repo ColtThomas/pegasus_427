@@ -561,6 +561,7 @@ begin
         mst_cmd_sm_set_timeout    <= '0';
         mst_cmd_sm_busy           <= '0';
 		current_length <= (others=>'0');
+	current_address <= start_address;
 	interrupt <= '0';
       else
  
@@ -576,7 +577,8 @@ begin
         mst_cmd_sm_set_error      <= '0';
         mst_cmd_sm_set_timeout    <= '0';
         mst_cmd_sm_busy           <= '1';
-		interrupt <= '0';
+	interrupt <= '0';
+	current_address <= current_address;
         -- state transition
         case mst_cmd_sm_state is
  
@@ -606,7 +608,7 @@ begin
               mst_cmd_sm_state       <= CMD_RUN_READ;
               mst_cmd_sm_rd_req      <= '1'; -- we are in the read state
               mst_cmd_sm_wr_req      <= '0';
-              mst_cmd_sm_ip2bus_addr <= mst_ip2bus_addr;
+              mst_cmd_sm_ip2bus_addr <= unsigned(start_address) + current_length;
               mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
             end if;
@@ -643,7 +645,7 @@ begin
               mst_cmd_sm_state       <= CMD_RUN_WRITE;
               mst_cmd_sm_rd_req      <= '0';
               mst_cmd_sm_wr_req      <= '1'; -- in the write state
-              mst_cmd_sm_ip2bus_addr <= mst_ip2bus_addr;
+              mst_cmd_sm_ip2bus_addr <= unsigned(end_address) + current_length; -- may need to fix casting
               mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
             end if;
@@ -664,10 +666,11 @@ begin
             end if;
 			
           when CMD_DONE =>
-           	if(currentAddress < unsigned(endAddress)) then 
+           	if(current_length < unsigned(dma_length)) then 
 			mst_cmd_sm_state    <= CMD_RUN_READ;
-		    	
+		    	current_length <= current_length + 4; -- add 4 for a byte
  		else
+			current_length	    <= (others=>'0');
 			mst_cmd_sm_state    <= CMD_IDLE;
             		mst_cmd_sm_set_done <= '1';
             		mst_cmd_sm_busy     <= '0';
