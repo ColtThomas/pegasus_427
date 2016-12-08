@@ -561,6 +561,7 @@ begin
         mst_cmd_sm_set_timeout    <= '0';
         mst_cmd_sm_busy           <= '0';
 		current_length <= (others=>'0');
+	interrupt <= '0';
       else
  
         -- default condition
@@ -575,22 +576,22 @@ begin
         mst_cmd_sm_set_error      <= '0';
         mst_cmd_sm_set_timeout    <= '0';
         mst_cmd_sm_busy           <= '1';
-		
+		interrupt <= '0';
         -- state transition
         case mst_cmd_sm_state is
  
           when CMD_IDLE =>
             if ( mst_go = '1' ) then
-              mst_cmd_sm_state  <= CMD_RUN_WRITE;
+              mst_cmd_sm_state  <= CMD_RUN_READ;
               mst_cmd_sm_clr_go <= '1';
             else
               mst_cmd_sm_state  <= CMD_IDLE;
               mst_cmd_sm_busy   <= '0';
             end if;
  
-          when CMD_RUN_WRITE =>
+          when CMD_RUN_READ =>
             if ( Bus2IP_Mst_CmdAck = '1' and Bus2IP_Mst_Cmplt = '0' ) then
-              mst_cmd_sm_state <= CMD_WAIT_FOR_WRITE_DATA;
+              mst_cmd_sm_state <= CMD_WAIT_FOR_READ_DATA;
             elsif ( Bus2IP_Mst_Cmplt = '1' ) then -- some error happened; just go to the end
               mst_cmd_sm_state <= CMD_DONE;
               if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then
@@ -602,17 +603,17 @@ begin
                 mst_cmd_sm_set_error   <= '1';
               end if;
             else
-              mst_cmd_sm_state       <= CMD_RUN_WRITE;
-              mst_cmd_sm_rd_req      <= '1'; -- we are in the write state
+              mst_cmd_sm_state       <= CMD_RUN_READ;
+              mst_cmd_sm_rd_req      <= '1'; -- we are in the read state
               mst_cmd_sm_wr_req      <= '0';
               mst_cmd_sm_ip2bus_addr <= mst_ip2bus_addr;
               mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
             end if;
  
-          when CMD_WAIT_FOR_WRITE_DATA =>
+          when CMD_WAIT_FOR_READ_DATA =>
             if ( Bus2IP_Mst_Cmplt = '1' ) then
-              mst_cmd_sm_state <= CMD_RUN_READ; -- we will write and immediately read; no FIFO flags needed
+              mst_cmd_sm_state <= CMD_RUN_WRITE; -- we will write and immediately read; no FIFO flags needed
               if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then -- some error happened
                 -- AXI4LITE address phase timeout
                 mst_cmd_sm_set_error   <= '1';
@@ -622,12 +623,12 @@ begin
                 mst_cmd_sm_set_error   <= '1';
               end if;
             else
-              mst_cmd_sm_state <= CMD_WAIT_FOR_WRITE_DATA;
+              mst_cmd_sm_state <= CMD_WAIT_FOR_READ_DATA;
             end if;
  
-		  when CMD_RUN_READ =>
+		  when CMD_RUN_WRITE =>
             if ( Bus2IP_Mst_CmdAck = '1' and Bus2IP_Mst_Cmplt = '0' ) then
-              mst_cmd_sm_state <= CMD_WAIT_FOR_READ_DATA;
+              mst_cmd_sm_state <= CMD_WAIT_FOR_WRITE_DATA;
             elsif ( Bus2IP_Mst_Cmplt = '1' ) then -- ERROR HAPPENED 
               mst_cmd_sm_state <= CMD_DONE;
               if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then
@@ -639,7 +640,7 @@ begin
                 mst_cmd_sm_set_error   <= '1';
               end if;
             else
-              mst_cmd_sm_state       <= CMD_RUN_READ;
+              mst_cmd_sm_state       <= CMD_RUN_WRITE;
               mst_cmd_sm_rd_req      <= '0';
               mst_cmd_sm_wr_req      <= '1'; -- in the write state
               mst_cmd_sm_ip2bus_addr <= mst_ip2bus_addr;
@@ -647,17 +648,9 @@ begin
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
             end if;
  
-          when CMD_WAIT_FOR_READ_DATA =>
+          when CMD_WAIT_FOR_WRITE_DATA =>
             if ( Bus2IP_Mst_Cmplt = '1' ) then
-				if(current_length>=unsigned(dma_length)) then
-					mst_cmd_sm_state <= CMD_DONE;
-				else
-					current_length <= current_length+4;
-					mst_cmd_sm_state <= CMD_RUN_WRITE;
-				end if;
-			
-			-- see if you hit your address cap
-              
+		mst_cmd_sm_state <= CMD_DONE;
               if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then
                 -- AXI4LITE address phase timeout
                 mst_cmd_sm_set_error   <= '1';
@@ -671,10 +664,15 @@ begin
             end if;
 			
           when CMD_DONE =>
-            mst_cmd_sm_state    <= CMD_IDLE;
-            mst_cmd_sm_set_done <= '1';
-            mst_cmd_sm_busy     <= '0';
- 
+           	if(currentAddress < unsigned(endAddress)) then 
+			mst_cmd_sm_state    <= CMD_RUN_READ;
+		    	
+ 		else
+			mst_cmd_sm_state    <= CMD_IDLE;
+            		mst_cmd_sm_set_done <= '1';
+            		mst_cmd_sm_busy     <= '0';
+			interrupt <= '1';			
+		end if;
           when others =>
             mst_cmd_sm_state    <= CMD_IDLE;
             mst_cmd_sm_busy     <= '0';
