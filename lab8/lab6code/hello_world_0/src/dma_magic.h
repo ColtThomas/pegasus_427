@@ -15,6 +15,7 @@
 #include "xil_io.h"
 #include<stdint.h>
 #include<stdbool.h>
+#include "xparameters.h"
 /************************** Constant Definitions ***************************/
 
 
@@ -225,7 +226,7 @@
 
 void DMA_MAGIC_MasterSendWord(Xuint32 BaseAddress, Xuint32 DstAddress);
 void DMA_MAGIC_MasterRecvWord(Xuint32 BaseAddress, Xuint32 SrcAddress);
-
+void DMA_MAGIC_MasterFill(Xuint32 BaseAddress, Xuint32 DstAddress, Xuint32 FinalAddress, uint32_t Length);
 /**
  *
  * Run a self-test on the driver/device. Note this may be a destructive test if

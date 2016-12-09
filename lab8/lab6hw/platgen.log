@@ -54,7 +54,7 @@ INFO:EDK:4130 - IPNAME: axi_vdma, INSTANCE:axi_vdma_0 - tcl is overriding
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_vdma_v5_00_a\dat
    a\axi_vdma_v2_1_0.mpd line 146 
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:axi_intc_0 - tcl is overriding
-   PARAMETER C_NUM_INTR_INPUTS value to 6 -
+   PARAMETER C_NUM_INTR_INPUTS value to 7 -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\dat
    a\axi_intc_v2_1_0.mpd line 80 
 INFO:EDK:4130 - IPNAME: axi_interconnect, INSTANCE:axi4lite_0 - tcl is
@@ -219,7 +219,7 @@ INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
    ata\microblaze_v2_1_0.mpd line 398 
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:axi_intc_0 - tcl is overriding
-   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111100100 -
+   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111001000 -
    C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_01_a\dat
    a\axi_intc_v2_1_0.mpd line 81 
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:axi_intc_0 - tcl is overriding
@@ -380,6 +380,12 @@ cache implementation netlist
 IPNAME:arduino INSTANCE:arduino_0 -
 C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 398 - Copying
 cache implementation netlist
+IPNAME:dma_magic INSTANCE:dma_magic_0 -
+C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 412 - Copying
+cache implementation netlist
+IPNAME:dma_control INSTANCE:dma_control_0 -
+C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 424 - Copying
+cache implementation netlist
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
@@ -397,7 +403,7 @@ Inserting wrapper level ...
 Completion time: 0.00 seconds
 
 Constructing platform-level connectivity ...
-Completion time: 1.00 seconds
+Completion time: 0.00 seconds
 
 Writing (top-level) BMM ...
 
@@ -426,7 +432,7 @@ INSTANCE:dma_magic_0 -
 C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 412 - Running
 XST synthesis
 INSTANCE:dma_control_0 -
-C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 423 - Running
+C:\Users\superman\Desktop\pegasus_427\lab8\lab6hw\system.mhs line 424 - Running
 XST synthesis
 
 Running NGCBUILD ...
@@ -439,4 +445,4 @@ INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
 
 Rebuilding cache ...
 
-Total run time: 69.00 seconds
+Total run time: 70.00 seconds

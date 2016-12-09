@@ -51,8 +51,7 @@
 -- DO NOT EDIT BELOW THIS LINE --------------------
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
+use IEEE.NUMERIC_STD.ALL;
 
 library proc_common_v3_00_a;
 use proc_common_v3_00_a.proc_common_pkg.all;
@@ -119,6 +118,7 @@ entity user_logic is
     -- ADD USER PORTS BELOW THIS LINE ------------------
     --USER ports added here
 	 interrupt : out std_logic;
+	 
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -174,7 +174,7 @@ architecture IMP of user_logic is
   signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); -- Length Register
   signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); -- Start Address Register
   signal slv_reg2                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); -- Finish Address Register
-  signal slv_reg3                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal slv_reg3                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0); -- debug 
   signal slv_reg4                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
   signal slv_reg5                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
   signal slv_reg6                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
@@ -225,11 +225,12 @@ architecture IMP of user_logic is
   signal mst_fifo_valid_write_xfer      : std_logic;
   signal mst_fifo_valid_read_xfer       : std_logic;
   signal Bus2IP_Reset                   : std_logic;
-  signal dma_length						 : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal start_address					 : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal end_address						 : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal current_length 				 : unsigned(C_SLV_DWIDTH-1 downto 0) := (others=>'0');
-  signal current_address 				 : unsigned(C_SLV_DWIDTH-1 downto 0) := (others=>'0');
+  signal dma_length						 : std_logic_vector(31 downto 0);
+  signal start_address					 : std_logic_vector(31 downto 0);
+  signal end_address						 : std_logic_vector(31 downto 0);
+  signal current_length 				 : unsigned(31 downto 0) := (others=>'0');
+  signal current_address 				 : unsigned(31 downto 0) := (others=>'0');
+  signal index									: std_logic_vector(31 downto 0);
 attribute SIGIS of Bus2IP_Reset   : signal is "RST";
 begin
 
@@ -267,7 +268,7 @@ begin
         slv_reg0 <= (others => '0');
         slv_reg1 <= (others => '0');
         slv_reg2 <= (others => '0');
-        slv_reg3 <= (others => '0');
+--        slv_reg3 <= (others => '0');
         slv_reg4 <= (others => '0');
         slv_reg5 <= (others => '0');
         slv_reg6 <= (others => '0');
@@ -292,12 +293,12 @@ begin
                 slv_reg2(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
               end if;
             end loop;
-          when "00010000" =>
-            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
-              if ( Bus2IP_BE(byte_index) = '1' ) then
-                slv_reg3(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
-              end if;
-            end loop;
+--          when "00010000" =>
+--            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
+--              if ( Bus2IP_BE(byte_index) = '1' ) then
+--                slv_reg3(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+--              end if;
+--            end loop;
           when "00001000" =>
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
@@ -561,7 +562,8 @@ begin
         mst_cmd_sm_set_timeout    <= '0';
         mst_cmd_sm_busy           <= '0';
 		current_length <= (others=>'0');
-	current_address <= start_address;
+	index <= (others=>'0');
+	slv_reg3  <= (others=>'0');
 	interrupt <= '0';
       else
  
@@ -577,12 +579,13 @@ begin
         mst_cmd_sm_set_error      <= '0';
         mst_cmd_sm_set_timeout    <= '0';
         mst_cmd_sm_busy           <= '1';
-	interrupt <= '0';
-	current_address <= current_address;
+			interrupt <= '0';
+			slv_reg3  <= (others=>'0');
         -- state transition
         case mst_cmd_sm_state is
  
           when CMD_IDLE =>
+				slv_reg3 <= "00000000000000000000000000000001";
             if ( mst_go = '1' ) then
               mst_cmd_sm_state  <= CMD_RUN_READ;
               mst_cmd_sm_clr_go <= '1';
@@ -592,28 +595,20 @@ begin
             end if;
  
           when CMD_RUN_READ =>
+				slv_reg3 <= "00000000000000000000000000000010";
             if ( Bus2IP_Mst_CmdAck = '1' and Bus2IP_Mst_Cmplt = '0' ) then
               mst_cmd_sm_state <= CMD_WAIT_FOR_READ_DATA;
-            elsif ( Bus2IP_Mst_Cmplt = '1' ) then -- some error happened; just go to the end
-              mst_cmd_sm_state <= CMD_DONE;
-              if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then
-                -- AXI4LITE address phase timeout
-                mst_cmd_sm_set_error   <= '1';
-                mst_cmd_sm_set_timeout <= '1';
-              elsif ( Bus2IP_Mst_Error = '1' ) then
-                -- AXI4LITE data transfer error
-                mst_cmd_sm_set_error   <= '1';
-              end if;
             else
               mst_cmd_sm_state       <= CMD_RUN_READ;
               mst_cmd_sm_rd_req      <= '1'; -- we are in the read state
               mst_cmd_sm_wr_req      <= '0';
-              mst_cmd_sm_ip2bus_addr <= unsigned(start_address) + current_length;
+              mst_cmd_sm_ip2bus_addr <= std_logic_vector(unsigned(start_address) + current_length);
               mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
             end if;
  
           when CMD_WAIT_FOR_READ_DATA =>
+			 slv_reg3 <= "00000000000000000000000000000100";
             if ( Bus2IP_Mst_Cmplt = '1' ) then
               mst_cmd_sm_state <= CMD_RUN_WRITE; -- we will write and immediately read; no FIFO flags needed
               if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then -- some error happened
@@ -629,28 +624,20 @@ begin
             end if;
  
 		  when CMD_RUN_WRITE =>
+		  slv_reg3 <= "00000000000000000000000000001000";
             if ( Bus2IP_Mst_CmdAck = '1' and Bus2IP_Mst_Cmplt = '0' ) then
               mst_cmd_sm_state <= CMD_WAIT_FOR_WRITE_DATA;
-            elsif ( Bus2IP_Mst_Cmplt = '1' ) then -- ERROR HAPPENED 
-              mst_cmd_sm_state <= CMD_DONE;
-              if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then
-                -- AXI4LITE address phase timeout
-                mst_cmd_sm_set_error   <= '1';
-                mst_cmd_sm_set_timeout <= '1';
-              elsif ( Bus2IP_Mst_Error = '1' ) then
-                -- AXI4LITE data transfer error
-                mst_cmd_sm_set_error   <= '1';
-              end if;
             else
               mst_cmd_sm_state       <= CMD_RUN_WRITE;
               mst_cmd_sm_rd_req      <= '0';
               mst_cmd_sm_wr_req      <= '1'; -- in the write state
-              mst_cmd_sm_ip2bus_addr <= unsigned(end_address) + current_length; -- may need to fix casting
+              mst_cmd_sm_ip2bus_addr <= std_logic_vector(unsigned(end_address) + current_length); -- may need to fix casting
               mst_cmd_sm_ip2bus_be   <= mst_ip2bus_be(15 downto 16-C_MST_DWIDTH/8 );
               mst_cmd_sm_bus_lock    <= mst_cntl_bus_lock;
             end if;
  
           when CMD_WAIT_FOR_WRITE_DATA =>
+			 slv_reg3 <= "00000000000000000000000000010000";
             if ( Bus2IP_Mst_Cmplt = '1' ) then
 		mst_cmd_sm_state <= CMD_DONE;
               if ( Bus2IP_Mst_Cmd_Timeout = '1' ) then
@@ -662,25 +649,25 @@ begin
                 mst_cmd_sm_set_error   <= '1';
               end if;
             else
-              mst_cmd_sm_state <= CMD_WAIT_FOR_READ_DATA;
+              mst_cmd_sm_state <= CMD_WAIT_FOR_WRITE_DATA;
             end if;
 			
           when CMD_DONE =>
-           	if(current_length < unsigned(dma_length)) then 
-			mst_cmd_sm_state    <= CMD_RUN_READ;
-		    	current_length <= current_length + 4; -- add 4 for a byte
- 		else
-			current_length	    <= (others=>'0');
-			mst_cmd_sm_state    <= CMD_IDLE;
-            		mst_cmd_sm_set_done <= '1';
-            		mst_cmd_sm_busy     <= '0';
-			interrupt <= '1';			
-		end if;
-          when others =>
-            mst_cmd_sm_state    <= CMD_IDLE;
-            mst_cmd_sm_busy     <= '0';
- 
-        end case;
+			 slv_reg3 <= "00000000000000000000000000100000";
+			   current_length <= current_length+4; -- add 4 for a word
+           	if(current_length <= unsigned(dma_length)*4) then 
+					mst_cmd_sm_state <= CMD_RUN_READ;					
+				else
+					current_length <= (others=>'0');
+					mst_cmd_sm_state    <= CMD_IDLE;
+					mst_cmd_sm_set_done <= '1';
+					mst_cmd_sm_busy     <= '0';
+					interrupt <= '1';			
+				end if;
+			when others =>
+				mst_cmd_sm_state    <= CMD_IDLE;
+				mst_cmd_sm_busy     <= '0';
+		    end case;
  
       end if;
     end if;

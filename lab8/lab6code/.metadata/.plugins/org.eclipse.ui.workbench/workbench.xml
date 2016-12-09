@@ -31,6 +31,7 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -39,21 +40,30 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="dma_magic.h" partName="dma_magic.h" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/dma_magic.h" title="dma_magic.h" tooltip="hello_world_0/src/dma_magic.h" workbook="org.eclipse.ui.internal.EditorStack@287f8baf">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/dma_magic.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="136" selectionOffset="10232" selectionTopPixel="3542"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="dma_magic.c" partName="dma_magic.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/dma_magic.c" title="dma_magic.c" tooltip="hello_world_0/src/dma_magic.c" workbook="org.eclipse.ui.internal.EditorStack@287f8baf">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/dma_magic.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2320" selectionTopPixel="822"/>
-</editor>
 <editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="helloworld.c" partName="helloworld.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/helloworld.c" title="helloworld.c" tooltip="hello_world_0/src/helloworld.c" workbook="org.eclipse.ui.internal.EditorStack@5c338d9d">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/helloworld.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1475" selectionTopPixel="108"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1479" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="bunkers.c" partName="bunkers.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/bunkers.c" title="bunkers.c" tooltip="hello_world_0/src/bunkers.c" workbook="org.eclipse.ui.internal.EditorStack@5c338d9d">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/bunkers.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1224"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="dma_magic.h" partName="dma_magic.h" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/dma_magic.h" title="dma_magic.h" tooltip="hello_world_0/src/dma_magic.h" workbook="org.eclipse.ui.internal.EditorStack@287f8baf">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/dma_magic.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="8" selectionOffset="3999" selectionTopPixel="1145"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="dma_magic.c" partName="dma_magic.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/dma_magic.c" title="dma_magic.c" tooltip="hello_world_0/src/dma_magic.c" workbook="org.eclipse.ui.internal.EditorStack@287f8baf">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/dma_magic.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3125" selectionTopPixel="941"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" partName="core.c" path="C:/Users/superman/Desktop/pegasus_427/lab8/lab6code/hello_world_0/src/core.c" title="core.c" tooltip="hello_world_0/src/core.c" workbook="org.eclipse.ui.internal.EditorStack@287f8baf">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_world_0/src/core.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="30" selectionOffset="10327" selectionTopPixel="4409"/>
 </editor>
 </editors>
 <views>
@@ -70,8 +80,7 @@
 <view id="org.eclipse.tm.terminal.view.TerminalView" partName="Terminal"/>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
+<expanded>&#x0A;<category IMemento.internal.id="Warnings (1 item)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -86,7 +95,7 @@
 </view>
 <view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
 </views>
-<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.eclipse.cdt.ui.CPerspective">
+<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.cdt.ui.CPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.cdt.internal.ui.CPerspectiveFactory" id="org.eclipse.cdt.ui.CPerspective" label="C/C++"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -203,169 +212,164 @@
 <workingSets/>
 <navigationHistory>
 <editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/pitiful.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/core.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/pitiful.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/pitiful.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/helloworld.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/dma_magic.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_0/src/bunkers.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
 </editors>
-<item historyLabel="helloworld.c" index="0">
-<position info="not_deleted" x="1147" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="3">
-<position info="not_deleted" x="10220" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="1">
-<position info="not_deleted" x="1174" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="0">
-<position info="not_deleted" x="1426" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="1">
-<position info="not_deleted" x="1421" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="0">
-<position info="not_deleted" x="1760" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="1">
-<position info="not_deleted" x="1557" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="0">
-<position info="not_deleted" x="574" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="1">
-<position info="not_deleted" x="1486" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="3">
-<position info="not_deleted" x="10167" y="0"/>
-</item>
-<item historyLabel="pitiful.c" index="2">
-<position info="not_deleted" x="760" y="0"/>
-</item>
-<item historyLabel="core.c" index="4">
-<position info="not_deleted" x="12130" y="223"/>
-</item>
-<item historyLabel="helloworld.c" index="0">
-<position info="not_deleted" x="763" y="0"/>
-</item>
-<item historyLabel="core.c" index="4">
-<position info="not_deleted" x="249" y="234"/>
-</item>
-<item historyLabel="helloworld.c" index="0">
-<position info="not_deleted" x="763" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="5">
-<position info="not_deleted" x="4596" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="6">
-<position info="not_deleted" x="1352" y="29"/>
-</item>
-<item historyLabel="dma_magic.h" index="5">
-<position info="not_deleted" x="2470" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="6">
-<position info="not_deleted" x="1721" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="5">
-<position info="not_deleted" x="2470" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="0">
-<position info="not_deleted" x="696" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="5">
-<position info="not_deleted" x="3335" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="pitiful.c" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="pitiful.h" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="9">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="9">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="9">
-<position info="not_deleted" x="594" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="12">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="helloworld.c" index="11">
-<position info="not_deleted" x="1889" y="0"/>
-</item>
-<item historyLabel="dma_magic.c" index="12">
-<position info="not_deleted" x="1543" y="10"/>
-</item>
-<item historyLabel="helloworld.c" index="11">
-<position info="not_deleted" x="696" y="0"/>
-</item>
-<item historyLabel="dma_magic.h" index="9">
+<item historyLabel="dma_magic.h" index="0">
 <position info="not_deleted" x="5620" y="0"/>
 </item>
-<item historyLabel="dma_magic.c" index="12">
+<item historyLabel="dma_magic.c" index="2">
 <position info="not_deleted" x="1543" y="10"/>
 </item>
-<item historyLabel="dma_magic.h" index="9">
+<item historyLabel="dma_magic.h" index="0">
 <position info="not_deleted" x="5620" y="0"/>
 </item>
-<item historyLabel="dma_magic.c" index="12">
+<item historyLabel="dma_magic.c" index="2">
 <position info="not_deleted" x="1543" y="10"/>
 </item>
-<item historyLabel="helloworld.c" index="11">
+<item historyLabel="helloworld.c" index="1">
 <position info="not_deleted" x="1719" y="0"/>
 </item>
-<item historyLabel="dma_magic.c" index="12">
+<item historyLabel="dma_magic.c" index="2">
 <position info="not_deleted" x="1547" y="0"/>
 </item>
-<item historyLabel="helloworld.c" index="11">
+<item historyLabel="helloworld.c" index="1">
 <position info="not_deleted" x="1556" y="0"/>
 </item>
-<item historyLabel="dma_magic.c" index="12">
+<item historyLabel="dma_magic.c" index="2">
 <position info="not_deleted" x="1563" y="0"/>
 </item>
-<item historyLabel="helloworld.c" index="11">
+<item historyLabel="helloworld.c" index="1">
 <position info="not_deleted" x="1840" y="0"/>
 </item>
-<item historyLabel="dma_magic.h" index="9">
+<item historyLabel="dma_magic.h" index="0">
 <position info="not_deleted" x="10232" y="136"/>
 </item>
-<item historyLabel="dma_magic.c" index="12">
+<item historyLabel="dma_magic.c" index="2">
 <position info="not_deleted" x="1819" y="64"/>
 </item>
-<item historyLabel="helloworld.c" index="11">
+<item historyLabel="helloworld.c" index="1">
 <position info="not_deleted" x="1229" y="0"/>
 </item>
-<item historyLabel="helloworld.c" index="11">
+<item historyLabel="helloworld.c" index="1">
 <position info="not_deleted" x="1475" y="0"/>
 </item>
-<item active="true" historyLabel="dma_magic.c" index="12">
+<item historyLabel="dma_magic.c" index="2">
 <position info="not_deleted" x="2012" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position info="not_deleted" x="2405" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position info="not_deleted" x="0" y="2403"/>
+</item>
+<item historyLabel="dma_magic.c" index="2">
+<position info="not_deleted" x="3194" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position/>
+</item>
+<item historyLabel="dma_magic.c" index="2">
+<position info="not_deleted" x="1138" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="2">
+<position info="not_deleted" x="3194" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="2">
+<position info="not_deleted" x="3194" y="0"/>
+</item>
+<item historyLabel="dma_magic.c" index="2">
+<position/>
+</item>
+<item historyLabel="dma_magic.h" index="4">
+<position info="not_deleted" x="3999" y="8"/>
+</item>
+<item historyLabel="dma_magic.c" index="2">
+<position info="not_deleted" x="3125" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="683" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="12743" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position info="not_deleted" x="1568" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10674" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position info="not_deleted" x="1479" y="0"/>
+</item>
+<item historyLabel="bunkers.c" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10674" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10618" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10633" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10658" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10673" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10807" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="8376" y="0"/>
+</item>
+<item historyLabel="helloworld.c" index="3">
+<position info="not_deleted" x="1479" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10327" y="30"/>
+</item>
+<item historyLabel="xparameters.h" index="7">
+<position info="not_deleted" x="5779" y="0"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10327" y="30"/>
+</item>
+<item historyLabel="xparameters.h" index="7">
+<position info="not_deleted" x="1314" y="25"/>
+</item>
+<item historyLabel="core.c" index="5">
+<position info="not_deleted" x="10327" y="30"/>
+</item>
+<item historyLabel="xparameters.h" index="7">
+<position info="not_deleted" x="1294" y="5"/>
+</item>
+<item active="true" historyLabel="core.c" index="5">
+<position info="not_deleted" x="10327" y="30"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -373,12 +377,8 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="topLeft"/>
-</trimArea>
 <trimArea IMemento.internal.id="131072">
 <trimItem IMemento.internal.id="topRight"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
 </trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
@@ -387,11 +387,19 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" tooltip="hello_world_bsp_0/microblaze_0/include/xparameters.h">
+<persistable path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="bunkers.c" tooltip="hello_world_0/src/bunkers.c">
+<persistable path="/hello_world_0/src/bunkers.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="hello_world_0/src/core.c">
+<persistable path="/hello_world_0/src/core.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="dma_magic.c" tooltip="hello_world_0/src/dma_magic.c">
 <persistable path="/hello_world_0/src/dma_magic.c"/>
 </file>
@@ -403,12 +411,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pitiful.c" tooltip="hello_world_0/src/pitiful.c">
 <persistable path="/hello_world_0/src/pitiful.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="hello_world_0/src/core.c">
-<persistable path="/hello_world_0/src/core.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="xparameters.h" tooltip="hello_world_bsp_0/microblaze_0/include/xparameters.h">
-<persistable path="/hello_world_bsp_0/microblaze_0/include/xparameters.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="platform.h" tooltip="hello_world_0/src/platform.h">
 <persistable path="/hello_world_0/src/platform.h"/>
@@ -433,9 +435,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="arduino.h" tooltip="hello_world_0/src/arduino.h">
 <persistable path="/hello_world_0/src/arduino.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="arduino.c" tooltip="hello_world_0/src/arduino.c">
-<persistable path="/hello_world_0/src/arduino.c"/>
 </file>
 </mruList>
 </workbench>

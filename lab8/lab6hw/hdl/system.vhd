@@ -1309,7 +1309,7 @@ architecture STRUCTURE of system is
       S_AXI_RRESP : out std_logic_vector(1 downto 0);
       S_AXI_RVALID : out std_logic;
       S_AXI_RREADY : in std_logic;
-      Intr : in std_logic_vector(5 downto 0);
+      Intr : in std_logic_vector(6 downto 0);
       Irq : out std_logic
     );
   end component;
@@ -2499,6 +2499,7 @@ architecture STRUCTURE of system is
   signal clk_100_0000MHzPLL0 : std_logic_vector(0 to 0);
   signal clk_600_0000MHz180PLL0_nobuf : std_logic;
   signal clk_600_0000MHzPLL0_nobuf : std_logic;
+  signal dma_magic_0_interrupt : std_logic;
   signal fit_timer_0_Interrupt : std_logic;
   signal microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr : std_logic_vector(0 to 31);
   signal microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Clk : std_logic;
@@ -2581,7 +2582,7 @@ architecture STRUCTURE of system is
   signal net_gnd4096 : std_logic_vector(0 to 4095);
   signal net_vcc0 : std_logic;
   signal net_vcc4 : std_logic_vector(3 downto 0);
-  signal pgassign1 : std_logic_vector(5 downto 0);
+  signal pgassign1 : std_logic_vector(6 downto 0);
   signal pgassign2 : std_logic_vector(12 downto 0);
   signal pgassign3 : std_logic_vector(4 downto 0);
   signal pitiful_0_interrupt : std_logic;
@@ -2706,12 +2707,13 @@ begin
   axi4_0_S_ARUSER(14 downto 10) <= B"00000";
   axi4_0_S_ARUSER(19 downto 15) <= B"00000";
   axi4_0_S_ARUSER(24 downto 20) <= B"00000";
-  pgassign1(5) <= axi_ac97_0_Interrupt;
-  pgassign1(4) <= axi_timer_0_Interrupt;
-  pgassign1(3) <= Push_Buttons_5Bits_IP2INTC_Irpt;
-  pgassign1(2) <= fit_timer_0_Interrupt;
-  pgassign1(1) <= pitiful_0_interrupt;
-  pgassign1(0) <= arduino_0_interrupt;
+  pgassign1(6) <= axi_ac97_0_Interrupt;
+  pgassign1(5) <= axi_timer_0_Interrupt;
+  pgassign1(4) <= Push_Buttons_5Bits_IP2INTC_Irpt;
+  pgassign1(3) <= fit_timer_0_Interrupt;
+  pgassign1(2) <= pitiful_0_interrupt;
+  pgassign1(1) <= arduino_0_interrupt;
+  pgassign1(0) <= dma_magic_0_interrupt;
   pgassign2(12 downto 12) <= clk_100_0000MHzPLL0(0 to 0);
   pgassign2(11 downto 11) <= clk_100_0000MHzPLL0(0 to 0);
   pgassign2(10 downto 10) <= clk_100_0000MHzPLL0(0 to 0);
@@ -4908,7 +4910,7 @@ begin
       m_axi_lite_bready => axi4_0_S_BREADY(3),
       m_axi_lite_bvalid => axi4_0_S_BVALID(3),
       m_axi_lite_bresp => axi4_0_S_BRESP(7 downto 6),
-      interrupt => open
+      interrupt => dma_magic_0_interrupt
     );
 
   dma_control_0 : dma_control_0_wrapper

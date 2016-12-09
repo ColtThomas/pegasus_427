@@ -75,13 +75,25 @@ void DMA_MAGIC_MasterRecvWord(Xuint32 BaseAddress, Xuint32 SrcAddress)
   Xil_Out8(BaseAddress+DMA_MAGIC_MST_GO_PORT_OFFSET, MST_START);
 }
 
-void DMA_MAGIC_MasterFill(Xuint32 BaseAddress, Xuint32 DstAddress, Xuint32 FinalAddress, uint32_t Length) {
-	 /*
+void DMA_MAGIC_MasterFill(Xuint32 BaseAddress, Xuint32 SrcAddress, Xuint32 DestAddress, uint32_t length) {
+	DMA_MAGIC_mWriteSlaveReg0(XPAR_DMA_MAGIC_0_BASEADDR, 0,(length >= 2?length-2:0));
+	DMA_MAGIC_mWriteSlaveReg1(XPAR_DMA_MAGIC_0_BASEADDR, 0,SrcAddress );
+	DMA_MAGIC_mWriteSlaveReg2(XPAR_DMA_MAGIC_0_BASEADDR, 0,DestAddress );
+
+//	DMA_MAGIC_mWriteReg(XPAR_DMA_MAGIC_0_BASEADDR, DMA_MAGIC_SLV_REG0_OFFSET, length);
+//	DMA_MAGIC_mWriteReg(XPAR_DMA_MAGIC_0_BASEADDR, DMA_MAGIC_SLV_REG1_OFFSET,SrcAddress );
+//	DMA_MAGIC_mWriteReg(XPAR_DMA_MAGIC_0_BASEADDR, DMA_MAGIC_SLV_REG2_OFFSET,DestAddress);
+	/*
 	   * Set user logic master control register for write transfer.
 	   */
-	  Xil_Out8(BaseAddress+DMA_MAGIC_MST_CNTL_REG_OFFSET, MST_SGWR);
+	  Xil_Out8(BaseAddress+DMA_MAGIC_MST_CNTL_REG_OFFSET, MST_BRRD);
 	  /*
-	   * Set user logic master control register for read transfer.
+	   * Set user logic master byte enable register to drive IP2Bus_Mst_BE signal.
 	   */
-	  Xil_Out8(BaseAddress+DMA_MAGIC_MST_CNTL_REG_OFFSET, MST_SGRD);
+	  Xil_Out16(BaseAddress+DMA_MAGIC_MST_BE_REG_OFFSET, 0xFFFF);
+	  /*
+	   * Start user logic master read transfer by writting special pattern to its go port.
+	   */
+	  Xil_Out8(BaseAddress+DMA_MAGIC_MST_GO_PORT_OFFSET, MST_START);
 }
+
