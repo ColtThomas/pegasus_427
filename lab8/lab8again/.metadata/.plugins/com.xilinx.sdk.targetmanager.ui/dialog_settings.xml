@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="C:\Users\superman\Desktop\pegasus_427\lab8\lab8again\lab6hw_hw_platform\system_bd.bmm" key="lab6hw_hw_platform-bmmFile"/>
+	<item value="bootloop" key="lab6hw_hw_platform-microblaze_0-initElf"/>
+	<item value="C:\Users\superman\Desktop\pegasus_427\lab8\lab8again\lab6hw_hw_platform\system.bit" key="lab6hw_hw_platform-bitFile"/>
+</section>

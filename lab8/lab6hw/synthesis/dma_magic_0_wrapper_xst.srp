@@ -1084,8 +1084,8 @@ INFO:Xst:3210 - "c:/users/superman/desktop/pegasus_427/lab8/lab6hw/pcores/dma_ma
     -----------------------------------------------------------------------
     Found 32-bit adder for signal <start_address[31]_current_length[31]_add_96_OUT> created at line 605.
     Found 32-bit adder for signal <end_address[31]_current_length[31]_add_101_OUT> created at line 634.
-    Found 32-bit adder for signal <current_length[31]_GND_33_o_add_107_OUT> created at line 1241.
-    Found 34-bit comparator greater for signal <GND_33_o_INV_38_o> created at line 657
+    Found 32-bit adder for signal <current_length[31]_GND_33_o_add_106_OUT> created at line 1241.
+    Found 34-bit comparator greater for signal <GND_33_o_INV_38_o> created at line 658
     WARNING:Xst:2404 -  FFs/Latches <mst_cmd_sm_reset<0:0>> (without init value) have a constant value of 0 in block <user_logic>.
     Summary:
 	inferred   2 Adder/Subtractor(s).
@@ -1616,7 +1616,7 @@ m_axi_lite_aclk|    4.275|         |         |         |
 
 
 Total REAL time to Xst completion: 12.00 secs
-Total CPU time to Xst completion: 11.86 secs
+Total CPU time to Xst completion: 11.51 secs
  
 --> 
 

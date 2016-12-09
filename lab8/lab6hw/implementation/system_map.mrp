@@ -9,7 +9,7 @@ Target Device  : xc6slx45
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : spartan6 -- $Revision: 1.55 $
-Mapped Date    : Thu Dec 08 17:49:46 2016
+Mapped Date    : Thu Dec 08 18:22:25 2016
 
 Design Summary
 --------------
@@ -105,8 +105,8 @@ Specific Feature Utilization:
 Average Fanout of Non-Clock Nets:                3.99
 
 Peak Memory Usage:  752 MB
-Total REAL time to MAP completion:  2 mins 22 secs 
-Total CPU time to MAP completion:   2 mins 22 secs 
+Total REAL time to MAP completion:  2 mins 17 secs 
+Total CPU time to MAP completion:   2 mins 17 secs 
 
 Table of Contents
 -----------------
@@ -14186,91 +14186,91 @@ LUT1
 		dma_magic_0/dma_magic_0/USER_LOGIC_I/Mmux_mst_cmd_sm_state[2]_X_33_o_Mux_113_o
 11_cy_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_xor<31>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<3>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<4>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<5>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<6>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<7>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<8>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<9>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<10>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<11>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<12>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<13>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<14>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<15>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<16>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<17>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<18>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<19>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<20>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<21>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<22>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<23>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<24>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<25>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<26>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<27>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<28>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<29>_rt
 LUT1
-		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_107_
+		dma_magic_0/dma_magic_0/USER_LOGIC_I/Madd_current_length[31]_GND_33_o_add_106_
 OUT_cy<30>_rt
 LUT2
 		fit_timer_0/fit_timer_0/Using_SRL16s.SRL16s[4].Divide_I/not_First.Out1_rstpot
