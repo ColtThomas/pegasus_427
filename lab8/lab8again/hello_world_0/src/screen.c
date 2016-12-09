@@ -19,9 +19,11 @@
 #include "alienHandler.h"
 #include "saucer.h"
 #include "dma_magic.h"
+#include "xtmrctr.h"
 
 #define FRAME_BUFFER_0_ADDR 0xC1000000  // Starting location in DDR where we will store the images that we display.
-#define MAX_SILLY_TIMER 10000000;
+#define MAX_SILLY_TIMER 10000000
+#define TIMER_CONVERSION 100000
 
 
 uint32_t *framePointer;
@@ -29,6 +31,7 @@ uint32_t *screenshotFramePointer;
 int32_t frameIndex = 0;
 XAxiVdma videoDMAController;
 bool screenshotdisplayed = false;
+extern XTmrCtr timer;
 
 // initializes the screen.
 // mostly copy-paste from lab website
@@ -114,23 +117,29 @@ void screen_init() {
 // takes a screenshot by copying everything from framePointer into screenshotFramePointer.
 void screen_shot() {
 	int i;
+	uint32_t timer_value;
+	XTmrCtr_Reset(&timer, 0);
+	XTmrCtr_Start(&timer, 0);
 	xil_printf("Shooting Screen....");
 	// copy current screen array into screenshot array
 	for(i = 0; i < SCREEN_PIXELS_ACROSS*SCREEN_PIXELS_DOWN; i++) {
 		screenshotFramePointer[i] = framePointer[i];
 	}
-	xil_printf("Done.\r\n");
+	XTmrCtr_Stop(&timer, 0);
+	timer_value = XTmrCtr_GetValue(&timer, 0);
+	xil_printf("Done. Time = %d\r\n", timer_value/TIMER_CONVERSION);
 }
 
 void screen_shot_dma() {
 	xil_printf("Taking DMA Screenshot....");
-
+	XTmrCtr_Reset(&timer, 0);
+	XTmrCtr_Start(&timer, 0);
 	// insert DMA function here with size = SCREEN_PIXELS_ACROSS*SCREEN_PIXELS_DOWN (bytes!),
 	// 		source address = framePointer, dest address = screenshotFramePointer
 
 	DMA_MAGIC_MasterFill(XPAR_DMA_MAGIC_0_BASEADDR, (Xuint32)framePointer, (Xuint32)screenshotFramePointer, SCREEN_PIXELS_ACROSS*SCREEN_PIXELS_DOWN);
 
-	xil_printf("Done.\r\n");
+//	xil_printf("Done.\r\n");
 
 }
 

@@ -23,7 +23,9 @@ src/core.d src/core.o: ../src/core.c \
   ../src/xac97_l.h \
   ../../hello_world_bsp_0/microblaze_0/include/xbasic_types.h \
   ../../hello_world_bsp_0/microblaze_0/include/xio.h ../src/sound.h \
-  ../src/pitiful.h ../src/arduino.h
+  ../src/pitiful.h ../src/arduino.h \
+  ../../hello_world_bsp_0/microblaze_0/include/xtmrctr.h \
+  ../../hello_world_bsp_0/microblaze_0/include/xtmrctr_l.h
 
 ../../hello_world_bsp_0/microblaze_0/include/xgpio.h:
 
@@ -94,3 +96,7 @@ src/core.d src/core.o: ../src/core.c \
 ../src/pitiful.h:
 
 ../src/arduino.h:
+
+../../hello_world_bsp_0/microblaze_0/include/xtmrctr.h:
+
+../../hello_world_bsp_0/microblaze_0/include/xtmrctr_l.h:

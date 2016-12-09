@@ -25,9 +25,12 @@
 #include "sound.h"
 #include "pitiful.h"
 #include "arduino.h"
+#include "xtmrctr.h"
 
 #define TIMER_SEC 100 // timer period is 10ms, so 100 periods is one second
 #define NUMBER_OF_BUTTONS 5
+
+#define TIMER_CONVERSION 100000
 
 #define FRAMES_PER_SECOND 30
 #define TIMER_FRAME TIMER_SEC/FRAMES_PER_SECOND
@@ -74,6 +77,7 @@ XGpio gpLED;  // This is a handle for the LED GPIO block.
 XGpio gpPB;   // This is a handle for the push-button GPIO block.
 pitiful_t thePit;
 arduino_t arduino;
+XTmrCtr timer;
 
 bool game_started = false;
 bool game_paused = false;
@@ -293,6 +297,7 @@ void ac97_interrupt_handler() {
 // but pb_interrupt_handler() is called before ack'ing the interrupt controller?
 void interrupt_handler_dispatcher(void* ptr) {
 	uint32_t intc_status = XIntc_GetIntrStatus(XPAR_INTC_0_BASEADDR);
+	uint32_t timer_value = 0;
 	buttonStateReg = XGpio_DiscreteRead(&gpPB, 1); // read buttons
 //	xil_printf("Buttons:%x\r\n",buttonStateReg);
 	switchStateReg = arduino_get_switches(&arduino);
@@ -304,6 +309,12 @@ void interrupt_handler_dispatcher(void* ptr) {
 //	xil_printf("PMOD:%x\r\n",pmodStateReg);
 	//	xil_printf("\r\nswitch values: %d",switchStateReg);
 	// Check the PIT interrupt first.
+	if(intc_status & XPAR_DMA_MAGIC_0_INTERRUPT_MASK) {
+		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_DMA_MAGIC_0_INTERRUPT_MASK);
+		XTmrCtr_Stop(&timer, 0);
+		timer_value = XTmrCtr_GetValue(&timer, 0);
+		xil_printf("Done. Timer = %d\r\n", timer_value/TIMER_CONVERSION);
+	}
 	if (intc_status & XPAR_PITIFUL_0_INTERRUPT_MASK){
 		XIntc_AckIntr(XPAR_INTC_0_BASEADDR, XPAR_PITIFUL_0_INTERRUPT_MASK);
 		timer_interrupt_handler();
@@ -376,14 +387,18 @@ int32_t core_init (void) {
 	pitiful_counter_reload_enable(&thePit);
 	pitiful_counter_enable(&thePit);
 
+	XTmrCtr_Initialize(&timer, XPAR_TMRCTR_0_DEVICE_ID);
+
 	// Arduino init stuff
 	arduino_initialize(&arduino, XPAR_ARDUINO_0_BASEADDR);
 	xil_printf("Arduino address: %x\r\n",arduino.BaseAddress);
 	microblaze_register_handler(interrupt_handler_dispatcher, NULL);
 	// Enable the FIT, the GPIO and the AC97
 	XIntc_EnableIntr(XPAR_INTC_0_BASEADDR,
-			(XPAR_ARDUINO_0_INTERRUPT_MASK | XPAR_PITIFUL_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
+			(XPAR_DMA_MAGIC_0_INTERRUPT_MASK | XPAR_ARDUINO_0_INTERRUPT_MASK | XPAR_PITIFUL_0_INTERRUPT_MASK | XPAR_PUSH_BUTTONS_5BITS_IP2INTC_IRPT_MASK | XPAR_AXI_AC97_0_INTERRUPT_MASK));
 	XIntc_MasterEnable(XPAR_INTC_0_BASEADDR);
+
+
 
 	return 0;
 }
